@@ -22,7 +22,7 @@ var commands = {
 			if (!channel) return msg.channel.send(':warning:  |  **Tu nes pas dans un salon vocale.**');
 			if (suffix) {
 				if (suffix === "modern" || suffix === "modern") {
-					msg.channel.send(":musical_note:  |  **En avant la** `radio !`");
+					msg.channel.send(":musical_note:  |  **En avant la radio **!");
 					var radio = "RadioModern";
 				} else {
 					msg.channel.send(":warning:  |  **Erreur**");
