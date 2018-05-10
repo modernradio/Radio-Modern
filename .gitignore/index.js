@@ -72,7 +72,7 @@ bot.on("ready", function () {
 	bot.user.setGame(config.prefix + "help" | " + bot.guilds.array().length + "); 
 });
 
-bot.on('ready', () => {
+bot.on('ready', function () => {
    
     setTimeout(audience, 60000);
     setInterval(() => {
