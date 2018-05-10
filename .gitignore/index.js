@@ -47,22 +47,7 @@ var commands = {
 			}
         }
     },
-/*	"search": {
-		process: function (msg, suffix) {
-			const channel = msg.member.voiceChannel;
-			if (!channel) return msg.channel.send(':warning:  |  **You are not on a voice channel.**');
-			if (!suffix) {
-				msg.channel.send(":warning:  |  **Insert a tag to search**");
-				return;
-			}
-			msg.member.voiceChannel.join().then(connection => {
-				require('http').get("http://streaming.radionomy.com/"+suffix, (res) => {
-					connection.playStream(res);
-				})
-			})
-			msg.channel.send(":musical_note:  |  **Searching and reproducing...**");
-		}
-	},*/
+	
 	"stop": {
 		process: function (msg, suffix) {
 			if (msg.member.hasPermission("MANAGE_GUILD") == false) {
@@ -91,7 +76,7 @@ var commands = {
                  .addField(".stop", "Pour que je parte")          
                 .setColor("#00ffcc")
                 .setFooter("By Ilian !")
-                .setAuthor("Pannel des Traduction")
+                .setAuthor("Radio Help Staff")
                 .setTimestamp()
                 msg.channel.sendEmbed(embed)
         }
@@ -100,10 +85,11 @@ var commands = {
 	"help": {
         process: function (msg, suffix) {
             var embed = new Discord.RichEmbed()
-                 .addField(".invite", "Pour que je rejoins le salon vocal !")           
+                 .addField(".invite", "Pour que je rejoins le salon vocal !")
+	    	 .addField(".radiohelp", "Pour avoir l'aide staff ( Seul ceux qui on la permition Géré le Serveur peuvent utilité cette commande ) !")
                 .setColor("#00ffcc")
                 .setFooter("By Ilian !")
-                .setAuthor("Pannel des Traduction")
+                .setAuthor("Radio Help")
                 .setTimestamp()
                 msg.channel.sendEmbed(embed)
         }
