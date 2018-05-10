@@ -24,7 +24,7 @@ var commands = {
 			if (suffix) {
 				if (suffix === "modern" || suffix === "Modern") {
 					msg.channel.send(":musical_note:  |  **Radio Modern**");
-					var radio = "A-RadioModern-FM-WEB";					
+					var radio = "RadioModern";					
 				} else {
 					msg.channel.send(":warning:  |  **Erreur**, `.radio Modern` ou `.radio modern`");
 					return;
