@@ -16,31 +16,7 @@ var commands = {
 			msg.channel.send(":loudspeaker:  |  **Je suis là!**");
         }
     },
-    "radio": {
-        process: function (msg, suffix) {
-			const channel = msg.member.voiceChannel;
-			if (!channel) return msg.channel.send(':warning:  |  **Tu nes pas dans un salon vocale.**');
-			if (suffix) {
-				if (suffix === "modern" || suffix === "modern") {
-					msg.channel.send(":musical_note:  |  **En avant la radio **!");
-					var radio = "RadioModern";
-				} else {
-					msg.channel.send(":warning:  |  **Erreur**");
-					return;
-				}
-				msg.member.voiceChannel.join().then(connection => {
-					require('http').get("http://streaming.radionomy.com/"+radio, (res) => {
-						connection.playStream(res);
-					})
-				})
-				.catch(console.error);
-			} else {
-				msg.channel.send(":warning:  |  **Erreur**");
-			}
-        }
-    },
-	
-	    "radion": {
+	"radio": {
         process: function (msg, suffix) {
 			const channel = msg.member.voiceChannel;
 			if (!channel) return msg.channel.send(':warning:  |  **You are not on a voice channel.**');
@@ -48,6 +24,9 @@ var commands = {
 				if (suffix === "rap" || suffix === "Rap") {
 					msg.channel.send(":musical_note:  |  **Radio Modern:** `Rap`");
 					var radio = "A-RAP-FM-WEB";
+				if (suffix === "modern" || suffix === "Modern") {
+					msg.channel.send(":musical_note:  |  **Radio Modern**");
+					var radio = "A-RAP-FM-WEB";					
 				} else if (suffix === "jazz" || suffix === "Jazz") {
 					msg.channel.send(":musical_note:  |  **Radio Modern:** `Jazz`");
 					var radio = "WineFarmAndTouristradio";
@@ -55,7 +34,7 @@ var commands = {
 					msg.channel.send(":musical_note:  |  **Radio Modern:** `Dubstep`");
 					var radio = "ELECTROPOP-MUSIC";
 				} else {
-					msg.channel.send(":warning:  |  **Enter a correct radio to play, available radios:** `Rap, jazz & dubstep`");
+					msg.channel.send(":warning:  |  **Erreur, radii dispo:** `Rap, jazz & dubstep`");
 					return;
 				}
 				msg.member.voiceChannel.join().then(connection => {
@@ -65,7 +44,7 @@ var commands = {
 				})
 				.catch(console.error);
 			} else {
-				msg.channel.send(":warning:  |  **Enter a correct radio to play, available radios:** `Rap, jazz & dubstep`");
+				msg.channel.send(":warning:  |  **Erreur, radii dispo:** `Rap, jazz & dubstep`");
 			}
         }
 	
