@@ -1,4 +1,4 @@
-﻿var Discord = require('discord.js');
+var Discord = require('discord.js');
 var bot = new Discord.Client();
 var config = require('./config.json');
 console.log("Démarrage...");
@@ -15,26 +15,24 @@ var commands = {
 			msg.member.voiceChannel.join();
 			msg.channel.send(":loudspeaker:  |  **Je suis là!**");
         }
-    },
+	},
+	
 	"radio": {
         process: function (msg, suffix) {
 			const channel = msg.member.voiceChannel;
-			if (!channel) return msg.channel.send(':warning:  |  **You are not on a voice channel.**');
+			if (!channel) return msg.channel.send(":warning:  |  **Tu n'est pas dans un salon vocal.**");
 			if (suffix) {
 				if (suffix === "rap" || suffix === "Rap") {
 					msg.channel.send(":musical_note:  |  **Radio Modern:** `Rap`");
 					var radio = "A-RAP-FM-WEB";
-				if (suffix === "modern" || suffix === "Modern") {
+				} else if (suffix === "modern" || suffix === "Modern") {
 					msg.channel.send(":musical_note:  |  **Radio Modern**");
-					var radio = "A-RAP-FM-WEB";					
+					var radio = "RadioModern";					
 				} else if (suffix === "jazz" || suffix === "Jazz") {
 					msg.channel.send(":musical_note:  |  **Radio Modern:** `Jazz`");
 					var radio = "WineFarmAndTouristradio";
-				} else if (suffix === "dubstep" || suffix === "Dubstep") {
-					msg.channel.send(":musical_note:  |  **Radio Modern:** `Dubstep`");
-					var radio = "ELECTROPOP-MUSIC";
 				} else {
-					msg.channel.send(":warning:  |  **Erreur, radii dispo:** `Rap, jazz & dubstep`");
+					msg.channel.send(":warning:  |  **Erreur, radio dispo:** `Modern, Rap & Jazz `");
 					return;
 				}
 				msg.member.voiceChannel.join().then(connection => {
@@ -44,9 +42,10 @@ var commands = {
 				})
 				.catch(console.error);
 			} else {
-				msg.channel.send(":warning:  |  **Erreur, radii dispo:** `Rap, jazz & dubstep`");
+				msg.channel.send(":warning:  |  **Erreur, radio disponible:** `Modern, Rap, Jazz & Dubstep`");
 			}
-        }
+		}
+	},
 	
 	"stop": {
 		process: function (msg, suffix) {
