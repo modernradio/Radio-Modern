@@ -22,17 +22,11 @@ var commands = {
 			const channel = msg.member.voiceChannel;
 			if (!channel) return msg.channel.send(":warning:  |  **Tu n'est pas dans un salon vocal.**");
 			if (suffix) {
-				if (suffix === "rap" || suffix === "Rap") {
-					msg.channel.send(":musical_note:  |  **Radio Modern:** `Rap`");
-					var radio = "A-RAP-FM-WEB";
-				} else if (suffix === "modern" || suffix === "Modern") {
+				if (suffix === "modern" || suffix === "Modern") {
 					msg.channel.send(":musical_note:  |  **Radio Modern**");
-					var radio = "RadioModern";					
-				} else if (suffix === "jazz" || suffix === "Jazz") {
-					msg.channel.send(":musical_note:  |  **Radio Modern:** `Jazz`");
-					var radio = "WineFarmAndTouristradio";
+					var radio = "A-RadioModern-FM-WEB";					
 				} else {
-					msg.channel.send(":warning:  |  **Erreur, radio dispo:** `Modern, Rap & Jazz `");
+					msg.channel.send(":warning:  |  **Erreur**, `.radio Modern` ou `.radio modern`");
 					return;
 				}
 				msg.member.voiceChannel.join().then(connection => {
@@ -42,7 +36,7 @@ var commands = {
 				})
 				.catch(console.error);
 			} else {
-				msg.channel.send(":warning:  |  **Erreur, radio disponible:** `Modern, Rap, Jazz & Dubstep`");
+				msg.channel.send(":warning:  |  **Erreur**, `.radio Modern` ou `.radio modern`");
 			}
 		}
 	},
