@@ -20,7 +20,7 @@ var commands = {
 			msg.channel.send(":loudspeaker:  |  **Je suis là!**");
         }
     },
-    "play": {
+    "radio": {
         process: function (msg, suffix) {
 			if (msg.member.hasPermission("MANAGE_GUILD") == false) {
 				msg.channel.send(":warning:  |  **Tu n'a pas accès a cette commande.**");
@@ -29,7 +29,7 @@ var commands = {
 			const channel = msg.member.voiceChannel;
 			if (!channel) return msg.channel.send(':warning:  |  **Tu nes pas dans un salon vocale.**');
 			if (suffix) {
-				if (suffix === "rmoerd" || suffix === "rmoerd") {
+				if (suffix === "modern" || suffix === "modern") {
 					msg.channel.send(":musical_note:  |  **En avant la** `musique !`");
 					var radio = "RadioModern";
 				} else {
@@ -72,7 +72,7 @@ var commands = {
 			}
             var embed = new Discord.RichEmbed()
                  .addField(".join", "Pour que je rejoins le salon vocal !") 
-                 .addField(".play rmoerd", "Pour commencer la Radio")
+                 .addField(".radio modern", "Pour commencer la Radio")
                  .addField(".stop", "Pour que je parte")          
                 .setColor("#00ffcc")
                 .setFooter("By Ilian !")
