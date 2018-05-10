@@ -40,6 +40,35 @@ var commands = {
         }
     },
 	
+	    "radion": {
+        process: function (msg, suffix) {
+			const channel = msg.member.voiceChannel;
+			if (!channel) return msg.channel.send(':warning:  |  **You are not on a voice channel.**');
+			if (suffix) {
+				if (suffix === "rap" || suffix === "Rap") {
+					msg.channel.send(":musical_note:  |  **Radio Modern:** `Rap`");
+					var radio = "A-RAP-FM-WEB";
+				} else if (suffix === "jazz" || suffix === "Jazz") {
+					msg.channel.send(":musical_note:  |  **Radio Modern:** `Jazz`");
+					var radio = "WineFarmAndTouristradio";
+				} else if (suffix === "dubstep" || suffix === "Dubstep") {
+					msg.channel.send(":musical_note:  |  **Radio Modern:** `Dubstep`");
+					var radio = "ELECTROPOP-MUSIC";
+				} else {
+					msg.channel.send(":warning:  |  **Enter a correct radio to play, available radios:** `Rap, jazz & dubstep`");
+					return;
+				}
+				msg.member.voiceChannel.join().then(connection => {
+					require('http').get("http://streaming.radionomy.com/"+radio, (res) => {
+						connection.playStream(res);
+					})
+				})
+				.catch(console.error);
+			} else {
+				msg.channel.send(":warning:  |  **Enter a correct radio to play, available radios:** `Rap, jazz & dubstep`");
+			}
+        }
+	
 	"stop": {
 		process: function (msg, suffix) {
             const voiceChannel = msg.member.voiceChannel;
