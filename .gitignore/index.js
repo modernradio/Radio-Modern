@@ -6,10 +6,6 @@ console.log("Démarrage...");
 var commands = {
     "join": {
         process: function (msg, suffix) {
-			if (msg.member.hasPermission("MANAGE_GUILD") == false) {
-				msg.channel.send(":warning:  |  **Tu n'a pas accès a cette commande.**");
-				return
-			}
 			const channel = msg.member.voiceChannel;
 			if (!channel) return msg.channel.send(':warning:  |  **Tu est pas dans un salon vocale.**');
 			if(!msg.member.voiceChannel.joinable) {
@@ -22,15 +18,11 @@ var commands = {
     },
     "radio": {
         process: function (msg, suffix) {
-			if (msg.member.hasPermission("MANAGE_GUILD") == false) {
-				msg.channel.send(":warning:  |  **Tu n'a pas accès a cette commande.**");
-				return
-			}
 			const channel = msg.member.voiceChannel;
 			if (!channel) return msg.channel.send(':warning:  |  **Tu nes pas dans un salon vocale.**');
 			if (suffix) {
 				if (suffix === "modern" || suffix === "modern") {
-					msg.channel.send(":musical_note:  |  **En avant la** `musique !`");
+					msg.channel.send(":musical_note:  |  **En avant la** `radio !`");
 					var radio = "RadioModern";
 				} else {
 					msg.channel.send(":warning:  |  **Erreur**");
@@ -50,10 +42,6 @@ var commands = {
 	
 	"stop": {
 		process: function (msg, suffix) {
-			if (msg.member.hasPermission("MANAGE_GUILD") == false) {
-				msg.channel.send(":warning:  |  **Tu n'a pas accès a cette commande.**");
-				return
-			}
             const voiceChannel = msg.member.voiceChannel;
             if (voiceChannel) {
 				msg.channel.send(":loudspeaker:  |  **Je suis plus la!**");
@@ -63,30 +51,13 @@ var commands = {
             }
 		}
 	},
-
-	"radiohelp": {
-        process: function (msg, suffix) {
-			if (msg.member.hasPermission("MANAGE_GUILD") == false) {
-				msg.channel.send(":warning:  |  **Tu n'a pas accès a cette commande.**");
-				return
-			}
-            var embed = new Discord.RichEmbed()
-                 .addField(".join", "Pour que je rejoins le salon vocal !") 
-                 .addField(".radio modern", "Pour commencer la Radio")
-                 .addField(".stop", "Pour que je parte")          
-                .setColor("#00ffcc")
-                .setFooter("By Ilian !")
-                .setAuthor("Radio Help Staff")
-                .setTimestamp()
-                msg.channel.sendEmbed(embed)
-        }
-	},
 	
 	"help": {
         process: function (msg, suffix) {
             var embed = new Discord.RichEmbed()
-                 .addField(".invite", "Pour que je rejoins le salon vocal !")
-	    	 .addField(".radiohelp", "Pour avoir l'aide staff ( Seul ceux qui on la permition Géré le Serveur peuvent utilité cette commande ) !")
+                 .addField(".join", "Pour que je rejoins le salon vocal !") 
+                 .addField(".radio modern", "Pour commencer la Radio")
+                 .addField(".stop", "Pour que je parte") 
                 .setColor("#00ffcc")
                 .setFooter("By Ilian !")
                 .setAuthor("Radio Help")
@@ -94,12 +65,6 @@ var commands = {
                 msg.channel.sendEmbed(embed)
         }
 	},
-
-	"invite": {
-		process: function (msg, suffix) {
-			msg.channel.send(":tickets:  |  **Liens d'invitation:** `https://discordapp.com/oauth2/authorize?client_id=444152913762451486&scope=bot&permissions=2146958591`");
-		}
-	}
 };
 
 bot.on("ready", function () {
