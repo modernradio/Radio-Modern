@@ -65,10 +65,21 @@ var commands = {
                 msg.channel.sendEmbed(embed)
         }
 	},
+
+	"serveur": {
+        process: function (msg, suffix) {
+            var embed = new Discord.RichEmbed()
+                .setColor("#00ffcc")
+                .setFooter("By Ilian !")
+                .setAuthor("Je suis sur  " + bot.guilds.array().length + " serveurs")
+                .setTimestamp()
+                msg.channel.sendEmbed(embed)
+        }
+	}
 };
 
 bot.on("ready", function () {
-	console.log("Logged in " + bot.guilds.array().length + " servers");
+	console.log("Logged in " + bot.guilds.array().length + " serveurs");
 	bot.user.setGame(config.prefix + "help" | " + bot.guilds.array().length + "); 
 });
 
