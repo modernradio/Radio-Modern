@@ -80,11 +80,6 @@ var commands = {
 	}
 };
 
-bot.on("ready", function () {
-	console.log("Logged in " + bot.guilds.array().length + " serveurs");
-	bot.user.setGame(config.prefix + "help" | " + bot.guilds.array().length + "); 
-});
-
 bot.on('ready', () => {
    
     setTimeout(audience, 60000);
