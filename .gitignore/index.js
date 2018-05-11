@@ -26,7 +26,7 @@ var commands = {
 					msg.channel.send(":musical_note:  |  **Radio Modern**");
 					var radio = "RadioModern";					
 				} else {
-					msg.channel.send(":warning:  |  **Erreur**, `.play Radio` ou `.play radio`");
+					msg.channel.send(":warning:  |  **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
 					return;
 				}
 				msg.member.voiceChannel.join().then(connection => {
@@ -36,7 +36,7 @@ var commands = {
 				})
 				.catch(console.error);
 			} else {
-				msg.channel.send(":warning:  |  **Erreur**, `.play Radio` ou `.play radio`");
+				msg.channel.send(":warning:  |  **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
 			}
 		}
 	},
@@ -57,7 +57,7 @@ var commands = {
         process: function (msg, suffix) {
             var embed = new Discord.RichEmbed()
                  .addField(".join", "Pour que je rejoins le salon vocal !") 
-                 .addField(".radio modern", "Pour commencer la Radio")
+                 .addField(".play radio", "Pour commencer la Radio")
                  .addField(".stop", "Pour que je parte") 
                 .setColor("#00ffcc")
                 .setFooter("By Ilian !")
