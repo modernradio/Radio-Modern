@@ -2,7 +2,6 @@ var Discord = require('discord.js');
 var bot = new Discord.Client();
 var config = require('./config.json');
 console.log("Démarrage...");
-const request = require("request");
 
 var commands = {
     "join": {
