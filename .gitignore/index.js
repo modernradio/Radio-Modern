@@ -59,7 +59,7 @@ var commands = {
                  .addField(".join", "Pour que je rejoins le salon vocal !") 
                  .addField(".play radio", "Pour commencer la Radio")
                  .addField(".stop", "Pour que je parte") 
-                .setColor("#00ffcc")
+                .setColor("#04B404")
                 .setFooter("By Ilian !")
                 .setAuthor("Radio Help")
                 .setTimestamp()
