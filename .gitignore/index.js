@@ -67,52 +67,6 @@ var commands = {
         }
 	},
 
-	"serveur": {
-        process: function (msg, suffix) {
-            var embed = new Discord.RichEmbed()
-                .setColor("#00ffcc")
-                .setFooter("By Ilian !")
-                .setAuthor("Je suis sur  " + bot.guilds.array().length + " serveurs")
-                .setTimestamp()
-                msg.channel.sendEmbed(embed)
-        }
-	}
-};
-
-bot.on('ready', () => {
-   
-    setTimeout(audience, 60000);
-    setInterval(() => {
-        audience()
-    }, 60 * 1000);
-    
-    function audience() {
-        request("http://api.radionomy.com/currentaudience.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
-            if (error) return console.log(error);
-    
-            console.log("body: => " + body);
-            console.log("response: => " + response);
-    
-            if (body == undefined) {
-                bot.user.setActivity("? /shrug");
-            } else {
-                var msgActivity;
-            if (parseInt(body) < 2) {
-                msgActivity = "personne m'écoute"
-            } else {
-                msgActivity = "personnes m'écoutent"
-            }
-            bot.user.setActivity(body + " " + msgActivity);
-            
-            }
-        });
-    }
-})
-
-setInterval(function() {
-	bot.user.setGame(config.prefix + "help | " + bot.guilds.array().length + " serveur(s)");
-}, 100000)
-
 bot.on('message', function (msg) {
     if(msg.content.indexOf(config.prefix) === 0) {
 		var cmdTxt = msg.content.split(" ")[0].substring(config.prefix.length);
