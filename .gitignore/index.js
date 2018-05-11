@@ -17,16 +17,16 @@ var commands = {
         }
 	},
 	
-	"radio": {
+	"play": {
         process: function (msg, suffix) {
 			const channel = msg.member.voiceChannel;
 			if (!channel) return msg.channel.send(":warning:  |  **Tu n'est pas dans un salon vocal.**");
 			if (suffix) {
-				if (suffix === "modern" || suffix === "Modern") {
+				if (suffix === "Radio" || suffix === "radio") {
 					msg.channel.send(":musical_note:  |  **Radio Modern**");
 					var radio = "RadioModern";					
 				} else {
-					msg.channel.send(":warning:  |  **Erreur**, `.radio Modern` ou `.radio modern`");
+					msg.channel.send(":warning:  |  **Erreur**, `.play Radio` ou `.play radio`");
 					return;
 				}
 				msg.member.voiceChannel.join().then(connection => {
@@ -36,7 +36,7 @@ var commands = {
 				})
 				.catch(console.error);
 			} else {
-				msg.channel.send(":warning:  |  **Erreur**, `.radio Modern` ou `.radio modern`");
+				msg.channel.send(":warning:  |  **Erreur**, `.play Radio` ou `.play radio`");
 			}
 		}
 	},
