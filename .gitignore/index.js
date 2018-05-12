@@ -110,10 +110,6 @@ bot.on('ready', () => {
     }
 });
 
-setInterval(function() {
-	bot.user.setGame(config.prefix + "help | " + bot.guilds.array().length + " serveur(s)");
-}, 100000)
-
 bot.on('message', function (msg) {
     if(msg.content.indexOf(config.prefix) === 0) {
 		var cmdTxt = msg.content.split(" ")[0].substring(config.prefix.length);
