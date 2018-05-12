@@ -74,7 +74,7 @@ var commands = {
             var embed = new Discord.RichEmbed()
                 .addField("Serveurs :", "Je suis sur " + bot.guilds.array().length + " serveurs")
                 .addField("Membres :", "Je voit ``" + bot.users.size + " membres`` au total.")
-                .setColor("#00ffcc")
+                .setColor("#04B404")
                 .setAuthor("Mes Information")
                 msg.channel.sendEmbed(embed)
                 var ping_embed = new Discord.RichEmbed()
@@ -83,7 +83,7 @@ var commands = {
             msg.channel.send(ping_embed).then(msg => msg.edit(pong_embed));
             const fs = require("fs");
             var pong_embed = new Discord.RichEmbed()
-                .setColor('#FFFFFF')
+                .setColor('#04B404')
                 .setTitle('Mon Ping :')
                 .setDescription(':ping_pong: Pong !')
                 .addField(":clock2: Temps :", `${Date.now() - startTime} millisecondes`, true)
