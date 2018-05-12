@@ -1,4 +1,4 @@
-﻿﻿var Discord = require('discord.js');
+﻿var Discord = require('discord.js');
 var bot = new Discord.Client();
 var config = require('./config.json');
 const request = require("request");
@@ -57,25 +57,39 @@ var commands = {
 	"help": {
         process: function (msg, suffix) {
             var embed = new Discord.RichEmbed()
-                 .addField(".join", "Pour que je rejoins le salon vocal !") 
-                 .addField(".play radio", "Pour commencer la Radio")
-                 .addField(".stop", "Pour que je parte") 
+                 .addField(".join", "Pour que je rejoigne ton salon vocal.") 
+                 .addField(".play radio", "Pour que je joue la radio dans ton salon vocal.")
+                 .addField(".stop", "Pour que je quitte ton salon vocal.")
+                 .addField(".botinfo", "Pour voir mes informations.")
                 .setColor("#04B404")
                 .setFooter("By Ilian !")
                 .setAuthor("Radio Help")
                 .setTimestamp()
                 msg.channel.sendEmbed(embed)
         }
-	},
-
-	"serveur": {
+    },
+    
+    "botinfo": {
         process: function (msg, suffix) {
             var embed = new Discord.RichEmbed()
+                .addField("Serveurs :", "Je suis sur " + bot.guilds.array().length + " serveurs")
+                .addField("Membres :", "Je voit ``" + bot.users.size + " membres`` au total.")
                 .setColor("#00ffcc")
-                .setFooter("By Ilian !")
-                .setAuthor("Je suis sur  " + bot.guilds.array().length + " serveurs")
-                .setTimestamp()
+                .setAuthor("Mes Information")
                 msg.channel.sendEmbed(embed)
+                var ping_embed = new Discord.RichEmbed()
+                .addField(':clock2: Calcul en cours...', "Merci de patienter quelques instants !")
+            let startTime = Date.now();
+            msg.channel.send(ping_embed).then(msg => msg.edit(pong_embed));
+            const fs = require("fs");
+            var pong_embed = new Discord.RichEmbed()
+                .setColor('#FFFFFF')
+                .setTitle('Mon Ping :')
+                .setDescription(':ping_pong: Pong !')
+                .addField(":clock2: Temps :", `${Date.now() - startTime} millisecondes`, true)
+                .addField(":heartpulse: API Discord :", `${bot.ping} millisecondes`, true)
+                .setTimestamp()
+                .setFooter("By Ilian^^ !")
         }
 	}
 };
