@@ -99,16 +99,16 @@ bot.on('ready', () => {
             } else {
                 var msgActivity;
             if (parseInt(body) < 2) {
-                msgActivity = "personne m'écoute"
+                msgActivity = "auditeur"
             } else {
-                msgActivity = "personnes m'écoutent"
+                msgActivity = "auditeurs"
             }
-            bot.user.setActivity(body + " " + msgActivity);
+            bot.user.setActivity(".help | " + body + " " + msgActivity);
             
             }
         });
     }
-});
+})
 
 bot.on('message', function (msg) {
     if(msg.content.indexOf(config.prefix) === 0) {
