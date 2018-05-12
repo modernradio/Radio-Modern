@@ -118,7 +118,6 @@ bot.on('ready', () => {
                 msgActivity = "auditeurs"
             }
             bot.user.setActivity(".help | " + body + " " + msgActivity);
-	    bot.user.setAvatar("./lol.jpg");
             
             }
         });
