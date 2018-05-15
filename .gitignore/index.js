@@ -91,7 +91,28 @@ var commands = {
                 .setTimestamp()
                 .setFooter("By Ilian^^ !")
         }
-	}
+},
+	
+	    "test": {
+        process: function (msg, suffix) {
+                var ping_embed = new Discord.RichEmbed()
+                .addField(':clock2: Calcul en cours...', "Merci de patienter quelques instants !")
+            let startTime = Date.now();
+            msg.channel.send(ping_embed).then(msg => msg.edit(pong_embed));
+            const fs = require("fs");
+            var pong_embed = new Discord.RichEmbed()
+                .setColor('#04B404')
+                .setTitle('Mes informations :')
+		.addField("Serveurs :", "Je suis sur " + bot.guilds.array().length + " serveurs")
+                .addField("Membres :", "Je voit ``" + bot.users.size + " membres`` au total.")
+	    	.addField('Mon Ping :', ':ping_pong: Pong !')
+                .addField(":clock2: Temps :", `${Date.now() - startTime} millisecondes`, true)
+                .addField(":heartpulse: API Discord :", `${bot.ping} millisecondes`, true)
+                .setTimestamp()
+                .setFooter("By Ilian^^ !")
+        }
+}
+	
 };
 
 bot.on('ready', () => {
