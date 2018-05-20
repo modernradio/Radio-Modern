@@ -169,7 +169,7 @@ var commands = {
                 .addField(":heartpulse: API Discord :", `${bot.ping} millisecondes`, true)
                 .addBlankField()
                 .setTimestamp()
-                .setFooter("By Ilian^^ !")
+                .setFooter("Par Ilian ! ^^")
 
         }
     },
@@ -203,14 +203,14 @@ bot.on("message", async function (message) {
             let xoargs = message.content.split(" ").slice(1);
             let suffix = xoargs.join(' ')
             var xo02 = message.guild.channels.find('name', 'send-promotion');
-            if (message.channel.name !== 'send-promotion') return message.reply("Commande a effectuer dans #send-promotion")
-            if (!suffix) return message.reply("Merci d'écrire un message à envoyé à Tard0s.")
+            if (message.channel.name !== 'send-promotion') return message.reply("Cette commande est à effectuer seulement dans le salon dans #send-promotion du serveur 'Radio Modern'.")
+            if (!suffix) return message.reply("Merci de citer la publicité que vous souhaitez poster.")
             var vc_embed = new Discord.RichEmbed()
                 .setColor("#04B404")
-                .addField(message.author.username + "#" + message.author.discriminator + " – Promotion", suffix)
+                .addField(message.author.username + " - Sa publicité : ", suffix)
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
                 .setThumbnail(message.guild.iconURL)
-                .setFooter("Ilian's Corporation")
+                .setFooter("Par Ilian ! ^^")
                 .setTimestamp();
                 message.delete()
                 message.client.users.get("323039726040776705").send(vc_embed)
