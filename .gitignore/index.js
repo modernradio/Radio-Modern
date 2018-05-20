@@ -82,7 +82,7 @@ var commands = {
             msg.member.voiceChannel.join();
             msg.channel.send(":loudspeaker: | **Je suis là !**");
             console.log(prefix +"join par " + msg.author.username + " !")
-            msg.guild.channels.find("name", "staff-bots").sendMessage("**" + msg.author.toString() + "** a utiliser ``" + prefix + "join`` dans le salon " + msg.channel +" !");
+            msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "join`` dans le salon " + msg.channel +" !");
         }
     },
 
@@ -94,8 +94,8 @@ var commands = {
                 if (suffix === "Radio" || suffix === "radio") {
                     msg.channel.send(":musical_note:  |  **Radio Modern**");
                     var radio = "RadioModern";
-                                console.log(prefix +"play par " + msg.author.username + " !")
-            member.guild.channels.find("name", "staff-logs").sendMessage("**" + msg.author.toString() + "** a utiliser ``" + prefix + "play " + suffix  +" `` dans le salon " + msg.channel +" !");
+            console.log(prefix +"play par " + msg.author.username + " !")
+            msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "play " + suffix + "`` dans le salon " + msg.channel +" !");
                 } else {
                     msg.channel.send(":warning:  |  **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
                     return;
@@ -123,8 +123,8 @@ var commands = {
                 msg.member.voiceChannel.leave();
             } else {
                 msg.channel.send(":warning: | **Je ne suis pas dans un salon vocal.**");
-                            console.log(prefix +"stop par " + msg.author.username + " !")
-            member.guild.channels.find("name", "staff-logs").sendMessage("**" + msg.author.toString() + "** a utiliser ``" + prefix + "stop`` dans le salon " + msg.channel +" !");
+            console.log(prefix +"stop par " + msg.author.username + " !")
+            msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "stop`` dans le salon " + msg.channel +" !");
             }
 
 
@@ -143,16 +143,13 @@ var commands = {
                 .addBlankField()
                 .addField(".botinfo", "Pour voir mes informations.")
                 .addBlankField()
-                .addField(".send", "Pour envoyé une promotion a Tard0s.")
-                .addBlankField()
                 .setColor("#04B404")
                 .setFooter("Par Ilian ! ^^")
                 .setAuthor("Message d'aide")
                 .setTimestamp()
             msg.channel.sendEmbed(help_embed)
-                        console.log(prefix +"help par " + msg.author.username + " !")
-            member.guild.channels.find("name", "staff-logs").sendMessage("**" + msg.author.toString() + "** a utiliser ``" + prefix + "help`` dans le salon " + msg.channel +" !");
-
+            console.log(prefix +"help par " + msg.author.username + " !")
+            msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "help`` dans le salon " + msg.channel +" !");
         },
     },
 
@@ -179,8 +176,7 @@ var commands = {
                 .setTimestamp()
                 .setFooter("Par Ilian ! ^^")
             console.log(prefix +"botinfo par " + msg.author.username + " !")
-            member.guild.channels.find("name", "staff-logs").sendMessage("**" + msg.author.toString() + "** a utiliser ``" + prefix + "botinfo`` dans le salon " + msg.channel +" !");            
-
+            msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "botinfo`` dans le salon " + msg.channel +" !");
         }
     },
 }
@@ -223,9 +219,9 @@ bot.on("message", async function (message) {
                 .setFooter("Par Ilian ! ^^")
                 .setTimestamp();
                 message.delete()
-             console.log(PREFIX +"send par " + message.author.username + " !")
-            member.guild.channels.find("name", "staff-logs").sendMessage("**" + message.author.toString() + "** a utiliser ``" + PREFIX + "send " + suffix +"`` dans le salon " + message.channel +" !");
-                message.client.users.get("323039726040776705").send(vc_embed)
+            console.log(PREFIX +"send par " + message.author.username + " !")
+            message.guild.channels.find("name", "logs-radio").sendMessage("**" + message.author.name + "** a utilisé ``" + PREFIX + "join " + suffix + "`` dans le salon " + message.channel +" !");
+            message.client.users.get("323039726040776705").send(vc_embed)
             break;
     }
 });
