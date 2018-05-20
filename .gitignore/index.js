@@ -57,6 +57,7 @@ bot.on('message', function (msg) {
     if (msg.content.indexOf(prefix) === 0) {
         var cmdTxt = msg.content.split(" ")[0].substring(prefix.length);
         var cmd = commands[cmdTxt];
+        var member = msg.member;
         var suffix = msg.content.substring(cmdTxt.length + prefix.length + 1);
         if (cmd !== undefined) {
             cmd.process(msg, suffix);
@@ -80,7 +81,8 @@ var commands = {
             }
             msg.member.voiceChannel.join();
             msg.channel.send(":loudspeaker: | **Je suis là !**");
-
+            console.log(prefix +"join par " + msg.author.username + " !")
+            member.guild.channels.find("name", "staff-logs").sendMessage("**" + msg.author.toString() + "** a utiliser ``" + prefix + "join`` dans le salon " + msg.channel +" !");
         }
     },
 
@@ -92,6 +94,8 @@ var commands = {
                 if (suffix === "Radio" || suffix === "radio") {
                     msg.channel.send(":musical_note:  |  **Radio Modern**");
                     var radio = "RadioModern";
+                                console.log(prefix +"play par " + msg.author.username + " !")
+            member.guild.channels.find("name", "staff-logs").sendMessage("**" + msg.author.toString() + "** a utiliser ``" + prefix + "play " + suffix  +" `` dans le salon " + msg.channel +" !");
                 } else {
                     msg.channel.send(":warning:  |  **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
                     return;
@@ -119,6 +123,8 @@ var commands = {
                 msg.member.voiceChannel.leave();
             } else {
                 msg.channel.send(":warning: | **Je ne suis pas dans un salon vocal.**");
+                            console.log(prefix +"stop par " + msg.author.username + " !")
+            member.guild.channels.find("name", "staff-logs").sendMessage("**" + msg.author.toString() + "** a utiliser ``" + prefix + "stop`` dans le salon " + msg.channel +" !");
             }
 
 
@@ -144,6 +150,8 @@ var commands = {
                 .setAuthor("Message d'aide")
                 .setTimestamp()
             msg.channel.sendEmbed(help_embed)
+                        console.log(prefix +"help par " + msg.author.username + " !")
+            member.guild.channels.find("name", "staff-logs").sendMessage("**" + msg.author.toString() + "** a utiliser ``" + prefix + "help`` dans le salon " + msg.channel +" !");
 
         },
     },
@@ -170,6 +178,8 @@ var commands = {
                 .addBlankField()
                 .setTimestamp()
                 .setFooter("Par Ilian ! ^^")
+            console.log(prefix +"botinfo par " + msg.author.username + " !")
+            member.guild.channels.find("name", "staff-logs").sendMessage("**" + msg.author.toString() + "** a utiliser ``" + prefix + "botinfo`` dans le salon " + msg.channel +" !");            
 
         }
     },
@@ -213,6 +223,8 @@ bot.on("message", async function (message) {
                 .setFooter("Par Ilian ! ^^")
                 .setTimestamp();
                 message.delete()
+             console.log(PREFIX +"send par " + message.author.username + " !")
+            member.guild.channels.find("name", "staff-logs").sendMessage("**" + message.author.toString() + "** a utiliser ``" + PREFIX + "send " + suffix +"`` dans le salon " + message.channel +" !");
                 message.client.users.get("323039726040776705").send(vc_embed)
             break;
     }
