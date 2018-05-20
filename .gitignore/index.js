@@ -137,6 +137,8 @@ var commands = {
                 .addBlankField()
                 .addField(".botinfo", "Pour voir mes informations.")
                 .addBlankField()
+                .addField(".send", "Pour envoyé une promotion a Tard0s.")
+                .addBlankField()
                 .setColor("#04B404")
                 .setFooter("Par Ilian ! ^^")
                 .setAuthor("Message d'aide")
@@ -210,16 +212,10 @@ bot.on("message", async function (message) {
                 .setThumbnail(message.guild.iconURL)
                 .setFooter("Ilian's Corporation")
                 .setTimestamp();
-
-            let Tard0sTV = bot.users.find("323039726040776705", "id")
-            if (!Tard0sTV) return console.log("Tard0s non trouvé")
-            Tard0sTV.createDM().then(channel => {
-                channel.send(vc_embed)
-            })
-            //bot.channels.findAll('name', 'send-promotion').map(channel => channel.send(vc_embed));
+                message.delete()
+                message.client.users.get("323039726040776705").send(vc_embed)
             break;
-
     }
 });
- 
+
 bot.login(process.env.TOKEN);
