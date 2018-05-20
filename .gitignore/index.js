@@ -82,7 +82,7 @@ var commands = {
             msg.member.voiceChannel.join();
             msg.channel.send(":loudspeaker: | **Je suis là !**");
             console.log(prefix +"join par " + msg.author.username + " !")
-            member.guild.channels.find("name", "staff-logs").sendMessage("**" + msg.author.toString() + "** a utiliser ``" + prefix + "join`` dans le salon " + msg.channel +" !");
+            msg.guild.channels.find("name", "staff-bots").sendMessage("**" + msg.author.toString() + "** a utiliser ``" + prefix + "join`` dans le salon " + msg.channel +" !");
         }
     },
 
