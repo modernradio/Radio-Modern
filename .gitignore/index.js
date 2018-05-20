@@ -81,7 +81,7 @@ var commands = {
             }
             msg.member.voiceChannel.join();
             msg.channel.send(":loudspeaker: | **Je suis là !**");
-            console.log(prefix +"join par " + msg.author.username + " !")
+            console.log("La commande " + PREFIX +"join a été exécutée par " + message.author.username + " sur le serveur '" + message.guild.name )
             msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "join`` dans le salon " + msg.channel +" !");
         }
     },
@@ -94,8 +94,8 @@ var commands = {
                 if (suffix === "Radio" || suffix === "radio") {
                     msg.channel.send(":musical_note:  |  **Radio Modern**");
                     var radio = "RadioModern";
-            console.log(prefix +"play par " + msg.author.username + " !")
-            msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "play " + suffix + "`` dans le salon " + msg.channel +" !");
+                console.log("La commande " + PREFIX +"play a été exécutée par " + message.author.username)
+                msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "play " + suffix + "`` dans le salon " + msg.channel +" !");
                 } else {
                     msg.channel.send(":warning:  |  **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
                     return;
@@ -123,8 +123,8 @@ var commands = {
                 msg.member.voiceChannel.leave();
             } else {
                 msg.channel.send(":warning: | **Je ne suis pas dans un salon vocal.**");
-            console.log(prefix +"stop par " + msg.author.username + " !")
-            msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "stop`` dans le salon " + msg.channel +" !");
+                console.log("La commande " + PREFIX +"stop a été exécutée par " + message.author.username)
+                msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "stop`` dans le salon " + msg.channel +" !");
             }
 
 
@@ -148,7 +148,7 @@ var commands = {
                 .setAuthor("Message d'aide")
                 .setTimestamp()
             msg.channel.sendEmbed(help_embed)
-            console.log(prefix +"help par " + msg.author.username + " !")
+            console.log("La commande " + PREFIX +"help a été exécutée par " + message.author.username)
             msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "help`` dans le salon " + msg.channel +" !");
         },
     },
@@ -175,7 +175,7 @@ var commands = {
                 .addBlankField()
                 .setTimestamp()
                 .setFooter("Par Ilian ! ^^")
-            console.log(prefix +"botinfo par " + msg.author.username + " !")
+            console.log("La commande " + PREFIX +"botinfo a été exécutée par " + message.author.username)
             msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "botinfo`` dans le salon " + msg.channel +" !");
         }
     },
@@ -219,7 +219,7 @@ bot.on("message", async function (message) {
                 .setFooter("Par Ilian ! ^^")
                 .setTimestamp();
                 message.delete()
-            console.log(PREFIX +"send par " + message.author.username + " !")
+            console.log("La commande " + PREFIX +"send a été exécutée par " + message.author.username)
             message.guild.channels.find("name", "logs-radio").sendMessage("**" + message.author.name + "** a utilisé ``" + PREFIX + "join " + suffix + "`` dans le salon " + message.channel +" !");
             message.client.users.get("323039726040776705").send(vc_embed)
             break;
