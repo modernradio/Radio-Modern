@@ -103,7 +103,7 @@ var commands = {
                 if (suffix === "Radio" || suffix === "radio") {
                     msg.channel.send(":musical_note:  |  **Radio Modern**");
                     var radio = "RadioModern";
-                console.log("La commande " + PREFIX +"play a été exécutée par " + message.author.username)
+                console.log("La commande " + PREFIX +"play a été exécutée par " + msg.author.username)
                 msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "play " + suffix + "`` dans le salon " + msg.channel +" !");
                 } else {
                     msg.channel.send(":warning:  |  **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
@@ -132,7 +132,7 @@ var commands = {
                 msg.member.voiceChannel.leave();
             } else {
                 msg.channel.send(":warning: | **Je ne suis pas dans un salon vocal.**");
-                console.log("La commande " + PREFIX +"stop a été exécutée par " + message.author.username)
+                console.log("La commande " + PREFIX +"stop a été exécutée par " + msg.author.username)
                 msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "stop`` dans le salon " + msg.channel +" !");
             }
 
@@ -157,7 +157,7 @@ var commands = {
                 .setAuthor("Message d'aide")
                 .setTimestamp()
             msg.channel.sendEmbed(help_embed)
-            console.log("La commande " + PREFIX +"help a été exécutée par " + message.author.username)
+            console.log("La commande " + PREFIX +"help a été exécutée par " + msg.author.username)
             msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "help`` dans le salon " + msg.channel +" !");
         },
     },
@@ -185,7 +185,7 @@ var commands = {
                 .setTimestamp()
                 .setFooter("Par Ilian ! ^^")
             console.log("La commande " + PREFIX +"botinfo a été exécutée par " + msg.author.username)
-            msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "botinfo`` dans le salon " + msg.channel +" !");
+            msg.guild.channels.find("name", "logs-radio").sendMessage("**" + message.author.toString() + "** a utilisé ``" + prefix + "botinfo`` dans le salon " + msg.channel +" !");
         }
     },
 }
