@@ -201,7 +201,7 @@ var commands = {
         process: function (msg, suffix) {
         var log_embed = new Discord.RichEmbed()
                 .addBlankField()
-                .addField(message.author.username + prefix + "Action")
+                .addField(msg.author.username + prefix + "Action")
                 .setColor("#04B404")
                 .setFooter("Par Ilian ! ^^")
                 .setAuthor("Action")
