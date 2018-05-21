@@ -41,7 +41,7 @@ function state1() {
         }
 
         if (parseInt(body) > 8) {
-            message.guild.channels.find("name", "logs-radio").sendMessage("<" + mention + "323039726040776705> Les bots ont crash");
+            guild.channels.find("name", "logs-radio").sendMessage("<" + mention + "323039726040776705> Les bots ont crash");
         }
 
         bot.user.setActivity(".help | " + body + "" + msgActivity);
@@ -89,12 +89,12 @@ var commands = {
             const channel = msg.member.voiceChannel;
             if (!channel) return msg.channel.send(':warning: | **Tu est pas dans un salon vocal.**');
             if (!msg.member.voiceChannel.joinable) {
-                msg.channel.send(":warning: | **Je n'ai pas les permissions suffisantes pour jouer de la musique sur ce canal..**");
+                msg.channel.send(":warning: | **Je n'ai pas les permissions suffisantes pour diffuser la radio dans ce salon...**");
                 return;
             }
             msg.member.voiceChannel.join();
             msg.channel.send(":loudspeaker: | **Je suis là !**");
-            console.log("La commande " + PREFIX +"join a été exécutée par " + message.author.username + " sur le serveur '" + message.guild.name )
+            console.log("La commande " + PREFIX +"join a été exécutée par " + message.author.username + " sur le serveur '" + message.guild.name)
             msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.name + "** a utilisé ``" + prefix + "join`` dans le salon " + msg.channel +" !");
         }
     },
