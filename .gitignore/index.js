@@ -56,7 +56,7 @@ function state2() {
 }
 
 function state3() {
-    bot.user.setActivity(prefix + "help | " + site);
+    bot.user.setActivity(prefix + "help | " + website);
     setTimeout(state4, 5000);
 }
 
