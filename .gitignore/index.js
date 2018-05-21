@@ -39,11 +39,7 @@ function state1() {
                 msgActivity = "auditeurs"
             }
         }
-
-        if (parseInt(body) > 8) {
-            guild.channels.find("name", "logs-radio").sendMessage("<" + mention + "323039726040776705> Les bots ont crash");
-        }
-
+        
         bot.user.setActivity(".help | " + body + "" + msgActivity);
         setTimeout(state2, 30000);
     })
