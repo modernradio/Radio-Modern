@@ -94,6 +94,14 @@ var commands = {
             }
             msg.member.voiceChannel.join();
             msg.channel.send(":loudspeaker: | **Je suis là !**");
+            var log_embed = new Discord.RichEmbed()
+            .setThumbnail(msg.author.displayAvatarURL)
+            .addField(msg.author.username + " - Logs : ", "``" + prefix + "join``")
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+            .setFooter("Par Ilian ! ^^")
+            .setColor("#04B404")
+            .setTimestamp();
+        msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
             //console.log("La commande " + prefix +"join a été exécutée par " + msg.author.username + " sur le serveur '" + msg.guild.name)
             
             //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "join`` dans le salon " + msg.channel +" !");
@@ -108,6 +116,14 @@ var commands = {
                 if (suffix === "Radio" || suffix === "radio") {
                     msg.channel.send(":musical_note: | **Radio Modern**");
                     var radio = "RadioModern";
+                    var log_embed = new Discord.RichEmbed()
+                    .setThumbnail(msg.author.displayAvatarURL)
+                    .addField(msg.author.username + " - Logs : ", "``" + prefix + "play``")
+                    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                    .setFooter("Par Ilian ! ^^")
+                    .setColor("#04B404")
+                    .setTimestamp();
+                msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
                 //console.log("La commande " + prefix +"play a été exécutée par " + msg.author.username)
                 //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "play " + suffix + "`` dans le salon " + msg.channel +" !");
                 } else {
@@ -139,6 +155,14 @@ var commands = {
                 msg.channel.send(":warning: | **Je ne suis pas dans un salon vocal.**");
                 //console.log("La commande " + prefix +"stop a été exécutée par " + msg.author.username)
                 //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "stop`` dans le salon " + msg.channel +" !");
+                var log_embed = new Discord.RichEmbed()
+                .setThumbnail(msg.author.displayAvatarURL)
+                .addField(msg.author.username + " - Logs : ", "``" + prefix + "stop``")
+                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                .setFooter("Par Ilian ! ^^")
+                .setColor("#04B404")
+                .setTimestamp();
+            msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
             }
 
 
@@ -161,7 +185,18 @@ var commands = {
                 .setFooter("Par Ilian ! ^^")
                 .setAuthor("Message d'aide")
                 .setTimestamp()
-            msg.channel.sendEmbed(help_embed)
+                msg.channel.send(msg.author.toString() + " **Je t'ai envoye un menu d'aide en MP, verifie qu'ils sont actives en provenance des membres du serveur.**")
+                msg.member.createDM().then(channel => {
+                    return channel.send(help_embed)
+                  }).catch(console.error)
+                  var log_embed = new Discord.RichEmbed()
+                  .setThumbnail(msg.author.displayAvatarURL)
+                  .addField(msg.author.username + " - Logs : ", "``" + prefix + "help``")
+                  .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                  .setFooter("Par Ilian ! ^^")
+                  .setColor("#04B404")
+                  .setTimestamp();
+              msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); ;    
             //console.log("La commande " + prefix +"help a été exécutée par " + msg.author.username)
             //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "help`` dans le salon " + msg.channel +" !");
         },
@@ -187,12 +222,20 @@ var commands = {
                 .addField(":clock2: Temps :", `${Date.now() - startTime} millisecondes`, true)
                 .addField(":heartpulse: API Discord :", `${bot.ping} millisecondes`, true)
                 .addBlankField()
-                .addField("Nos réseaux sociaux", ":448130478881505284:", true)
+                .addField("Nos réseaux sociaux", "<:radiomodern:448130478881505284>", true)
                 .addField("Facebook", "[@radiomodern1](" + facebook + ")") 
                 .addField("Twitter", "[@radiomodern_](" + twitter + ")", true)
                 .addField("Une donation ?", "[Notre PayPal](" + paypal + ")", true)
                 .setTimestamp()
                 .setFooter("Par Ilian ! ^^")
+                var log_embed = new Discord.RichEmbed()
+                .setThumbnail(msg.author.displayAvatarURL)
+                .addField(msg.author.username + " - Logs : ", "``" + prefix + "botinfo``")
+                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                .setFooter("Par Ilian ! ^^")
+                .setColor("#04B404")
+                .setTimestamp();
+            msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);    
             //console.log("La commande " + prefix +"botinfo a été exécutée par " + msg.author.username)
             //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "botinfo`` dans le salon " + msg.channel +" !");
         }
@@ -237,10 +280,17 @@ bot.on("message", async function (message) {
                 .setFooter("Par Ilian ! ^^")
                 .setTimestamp();
                 message.delete()
-            //message.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``");
+            message.reply("Publicité envoyée avec succès :white_check_mark:")
+             var logvc_embed = new Discord.RichEmbed()
+                .setThumbnail(message.author.displayAvatarURL)
+                .addField(message.author.username + " - Logs : ", "``" + prefix + "send``")
+                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+                .setFooter("Par Ilian ! ^^")
+                .setColor("#04B404")
+                .setTimestamp();
+            message.guild.channels.find("name", "logs-radio").sendEmbed(logvc_embed);
             message.client.users.get("323039726040776705").send(vc_embed)
             break;
     }
 });
-
 bot.login(process.env.TOKEN);
