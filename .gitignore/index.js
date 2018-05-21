@@ -206,7 +206,6 @@ var commands = {
                 .setFooter("Par Ilian ! ^^")
                 .setAuthor("Action")
                 .setTimestamp()
-        message.guild.channels.find("name", "logs-radio").send(log_embed);
         msg.guild.channels.find("name", "logs-radio").send(log_embed);
         }
     },
