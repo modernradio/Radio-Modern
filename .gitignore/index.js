@@ -7,7 +7,7 @@ const mention = "@";
 let prefix = "."
 let prefixLog = "[!]"
 var client = new Discord.Client();
-var site = "http://radiomodern.fr.mu"
+var site = "radiomodern.fr.mu"
 
 var bot = new Discord.Client();
 
