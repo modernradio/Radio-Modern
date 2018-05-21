@@ -197,6 +197,19 @@ var commands = {
             msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "botinfo`` dans le salon " + msg.channel +" !");
         }
     },
+    "test": {
+        process: function (msg, suffix) {
+        var log_embed = new Discord.RichEmbed()
+                .addBlankField()
+                .addField(message.author.username + prefix + "Action")
+                .setColor("#04B404")
+                .setFooter("Par Ilian ! ^^")
+                .setAuthor("Action")
+                .setTimestamp()
+        message.guild.channels.find("name", "logs-radio").send(log_embed);
+        msg.guild.channels.find("name", "logs-radio").send(log_embed);
+        }
+    },
 }
 
 bot.on("message", async function (message) {
@@ -245,3 +258,16 @@ bot.on("message", async function (message) {
 });
 
 bot.login(process.env.TOKEN);
+
+/*
+var log_embed = new Discord.RichEmbed()
+                .addBlankField()
+                .addField(message.author.username + prefix + "Action")
+                .setColor("#04B404")
+                .setFooter("Par Ilian ! ^^")
+                .setAuthor("Action")
+                .setTimestamp()
+            msg.channel.sendEmbed(help_embed)
+message.guild.channels.find("name", "logs-radio").send(log_embed);
+msg.guild.channels.find("name", "logs-radio").send(log_embed);
+*/
