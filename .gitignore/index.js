@@ -37,9 +37,14 @@ function state1() {
             } else {
                 msgActivity = "auditeurs"
             }
-            bot.user.setActivity(".help | " + body + "" + msgActivity);
-            setTimeout(state2, 30000);
         }
+        
+        if (parseInt(body) > 8) {
+        message.client.users.get("323039726040776705").send("Les bots ont crash...");
+        }
+
+        bot.user.setActivity(".help | " + body + "" + msgActivity);
+        setTimeout(state2, 30000);
     })
 }
 
