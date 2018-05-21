@@ -38,9 +38,9 @@ function state1() {
                 msgActivity = "auditeurs"
             }
         }
-        
+
         if (parseInt(body) > 8) {
-        message.client.users.get("323039726040776705").send("Les bots ont crash...");
+        client.users.get("323039726040776705").send("Les bots ont crash...");
         }
 
         bot.user.setActivity(".help | " + body + "" + msgActivity);
