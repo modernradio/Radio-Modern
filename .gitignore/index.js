@@ -238,7 +238,7 @@ bot.on("message", async function (message) {
                 .setTimestamp();
                 message.delete()
             console.log("La commande " + prefix +"send a été exécutée par " + message.author.username)
-            message.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + PREFIX + "join " + suffix + "`` dans le salon " + msg.channel +" !");
+            message.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``");
             message.client.users.get("323039726040776705").send(vc_embed)
             break;
     }
