@@ -94,9 +94,9 @@ var commands = {
             }
             msg.member.voiceChannel.join();
             msg.channel.send(":loudspeaker: | **Je suis là !**");
-            console.log("La commande " + prefix +"join a été exécutée par " + msg.author.username + " sur le serveur '" + msg.guild.name)
+            //console.log("La commande " + prefix +"join a été exécutée par " + msg.author.username + " sur le serveur '" + msg.guild.name)
             
-            msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "join`` dans le salon " + msg.channel +" !");
+            //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "join`` dans le salon " + msg.channel +" !");
         }
     },
 
@@ -108,8 +108,8 @@ var commands = {
                 if (suffix === "Radio" || suffix === "radio") {
                     msg.channel.send(":musical_note: | **Radio Modern**");
                     var radio = "RadioModern";
-                console.log("La commande " + prefix +"play a été exécutée par " + msg.author.username)
-                msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "play " + suffix + "`` dans le salon " + msg.channel +" !");
+                //console.log("La commande " + prefix +"play a été exécutée par " + msg.author.username)
+                //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "play " + suffix + "`` dans le salon " + msg.channel +" !");
                 } else {
                     msg.channel.send(":warning: | **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
                     return;
@@ -137,8 +137,8 @@ var commands = {
                 msg.member.voiceChannel.leave();
             } else {
                 msg.channel.send(":warning: | **Je ne suis pas dans un salon vocal.**");
-                console.log("La commande " + prefix +"stop a été exécutée par " + msg.author.username)
-                msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "stop`` dans le salon " + msg.channel +" !");
+                //console.log("La commande " + prefix +"stop a été exécutée par " + msg.author.username)
+                //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "stop`` dans le salon " + msg.channel +" !");
             }
 
 
@@ -162,8 +162,8 @@ var commands = {
                 .setAuthor("Message d'aide")
                 .setTimestamp()
             msg.channel.sendEmbed(help_embed)
-            console.log("La commande " + prefix +"help a été exécutée par " + msg.author.username)
-            msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "help`` dans le salon " + msg.channel +" !");
+            //console.log("La commande " + prefix +"help a été exécutée par " + msg.author.username)
+            //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "help`` dans le salon " + msg.channel +" !");
         },
     },
 
@@ -193,8 +193,8 @@ var commands = {
                 .addField("Une donation ?", "[Notre PayPal](" + paypal + ")", true)
                 .setTimestamp()
                 .setFooter("Par Ilian ! ^^")
-            console.log("La commande " + prefix +"botinfo a été exécutée par " + msg.author.username)
-            msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "botinfo`` dans le salon " + msg.channel +" !");
+            //console.log("La commande " + prefix +"botinfo a été exécutée par " + msg.author.username)
+            //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "botinfo`` dans le salon " + msg.channel +" !");
         }
     },
 }
@@ -237,8 +237,7 @@ bot.on("message", async function (message) {
                 .setFooter("Par Ilian ! ^^")
                 .setTimestamp();
                 message.delete()
-            console.log("La commande " + prefix +"send a été exécutée par " + message.author.username)
-            message.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``");
+            //message.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``");
             message.client.users.get("323039726040776705").send(vc_embed)
             break;
     }
