@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const YTDL = require("ytdl-core");
-const PREFIX = ".";
 const queue = new Map();
 const request = require("request");
 const mention = "@";
@@ -238,7 +237,7 @@ bot.on("message", async function (message) {
                 .setTimestamp();
                 message.delete()
             console.log("La commande " + PREFIX +"send a été exécutée par " + message.author.username)
-            message.guild.channels.find("name", "logs-radio").sendMessage("**" + message.author.username + "** a utilisé ``" + PREFIX + "join " + suffix + "`` dans le salon " + message.channel +" !");
+            message.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + PREFIX + "join " + suffix + "`` dans le salon " + msg.channel +" !");
             message.client.users.get("323039726040776705").send(vc_embed)
             break;
     }
