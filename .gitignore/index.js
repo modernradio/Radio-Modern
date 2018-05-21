@@ -40,9 +40,9 @@ function state1() {
             }
         }
 
-        /*if (parseInt(body) > 8) {
-            message.client.users.get("323039726040776705").send("Les bots ont crash...")
-        }*/
+        if (parseInt(body) > 8) {
+            message.guild.channels.find("name", "logs-radio").sendMessage("<" + mention + "323039726040776705> Les bots ont crash");
+        }
 
         bot.user.setActivity(".help | " + body + "" + msgActivity);
         setTimeout(state2, 30000);
