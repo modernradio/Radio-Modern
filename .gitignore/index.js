@@ -7,6 +7,7 @@ const mention = "@";
 let prefix = "."
 let prefixLog = "[!]"
 var client = new Discord.Client();
+var site = "http://radiomodern.fr.mu"
 
 var bot = new Discord.Client();
 
@@ -54,9 +55,16 @@ function state2() {
 }
 
 function state3() {
-    bot.user.setActivity(prefix + "help | Par Ilian ! ^^");
-    setTimeout(state1, 5000);
+    bot.user.setActivity(prefix + "help | " + site);
+    setTimeout(state4, 5000);
 }
+
+function state4() {
+    bot.user.setActivity(prefix + "help | Par Ilian ! ^^");
+    setTimeout(state1, 2000);
+}
+
+
 
 bot.on('message', function (msg) {
     if (msg.content.indexOf(prefix) === 0) {
