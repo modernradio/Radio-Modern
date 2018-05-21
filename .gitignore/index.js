@@ -95,7 +95,7 @@ var commands = {
             }
             msg.member.voiceChannel.join();
             msg.channel.send(":loudspeaker: | **Je suis là !**");
-            console.log("La commande " + PREFIX +"join a été exécutée par " + msg.author.username + " sur le serveur '" + message.guild.name)
+            console.log("La commande " + PREFIX +"join a été exécutée par " + msg.author.username + " sur le serveur '" + msg.guild.name)
             msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "join`` dans le salon " + msg.channel +" !");
         }
     },
