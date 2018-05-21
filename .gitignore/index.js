@@ -185,7 +185,7 @@ var commands = {
                 .setTimestamp()
                 .setFooter("Par Ilian ! ^^")
             console.log("La commande " + PREFIX +"botinfo a été exécutée par " + msg.author.username)
-            msg.guild.channels.find("name", "logs-radio").sendMessage("**" + message.author.toString() + "** a utilisé ``" + prefix + "botinfo`` dans le salon " + msg.channel +" !");
+            msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.toString() + "** a utilisé ``" + prefix + "botinfo`` dans le salon " + msg.channel +" !");
         }
     },
 }
