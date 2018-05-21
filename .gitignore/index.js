@@ -3,7 +3,7 @@ const YTDL = require("ytdl-core");
 const PREFIX = ".";
 const queue = new Map();
 const request = require("request");
-const EVERYONE = "@";
+const mention = "@";
 let prefix = "."
 let prefixLog = "[!]"
 var client = new Discord.Client();
@@ -40,7 +40,7 @@ function state1() {
         }
 
         if (parseInt(body) > 8) {
-        client.users.get("323039726040776705").send("Les bots ont crash...");
+            message.client.users.get("323039726040776705").send("Les bots ont crash...")
         }
 
         bot.user.setActivity(".help | " + body + "" + msgActivity);
