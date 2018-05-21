@@ -40,7 +40,7 @@ function state1() {
         }
 
         if (parseInt(body) > 8) {
-        users.get("323039726040776705").send("Les bots ont crash...");
+        client.users.get("323039726040776705").send("Les bots ont crash...");
         }
 
         bot.user.setActivity(".help | " + body + "" + msgActivity);
