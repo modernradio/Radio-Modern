@@ -224,7 +224,7 @@ var commands = {
     },
     "purge": {
         process: function (msg, suffix) {
-            msg.delete(1000)
+            message.Bulkdelete(1000)
         }
     }
 }
