@@ -97,9 +97,9 @@ var commands = {
             .setFooter("Par Ilian ! ^^")
             .setColor("#04B404")
             .setTimestamp();
+        msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
         message.delete()
-        setTimeout(deletemsg, 10000)
-        msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
+        setTimeout(deletemsg, 10000) 
         }
     },
 
