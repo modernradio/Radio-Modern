@@ -206,7 +206,6 @@ var commands = {
                 .addField(':clock2: Calcul en cours...', "Merci de patienter quelques instants !")
             let startTime = Date.now();
             msg.channel.send(ping_embed).then(msg => msg.edit(pong_embed));
-            msg.channel.send(reseaux_embed);
             const fs = require("fs");
             var pong_embed = new Discord.RichEmbed()
                 .setColor('#04B404')
@@ -236,6 +235,7 @@ var commands = {
                 .setColor("#04B404")
                 .setTimestamp();
             msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
+            msg.channel.send(reseaux_embed);
             console.log("-> " + prefix + "botinfo");
             console.log("Auteur : " + msg.author.username);
             console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
