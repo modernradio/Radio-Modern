@@ -26,7 +26,6 @@ bot.on('ready', () => {
     console.log("------------------------------")
 
     setTimeout(state1, 1000);
-
 })
 
 function state1() {
@@ -43,7 +42,6 @@ function state1() {
                 msgActivity = "auditeurs"
             }
         }
-        
         bot.user.setActivity(".help | " + body + "" + msgActivity);
         setTimeout(state2, 30000);
     })
@@ -63,8 +61,6 @@ function state4() {
     bot.user.setActivity(prefix + "help | Par Ilian ! ^^");
     setTimeout(state1, 2000);
 }
-
-
 
 bot.on('message', function (msg) {
     if (msg.content.indexOf(prefix) === 0) {
@@ -134,10 +130,7 @@ var commands = {
             } else {
                 msg.channel.send(":warning: | **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
             }
-
-
         },
-
     },
 
     "stop": {
@@ -178,7 +171,7 @@ var commands = {
                 .setFooter("Par Ilian ! ^^")
                 .setAuthor("Message d'aide")
                 .setTimestamp()
-                msg.channel.send(msg.author.toString() + " **Je t'ai envoye un menu d'aide en MP, verifie qu'ils sont actives en provenance des membres du serveur.**")
+                msg.channel.send(msg.author.toString() + ":white_check_mark: Aide envoyée en message privé !")
                 msg.member.createDM().then(channel => {
                     return channel.send(help_embed)
                   }).catch(console.error)
@@ -261,7 +254,7 @@ bot.on("message", async function (message) {
             var xo02 = message.guild.channels.find('name', 'send-promotion');
             if (message.channel.name !== 'send-promotion') return message.reply("Cette commande est à effectuer seulement dans le salon dans #send-promotion du serveur 'Radio Modern'.")
             if (!suffix) return message.reply("Merci de citer la publicité que vous souhaitez poster.")
-            var vc_embed = new Discord.RichEmbed()
+            var send_embed = new Discord.RichEmbed()
                 .setColor("#04B404")
                 .addField(message.author.username + " - Sa publicité : ", suffix)
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
@@ -270,16 +263,17 @@ bot.on("message", async function (message) {
                 .setTimestamp();
                 message.delete()
             message.reply("Publicité envoyée avec succès :white_check_mark:")
-             var logvc_embed = new Discord.RichEmbed()
+            var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "send``")
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
                 .setTimestamp();
-            message.guild.channels.find("name", "logs-radio").sendEmbed(logvc_embed);
-            message.client.users.get("323039726040776705").send(vc_embed)
+            message.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
+            message.client.users.get("323039726040776705").send(send_embed)
             break;
     }
 });
+
 bot.login(process.env.TOKEN);
