@@ -301,14 +301,14 @@ bot.on("message", async function (message) {
             
 	    case "vcs":
 		  let args = message.content.split(" ").slice(1);
-		    let suffix = args.join(' ')
+		    let vcsmsg = args.join(' ')
 		    var xo02 = message.guild.channels.find('name','vcs');
 		    if(!xo02) return message.reply("Le channel #vcs-radiom est introuvable !")
 		    if(message.channel.name !== 'vcs') return message.reply("Commande a effectuer dans #vcs-radiom")
 		    if(!suffix) return message.reply("Merci d'écrire un message à envoyé dans la globalité des discord.")
 		    var vc_embed = new Discord.RichEmbed()
 		    .setColor("#04B404")
-		    .addField(message.author.username + "#" + message.author.discriminator + "– VCS", suffix)
+		    .addField(message.author.username + "#" + message.author.discriminator + "– VCS", vcsmsg)
 		    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
 		    .setThumbnail(message.guild.iconURL)
 		.setFooter("Ilian's Corporation")
@@ -316,7 +316,7 @@ bot.on("message", async function (message) {
         bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(vc_embed));
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
-                .addField(message.author.username + " - Logs : ", "``" + prefix + "send``")
+                .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
