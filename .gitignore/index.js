@@ -8,9 +8,9 @@ let prefixLog = "[!]"
 var client = new Discord.Client();
 
 var website = "radiomodern.fr.mu"
-var facebook = "https://www.facebook.com/radiomodern1/"
-var twitter = "https://twitter.com/radiomodern_"
-var paypal = "https://www.paypal.me/RadioModern"
+var facebook = "facebook.com/radiomodern1/"
+var twitter = "twitter.com/radiomodern_"
+var paypal = "paypal.me/RadioModern"
 
 
 var bot = new Discord.Client();
@@ -102,9 +102,6 @@ var commands = {
             .setColor("#04B404")
             .setTimestamp();
         msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
-            //console.log("La commande " + prefix +"join a été exécutée par " + msg.author.username + " sur le serveur '" + msg.guild.name)
-            
-            //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "join`` dans le salon " + msg.channel +" !");
         }
     },
 
@@ -124,8 +121,6 @@ var commands = {
                     .setColor("#04B404")
                     .setTimestamp();
                 msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
-                //console.log("La commande " + prefix +"play a été exécutée par " + msg.author.username)
-                //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "play " + suffix + "`` dans le salon " + msg.channel +" !");
                 } else {
                     msg.channel.send(":warning: | **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
                     return;
@@ -153,8 +148,6 @@ var commands = {
                 msg.member.voiceChannel.leave();
             } else {
                 msg.channel.send(":warning: | **Je ne suis pas dans un salon vocal.**");
-                //console.log("La commande " + prefix +"stop a été exécutée par " + msg.author.username)
-                //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "stop`` dans le salon " + msg.channel +" !");
                 var log_embed = new Discord.RichEmbed()
                 .setThumbnail(msg.author.displayAvatarURL)
                 .addField(msg.author.username + " - Logs : ", "``" + prefix + "stop``")
@@ -197,8 +190,6 @@ var commands = {
                   .setColor("#04B404")
                   .setTimestamp();
               msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); ;    
-            //console.log("La commande " + prefix +"help a été exécutée par " + msg.author.username)
-            //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "help`` dans le salon " + msg.channel +" !");
         },
     },
 
@@ -223,9 +214,9 @@ var commands = {
                 .addField(":heartpulse: API Discord :", `${bot.ping} millisecondes`, true)
                 .addBlankField()
                 .addField("Nos réseaux sociaux", "<:radiomodern:448130478881505284>", true)
-                .addField("Facebook", "[@radiomodern1](" + facebook + ")") 
-                .addField("Twitter", "[@radiomodern_](" + twitter + ")", true)
-                .addField("Une donation ?", "[Notre PayPal](" + paypal + ")", true)
+                .addField("Facebook", "[@radiomodern1](http://" + facebook + ")") 
+                .addField("Twitter", "[@radiomodern_](http://" + twitter + ")", true)
+                .addField("Une donation ?", "[Notre PayPal](http://" + paypal + ")", true)
                 .setTimestamp()
                 .setFooter("Par Ilian ! ^^")
                 var log_embed = new Discord.RichEmbed()
@@ -236,8 +227,6 @@ var commands = {
                 .setColor("#04B404")
                 .setTimestamp();
             msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);    
-            //console.log("La commande " + prefix +"botinfo a été exécutée par " + msg.author.username)
-            //msg.guild.channels.find("name", "logs-radio").sendMessage("**" + msg.author.username + "** a utilisé ``" + prefix + "botinfo`` dans le salon " + msg.channel +" !");
         }
     },
 }
