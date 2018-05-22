@@ -206,7 +206,7 @@ var commands = {
                 .addField(':clock2: Calcul en cours...', "Merci de patienter quelques instants !")
             let startTime = Date.now();
             msg.channel.send(ping_embed).then(msg => msg.edit(pong_embed));
-            msg.channel.send(reseaux_embed)
+            msg.channel.send(reseaux_embed);
             const fs = require("fs");
             var pong_embed = new Discord.RichEmbed()
                 .setColor('#04B404')
