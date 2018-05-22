@@ -300,10 +300,10 @@ bot.on("message", async function (message) {
             break;
             
 	    case "vcs":
-		  let xoargs = message.content.split(" ").slice(1);
-		    let suffix = xoargs.join(' ')
+		  let args = message.content.split(" ").slice(1);
+		    let suffix = args.join(' ')
 		    var xo02 = message.guild.channels.find('name','vcs');
-		    if(!xo02) return message.reply("Le channel #vcs-radiom est introuvable faites " + prefix + "ivcs pour le crée ou " + prefix + "install pour installer tout les salons dons j'ai besoin !")
+		    if(!xo02) return message.reply("Le channel #vcs-radiom est introuvable !")
 		    if(message.channel.name !== 'vcs') return message.reply("Commande a effectuer dans #vcs-radiom")
 		    if(!suffix) return message.reply("Merci d'écrire un message à envoyé dans la globalité des discord.")
 		    var vc_embed = new Discord.RichEmbed()
