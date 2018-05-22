@@ -220,7 +220,7 @@ var commands = {
                 .addField(":clock2: Temps :", `${Date.now() - startTime} millisecondes`, true)
                 .addField(":heartpulse: API Discord :", `${bot.ping} millisecondes`, true)
                 .addBlankField()
-                .addField("Nos réseaux sociaux", " ", true)
+                .addField("Nos réseaux sociaux", "<:radiomodern:432515330682781696>", true)
                 .addField("Facebook", "[@radiomodern1](http://" + facebook + ")") 
                 .addField("Twitter", "[@radiomodern_](http://" + twitter + ")", true)
                 .addField("Une donation ?", "[Notre PayPal](http://" + paypal + ")", true)
