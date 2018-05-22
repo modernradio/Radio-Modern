@@ -313,6 +313,7 @@ bot.on("message", async function (message) {
 		    .setThumbnail(message.guild.iconURL)
 		.setFooter("Ilian's Corporation")
 		.setTimestamp()
+		    message.delete()
         bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(vc_embed));
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
