@@ -115,13 +115,13 @@ var commands = {
                     var radio = "RadioModern";
                     var log_embed = new Discord.RichEmbed()
                     .setThumbnail(msg.author.displayAvatarURL)
-                    .addField(msg.author.username + " - Logs : ", "``" + prefix + "play``")
+                    .addField(msg.author.username + " - Logs : ", "``" + prefix + "play radio``")
                     .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
                     .setFooter("Par Ilian ! ^^")
                     .setColor("#04B404")
                     .setTimestamp();
                 msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
-                console.log("-> " + prefix + "play");
+                console.log("-> " + prefix + "play radio");
                 console.log("Auteur : " + msg.author.username);
                 console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
                 console.log("------------------------------");
@@ -181,7 +181,7 @@ var commands = {
                 .setFooter("Par Ilian ! ^^")
                 .setAuthor("Message d'aide")
                 .setTimestamp()
-                msg.channel.send(msg.author.toString() + ":white_check_mark: Aide envoyée en message privé !")
+                msg.channel.send(msg.author.toString() + ", :white_check_mark: Aide envoyée en message privé !")
                 msg.member.createDM().then(channel => {
                     return channel.send(help_embed)
                   }).catch(console.error)
@@ -220,7 +220,7 @@ var commands = {
                 .addField(":clock2: Temps :", `${Date.now() - startTime} millisecondes`, true)
                 .addField(":heartpulse: API Discord :", `${bot.ping} millisecondes`, true)
                 .addBlankField()
-                .addField("Nos réseaux sociaux", "<:radiomodern:448130478881505284>", true)
+                .addField("Nos réseaux sociaux", " ", true)
                 .addField("Facebook", "[@radiomodern1](http://" + facebook + ")") 
                 .addField("Twitter", "[@radiomodern_](http://" + twitter + ")", true)
                 .addField("Une donation ?", "[Notre PayPal](http://" + paypal + ")", true)
