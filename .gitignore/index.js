@@ -99,8 +99,8 @@ var commands = {
             .setTimestamp();
         msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
         console.log(prefix + "join");
-        console.log("Auteur : " + message.author.username + message.author.disciminator);
-        console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
+        console.log("Auteur : " + msg.author.username + msg.author.disciminator);
+        console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
         console.log("------------------------------");
         }
     },
@@ -122,8 +122,8 @@ var commands = {
                     .setTimestamp();
                 msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
                 console.log(prefix + "play");
-                console.log("Auteur : " + message.author.username + message.author.disciminator);
-                console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
+                console.log("Auteur : " + msg.author.username + msg.author.disciminator);
+                console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
                 console.log("------------------------------");
                 } else {
                     msg.channel.send(":warning: | **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
@@ -158,8 +158,8 @@ var commands = {
                 .setTimestamp();
             msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
             console.log(prefix + "stop");
-            console.log("Auteur : " + message.author.username + message.author.disciminator);
-            console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
+            console.log("Auteur : " + msg.author.username + msg.author.disciminator);
+            console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
             console.log("------------------------------");
             }
         }
@@ -194,8 +194,8 @@ var commands = {
                   .setTimestamp();
             msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
             console.log(prefix + "help");
-            console.log("Auteur : " + message.author.username + message.author.disciminator);
-            console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
+            console.log("Auteur : " + msg.author.username + msg.author.disciminator);
+            console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
             console.log("------------------------------");
         },
     },
@@ -235,8 +235,8 @@ var commands = {
                 .setTimestamp();
             msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
             console.log(prefix + "botinfo");
-            console.log("Auteur : " + message.author.username + message.author.disciminator);
-            console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
+            console.log("Auteur : " + msg.author.username + msg.author.disciminator);
+            console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
             console.log("------------------------------");
         }
     },
