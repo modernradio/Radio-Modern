@@ -300,9 +300,3 @@ bot.on("message", async function (message) {
 });
 
 bot.login(process.env.TOKEN);
-
-
-console.log(prefix + "commande");
-console.log("Auteur : " + message.author.username + message.author.disciminator);
-console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
-console.log("------------------------------");
