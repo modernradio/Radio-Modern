@@ -98,8 +98,6 @@ var commands = {
             .setColor("#04B404")
             .setTimestamp();
         msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
-        msg.delete(1)
-        setTimeout(deletemsg, 10000) 
         }
     },
 
@@ -224,10 +222,6 @@ var commands = {
             msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);    
         }
     },
-}
-
-function deletemsg() {
-    msg.delete(1);
 }
 
 bot.on("message", async function (message) {
