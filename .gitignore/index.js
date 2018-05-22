@@ -98,8 +98,8 @@ var commands = {
             .setColor("#04B404")
             .setTimestamp();
         msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
-        console.log(prefix + "join");
-        console.log("Auteur : " + msg.author.username + msg.author.disciminator);
+        console.log("-> " + prefix + "join");
+        console.log("Auteur : " + msg.author.username);
         console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
         console.log("------------------------------");
         }
@@ -121,8 +121,8 @@ var commands = {
                     .setColor("#04B404")
                     .setTimestamp();
                 msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
-                console.log(prefix + "play");
-                console.log("Auteur : " + msg.author.username + msg.author.disciminator);
+                console.log("-> " + prefix + "play");
+                console.log("Auteur : " + msg.author.username);
                 console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
                 console.log("------------------------------");
                 } else {
@@ -157,8 +157,8 @@ var commands = {
                 .setColor("#04B404")
                 .setTimestamp();
             msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
-            console.log(prefix + "stop");
-            console.log("Auteur : " + msg.author.username + msg.author.disciminator);
+            console.log("-> " + prefix + "stop");
+            console.log("Auteur : " + msg.author.username);
             console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
             console.log("------------------------------");
             }
@@ -193,8 +193,8 @@ var commands = {
                   .setColor("#04B404")
                   .setTimestamp();
             msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
-            console.log(prefix + "help");
-            console.log("Auteur : " + msg.author.username + msg.author.disciminator);
+            console.log("-> " + prefix + "help");
+            console.log("Auteur : " + msg.author.username);
             console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
             console.log("------------------------------");
         },
@@ -234,8 +234,8 @@ var commands = {
                 .setColor("#04B404")
                 .setTimestamp();
             msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
-            console.log(prefix + "botinfo");
-            console.log("Auteur : " + msg.author.username + msg.author.disciminator);
+            console.log("-> " + prefix + "botinfo");
+            console.log("Auteur : " + msg.author.username);
             console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
             console.log("------------------------------");
         }
