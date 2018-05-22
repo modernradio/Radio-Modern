@@ -206,6 +206,7 @@ var commands = {
                 .addField(':clock2: Calcul en cours...', "Merci de patienter quelques instants !")
             let startTime = Date.now();
             msg.channel.send(ping_embed).then(msg => msg.edit(pong_embed));
+            msg.channel.send(reseaux_embed)
             const fs = require("fs");
             var pong_embed = new Discord.RichEmbed()
                 .setColor('#04B404')
@@ -219,14 +220,15 @@ var commands = {
                 .addBlankField()
                 .addField(":clock2: Temps :", `${Date.now() - startTime} millisecondes`, true)
                 .addField(":heartpulse: API Discord :", `${bot.ping} millisecondes`, true)
-                .addBlankField()
-                .addField("Nos réseaux sociaux")
+            var reseaux_embed = new Discord.RichEmbed()
+                .setColor('#04B404')
+                .setTitle("Nos réseaux sociaux")
                 .addField("Facebook", "[@radiomodern1](http://" + facebook + ")") 
                 .addField("Twitter", "[@radiomodern_](http://" + twitter + ")", true)
                 .addField("Une donation ?", "[Notre PayPal](http://" + paypal + ")", true)
                 .setTimestamp()
                 .setFooter("Par Ilian ! ^^")
-                var log_embed = new Discord.RichEmbed()
+            var log_embed = new Discord.RichEmbed()
                 .setThumbnail(msg.author.displayAvatarURL)
                 .addField(msg.author.username + " - Logs : ", "``" + prefix + "botinfo``")
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
