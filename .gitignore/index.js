@@ -98,6 +98,10 @@ var commands = {
             .setColor("#04B404")
             .setTimestamp();
         msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
+        console.log(prefix + "join");
+        console.log("Auteur : " + message.author.username + message.author.disciminator);
+        console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
+        console.log("------------------------------");
         }
     },
 
@@ -117,6 +121,10 @@ var commands = {
                     .setColor("#04B404")
                     .setTimestamp();
                 msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
+                console.log(prefix + "play");
+                console.log("Auteur : " + message.author.username + message.author.disciminator);
+                console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
+                console.log("------------------------------");
                 } else {
                     msg.channel.send(":warning: | **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
                     return;
@@ -149,9 +157,11 @@ var commands = {
                 .setColor("#04B404")
                 .setTimestamp();
             msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
+            console.log(prefix + "stop");
+            console.log("Auteur : " + message.author.username + message.author.disciminator);
+            console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
+            console.log("------------------------------");
             }
-
-
         }
     },
 
@@ -182,7 +192,11 @@ var commands = {
                   .setFooter("Par Ilian ! ^^")
                   .setColor("#04B404")
                   .setTimestamp();
-              msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); ;    
+            msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
+            console.log(prefix + "help");
+            console.log("Auteur : " + message.author.username + message.author.disciminator);
+            console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
+            console.log("------------------------------");
         },
     },
 
@@ -219,7 +233,11 @@ var commands = {
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
                 .setTimestamp();
-            msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);    
+            msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
+            console.log(prefix + "botinfo");
+            console.log("Auteur : " + message.author.username + message.author.disciminator);
+            console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
+            console.log("------------------------------");
         }
     },
     "purge": {
@@ -282,3 +300,9 @@ bot.on("message", async function (message) {
 });
 
 bot.login(process.env.TOKEN);
+
+
+console.log(prefix + "commande");
+console.log("Auteur : " + message.author.username + message.author.disciminator);
+console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
+console.log("------------------------------");
