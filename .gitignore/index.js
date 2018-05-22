@@ -302,10 +302,10 @@ bot.on("message", async function (message) {
 	    case "vcs":
 		  let args = message.content.split(" ").slice(1);
 		    let vcsmsg = args.join(' ')
-		    var xo02 = message.guild.channels.find('name','vcs');
+		    var xo02 = message.guild.channels.find('name','vcs-radiom');
 		    if(!xo02) return message.reply("Le channel #vcs-radiom est introuvable !")
-		    if(message.channel.name !== 'vcs') return message.reply("Commande a effectuer dans #vcs-radiom")
-		    if(!suffix) return message.reply("Merci d'écrire un message à envoyé dans la globalité des discord.")
+		    if(message.channel.name !== 'vcs-radiom') return message.reply("Commande a effectuer dans #vcs-radiom")
+		    if(!vcsmsg) return message.reply("Merci d'écrire un message à envoyé dans la globalité des discord.")
 		    var vc_embed = new Discord.RichEmbed()
 		    .setColor("#04B404")
 		    .addField(message.author.username + "#" + message.author.discriminator + "– VCS", vcsmsg)
@@ -322,7 +322,7 @@ bot.on("message", async function (message) {
                 .setColor("#04B404")
                 .setTimestamp();
             message.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
-                        console.log("-> " + prefix + "botinfo");
+            console.log("-> " + prefix + "botinfo");
             console.log("Auteur : " + message.author.username);
             console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
             console.log("------------------------------");
