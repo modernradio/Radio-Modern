@@ -222,6 +222,11 @@ var commands = {
             msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);    
         }
     },
+    "purge": {
+        process: function (msg, suffix) {
+            message.delete(1000)
+        }
+    }
 }
 
 bot.on("message", async function (message) {
