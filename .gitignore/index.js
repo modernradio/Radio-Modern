@@ -311,7 +311,7 @@ bot.on("message", async function (message) {
 		    .addField(message.author.username + "#" + message.author.discriminator + " – VCS", vcsmsg)
 		    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
 		    .setThumbnail(message.guild.iconURL)
-		.setFooter("Ilian's Corporation")
+		.setFooter("Par Ilian ! ^^")
 		.setTimestamp()
 		    message.delete()
         bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(vc_embed));
