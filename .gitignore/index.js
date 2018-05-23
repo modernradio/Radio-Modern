@@ -304,8 +304,8 @@ bot.on("message", async function (message) {
 		    let vcsmsg = args.join(' ')
 		    var xo02 = message.guild.channels.find('name','vcs-radiom');
 		    if(!xo02) return message.reply("Le channel #vcs-radiom est introuvable !")
-		    if(message.channel.name !== 'vcs-radiom') return message.reply("Commande a effectuer dans #vcs-radiom")
-		    if(!vcsmsg) return message.reply("Merci d'écrire un message à envoyé dans la globalité des discord.")
+		    if(message.channel.name !== 'vcs-radiom') return message.reply("Cette commande est à effectuer seulement dans le salon dans #vcs-radiom de n'importe quel serveur.")
+		    if(!vcsmsg) return message.reply("Merci d'écrire un message à envoyer dans le VCS.")
 		    var vc_embed = new Discord.RichEmbed()
 		    .setColor("#04B404")
 		    .addField(message.author.username + "#" + message.author.discriminator + " – VCS", vcsmsg)
