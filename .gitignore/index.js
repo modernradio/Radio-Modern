@@ -306,6 +306,9 @@ bot.on("message", async function (message) {
         case "suggest":
             let suggest = message.content.split(" ").slice(1);
             let sugesstfix = suggest.join(' ')
+            var xo02 = message.guild.channels.find('name', 'suggestion-idees');
+	    if(!xo02) return message.reply("Le channel ``#suggestion-idees`` est introuvable !")		    
+            if (message.channel.name !== 'suggestion-idees') return message.reply("Cette commande est à effectuer seulement dans le salon dans ``#suggestion-idees``.")
             if (!sugesstfix) return message.reply("Merci d'écrire votre suggestions.")
             var suggest_embed = new Discord.RichEmbed()
                 .setColor("#04B404")
