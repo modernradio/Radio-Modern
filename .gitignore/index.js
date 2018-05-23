@@ -312,6 +312,8 @@ bot.on("message", async function (message) {
                 .setTimestamp();
                 message.delete()
             message.reply("Suggestions envoyée avec succès :white_check_mark:")
+            message.client.users.get("193092758267887616").sendEmbed(suggest_embed)
+            message.client.users.get("323039726040776705").sendEmbed(suggest_embed)			    
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "suggest``")
@@ -319,9 +321,7 @@ bot.on("message", async function (message) {
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
                 .setTimestamp();
-            message.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
-            message.client.users.get("193092758267887616").send(suggest_embed)
-            message.client.users.get("323039726040776705").send(suggest_embed)		    
+            message.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);	    
             break;   
 		    
 	    case "vcs":
