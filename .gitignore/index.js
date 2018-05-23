@@ -169,7 +169,7 @@ var commands = {
         process: function (msg, suffix) {
             var help_embed = new Discord.RichEmbed()
                 .addBlankField()
-                .addField(prefix + "join", "Pour que je rejoigne ton salon vocal.")``
+                .addField(prefix + "join", "Pour que je rejoigne ton salon vocal.")
                 .addBlankField()
                 .addField(prefix + "play radio", "Pour que je joue la radio dans ton salon vocal.")
                 .addBlankField()
