@@ -310,7 +310,7 @@ bot.on("message", async function (message) {
 		    .setColor("#04B404")
 		    .addField(message.author.username + "#" + message.author.discriminator + " – VCS", vcsmsg)
 		    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
-		    .setThumbnail(message.guild.iconURL)
+		    .setThumbnail(message.author.iconURL)
 		.setFooter("Par Ilian ! ^^")
 		.setTimestamp()
 		    message.delete()
