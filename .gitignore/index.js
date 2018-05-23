@@ -310,7 +310,7 @@ bot.on("message", async function (message) {
 		    .setColor("#04B404")
 		    .addField(message.author.username + "#" + message.author.discriminator + " – VCS", vcsmsg)
 		    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
-		    .setThumbnail(message.author.iconURL)
+		    .setThumbnail(message.author.avatarURL)
 		.setFooter("Par Ilian ! ^^")
 		.setTimestamp()
 		    message.delete()
@@ -323,7 +323,7 @@ bot.on("message", async function (message) {
                 .setColor("#04B404")
                 .setTimestamp();
             message.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
-            console.log("-> " + prefix + "botinfo");
+            console.log("-> " + prefix + "vcs");
             console.log("Auteur : " + message.author.username);
             console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
             console.log("------------------------------");
