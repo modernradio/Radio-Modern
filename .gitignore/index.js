@@ -298,7 +298,32 @@ bot.on("message", async function (message) {
             message.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
             message.client.users.get("323039726040776705").send(send_embed)
             break;
-            
+		    
+        case "suggest":
+            let suggest = message.content.split(" ").slice(1);
+            let sugesstfix = suggest.join(' ')
+            if (!sugesstfix) return message.reply("Merci d'écrire votre suggestions.")
+            var suggest_embed = new Discord.RichEmbed()
+                .setColor("#04B404")
+                .addField(message.author.username + " - Suggestions : ", "``" + sugesstfix + "``")
+                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+                .setThumbnail(message.guild.iconURL)
+                .setFooter("Par Ilian ! ^^")
+                .setTimestamp();
+                message.delete()
+            message.reply("Suggestions envoyée avec succès :white_check_mark:")
+            var log_embed = new Discord.RichEmbed()
+                .setThumbnail(message.author.displayAvatarURL)
+                .addField(message.author.username + " - Logs : ", "``" + prefix + "suggest``")
+                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+                .setFooter("Par Ilian ! ^^")
+                .setColor("#04B404")
+                .setTimestamp();
+            message.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
+            message.client.users.get("193092758267887616").send(suggest_embed)
+            message.client.users.get("323039726040776705").send(suggest_embed)		    
+            break;   
+		    
 	    case "vcs":
 		  let args = message.content.split(" ").slice(1);
 		    let vcsmsg = args.join(' ')
