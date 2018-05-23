@@ -321,7 +321,7 @@ bot.on("message", async function (message) {
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
                 .setTimestamp();
-            message.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);	    
+            message.guild.channels.find("name", "logs-radio").send(log_embed);	    
             break;   
 		    
 	    case "vcs":
