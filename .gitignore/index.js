@@ -180,6 +180,7 @@ var commands = {
 	        .addField(prefix + "vcs", "Pour envoyer un message vcs ( Virtual Chat Server ) dans tout les serveurs ou je suis. ( ``Dans les salons #vcs-radiom``)")
 	        .addBlankField()
 	        .addField(prefix + "suggest", "Pour envoyer une Suggestions pour moi ou la radio.")
+	        .addBlankField()
                 .setColor("#04B404")
                 .setFooter("Par Ilian ! ^^")
                 .setAuthor("Message d'aide")
