@@ -49,7 +49,7 @@ function state1() {
 
 function state2() {
     bot.user.setActivity(prefix + "help | " + bot.guilds.size + " serveurs, " + bot.users.size + " membres");
-    setTimeout(state3, 3000);
+    setTimeout(state3, 1000);
 }
 
 function state3() {
