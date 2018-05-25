@@ -58,7 +58,7 @@ function state3() {
 }
 
 function state4() {
-    bot.user.setActivity(prefix + "help | Par Ilian ! ^^");
+    bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
     setTimeout(state1, 2000);
 }
 
