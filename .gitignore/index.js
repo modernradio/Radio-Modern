@@ -49,17 +49,17 @@ function state1() {
 
 function state2() {
     bot.user.setActivity(prefix + "help | " + bot.guilds.size + " serveurs, " + bot.users.size + " membres");
-    setTimeout(state3, 5000);
+    setTimeout(state3, 3000);
 }
 
 function state3() {
     bot.user.setActivity(prefix + "help | " + website);
-    setTimeout(state4, 5000);
+    setTimeout(state4, 1000);
 }
 
 function state4() {
     bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
-    setTimeout(state1, 2000);
+    setTimeout(state1, 1500);
 }
 
 bot.on('message', function (msg) {
