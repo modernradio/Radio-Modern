@@ -340,7 +340,7 @@ bot.on("message", async function (message) {
 		    if(!vcsmsg) return message.reply("Merci d'écrire un message à envoyer dans le VCS.")
 		    var vc_embed = new Discord.RichEmbed()
 		    .setColor("#04B404")
-		    .addField(message.author.username + "#" + message.author.discriminator + " – VCS", "```" + vcsmsg + "```")
+		    .addField(message.author.username + "#" + message.author.discriminator + " – VCS", vcsmsg)
 		    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
 		    .setThumbnail(message.author.avatarURL)
 		.setFooter("Par Ilian ! ^^")
