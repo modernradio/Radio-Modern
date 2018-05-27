@@ -191,10 +191,11 @@ var commands = {
                 .setFooter("Par Ilian ! ^^")
                 .setAuthor("Message d'aide")
                 .setTimestamp()
-                msg.channel.send(msg.author.toString() + ", :white_check_mark: Aide envoyée en message privé !")
-                msg.member.createDM().then(channel => {
-                    return channel.send(help_embed)
-                  }).catch(console.error)
+                msg.channel.send(help_embed)
+           //     msg.channel.send(msg.author.toString() + ", :white_check_mark: Aide envoyée en message privé !")
+               // msg.member.createDM().then(channel => {
+                 //   return channel.send(help_embed)
+               //   }).catch(console.error)
                   var log_embed = new Discord.RichEmbed()
                   .setThumbnail(msg.author.displayAvatarURL)
                   .addField(msg.author.username + " - Logs : ", "``" + prefix + "help``")
@@ -362,6 +363,16 @@ bot.on("message", async function (message) {
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fonda_embed));
+    }else if(message.author.id === "182977157314772993") {
+        const fonda2_embed = new Discord.RichEmbed()
+        .setColor("#B40404")
+        .addField("Fondateur - " + message.author.username + " – VCS", msgvcs)
+        .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+        .setThumbnail(message.author.avatarURL)
+        .setFooter("Par Ilian^^ !")
+        .setTimestamp()
+    message.delete()
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fonda2_embed));
     }else if(message.author.id === "193092758267887616") {
         const dev_embed = new Discord.RichEmbed()
         .setColor("#2E64FE")
@@ -402,6 +413,21 @@ bot.on("message", async function (message) {
     .setTimestamp();
     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));   
     break;    
+
+    case "servlist":
+    message.channel.send("__**Attention SPAM POSSIBLE**__\nInfos :\nNombre de serveurs : " + bot.guilds.size + "\nNombre d'utilisateurs : " + bot.users.size);
+    var allservers = bot.guilds.array(); for (var i in allservers) {
+    message.channel.send("\n**Serveur numéro** ``" + i + "`` :" + "\n- **Nom du serveur** : ``" + allservers[i].name + "``\n- **Propriétaire du serveur** : ``" + allservers[i].owner.displayName + "``\n")
+     }
+    break;
+
+    case "listserv":
+   message.channel.send("__**Attention SPAM POSSIBLE**__\nInfos :\nNombre de serveurs : " + bot.guilds.size + "\nNombre d'utilisateurs : " + bot.users.size);
+   var allservers = bot.guilds.array(); for (var i in allservers) {
+   message.channel.send("\n**Serveur numéro** ``" + i + "`` :" + "\n- **Nom du serveur** : ``" + allservers[i].name + "``\n- **Propriétaire du serveur** : ``" + allservers[i].owner.displayName + "``\n")
+    }
+     break;
     }
 });
+
 bot.login(process.env.TOKEN);
