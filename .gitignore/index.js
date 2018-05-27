@@ -59,7 +59,7 @@ function state3() {
 
 function state4() {
     bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
-    setTimeout(state1, 1500);
+    setTimeout(state1, 1000);
 }
 
 bot.on('message', function (msg) {
