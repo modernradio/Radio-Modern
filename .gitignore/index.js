@@ -419,6 +419,16 @@ bot.on("message", async function (message) {
     var allservers = bot.guilds.array(); for (var i in allservers) {
     message.channel.send("\n**Serveur numéro** ``" + i + "`` :" + "\n- **Nom du serveur** : ``" + allservers[i].name + "``\n- **Propriétaire du serveur** : ``" + allservers[i].owner.displayName + "``\n")
      }
+     var log_embed = new Discord.RichEmbed()
+     .setThumbnail(message.author.displayAvatarURL)
+     .addField(message.author.username + " - Logs : ", "``" + prefix + "servlist``")
+     .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+     .addField("ID de la personnes", message.author.id)
+     .setFooter("Par Ilian ! ^^")
+     .setColor("#04B404")
+     .setTimestamp();
+     console.log("Utilisateur : " + message.author.username + "\nID de l'utilisateur : " + message.author.id + "\nCommande : " + prefix + "servlist" + "\nProvenance du message : " + message.guild.name + "\nDans le salon #" + message.channel.name)
+     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));   
     break;
 
     case "listserv":
@@ -426,6 +436,16 @@ bot.on("message", async function (message) {
    var allservers = bot.guilds.array(); for (var i in allservers) {
    message.channel.send("\n**Serveur numéro** ``" + i + "`` :" + "\n- **Nom du serveur** : ``" + allservers[i].name + "``\n- **Propriétaire du serveur** : ``" + allservers[i].owner.displayName + "``\n")
     }
+    var log_embed = new Discord.RichEmbed()
+    .setThumbnail(message.author.displayAvatarURL)
+    .addField(message.author.username + " - Logs : ", "``" + prefix + "listserv``")
+    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+    .addField("ID de la personnes", message.author.id)
+    .setFooter("Par Ilian ! ^^")
+    .setColor("#04B404")
+    .setTimestamp();
+    console.log("Utilisateur : " + message.author.username + "\nID de l'utilisateur : " + message.author.id + "\nCommande : " + prefix + "listserv" + "\nProvenance du message : " + message.guild.name + "\nDans le salon #" + message.channel.name)
+    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));  
      break;
     }
 });
