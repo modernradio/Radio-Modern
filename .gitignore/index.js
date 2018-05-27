@@ -97,7 +97,7 @@ var commands = {
             .setFooter("Par Ilian ! ^^")
             .setColor("#04B404")
             .setTimestamp();
-        msg.guild.channels.find("name", "logs-radio").send(log_embed);
+            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
         console.log("-> " + prefix + "join");
         console.log("Auteur : " + msg.author.username);
         console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
@@ -120,7 +120,7 @@ var commands = {
                     .setFooter("Par Ilian ! ^^")
                     .setColor("#04B404")
                     .setTimestamp();
-                msg.guild.channels.find("name", "logs-radio").send(log_embed); 
+                    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed)); 
                 console.log("-> " + prefix + "play radio");
                 console.log("Auteur : " + msg.author.username);
                 console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
@@ -156,7 +156,7 @@ var commands = {
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
                 .setTimestamp();
-            msg.guild.channels.find("name", "logs-radio").send(log_embed); 
+                bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             console.log("-> " + prefix + "stop");
             console.log("Auteur : " + msg.author.username);
             console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
@@ -196,7 +196,7 @@ var commands = {
                   .setFooter("Par Ilian ! ^^")
                   .setColor("#04B404")
                   .setTimestamp();
-            msg.guild.channels.find("name", "logs-radio").send(log_embed);
+                  bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             console.log("-> " + prefix + "help");
             console.log("Auteur : " + msg.author.username);
             console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
@@ -238,7 +238,7 @@ var commands = {
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
                 .setTimestamp();
-            msg.guild.channels.find("name", "logs-radio").send(log_embed);
+                bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             msg.channel.send(reseaux_embed);
             console.log("-> " + prefix + "botinfo");
             console.log("Auteur : " + msg.author.username);
@@ -249,6 +249,14 @@ var commands = {
     "purge": {
         process: function (msg, suffix) {
             msg.delete(1000)
+            var log_embed = new Discord.RichEmbed()
+            .setThumbnail(msg.author.displayAvatarURL)
+            .addField(msg.author.username + " - Logs : ", "``" + prefix + "botinfo``")
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+            .setFooter("Par Ilian ! ^^")
+            .setColor("#04B404")
+            .setTimestamp();
+            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));    
         }
     }
 }
@@ -299,7 +307,7 @@ bot.on("message", async function (message) {
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
                 .setTimestamp();
-            message.guild.channels.find("name", "logs-radio").send(log_embed);
+                bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));    
             message.client.users.get("323039726040776705").send(send_embed)
             break;
 		    
@@ -328,7 +336,7 @@ bot.on("message", async function (message) {
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
                 .setTimestamp();
-            message.guild.channels.find("name", "logs-radio").send(log_embed);	    
+                bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));    	    
             break;   
 		    
 	    case "vcs":
@@ -354,7 +362,7 @@ bot.on("message", async function (message) {
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
                 .setTimestamp();
-            message.guild.channels.find("name", "logs-radio").send(log_embed);
+                bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));    
             console.log("-> " + prefix + "vcs");
             console.log("Auteur : " + message.author.username);
             console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
