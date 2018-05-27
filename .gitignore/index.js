@@ -97,7 +97,7 @@ var commands = {
             .setFooter("Par Ilian ! ^^")
             .setColor("#04B404")
             .setTimestamp();
-        msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
+        msg.guild.channels.find("name", "logs-radio").send(log_embed);
         console.log("-> " + prefix + "join");
         console.log("Auteur : " + msg.author.username);
         console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
@@ -120,7 +120,7 @@ var commands = {
                     .setFooter("Par Ilian ! ^^")
                     .setColor("#04B404")
                     .setTimestamp();
-                msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
+                msg.guild.channels.find("name", "logs-radio").send(log_embed); 
                 console.log("-> " + prefix + "play radio");
                 console.log("Auteur : " + msg.author.username);
                 console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
@@ -156,7 +156,7 @@ var commands = {
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
                 .setTimestamp();
-            msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed); 
+            msg.guild.channels.find("name", "logs-radio").send(log_embed); 
             console.log("-> " + prefix + "stop");
             console.log("Auteur : " + msg.author.username);
             console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
@@ -196,7 +196,7 @@ var commands = {
                   .setFooter("Par Ilian ! ^^")
                   .setColor("#04B404")
                   .setTimestamp();
-            msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
+            msg.guild.channels.find("name", "logs-radio").send(log_embed);
             console.log("-> " + prefix + "help");
             console.log("Auteur : " + msg.author.username);
             console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
@@ -238,7 +238,7 @@ var commands = {
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
                 .setTimestamp();
-            msg.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
+            msg.guild.channels.find("name", "logs-radio").send(log_embed);
             msg.channel.send(reseaux_embed);
             console.log("-> " + prefix + "botinfo");
             console.log("Auteur : " + msg.author.username);
@@ -299,7 +299,7 @@ bot.on("message", async function (message) {
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
                 .setTimestamp();
-            message.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
+            message.guild.channels.find("name", "logs-radio").send(log_embed);
             message.client.users.get("323039726040776705").send(send_embed)
             break;
 		    
@@ -354,7 +354,7 @@ bot.on("message", async function (message) {
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
                 .setTimestamp();
-            message.guild.channels.find("name", "logs-radio").sendEmbed(log_embed);
+            message.guild.channels.find("name", "logs-radio").send(log_embed);
             console.log("-> " + prefix + "vcs");
             console.log("Auteur : " + message.author.username);
             console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
