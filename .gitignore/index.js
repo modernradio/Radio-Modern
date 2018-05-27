@@ -367,7 +367,50 @@ bot.on("message", async function (message) {
             console.log("Auteur : " + message.author.username);
             console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
             console.log("------------------------------");
-	break;            
+	break;
+		    
+    case "vcs":
+		  let args = message.content.split(" ").slice(1);
+		    let vcsmsg = args.join(' ')
+		  var xo02 = message.guild.channels.find('name','vcs-radiom');
+		    if(!xo02) return message.reply("Le channel #vcs-radiom est introuvable !")
+		   if(message.channel.name !== 'vcs-radiom') return message.reply("Cette commande est à effectuer seulement dans le salon dans #vcs-radiom de n'importe quel serveur.")
+ if(!vcsmsg) return message.reply("Merci d'écrire un message à envoyer dans le VCS.")
+    if(message.author.id === "323039726040776705" || "193092758267887616" || "182977157314772993") {
+        const fonda_embed = new Discord.RichEmbed()
+		    .setColor("#04B404")
+		    .setAuthor("Fondateur")
+		    .addField(message.author.username + "#" + message.author.discriminator + " – VCS", vcsmsg)
+		    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+		    .setThumbnail(message.author.avatarURL)
+		.setFooter("Par Ilian ! ^^")
+		.setTimestamp()
+    message.delete()
+    bot.channels.findAll('name', 'vcs').map(channel => channel.send(fonda_embed));
+    }else{		    
+    if(message.author.id === "274240989944610827") {
+        const zenfix_embed = new Discord.RichEmbed()
+		    .setColor("#04B404")
+		    .setAuthor("❤️")
+		    .addField(message.author.username + "#" + message.author.discriminator + " – VCS", vcsmsg)
+		    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+		    .setThumbnail(message.author.avatarURL)
+		.setFooter("Par Ilian ! ^^")
+		.setTimestamp()
+    message.delete()
+    bot.channels.findAll('name', 'vcs').map(channel => channel.send(zenfix_embed));
+    }else{
+    const vcs_embed = new Discord.RichEmbed()
+		    .setColor("#04B404")
+		    .setAuthor("Membre")
+		    .addField(message.author.username + "#" + message.author.discriminator + " – VCS", vcsmsg)
+		    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+		    .setThumbnail(message.author.avatarURL)
+		.setFooter("Par Ilian ! ^^")
+		.setTimestamp()
+    message.delete()
+    }
+    break;		    
     }
 });
 
