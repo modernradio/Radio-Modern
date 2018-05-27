@@ -339,36 +339,6 @@ bot.on("message", async function (message) {
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));    	    
             break;   
 		    
-	    case "vcs":
-		  let args = message.content.split(" ").slice(1);
-		    let vcsmsg = args.join(' ')
-		    var xo02 = message.guild.channels.find('name','vcs-radiom');
-		    if(!xo02) return message.reply("Le channel #vcs-radiom est introuvable !")
-		    if(message.channel.name !== 'vcs-radiom') return message.reply("Cette commande est à effectuer seulement dans le salon dans #vcs-radiom de n'importe quel serveur.")
-		    if(!vcsmsg) return message.reply("Merci d'écrire un message à envoyer dans le VCS.")
-		    var vc_embed = new Discord.RichEmbed()
-		    .setColor("#04B404")
-		    .addField(message.author.username + "#" + message.author.discriminator + " – VCS", vcsmsg)
-		    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
-		    .setThumbnail(message.author.avatarURL)
-		.setFooter("Par Ilian ! ^^")
-		.setTimestamp()
-		    message.delete()
-        bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(vc_embed));
-            var log_embed = new Discord.RichEmbed()
-                .setThumbnail(message.author.displayAvatarURL)
-                .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
-                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                .setFooter("Par Ilian ! ^^")
-                .setColor("#04B404")
-                .setTimestamp();
-                bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));    
-            console.log("-> " + prefix + "vcs");
-            console.log("Auteur : " + message.author.username);
-            console.log("Localisation : " + message.guild.name + ", " + message.channel.name);
-            console.log("------------------------------");
-	break;
-		    
     case "vcs":
 		  let args = message.content.split(" ").slice(1);
 		    let vcsmsg = args.join(' ')
