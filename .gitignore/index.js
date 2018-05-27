@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const YTDL = require("ytdl-core");
 const queue = new Map();
 const request = require("request");
+const mention = "@";
 let prefix = "."
 let prefixLog = "[!]"
 var client = new Discord.Client();
@@ -11,11 +12,18 @@ var facebook = "facebook.com/radiomodern1/"
 var twitter = "twitter.com/radiomodern_"
 var paypal = "paypal.me/RadioModern"
 
+
 var bot = new Discord.Client();
 
 var servers = {};
 
-bot.on('ready', () => {
+bot.on('ready', (ready) => {
+    var connection_embed = new Discord.RichEmbed()
+    .setTitle("Je suis connecté")
+    .setTimestamp()
+    .setColor("#04B404")
+    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(connection_embed));
+
 
     bot.user.setActivity(prefix + "help | Démarré et prêt !");
     console.log("------------------------------")
@@ -98,7 +106,7 @@ var commands = {
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
         console.log("-> " + prefix + "join");
         console.log("Auteur : " + msg.author.username);
-        console.log("Localisation : " + msg.guild.name + ", #" + msg.channel.name);
+        console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
         console.log("------------------------------");
         }
     },
@@ -119,10 +127,10 @@ var commands = {
                     .setColor("#04B404")
                     .setTimestamp();
                     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed)); 
-                    console.log("-> " + prefix + "play radio");
-                    console.log("Auteur : " + msg.author.username);
-                    console.log("Localisation : " + msg.guild.name + ", #" + msg.channel.name);
-                    console.log("------------------------------");
+                console.log("-> " + prefix + "play radio");
+                console.log("Auteur : " + msg.author.username);
+                console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
+                console.log("------------------------------");
                 } else {
                     msg.channel.send(":warning: | **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
                     return;
@@ -155,10 +163,10 @@ var commands = {
                 .setColor("#04B404")
                 .setTimestamp();
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                console.log("-> " + prefix + "stop");
-                console.log("Auteur : " + msg.author.username);
-                console.log("Localisation : " + msg.guild.name + ", #" + msg.channel.name);
-                console.log("------------------------------");
+            console.log("-> " + prefix + "stop");
+            console.log("Auteur : " + msg.author.username);
+            console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
+            console.log("------------------------------");
             }
         }
     },
@@ -195,10 +203,10 @@ var commands = {
                   .setColor("#04B404")
                   .setTimestamp();
                   bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                  console.log("-> " + prefix + "help");
-                  console.log("Auteur : " + msg.author.username);
-                  console.log("Localisation : " + msg.guild.name + ", #" + msg.channel.name);
-                  console.log("------------------------------");
+            console.log("-> " + prefix + "help");
+            console.log("Auteur : " + msg.author.username);
+            console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
+            console.log("------------------------------");
         },
     },
 
@@ -240,10 +248,23 @@ var commands = {
             msg.channel.send(reseaux_embed);
             console.log("-> " + prefix + "botinfo");
             console.log("Auteur : " + msg.author.username);
-            console.log("Localisation : " + msg.guild.name + ", #" + msg.channel.name);
+            console.log("Localisation : " + msg.guild.name + ", " + msg.channel.name);
             console.log("------------------------------");
         }
     },
+    "purge": {
+        process: function (msg, suffix) {
+            msg.delete(1000)
+            var log_embed = new Discord.RichEmbed()
+            .setThumbnail(msg.author.displayAvatarURL)
+            .addField(msg.author.username + " - Logs : ", "``" + prefix + "botinfo``")
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+            .setFooter("Par Ilian ! ^^")
+            .setColor("#04B404")
+            .setTimestamp();
+            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));    
+        }
+    }
 }
 
 bot.on("message", async function (message) {
@@ -294,10 +315,6 @@ bot.on("message", async function (message) {
                 .setTimestamp();
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));    
             message.client.users.get("323039726040776705").send(send_embed)
-            console.log("-> " + prefix + "suggest");
-            console.log("Auteur : " + msg.author.username);
-            console.log("Localisation : " + msg.guild.name + ", #" + msg.channel.name);
-            console.log("------------------------------");
             break;
 		    
         case "suggest":
@@ -325,60 +342,66 @@ bot.on("message", async function (message) {
                 .setFooter("Par Ilian ! ^^")
                 .setColor("#04B404")
                 .setTimestamp();
-                bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-            console.log("-> " + prefix + "suggest");
-            console.log("Auteur : " + msg.author.username);
-            console.log("Localisation : " + msg.guild.name + ", #" + msg.channel.name);
-            console.log("------------------------------");  	    
+                bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));    	    
             break;   
-		    
+    
     case "vcs":
-		  let args = message.content.split(" ").slice(1);
-		    let vcsmsg = args.join(' ')
-		  var xo02 = message.guild.channels.find('name','vcs-radiom');
-		    if(!xo02) return message.reply("Le channel #vcs-radiom est introuvable !")
-		   if(message.channel.name !== 'vcs-radiom') return message.reply("Cette commande est à effectuer seulement dans le salon dans #vcs-radiom de n'importe quel serveur.")
- if(!vcsmsg) return message.reply("Merci d'écrire un message à envoyer dans le VCS.")
-    if(message.author.id === "323039726040776705" || "193092758267887616" || "182977157314772993") {
+    let vcsmog = message.content.split(" ").slice(1);
+    let msgvcs = vcsmog.join(' ')
+    var xo02 = message.guild.channels.find('name','vcs-radiom');
+    if(!xo02) return message.reply("Le channel #vcs-radiom est introuvable !")
+    if(message.channel.name !== 'vcs-radiom') return message.reply("Cette commande est à effectuer seulement dans le salon dans #vcs-radiom de n'importe quel serveur.")
+    if(!msgvcs) return message.channel.send("Merci d'écrire un message à envoyer dans le VCS.") 
+    if(message.author.id === "323039726040776705") {
         const fonda_embed = new Discord.RichEmbed()
-		    .setColor("#04B404")
-		    .setAuthor("Fondateur")
-		    .addField(message.author.username + "#" + message.author.discriminator + " – VCS", vcsmsg)
-		    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
-		    .setThumbnail(message.author.avatarURL)
-		.setFooter("Par Ilian ! ^^")
-		.setTimestamp()
+        .setColor("#B40404")
+        .addField("Fondateur - " + message.author.username + " – VCS", msgvcs)
+        .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+        .setThumbnail(message.author.avatarURL)
+        .setFooter("Par Ilian^^ !")
+        .setTimestamp()
     message.delete()
-    bot.channels.findAll('name', 'vcs').map(channel => channel.send(fonda_embed));
-    }else{		    
-    if(message.author.id === "274240989944610827") {
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fonda_embed));
+    }else if(message.author.id === "193092758267887616") {
+        const dev_embed = new Discord.RichEmbed()
+        .setColor("#2E64FE")
+        .addField("Développeur - " + message.author.username + " – VCS", msgvcs)
+        .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+        .setThumbnail(message.author.avatarURL)
+        .setFooter("Par Ilian^^ !")
+        .setTimestamp()
+    message.delete()
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(dev_embed));
+    }else  if(message.author.id === "274240989944610827"){
         const zenfix_embed = new Discord.RichEmbed()
-		    .setColor("#04B404")
-		    .setAuthor("❤️")
-		    .addField(message.author.username + "#" + message.author.discriminator + " – VCS", vcsmsg)
-		    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
-		    .setThumbnail(message.author.avatarURL)
-		.setFooter("Par Ilian ! ^^")
-		.setTimestamp()
-    message.delete()
-    bot.channels.findAll('name', 'vcs').map(channel => channel.send(zenfix_embed));
-    }else{
+        .setColor("#F78181")
+            .addField("❤️ - " + message.author.username + " – VCS", msgvcs)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+        .setThumbnail(message.author.avatarURL)
+        .setFooter("Par Ilian^^ !")
+        .setTimestamp()
+        message.delete()
+        bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(zenfix_embed));
+        }else{   
     const vcs_embed = new Discord.RichEmbed()
-		    .setColor("#04B404")
-		    .setAuthor("Membre")
-		    .addField(message.author.username + "#" + message.author.discriminator + " – VCS", vcsmsg)
-		    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
-		    .setThumbnail(message.author.avatarURL)
-		.setFooter("Par Ilian ! ^^")
-		.setTimestamp()
+    .setColor("#04B404")
+        .addField("Utilisateur - " + message.author.username + " – VCS", msgvcs)
+        .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+    .setThumbnail(message.author.displayAvatarURL)
+    .setFooter("Par Ilian^^ !")
+    .setTimestamp()
     message.delete()
-    console.log("-> " + prefix + "vcs");
-    console.log("Auteur : " + msg.author.username);
-    console.log("Localisation : " + msg.guild.name + ", #" + msg.channel.name);
-    console.log("------------------------------");
+    bot.channels.findAll('name', "vcs-radiom").map(channel => channel.send(vcs_embed));
     }
-    break;		    
+    var log_embed = new Discord.RichEmbed()
+    .setThumbnail(message.author.displayAvatarURL)
+    .addField(message.author.username + " - Logs : ", "``" + prefix + "send``")
+    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+    .setFooter("Par Ilian ! ^^")
+    .setColor("#04B404")
+    .setTimestamp();
+    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));   
+    break;    
     }
 });
-
 bot.login(process.env.TOKEN);
