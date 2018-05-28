@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-//const YTDL = require("ytdl-core");
+const YTDL = require("ytdl-core");
 const queue = new Map();
 const request = require("request");
 const mention = "@";
