@@ -3,7 +3,7 @@ const YTDL = require("ytdl-core");
 const queue = new Map();
 const request = require("request");
 const mention = "@";
-let prefix = ";"
+let prefix = "."
 let prefixLog = "[!]"
 var client = new Discord.Client();
 
