@@ -409,7 +409,8 @@ bot.on("message", async function (message) {
     console.log("------------------------------");
     console.log("Contenu : \n" + msgvcs);
     }
-    
+    break;
+		    
     case "listserv":
     message.channel.send("__**ATTENTION, SPAM POSSIBLE**__\n -> Nombre de serveurs : " + bot.guilds.size + "\n-> Nombre d'utilisateurs : " + bot.users.size + "\n\n__Liste complète des serveurs :__");
     var allservers = bot.guilds.array(); for (var i in allservers) {
@@ -428,6 +429,25 @@ bot.on("message", async function (message) {
     console.log("Localisation : " + message.guild.name + ", #" + message.channel.name);
     console.log("------------------------------");
     break;
+		    
+    case "servlist":
+    message.channel.send("__**ATTENTION, SPAM POSSIBLE**__\n -> Nombre de serveurs : " + bot.guilds.size + "\n-> Nombre d'utilisateurs : " + bot.users.size + "\n\n__Liste complète des serveurs :__");
+    var allservers = bot.guilds.array(); for (var i in allservers) {
+    message.channel.send("-> " + allservers[i].name)
+    }
+    var log_embed = new Discord.RichEmbed()
+        .setThumbnail(message.author.displayAvatarURL)
+        .addField(message.author.username + " - Logs : ", "``" + prefix + "listserv``")
+        .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+        .setFooter("Par Ilian ! ^^")
+        .setColor("#04B404")
+        .setTimestamp();
+    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed)); 
+    console.log("-> " + prefix + "listserv");
+    console.log("Auteur : " + message.author.username);
+    console.log("Localisation : " + message.guild.name + ", #" + message.channel.name);
+    console.log("------------------------------");
+    break;		    
     }
 });
 
