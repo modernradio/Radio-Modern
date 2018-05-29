@@ -403,6 +403,14 @@ bot.on("message", async function (message) {
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', "vcs-radiom").map(channel => channel.send(vcs_embed));
+    var log_embed = new Discord.RichEmbed()
+        .setThumbnail(message.author.displayAvatarURL)
+        .addField(message.author.username + " - Logs : ", "``" + prefix + "listserv``")
+        .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+        .setFooter("Par Ilian ! ^^")
+        .setColor("#04B404")
+        .setTimestamp();
+    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed)); 		
     console.log("-> " + prefix + "vcs");
     console.log("Auteur : " + msg.author.username);
     console.log("Localisation : " + msg.guild.name + ", #" + msg.channel.name);
