@@ -384,8 +384,8 @@ bot.on("message", async function (message) {
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(dev_embed));
-    }else if(message.author.id === "306768941210927104" || "337863324983230474" || "417795915810603019" || "269916752564060170" || "140819107556753417" || "274240989944610827" || "370593040706043905") {
-    const partenaire_embed = new Discord.RichEmbed()
+    }else if(message.author.id === "306768941210927104") {
+    const partenaire1_embed = new Discord.RichEmbed()
         .setColor("#2E64FE")
         .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
@@ -393,8 +393,72 @@ bot.on("message", async function (message) {
         .setFooter(footer)
         .setTimestamp()
     message.delete()
-    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire_embed));
-    }else {   
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire1_embed));
+    }else if(message.author.id === "337863324983230474") {
+        const partenaire2_embed = new Discord.RichEmbed()
+            .setColor("#2E64FE")
+            .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+            .setThumbnail(message.author.avatarURL)
+            .setFooter(footer)
+            .setTimestamp()
+    message.delete()
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire2_embed));
+    }else if(message.author.id === "417795915810603019") {
+        const partenaire3_embed = new Discord.RichEmbed()
+            .setColor("#2E64FE")
+            .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+            .setThumbnail(message.author.avatarURL)
+            .setFooter(footer)
+            .setTimestamp()
+    message.delete()
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire3_embed));
+    }else if(message.author.id === "269916752564060170") {
+        const partenaire4_embed = new Discord.RichEmbed()
+            .setColor("#2E64FE")
+            .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+            .setThumbnail(message.author.avatarURL)
+            .setFooter(footer)
+            .setTimestamp()
+    message.delete()
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire4_embed));
+    }else if(message.author.id === "140819107556753417") {
+        const partenaire5_embed = new Discord.RichEmbed()
+            .setColor("#2E64FE")
+            .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+            .setThumbnail(message.author.avatarURL)
+            .setFooter(footer)
+            .setTimestamp()
+    message.delete()
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire5_embed));
+    }else if(message.author.id === "274240989944610827") {
+        const partenaire6_embed = new Discord.RichEmbed()
+            .setColor("#2E64FE")
+            .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+            .setThumbnail(message.author.avatarURL)
+            .setFooter(footer)
+            .setTimestamp()
+    message.delete()
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire6_embed));
+    }else if(message.author.id === "370593040706043905") {
+        const partenaire7_embed = new Discord.RichEmbed()
+        .setColor("#2E64FE")
+        .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
+        .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+        .setThumbnail(message.author.avatarURL)
+        .setFooter(footer)
+        .setTimestamp()
+    message.delete()
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire7_embed));
+    }else{
+
+
+    "" || "" || "" || "" || "" || ""
+
     const vcs_embed = new Discord.RichEmbed()
         .setColor("#04B404")
         .addField("Utilisateur - " + message.author.username + " – VCS", msgvcs)
