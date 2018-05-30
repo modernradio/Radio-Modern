@@ -359,7 +359,7 @@ bot.on("message", async function (message) {
         .addField("Fondateur - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.avatarURL)
-        .setFooter("Par Ilian^^ !")
+        .setFooter("Par Ilian ! ^^")
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fonda_embed));
@@ -369,7 +369,7 @@ bot.on("message", async function (message) {
         .addField("Fondateur - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.avatarURL)
-        .setFooter("Par Ilian^^ !")
+        .setFooter("Par Ilian ! ^^")
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fonda2_embed));
@@ -379,17 +379,27 @@ bot.on("message", async function (message) {
         .addField("Développeur - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.avatarURL)
-        .setFooter("Par Ilian^^ !")
+        .setFooter("Par Ilian ! ^^")
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(dev_embed));
-    }else  if(message.author.id === "274240989944610827"){
+    }else if(message.author.id === "306768941210927104") {
+    const partenaire1_embed = new Discord.RichEmbed()
+        .setColor("#2E64FE")
+        .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
+        .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+        .setThumbnail(message.author.avatarURL)
+        .setFooter("Par Ilian ! ^^")
+        .setTimestamp()
+    message.delete()
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire1_embed));
+    }else if(message.author.id === "274240989944610827"){
     const zenfix_embed = new Discord.RichEmbed()
         .setColor("#F78181")
         .addField("❤️ - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.avatarURL)
-        .setFooter("Par Ilian^^ !")
+        .setFooter("Par Ilian ! ^^")
         .setTimestamp()
         message.delete()
         bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(zenfix_embed));
@@ -399,7 +409,7 @@ bot.on("message", async function (message) {
         .addField("Utilisateur - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.displayAvatarURL)
-        .setFooter("Par Ilian^^ !")
+        .setFooter("Par Ilian ! ^^")
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', "vcs-radiom").map(channel => channel.send(vcs_embed));
