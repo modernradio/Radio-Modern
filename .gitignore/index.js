@@ -14,6 +14,9 @@ var paypal = "paypal.me/RadioModern"
 
 var footer = "Par Ilian ! ^^"
 
+var partenaire_color = "#088A08"
+var fondateur_color = "#B40404"
+
 var bot = new Discord.Client();
 
 var servers = {};
@@ -355,25 +358,25 @@ bot.on("message", async function (message) {
     if(message.channel.name !== 'vcs-radiom') return message.reply("Cette commande est à effectuer seulement dans le salon dans #vcs-radiom de n'importe quel serveur.")
     if(!msgvcs) return message.channel.send("Merci d'écrire un message à envoyer dans le VCS.") 
     if(message.author.id === "323039726040776705") {
-    const fonda_embed = new Discord.RichEmbed()
-        .setColor("#B40404")
+    const fondateur1_embed = new Discord.RichEmbed()
+        .setColor(fondateur_color)
         .addField("Fondateur - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.avatarURL)
         .setFooter(footer)
         .setTimestamp()
     message.delete()
-    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fonda_embed));
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fondateur1_embed));
     }else if(message.author.id === "182977157314772993") {
-    const fonda_embed = new Discord.RichEmbed()
-        .setColor("#B40404")
+    const fondateur2_embed = new Discord.RichEmbed()
+        .setColor(fondateur_color)
         .addField("Fondateur - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.avatarURL)
         .setFooter(footer)
         .setTimestamp()
     message.delete()
-    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fonda_embed));
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fondateur2_embed));
     }else if(message.author.id === "193092758267887616") {
     const dev_embed = new Discord.RichEmbed()
         .setColor("#2E64FE")
@@ -386,7 +389,7 @@ bot.on("message", async function (message) {
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(dev_embed));
     }else if(message.author.id === "306768941210927104") {
     const partenaire1_embed = new Discord.RichEmbed()
-        .setColor("#2E64FE")
+        .setColor(partenaire_color)
         .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.avatarURL)
@@ -396,7 +399,7 @@ bot.on("message", async function (message) {
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire1_embed));
     }else if(message.author.id === "337863324983230474") {
         const partenaire2_embed = new Discord.RichEmbed()
-            .setColor("#2E64FE")
+            .setColor(partenaire_color)
             .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
             .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
             .setThumbnail(message.author.avatarURL)
@@ -406,7 +409,7 @@ bot.on("message", async function (message) {
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire2_embed));
     }else if(message.author.id === "417795915810603019") {
         const partenaire3_embed = new Discord.RichEmbed()
-            .setColor("#2E64FE")
+            .setColor(partenaire_color)
             .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
             .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
             .setThumbnail(message.author.avatarURL)
@@ -416,7 +419,7 @@ bot.on("message", async function (message) {
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire3_embed));
     }else if(message.author.id === "269916752564060170") {
         const partenaire4_embed = new Discord.RichEmbed()
-            .setColor("#2E64FE")
+            .setColor(partenaire_color)
             .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
             .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
             .setThumbnail(message.author.avatarURL)
@@ -426,7 +429,7 @@ bot.on("message", async function (message) {
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire4_embed));
     }else if(message.author.id === "140819107556753417") {
         const partenaire5_embed = new Discord.RichEmbed()
-            .setColor("#2E64FE")
+            .setColor(partenaire_color)
             .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
             .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
             .setThumbnail(message.author.avatarURL)
@@ -436,7 +439,7 @@ bot.on("message", async function (message) {
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire5_embed));
     }else if(message.author.id === "274240989944610827") {
         const partenaire6_embed = new Discord.RichEmbed()
-            .setColor("#2E64FE")
+            .setColor(partenaire_color)
             .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
             .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
             .setThumbnail(message.author.avatarURL)
@@ -446,7 +449,7 @@ bot.on("message", async function (message) {
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire6_embed));
     }else if(message.author.id === "370593040706043905") {
         const partenaire7_embed = new Discord.RichEmbed()
-        .setColor("#2E64FE")
+        .setColor(partenaire_color)
         .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.avatarURL)
@@ -456,8 +459,7 @@ bot.on("message", async function (message) {
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire7_embed));
     }else{
 
-
-    "" || "" || "" || "" || "" || ""
+        "#2E64FE"
 
     const vcs_embed = new Discord.RichEmbed()
         .setColor("#04B404")
