@@ -384,7 +384,7 @@ bot.on("message", async function (message) {
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(dev_embed));
-    }else if(message.author.id === "306768941210927104 || 337863324983230474 || 417795915810603019 || 269916752564060170 || 140819107556753417 || 274240989944610827 || 370593040706043905") {
+    }else if(message.author.id === "306768941210927104" || "337863324983230474" || "417795915810603019" || "269916752564060170" || "140819107556753417" || "274240989944610827" || "370593040706043905") {
     const partenaire_embed = new Discord.RichEmbed()
         .setColor("#2E64FE")
         .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
@@ -406,15 +406,15 @@ bot.on("message", async function (message) {
     bot.channels.findAll('name', "vcs-radiom").map(channel => channel.send(vcs_embed));
     var log_embed = new Discord.RichEmbed()
         .setThumbnail(message.author.displayAvatarURL)
-        .addField(message.author.username + " - Logs : ", "``" + prefix + "listserv``")
+        .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
         .setFooter(footer)
         .setColor("#04B404")
         .setTimestamp();
     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed)); 		
     console.log("-> " + prefix + "vcs");
-    console.log("Auteur : " + msg.author.username);
-    console.log("Localisation : " + msg.guild.name + ", #" + msg.channel.name);
+    console.log("Auteur : " + message.author.username);
+    console.log("Localisation : " + message.guild.name + ", #" + message.channel.name);
     console.log("------------------------------");
     console.log("Contenu : \n" + msgvcs);
     }
@@ -427,7 +427,7 @@ bot.on("message", async function (message) {
     }
     var log_embed = new Discord.RichEmbed()
         .setThumbnail(message.author.displayAvatarURL)
-        .addField(message.author.username + " - Logs : ", "``" + prefix + "listserv``")
+        .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
         .setFooter(footer)
         .setColor("#04B404")
