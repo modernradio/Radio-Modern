@@ -353,7 +353,17 @@ bot.on("message", async function (message) {
     if(!xo02) return message.reply("Le channel #vcs-radiom est introuvable !")
     if(message.channel.name !== 'vcs-radiom') return message.reply("Cette commande est à effectuer seulement dans le salon dans #vcs-radiom de n'importe quel serveur.")
     if(!msgvcs) return message.channel.send("Merci d'écrire un message à envoyer dans le VCS.") 
-    if(message.author.id === "323039726040776705" | "182977157314772993") {
+    if(message.author.id === "323039726040776705") {
+    const fonda_embed = new Discord.RichEmbed()
+        .setColor("#B40404")
+        .addField("Fondateur - " + message.author.username + " – VCS", msgvcs)
+        .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+        .setThumbnail(message.author.avatarURL)
+        .setFooter("Par Ilian ! ^^")
+        .setTimestamp()
+    message.delete()
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fonda_embed));
+    }else if(message.author.id === "182977157314772993") {
     const fonda_embed = new Discord.RichEmbed()
         .setColor("#B40404")
         .addField("Fondateur - " + message.author.username + " – VCS", msgvcs)
@@ -373,7 +383,7 @@ bot.on("message", async function (message) {
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(dev_embed));
-    }else if(message.author.id === "306768941210927104" | "417795915810603019" | "269916752564060170" | "140819107556753417" | "274240989944610827") {
+    }else if(message.author.id === "306768941210927104") {
     const partenaire_embed = new Discord.RichEmbed()
         .setColor("#2E64FE")
         .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
