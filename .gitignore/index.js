@@ -466,7 +466,7 @@ bot.on("message", async function (message) {
             .setFooter(footer)
             .setTimestamp()
     message.delete()
-    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire6_embed));
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(animateur_embed));
     }else{
 
     const vcs_embed = new Discord.RichEmbed()
