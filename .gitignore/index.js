@@ -384,7 +384,7 @@ bot.on("message", async function (message) {
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(dev_embed));
-    }else if(message.author.id === "306768941210927104") {
+    }else if(message.author.id === "306768941210927104 || 337863324983230474 || 417795915810603019 || 269916752564060170 || 140819107556753417 || 274240989944610827 || 370593040706043905") {
     const partenaire_embed = new Discord.RichEmbed()
         .setColor("#2E64FE")
         .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
