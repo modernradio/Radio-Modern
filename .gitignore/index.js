@@ -15,7 +15,7 @@ var paypal = "paypal.me/RadioModern"
 var footer = "Par Ilian ! ^^"
 
 var partenaire_color = "#0B610B"
-var fondateur_color = "#B40404"
+var fondateur_color = "#088A08"
 
 var bot = new Discord.Client();
 
