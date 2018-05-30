@@ -399,7 +399,7 @@ bot.on("message", async function (message) {
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire1_embed));
     }else if(message.author.id === "337863324983230474") {
         const partenaire2_embed = new Discord.RichEmbed()
-            .setColor(partenaire_color)
+            .setColor("#000000")
             .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
             .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
             .setThumbnail(message.author.avatarURL)
@@ -479,7 +479,7 @@ bot.on("message", async function (message) {
     console.log("-> " + prefix + "vcs");
     console.log("Auteur : " + message.author.username);
     console.log("Localisation : " + message.guild.name + ", #" + message.channel.name);
-    console.log("Contenu : \n" + msgvcs);
+    console.log("Contenu : \n          " + msgvcs);
     console.log("------------------------------");
     }
     break;
