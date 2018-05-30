@@ -457,6 +457,16 @@ bot.on("message", async function (message) {
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire7_embed));
+    }else if(message.author.id === "306116635264024586") {
+        const animateur_embed = new Discord.RichEmbed()
+            .setColor("#FF8000")
+            .addField("Animateur Discord - " + message.author.username + " – VCS", msgvcs)
+            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+            .setThumbnail(message.author.avatarURL)
+            .setFooter(footer)
+            .setTimestamp()
+    message.delete()
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire6_embed));
     }else{
 
     const vcs_embed = new Discord.RichEmbed()
