@@ -14,7 +14,7 @@ var paypal = "paypal.me/RadioModern"
 
 var footer = "Par Ilian ! ^^"
 
-var partenaire_color = "#088A08"
+var partenaire_color = "#0B610B"
 var fondateur_color = "#B40404"
 
 var bot = new Discord.Client();
@@ -459,11 +459,9 @@ bot.on("message", async function (message) {
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire7_embed));
     }else{
 
-        "#2E64FE"
-
     const vcs_embed = new Discord.RichEmbed()
-        .setColor("#04B404")
-        .addField("Utilisateur - " + message.author.username + " – VCS", msgvcs)
+        .setColor("#00FF00")
+        .addField("Auditeur - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.displayAvatarURL)
         .setFooter(footer)
