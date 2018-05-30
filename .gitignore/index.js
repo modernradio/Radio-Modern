@@ -304,7 +304,7 @@ bot.on("message", async function (message) {
             if (!suffix) return message.reply("Merci de citer la publicité que vous souhaitez poster.")
             var send_embed = new Discord.RichEmbed()
                 .setColor("#04B404")
-                .addField(message.author.username + " - Sa publicité : ", suffix)
+                .addField(message.author.username + " - Sa publicité : ", "```" + suffix + "```")
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
                 .setThumbnail(message.guild.iconURL)
                 .setFooter(footer)
