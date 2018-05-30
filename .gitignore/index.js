@@ -12,6 +12,7 @@ var facebook = "facebook.com/radiomodern1/"
 var twitter = "twitter.com/radiomodern_"
 var paypal = "paypal.me/RadioModern"
 
+var footer = "Par Ilian ! ^^"
 
 var bot = new Discord.Client();
 
@@ -100,7 +101,7 @@ var commands = {
             .setThumbnail(msg.author.displayAvatarURL)
             .addField(msg.author.username + " - Logs : ", "``" + prefix + "join``")
             .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
-            .setFooter("Par Ilian ! ^^")
+            .setFooter(footer)
             .setColor("#04B404")
             .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
@@ -123,7 +124,7 @@ var commands = {
                     .setThumbnail(msg.author.displayAvatarURL)
                     .addField(msg.author.username + " - Logs : ", "``" + prefix + "play radio``")
                     .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
-                    .setFooter("Par Ilian ! ^^")
+                    .setFooter(footer)
                     .setColor("#04B404")
                     .setTimestamp();
                     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed)); 
@@ -159,7 +160,7 @@ var commands = {
                 .setThumbnail(msg.author.displayAvatarURL)
                 .addField(msg.author.username + " - Logs : ", "``" + prefix + "stop``")
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
-                .setFooter("Par Ilian ! ^^")
+                .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
@@ -188,7 +189,7 @@ var commands = {
 	            .addField(prefix + "suggest", "Pour envoyer une Suggestions pour moi ou la radio.")
 	            .addBlankField()
                 .setColor("#04B404")
-                .setFooter("Par Ilian ! ^^")
+                .setFooter(footer)
                 .setAuthor("Message d'aide")
                 .setTimestamp()
                 msg.channel.send(help_embed)
@@ -200,7 +201,7 @@ var commands = {
                 .setThumbnail(msg.author.displayAvatarURL)
                 .addField(msg.author.username + " - Logs : ", "``" + prefix + "help``")
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
-                .setFooter("Par Ilian ! ^^")
+                .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
@@ -237,12 +238,12 @@ var commands = {
                 .addField("<:twitter:432513453899382794> Twitter", "[@radiomodern_](http://" + twitter + ")", true)
                 .addField(":money_with_wings: Page de don", "[Notre PayPal](http://" + paypal + ")", true)
                 .setTimestamp()
-                .setFooter("Par Ilian ! ^^")
+                .setFooter(footer)
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(msg.author.displayAvatarURL)
                 .addField(msg.author.username + " - Logs : ", "``" + prefix + "botinfo``")
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
-                .setFooter("Par Ilian ! ^^")
+                .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
@@ -260,7 +261,7 @@ var commands = {
             .setThumbnail(msg.author.displayAvatarURL)
             .addField(msg.author.username + " - Logs : ", "``" + prefix + "botinfo``")
             .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
-            .setFooter("Par Ilian ! ^^")
+            .setFooter(footer)
             .setColor("#04B404")
             .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));    
@@ -303,7 +304,7 @@ bot.on("message", async function (message) {
                 .addField(message.author.username + " - Sa publicité : ", suffix)
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
                 .setThumbnail(message.guild.iconURL)
-                .setFooter("Par Ilian ! ^^")
+                .setFooter(footer)
                 .setTimestamp();
                 message.delete()
             message.reply("Publicité envoyée avec succès :white_check_mark:")
@@ -311,7 +312,7 @@ bot.on("message", async function (message) {
                 .setThumbnail(message.author.displayAvatarURL)
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "send``")
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                .setFooter("Par Ilian ! ^^")
+                .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));    
@@ -330,7 +331,7 @@ bot.on("message", async function (message) {
                 .addField(message.author.username + " - Suggestions : ", "``" + sugesstfix + "``")
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
                 .setThumbnail(message.guild.iconURL)
-                .setFooter("Par Ilian ! ^^")
+                .setFooter(footer)
                 .setTimestamp();
                 message.delete()
             message.reply("Suggestions envoyée avec succès :white_check_mark:")
@@ -340,7 +341,7 @@ bot.on("message", async function (message) {
                 .setThumbnail(message.author.displayAvatarURL)
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "suggest``")
                 .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                .setFooter("Par Ilian ! ^^")
+                .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));    	    
@@ -359,7 +360,7 @@ bot.on("message", async function (message) {
         .addField("Fondateur - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.avatarURL)
-        .setFooter("Par Ilian ! ^^")
+        .setFooter(footer)
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fonda_embed));
@@ -369,7 +370,7 @@ bot.on("message", async function (message) {
         .addField("Fondateur - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.avatarURL)
-        .setFooter("Par Ilian ! ^^")
+        .setFooter(footer)
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fonda_embed));
@@ -379,7 +380,7 @@ bot.on("message", async function (message) {
         .addField("Développeur - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.avatarURL)
-        .setFooter("Par Ilian ! ^^")
+        .setFooter(footer)
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(dev_embed));
@@ -389,7 +390,7 @@ bot.on("message", async function (message) {
         .addField("Partenaire - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.avatarURL)
-        .setFooter("Par Ilian ! ^^")
+        .setFooter(footer)
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire_embed));
@@ -399,7 +400,7 @@ bot.on("message", async function (message) {
         .addField("Utilisateur - " + message.author.username + " – VCS", msgvcs)
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
         .setThumbnail(message.author.displayAvatarURL)
-        .setFooter("Par Ilian ! ^^")
+        .setFooter(footer)
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', "vcs-radiom").map(channel => channel.send(vcs_embed));
@@ -407,7 +408,7 @@ bot.on("message", async function (message) {
         .setThumbnail(message.author.displayAvatarURL)
         .addField(message.author.username + " - Logs : ", "``" + prefix + "listserv``")
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-        .setFooter("Par Ilian ! ^^")
+        .setFooter(footer)
         .setColor("#04B404")
         .setTimestamp();
     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed)); 		
@@ -428,7 +429,7 @@ bot.on("message", async function (message) {
         .setThumbnail(message.author.displayAvatarURL)
         .addField(message.author.username + " - Logs : ", "``" + prefix + "listserv``")
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-        .setFooter("Par Ilian ! ^^")
+        .setFooter(footer)
         .setColor("#04B404")
         .setTimestamp();
     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed)); 
@@ -447,7 +448,7 @@ bot.on("message", async function (message) {
         .setThumbnail(message.author.displayAvatarURL)
         .addField(message.author.username + " - Logs : ", "``" + prefix + "listserv``")
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-        .setFooter("Par Ilian ! ^^")
+        .setFooter(footer)
         .setColor("#04B404")
         .setTimestamp();
     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed)); 
