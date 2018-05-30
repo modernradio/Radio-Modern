@@ -14,8 +14,8 @@ var paypal = "paypal.me/RadioModern"
 
 var footer = "Par Ilian ! ^^"
 
-var partenaire_color = "#0B610B"
-var fondateur_color = "#088A08"
+var partenaire_color = "#088A08"
+var fondateur_color = "#FF0000"
 
 var bot = new Discord.Client();
 
@@ -187,9 +187,9 @@ var commands = {
                 .addBlankField()
                 .addField(prefix + "botinfo", "Pour voir mes informations.")
                 .addBlankField()
-	            .addField(prefix + "vcs", "Pour envoyer un message vcs ( Virtual Chat Server ) dans tout les serveurs ou je suis. ( ``Dans les salons #vcs-radiom``)")
+	            .addField(prefix + "vcs [message]", "Pour envoyer un message VCS (__V__irtual __C__hat __S__erver) dans tout les serveurs où je suis. (Seulement dans les salons #vcs-radiom)")
 	            .addBlankField()
-	            .addField(prefix + "suggest", "Pour envoyer une Suggestions pour moi ou la radio.")
+	            .addField(prefix + "suggest [message]", "Pour envoyer une suggestions pour moi ou la radio.")
 	            .addBlankField()
                 .setColor("#04B404")
                 .setFooter(footer)
@@ -479,8 +479,8 @@ bot.on("message", async function (message) {
     console.log("-> " + prefix + "vcs");
     console.log("Auteur : " + message.author.username);
     console.log("Localisation : " + message.guild.name + ", #" + message.channel.name);
-    console.log("------------------------------");
     console.log("Contenu : \n" + msgvcs);
+    console.log("------------------------------");
     }
     break;
 		    
