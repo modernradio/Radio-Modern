@@ -53,21 +53,30 @@ function state1() {
             }
         }
         bot.user.setActivity(".help | " + body + "" + msgActivity);
-        setTimeout(state2, 30000);
+        setTimeout(state2, 20000);
     })
 }
 
 function state2() {
+    request("http://api.radionomy.com/currentsong.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
+        if (error) return console.log(error);
+
+        bot.user.setActivity('.help | ' + '"' + body + '"');
+        setTimeout(state3, 5000);
+    })
+}
+
+function state3() {
     bot.user.setActivity(prefix + "help | " + bot.guilds.size + " serveurs, " + bot.users.size + " membres");
     setTimeout(state3, 1000);
 }
 
-function state3() {
+function state4() {
     bot.user.setActivity(prefix + "help | " + website);
     setTimeout(state4, 1000);
 }
 
-function state4() {
+function state5() {
     bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
     setTimeout(state1, 1000);
 }
