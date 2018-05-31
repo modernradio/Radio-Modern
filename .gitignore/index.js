@@ -52,7 +52,7 @@ function state1() {
                 msgActivity = "auditeurs"
             }
         }
-        bot.user.setActivity(".help | " + body + "" + msgActivity);
+        bot.user.setActivity(prefix + "help | " + body + "" + msgActivity);
         setTimeout(state2, 20000);
     })
 }
@@ -67,18 +67,18 @@ function state2() {
 }
 
 function state3() {
-    bot.user.setActivity(prefix + "help | " + bot.guilds.size + " serveurs, " + bot.users.size + " membres");
-    setTimeout(state3, 1000);
+    bot.user.setActivity(prefix + "help | " + bot.guilds.size + " serveurs : " + bot.users.size + " membres");
+    setTimeout(state3, 3000);
 }
 
 function state4() {
     bot.user.setActivity(prefix + "help | " + website);
-    setTimeout(state4, 1000);
+    setTimeout(state4, 3000);
 }
 
 function state5() {
     bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
-    setTimeout(state1, 1000);
+    setTimeout(state1, 3000);
 }
 
 bot.on('message', function (msg) {
@@ -506,11 +506,11 @@ bot.on("message", async function (message) {
     case "listserv":
     message.channel.send("__**ATTENTION, SPAM POSSIBLE**__\n -> Nombre de serveurs : " + bot.guilds.size + "\n-> Nombre d'utilisateurs : " + bot.users.size + "\n\n__Liste complète des serveurs :__");
     var allservers = bot.guilds.array(); for (var i in allservers) {
-    message.channel.send("-> " + allservers[i].name)
+    message.channel.send("-> `" + allservers[i].name + "`")
     }
     var log_embed = new Discord.RichEmbed()
         .setThumbnail(message.author.displayAvatarURL)
-        .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
+        .addField(message.author.username + " - Logs : ", "``" + prefix + "listserv``")
         .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
         .setFooter(footer)
         .setColor("#04B404")
