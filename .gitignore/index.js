@@ -71,7 +71,7 @@ function state2() {
             msgActivity = body
         };
 
-        bot.user.setActivity('"' + body + '"');
+        bot.user.setActivity('"' + msgActivity + '"');
         setTimeout(state3, 5000);
     })
 }
