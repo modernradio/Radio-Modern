@@ -53,7 +53,7 @@ function state1() {
             }
         }
         bot.user.setActivity(prefix + "help | " + body + "" + msgActivity);
-        setTimeout(state2, 20000);
+        setTimeout(state2, 15000);
     })
 }
 
@@ -64,6 +64,8 @@ function state2() {
         if (body == "Advert:TargetSpot - Advert:Targetspot") {
             var msgActivity;
             msgActivity = "Publicité..."
+            console.log("-> Publicité...");
+            console.log("------------------------------");
         } else {
             var msgActivity;
             msgActivity = body
@@ -75,13 +77,13 @@ function state2() {
 }
 
 function state3() {
-    bot.user.setActivity(prefix + "help | " + bot.guilds.size + " serveurs : " + bot.users.size + " membres");
-    setTimeout(state4, 1000);
+    bot.user.setActivity(prefix + "help | " + bot.guilds.size + " serveurs, " + bot.users.size + " membres");
+    setTimeout(state4, 2000);
 }
 
 function state4() {
     bot.user.setActivity(prefix + "help | " + website);
-    setTimeout(state5, 1000);
+    setTimeout(state5, 2000);
 }
 
 function state5() {
