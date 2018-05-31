@@ -61,7 +61,15 @@ function state2() {
     request("http://api.radionomy.com/currentsong.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
         if (error) return console.log(error);
 
-        bot.user.setActivity('.help | ' + '"' + body + '"');
+        if (body == "Advert:TargetSpot - Advert:Targetspot") {
+            var msgActivity;
+            msgActivity = "Publicité..."
+        } else {
+            var msgActivity;
+            msgActivity = body
+        }
+
+        bot.user.setActivity('"' + body + '"');
         setTimeout(state3, 5000);
     })
 }
