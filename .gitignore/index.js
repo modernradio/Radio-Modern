@@ -530,7 +530,8 @@ bot.on("message", async function (message) {
     var log_embed = new Discord.RichEmbed()
         .setThumbnail(message.author.displayAvatarURL)
         .addField(message.author.username + " - Logs : ", "``" + prefix + "listserv``")
-        .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+    	.addBlancField()
+        .addField("Provenance du message : ``" + message.guild.name + "``", "Dans le salon ``#" + message.channel.name + "``", true)
         .setFooter(footer)
         .setColor("#04B404")
         .setTimestamp();
