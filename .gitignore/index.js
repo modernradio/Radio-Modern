@@ -369,7 +369,7 @@ bot.on("message", async function (message) {
     if(message.author.id === "323039726040776705") {
     const fondateur1_embed = new Discord.RichEmbed()
         .setColor(fondateur_color)
-        .addField("Fondateur " + message.author.username + " : VCS", separation)
+        .addField("Fondateur " + message.author.username + " : VCS", message.guild.iconURL)
         .addField(msgvcs, separation)
         .setThumbnail(message.author.avatarURL)
         .setFooter('Provenance : "' + message.guild.name + '" | ' + footer)
