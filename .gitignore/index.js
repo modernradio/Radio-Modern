@@ -369,9 +369,9 @@ bot.on("message", async function (message) {
     if(message.author.id === "323039726040776705") {
     const fondateur1_embed = new Discord.RichEmbed()
         .setColor(fondateur_color)
-        .addField("Fondateur " + message.author.username + " – VCS", msgvcs + "\n\nProvenance du message : `" + message.guild.name + "`")
+        .addField("Fondateur " + message.author.username + " – VCS", msgvcs )
         .setThumbnail(message.author.avatarURL)
-        .setFooter(footer)
+        .setFooter("Depuis `" + message.guild.name + "`" + footer)
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fondateur1_embed));
