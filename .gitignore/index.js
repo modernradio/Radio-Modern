@@ -387,7 +387,7 @@ bot.on("message", async function (message) {
     }else if(message.author.id === "193092758267887616") {
     const dev_embed = new Discord.RichEmbed()
         .setColor("#2E64FE")
-        .addField("Développeur - " + message.author.username + " – VCS", msgvcs + message.author)
+        .addField("Développeur - " + message.author.username + " – VCS", msgvcs)
         .setThumbnail(message.guild.iconURL)
         .setFooter("Provenance: " + message.guild.name + " | " + footer)
         .setTimestamp()
