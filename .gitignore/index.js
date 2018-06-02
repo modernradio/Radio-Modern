@@ -7,6 +7,8 @@ let prefix = "."
 let prefixLog = "[!]"
 var client = new Discord.Client();
 
+var http = "http://"
+
 var website = "radiomodern.fr.mu"
 var facebook = "facebook.com/radiomodern1/"
 var twitter = "twitter.com/radiomodern_"
@@ -17,7 +19,7 @@ var footer = "Par Ilian ! ^^"
 var partenaire_color = "#088A08"
 var fondateur_color = "#FF0000"
 
-var separation = "><><><><><><><><><><><"
+var separation = "<><><><><><><><><><>"
 
 var bot = new Discord.Client();
 
@@ -207,10 +209,6 @@ var commands = {
                 .setAuthor("Message d'aide")
                 .setTimestamp()
                 msg.channel.send(help_embed)
-                //msg.channel.send(msg.author.toString() + ", :white_check_mark: Aide envoyée en message privé !")
-                //msg.member.createDM().then(channel => {
-                //return channel.send(help_embed)
-                //}).catch(console.error)
                 var log_embed = new Discord.RichEmbed()
                 .setThumbnail(msg.author.displayAvatarURL)
                 .addField(msg.author.username + " - Logs : ", "``" + prefix + "help``")
@@ -248,9 +246,9 @@ var commands = {
             var reseaux_embed = new Discord.RichEmbed()
                 .setColor('#04B404')
                 .setTitle("Nos réseaux sociaux")
-                .addField("<:facebook:432513421507035136> Facebook ", "[@radiomodern1](http://" + facebook + ")") 
-                .addField("<:twitter:432513453899382794> Twitter", "[@radiomodern_](http://" + twitter + ")", true)
-                .addField(":money_with_wings: Page de don", "[Notre PayPal](http://" + paypal + ")", true)
+                .addField("<:facebook:432513421507035136> Facebook ", "[@radiomodern1](" + http + facebook + ")") 
+                .addField("<:twitter:432513453899382794> Twitter", "[@radiomodern_](" + http + twitter + ")", true)
+                .addField(":money_with_wings: Page de don", "[Notre PayPal](" + http + paypal + ")", true)
                 .setTimestamp()
                 .setFooter(footer)
             var log_embed = new Discord.RichEmbed()
