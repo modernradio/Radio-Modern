@@ -17,7 +17,7 @@ var footer = "Par Ilian ! ^^"
 var partenaire_color = "#088A08"
 var fondateur_color = "#FF0000"
 
-var separation = "~~~~~~~~~~~~~~~~~~"
+var separation = "><><><><><><><><><><><"
 
 var bot = new Discord.Client();
 
