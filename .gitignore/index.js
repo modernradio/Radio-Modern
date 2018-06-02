@@ -371,7 +371,7 @@ bot.on("message", async function (message) {
         .setColor(fondateur_color)
         .addField("Fondateur " + message.author.username + " – VCS", msgvcs )
         .setThumbnail(message.author.avatarURL)
-        .setFooter("Depuis `" + message.guild.name + "`" + footer)
+        .setFooter("Depuis `" + message.guild.name + "` ; " + footer)
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fondateur1_embed));
