@@ -17,6 +17,8 @@ var footer = "Par Ilian ! ^^"
 var partenaire_color = "#088A08"
 var fondateur_color = "#FF0000"
 
+var separation = "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+
 var bot = new Discord.Client();
 
 var servers = {};
@@ -369,10 +371,10 @@ bot.on("message", async function (message) {
     if(message.author.id === "323039726040776705") {
     const fondateur1_embed = new Discord.RichEmbed()
         .setColor(fondateur_color)
-        .setTitle("Fondateur " + message.author.username + " – VCS")
-        .addField(msgvcs, "Provenance : `" + message.guild.name + "`")
+        .addField("Fondateur " + message.author.username + " : VCS", separation)
+        .addField(msgvcs, separation)
         .setThumbnail(message.author.avatarURL)
-        .setFooter(footer)
+        .setFooter("Provenance : " + message.guild.name + " | " + footer)
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fondateur1_embed));
