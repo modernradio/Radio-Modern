@@ -20,6 +20,7 @@ var partenaire_color = "#088A08"
 var fondateur_color = "#FF0000"
 
 var separation = "><><><><><><><><><><><"
+var vcs_log = "-> " + prefix + "vcs\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  " + msgvcs
 
 var bot = new Discord.Client();
 
@@ -271,7 +272,7 @@ var commands = {
             msg.delete(1000)
             var log_embed = new Discord.RichEmbed()
             .setThumbnail(msg.author.displayAvatarURL)
-            .addField(msg.author.username + " - Logs : ", "``" + prefix + "botinfo``")
+            .addField(msg.author.username + " - Logs : ", "``" + prefix + "purge``")
             .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
             .setFooter(footer)
             .setColor("#04B404")
@@ -376,11 +377,7 @@ bot.on("message", async function (message) {
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fondateur1_embed));
-    console.log("-> " + prefix + "vcs");
-    console.log("Auteur : " + message.author.username);
-    console.log("Localisation : " + message.guild.name + ", #" + message.channel.name);
-    console.log("Contenu : \n          " + msgvcs);
-    console.log("------------------------------");/*
+    console.log(vcs_log);/*
     }else if(message.author.id === "182977157314772993") {
     const fondateur2_embed = new Discord.RichEmbed()
     .setColor(fondateur_color)
