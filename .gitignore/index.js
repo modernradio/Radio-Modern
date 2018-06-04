@@ -354,7 +354,7 @@ bot.on("message", async function (message) {
     if(message.channel.name !== 'vcs-radiom') return message.reply("Cette commande est à effectuer seulement dans le salon dans #vcs-radiom de n'importe quel serveur.")
     if(!msgvcs) return message.channel.send("Merci d'écrire un message à envoyer dans le VCS.") 
     if(message.author.id === "323039726040776705" || message.author.id === "182977157314772993") {
-    const fondateur1_embed = new Discord.RichEmbed()
+    const fondateur_embed = new Discord.RichEmbed()
         .setColor(fondateur_color)
         .addField("Fondateur " + message.author.username + " : VCS", separation)
         .addField(msgvcs, separation)
@@ -362,8 +362,8 @@ bot.on("message", async function (message) {
         .setFooter('Provenance : "' + message.guild.name + '" | ' + footer)
         .setTimestamp()
     message.delete()
-    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fondateur1_embed));
-    console.log("-> " + prefix + "vcs\nAuteur : Fondateur " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  '" + msgvcs + "'");
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fondateur_embed));
+    console.log("-> " + prefix + "vcs\nAuteur : Fondateur " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  '" + msgvcs + "'\n" + separation);
     }else if(message.author.id === "193092758267887616") {
     const dev_embed = new Discord.RichEmbed()
         .setColor("#2E64FE")
@@ -374,9 +374,9 @@ bot.on("message", async function (message) {
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(dev_embed));
-    console.log("-> " + prefix + "vcs\nAuteur : Développeur " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  '" + msgvcs + "'");
+    console.log("-> " + prefix + "vcs\nAuteur : Développeur " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  '" + msgvcs + "'\n" + separation);
     }else if(message.author.id === "306768941210927104" || message.author.id === "417795915810603019" || message.author.id === "269916752564060170" || message.author.id === "140819107556753417" || message.author.id === "274240989944610827" || message.author.id === "370593040706043905") {
-    const partenaire1_embed = new Discord.RichEmbed()
+    const partenaire_embed = new Discord.RichEmbed()
         .setColor(partenaire_color)
         .addField("Partenaire " + message.author.username + " : VCS", separation)
         .addField(msgvcs, separation)
@@ -384,18 +384,18 @@ bot.on("message", async function (message) {
         .setFooter('Provenance : "' + message.guild.name + '" | ' + footer)
         .setTimestamp()
     message.delete()
-    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire1_embed));
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire_embed));
     console.log("-> " + prefix + "vcs\nAuteur : Partenaire " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  '" + msgvcs + "'\n" + separation);
     }else if(message.author.id === "337863324983230474") {
-        const partenaire2_embed = new Discord.RichEmbed()
-            .setColor("#000000")
-            .addField("Partenaire " + message.author.username + " : VCS", separation)
-            .addField(msgvcs, separation)
-            .setThumbnail(message.author.avatarURL)
-            .setFooter('Provenance : "' + message.guild.name + '" | ' + footer)
-            .setTimestamp()
+    const slender_embed = new Discord.RichEmbed()
+        .setColor("#000000")
+        .addField("Partenaire " + message.author.username + " : VCS", separation)
+        .addField(msgvcs, separation)
+        .setThumbnail(message.author.avatarURL)
+        .setFooter('Provenance : "' + message.guild.name + '" | ' + footer)
+        .setTimestamp()
     message.delete()
-    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(partenaire2_embed));
+    bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(slender_embed));
     console.log("-> " + prefix + "vcs\nAuteur : Partenaire " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  '" + msgvcs + "'\n" + separation);
     }else if(message.author.id === "306116635264024586") {
         const animateur_embed = new Discord.RichEmbed()
