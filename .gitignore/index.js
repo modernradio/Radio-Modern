@@ -20,7 +20,7 @@ var partenaire_color = "#088A08"
 var fondateur_color = "#FF0000"
 
 var separation = "><><><><><><><><><><><"
-var vcs_log = "-> " + prefix + "vcs\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  " + msgvcs
+//var vcs_log = 
 
 var bot = new Discord.Client();
 
@@ -377,7 +377,7 @@ bot.on("message", async function (message) {
         .setTimestamp()
     message.delete()
     bot.channels.findAll('name', 'vcs-radiom').map(channel => channel.send(fondateur1_embed));
-    console.log(vcs_log);/*
+    console.log("-> " + prefix + "vcs\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  " + msgvcs);/*
     }else if(message.author.id === "182977157314772993") {
     const fondateur2_embed = new Discord.RichEmbed()
     .setColor(fondateur_color)
