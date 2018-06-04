@@ -356,7 +356,7 @@ bot.on("message", async function (message) {
                 .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
-                bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));    	    
+            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));    	    
             break;   
     
     case "vcs":
@@ -366,7 +366,7 @@ bot.on("message", async function (message) {
     if(!xo02) return message.reply("Le channel #vcs-radiom est introuvable !")
     if(message.channel.name !== 'vcs-radiom') return message.reply("Cette commande est à effectuer seulement dans le salon dans #vcs-radiom de n'importe quel serveur.")
     if(!msgvcs) return message.channel.send("Merci d'écrire un message à envoyer dans le VCS.") 
-    if(message.author.id === "323039726040776705") {
+    if(message.author.id === "323039726040776705" || message.author.id === "182977157314772993") {
     const fondateur1_embed = new Discord.RichEmbed()
         .setColor(fondateur_color)
         .addField("Fondateur " + message.author.username + " : VCS", separation)
@@ -380,7 +380,7 @@ bot.on("message", async function (message) {
     console.log("Auteur : " + message.author.username);
     console.log("Localisation : " + message.guild.name + ", #" + message.channel.name);
     console.log("Contenu : \n          " + msgvcs);
-    console.log("------------------------------");
+    console.log("------------------------------");/*
     }else if(message.author.id === "182977157314772993") {
     const fondateur2_embed = new Discord.RichEmbed()
     .setColor(fondateur_color)
@@ -395,7 +395,7 @@ bot.on("message", async function (message) {
     console.log("Auteur : " + message.author.username);
     console.log("Localisation : " + message.guild.name + ", #" + message.channel.name);
     console.log("Contenu : \n          " + msgvcs);
-    console.log("------------------------------");
+    console.log("------------------------------");*/
     }else if(message.author.id === "193092758267887616") {
     const dev_embed = new Discord.RichEmbed()
         .setColor("#2E64FE")
