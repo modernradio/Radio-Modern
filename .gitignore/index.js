@@ -364,7 +364,7 @@ bot.on("message", async function (message) {
         var log_embed = new Discord.RichEmbed()
             .setThumbnail(message.author.displayAvatarURL)
             .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
-            .addField("Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", "Contenu : "  + msgvcs, true)
+            .addField("Contenu : "  + msgvcs, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
             .setFooter(footer)
             .setColor("#04B404")
             .setTimestamp();
@@ -383,7 +383,7 @@ bot.on("message", async function (message) {
         var log_embed = new Discord.RichEmbed()
             .setThumbnail(message.author.displayAvatarURL)
             .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
-            .addField("Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", "Contenu : "  + msgvcs, true)
+            .addField("Contenu : "  + msgvcs, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
             .setFooter(footer)
             .setColor("#04B404")
             .setTimestamp();
@@ -402,7 +402,7 @@ bot.on("message", async function (message) {
         var log_embed = new Discord.RichEmbed()
             .setThumbnail(message.author.displayAvatarURL)
             .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
-            .addField("Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", "Contenu : "  + msgvcs, true)
+            .addField("Contenu : "  + msgvcs, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
             .setFooter(footer)
             .setColor("#04B404")
             .setTimestamp();
@@ -421,7 +421,7 @@ bot.on("message", async function (message) {
         var log_embed = new Discord.RichEmbed()
             .setThumbnail(message.author.displayAvatarURL)
             .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
-            .addField("Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", "Contenu : "  + msgvcs, true)
+            .addField("Contenu : "  + msgvcs, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
             .setFooter(footer)
             .setColor("#04B404")
             .setTimestamp();
@@ -440,7 +440,7 @@ bot.on("message", async function (message) {
         var log_embed = new Discord.RichEmbed()
             .setThumbnail(message.author.displayAvatarURL)
             .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
-            .addField("Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", "Contenu : "  + msgvcs, true)
+            .addField("Contenu : "  + msgvcs, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
             .setFooter(footer)
             .setColor("#04B404")
             .setTimestamp();
@@ -462,7 +462,7 @@ bot.on("message", async function (message) {
     var log_embed = new Discord.RichEmbed()
         .setThumbnail(message.author.displayAvatarURL)
         .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
-        .addField("Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", "Contenu : "  + msgvcs, true)
+        .addField("Contenu : "  + msgvcs, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
         .setFooter(footer)
         .setColor("#04B404")
         .setTimestamp();
