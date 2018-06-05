@@ -81,13 +81,13 @@ function state3() {
 function state4() {
     bot.user.setActivity(prefix + "help | " + website);
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
-    setTimeout(state5, 2000);
+    setTimeout(state5, 4000);
 }
 
 function state5() {
     bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
-    setTimeout(state1, 2000);
+    setTimeout(state1, 4000);
 }
 
 bot.on("message", function (msg) {
