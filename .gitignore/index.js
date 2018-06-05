@@ -99,7 +99,7 @@ function state6() {
     setTimeout(state7, 4000);
 }
 
-function state8() {
+function state7() {
     bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
     setTimeout(state0, 4000);
