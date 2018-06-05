@@ -250,7 +250,7 @@ var commands = {
     },
     "purge": {
         process: function (msg, suffix) {
-            if(msg.author.hasPermission("MANAGE_MESSAGES")) { 
+            if(msg.member.hasPermission("MANAGE_MESSAGES")) { 
                 msg.channel.bulkDelete(100)
             } else {
                 msg.channel.send("Tu n'as pas la permission de supprimer les messages ! (MANAGE_MESSAGES)")
