@@ -39,8 +39,13 @@ bot.on("ready", (ready) => {
     console.log(prefixLog + " Bot prêt")
     console.log(separation)
 
-    setTimeout(state1, 1000);
+    setTimeout(state0, 1000);
 })
+
+function state0() {
+    bot.user.setActivity(prefix + "help");
+    setTimeout(state1, 1);
+}
 
 function state1() {
     request("http://api.radionomy.com/currentaudience.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
@@ -63,12 +68,17 @@ function state1() {
 }
 
 function state2() {
+    bot.user.setActivity(prefix + "help");
+    setTimeout(state3, 1);
+}
+
+function state3() {
     request("http://api.radionomy.com/currentsong.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
         if (error) return console.log(error);
 
         bot.user.setActivity(prefix + 'help "' + body + '"');
         bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
-        setTimeout(state3, 5000);
+        setTimeout(state4, 5000);
     })
 }
 
@@ -87,7 +97,7 @@ function state4() {
 function state5() {
     bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
-    setTimeout(state1, 4000);
+    setTimeout(state0, 4000);
 }
 
 bot.on("message", function (msg) {
