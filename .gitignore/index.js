@@ -82,19 +82,19 @@ function state3() {
     })
 }
 
-function state3() {
+function state4() {
     bot.user.setActivity(prefix + "help | " + bot.guilds.size + " serveurs, " + bot.users.size + " membres");
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send(bot.guilds.size + " serveurs, " + bot.users.size + " membres"));
-    setTimeout(state4, 2000);
-}
-
-function state4() {
-    bot.user.setActivity(prefix + "help | " + website);
-    bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
     setTimeout(state5, 4000);
 }
 
 function state5() {
+    bot.user.setActivity(prefix + "help | " + website);
+    bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
+    setTimeout(state6, 4000);
+}
+
+function state6() {
     bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
     setTimeout(state0, 4000);
