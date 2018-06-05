@@ -274,7 +274,6 @@ var commands = {
                     .setFooter(footer)
                     .setTimestamp();
                 msg.channel.send(has_permission);
-                setTimeout(msg.channel.bulkDelete(1), 10000)
             } else {
                 var miss_permission = new Discord.RichEmbed()
                     .setColor("#04B404")
