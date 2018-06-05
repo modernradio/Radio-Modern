@@ -250,11 +250,24 @@ var commands = {
     },
     "purge": {
         process: function (msg, suffix) {
-            if(msg.member.hasPermission("MANAGE_MESSAGES")) { 
-                msg.channel.bulkDelete(100)
+            var messages_to_delete = 100
+            if(msg.member.hasPermission("MANAGE_MESSAGES")) {
+                msg.channel.bulkDelete(messages_to_delete)
+                var miss_permission = new Discord.RichEmbed()
+                    .setColor("#04B404")
+                    .addField(messages_to_delete + ' messages ont correctement été supprimés', separation)
+                    .setFooter(footer)
+                    .setTimestamp();
+                msg.channel.send(miss_permission);
             } else {
-                msg.channel.send("Tu n'as pas la permission de supprimer les messages ! (MANAGE_MESSAGES)")
+                var miss_permission = new Discord.RichEmbed()
+                    .setColor("#04B404")
+                    .addField('Il te manque la permission "MANAGE_MESSAGES" pour pouvoir effectuer cette action.', separation)
+                    .setFooter(footer)
+                    .setTimestamp();
+                msg.channel.send(miss_permission);
             }
+
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(msg.author.displayAvatarURL)
                 .addField(msg.author.username + " - Logs : ", "``" + prefix + "purge``")
