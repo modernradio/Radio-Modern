@@ -116,7 +116,7 @@ var commands = {
             var log_embed = new Discord.RichEmbed()
             .setThumbnail(msg.author.displayAvatarURL)
             .addField(msg.author.username + " - Logs : ", "``" + prefix + "join``")
-            .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+            .addField(separation, "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
             .setFooter(footer)
             .setColor("#04B404")
             .setTimestamp();
@@ -136,7 +136,7 @@ var commands = {
                     var log_embed = new Discord.RichEmbed()
                     .setThumbnail(msg.author.displayAvatarURL)
                     .addField(msg.author.username + " - Logs : ", "``" + prefix + "play radio``")
-                    .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                    .addField(separation, "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
                     .setFooter(footer)
                     .setColor("#04B404")
                     .setTimestamp();
@@ -169,7 +169,7 @@ var commands = {
                 var log_embed = new Discord.RichEmbed()
                 .setThumbnail(msg.author.displayAvatarURL)
                 .addField(msg.author.username + " - Logs : ", "``" + prefix + "stop``")
-                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                .addField(separation, "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
                 .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
@@ -203,7 +203,7 @@ var commands = {
                 var log_embed = new Discord.RichEmbed()
                 .setThumbnail(msg.author.displayAvatarURL)
                 .addField(msg.author.username + " - Logs : ", "``" + prefix + "help``")
-                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                .addField(separation, "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
                 .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
@@ -234,7 +234,7 @@ var commands = {
             var reseaux_embed = new Discord.RichEmbed()
                 .setColor('#04B404')
                 .setTitle("Nos réseaux sociaux")
-                .addField("<:facebook:432513421507035136> Facebook ", "[@radiomodern1](" + http + facebook + ")") 
+                .addField("<:facebook:432513421507035136> Facebook ", "[@radiomodern1](" + http + facebook + ")", true) 
                 .addField("<:twitter:432513453899382794> Twitter", "[@radiomodern_](" + http + twitter + ")", true)
                 .addField(":money_with_wings: Page de don", "[Notre PayPal](" + http + paypal + ")", true)
                 .setTimestamp()
@@ -242,7 +242,7 @@ var commands = {
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(msg.author.displayAvatarURL)
                 .addField(msg.author.username + " - Logs : ", "``" + prefix + "botinfo``")
-                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                .addField(separation, "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
                 .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
@@ -257,7 +257,7 @@ var commands = {
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(msg.author.displayAvatarURL)
                 .addField(msg.author.username + " - Logs : ", "``" + prefix + "purge``")
-                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                .addField(separation, "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
                 .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
@@ -299,7 +299,7 @@ bot.on("message", async function (message) {
             var send_embed = new Discord.RichEmbed()
                 .setColor("#04B404")
                 .addField(message.author.username + " - Sa publicité : ", "```" + suffix + "```")
-                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+                .addField(separation, "Provenance du message : ``" + message.guild.name + "``", true)
                 .setThumbnail(message.guild.iconURL)
                 .setFooter(footer)
                 .setTimestamp();
@@ -308,7 +308,7 @@ bot.on("message", async function (message) {
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "send``")
-                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
@@ -327,7 +327,7 @@ bot.on("message", async function (message) {
             var suggest_embed = new Discord.RichEmbed()
                 .setColor("#04B404")
                 .addField(message.author.username + " - Suggestions : ", "``" + sugesstfix + "``")
-                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``", true)
+                .addField(separation, "Provenance du message : ``" + message.guild.name + "``", true)
                 .setThumbnail(message.guild.iconURL)
                 .setFooter(footer)
                 .setTimestamp();
@@ -338,7 +338,7 @@ bot.on("message", async function (message) {
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "suggest``")
-                .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
@@ -479,7 +479,7 @@ bot.on("message", async function (message) {
     var log_embed = new Discord.RichEmbed()
         .setThumbnail(message.author.displayAvatarURL)
         .addField(message.author.username + " - Logs : ", "``" + prefix + "listserv``")
-        .addField("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+        .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
         .setFooter(footer)
         .setColor("#04B404")
         .setTimestamp();
