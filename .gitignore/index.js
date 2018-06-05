@@ -39,7 +39,7 @@ bot.on("ready", (ready) => {
     console.log(prefixLog + " Bot prêt")
     console.log(separation)
 
-    setTimeout(state0, 1000);
+    setTimeout(state1, 5000);
 })
 
 function state0() {
@@ -94,12 +94,22 @@ function state5() {
 }
 
 function state6() {
-    bot.user.setActivity(prefix + "help | " + website);
-    bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
-    setTimeout(state7, 4000);
+    bot.user.setActivity(prefix + "help");
+    setTimeout(state7, 1);
 }
 
 function state7() {
+    bot.user.setActivity(prefix + "help | " + website);
+    bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
+    setTimeout(state8, 4000);
+}
+
+function state8() {
+    bot.user.setActivity(prefix + "help");
+    setTimeout(state9, 1);
+}
+
+function state9() {
     bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
     setTimeout(state0, 4000);
