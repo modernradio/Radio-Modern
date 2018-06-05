@@ -78,23 +78,28 @@ function state3() {
 
         bot.user.setActivity(prefix + 'help "' + body + '"');
         bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
-        setTimeout(state4, 5000);
+        setTimeout(state4, 6000);
     })
 }
 
 function state4() {
-    bot.user.setActivity(prefix + "help | " + bot.guilds.size + " serveurs, " + bot.users.size + " membres");
-    bot.channels.findAll("name", "logs-activity").map(channel => channel.send(bot.guilds.size + " serveurs, " + bot.users.size + " membres"));
-    setTimeout(state5, 4000);
+    bot.user.setActivity(prefix + "help");
+    setTimeout(state5, 1);
 }
 
 function state5() {
-    bot.user.setActivity(prefix + "help | " + website);
-    bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
+    bot.user.setActivity(prefix + "help | " + bot.guilds.size + " serveurs, " + bot.users.size + " membres");
+    bot.channels.findAll("name", "logs-activity").map(channel => channel.send(bot.guilds.size + " serveurs, " + bot.users.size + " membres"));
     setTimeout(state6, 4000);
 }
 
 function state6() {
+    bot.user.setActivity(prefix + "help | " + website);
+    bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
+    setTimeout(state7, 4000);
+}
+
+function state8() {
     bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
     setTimeout(state0, 4000);
