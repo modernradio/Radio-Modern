@@ -43,7 +43,7 @@ bot.on("ready", (ready) => {
 })
 
 function state0() {
-    bot.user.setActivity(prefix + "help");
+    bot.user.setActivity(prefix + "help | Je bug...");
     setTimeout(state1, 1);
 }
 
@@ -68,7 +68,7 @@ function state1() {
 }
 
 function state2() {
-    bot.user.setActivity(prefix + "help");
+    bot.user.setActivity(prefix + "help | Je bug...");
     setTimeout(state3, 1);
 }
 
@@ -83,7 +83,7 @@ function state3() {
 }
 
 function state4() {
-    bot.user.setActivity(prefix + "help");
+    bot.user.setActivity(prefix + "help | Je bug...");
     setTimeout(state5, 1);
 }
 
@@ -94,7 +94,7 @@ function state5() {
 }
 
 function state6() {
-    bot.user.setActivity(prefix + "help");
+    bot.user.setActivity(prefix + "help | Je bug...");
     setTimeout(state7, 1);
 }
 
@@ -105,7 +105,7 @@ function state7() {
 }
 
 function state8() {
-    bot.user.setActivity(prefix + "help");
+    bot.user.setActivity(prefix + "help | Je bug...");
     setTimeout(state9, 1);
 }
 
