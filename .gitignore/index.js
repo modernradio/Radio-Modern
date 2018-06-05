@@ -55,8 +55,6 @@ function state1() {
 
         if (body == undefined) {
             bot.user.setActivity("?");
-        } if (body == "Advert:TargetSpot - Advert:Targetspot ") {
-            bot.user.setActivity(prefix + "help | Publicité...")
         } else if (parseInt(body) < 2) {
                 msgActivity = "auditeur"
             } else {
@@ -77,9 +75,12 @@ function state3() {
     request("http://api.radionomy.com/currentsong.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
         if (error) return console.log(error);
 
-        bot.user.setActivity(prefix + 'help "' + body + '"');
-        bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
-        setTimeout(state4, 6000);
+        if (body == "Advert:TargetSpot - Advert:Targetspot ") {
+            bot.user.setActivity(prefix + "help | Publicité...")
+        } else
+            bot.user.setActivity(prefix + 'help "' + body + '"');
+            bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
+            setTimeout(state4, 6000);
     })
 }
 
