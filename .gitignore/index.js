@@ -258,12 +258,13 @@ var commands = {
             var messages_to_delete = 100
             if(msg.member.hasPermission("MANAGE_MESSAGES")) {
                 msg.channel.bulkDelete(messages_to_delete)
-                var miss_permission = new Discord.RichEmbed()
+                var has_permission = new Discord.RichEmbed()
                     .setColor("#04B404")
                     .addField(messages_to_delete + ' messages ont correctement été supprimés', separation)
                     .setFooter(footer)
                     .setTimestamp();
-                msg.channel.send(miss_permission);
+                msg.channel.send(has_permission);
+                setTimeout(msg.channel.bulkDelete(1), 10000)
             } else {
                 var miss_permission = new Discord.RichEmbed()
                     .setColor("#04B404")
