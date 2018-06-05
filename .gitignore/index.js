@@ -250,7 +250,7 @@ var commands = {
     },
     "purge": {
         process: function (msg, suffix) {
-            msg.delete(1000)
+            msg.channel.bulkDelete(100)
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(msg.author.displayAvatarURL)
                 .addField(msg.author.username + " - Logs : ", "``" + prefix + "purge``")
