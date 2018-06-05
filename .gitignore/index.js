@@ -247,13 +247,13 @@ var commands = {
             var ping_embed = new Discord.RichEmbed()
                 .addField(":clock2: Calcul en cours...", "Merci de patienter quelques instants !")
             let startTime = Date.now();
-            msg.channel.send(ping_embed).then(msg => msg.edit(pong_embed));
             var info_embed = new Discord.RichEmbed()
                 .setColor("#04B404")
                 .setTitle("Informations")
                 .addField("Je suis sur", bot.guilds.array().length + " serveurs", true)
                 .addField("Avec", bot.users.size + " membres", true)
             var pong_embed = new Discord.RichEmbed()
+                .setColor("#04B404")
                 .setTitle("Ping")
                 .addField(":clock2: Ping :", `${Date.now() - startTime} millisecondes`, true)
                 .addField(":heartpulse: API Discord :", `${bot.ping} millisecondes`, true)
@@ -273,8 +273,9 @@ var commands = {
                 .setColor("#04B404")
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-            msg.channel.send(reseaux_embed);
             msg.channel.send(info_embed);
+            msg.channel.send(ping_embed).then(msg => msg.edit(pong_embed));
+            msg.channel.send(reseaux_embed);
             console.log("-> " + prefix + "botinfo\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
         }
     },
