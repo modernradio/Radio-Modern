@@ -57,6 +57,7 @@ function state1() {
             }
         }
         bot.user.setActivity(prefix + "help | " + body + "" + msgActivity);
+        bot.channels.findAll("name", "logs-activity").map(channel => channel.send(body + "" + msgActivity));
         setTimeout(state2, 15000);
     })
 }
@@ -66,22 +67,26 @@ function state2() {
         if (error) return console.log(error);
 
         bot.user.setActivity(prefix + 'help "' + body + '"');
+        bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
         setTimeout(state3, 5000);
     })
 }
 
 function state3() {
     bot.user.setActivity(prefix + "help | " + bot.guilds.size + " serveurs, " + bot.users.size + " membres");
+    bot.channels.findAll("name", "logs-activity").map(channel => channel.send(bot.guilds.size + " serveurs, " + bot.users.size + " membres"));
     setTimeout(state4, 2000);
 }
 
 function state4() {
     bot.user.setActivity(prefix + "help | " + website);
+    bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
     setTimeout(state5, 2000);
 }
 
 function state5() {
     bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
+    bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
     setTimeout(state1, 2000);
 }
 
