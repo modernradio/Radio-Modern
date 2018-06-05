@@ -250,7 +250,11 @@ var commands = {
     },
     "purge": {
         process: function (msg, suffix) {
-            msg.channel.bulkDelete(100)
+            if(msg.author.hasPermission("MANAGE_MESSAGES")) { 
+                msg.channel.bulkDelete(100)
+            } else {
+                msg.channel.send("Tu n'as pas la permission de supprimer les messages ! (MANAGE_MESSAGES)")
+            }
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(msg.author.displayAvatarURL)
                 .addField(msg.author.username + " - Logs : ", "``" + prefix + "purge``")
