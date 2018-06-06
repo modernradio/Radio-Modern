@@ -44,7 +44,7 @@ bot.on("ready", (ready) => {
 })
 
 function state0() {
-    bot.user.setActivity(prefix + "help", {
+    bot.user.setActivity(prefix + "help | ...", {
         'type': 'STREAMING',
         'url': twitch
     })
@@ -74,7 +74,7 @@ function state1() {
 }
 
 function state2() {
-    bot.user.setActivity(prefix + "help", {
+    bot.user.setActivity(prefix + "help | ...", {
         'type': 'STREAMING',
         'url': twitch
     })
@@ -103,7 +103,7 @@ function state3() {
 }
 
 function state4() {
-    bot.user.setActivity(prefix + "help", {
+    bot.user.setActivity(prefix + "help | ...", {
         'type': 'STREAMING',
         'url': twitch
     })
@@ -120,7 +120,7 @@ function state5() {
 }
 
 function state6() {
-    bot.user.setActivity(prefix + "help", {
+    bot.user.setActivity(prefix + "help | ...", {
         'type': 'STREAMING',
         'url': twitch
     })
