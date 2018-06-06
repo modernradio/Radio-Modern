@@ -41,7 +41,33 @@ bot.on("ready", (ready) => {
     console.log(separation)
 
     setTimeout(state1, 5000);
+    setTimeout(music1, 1000)
 })
+
+function music() {
+
+    var current_music
+
+    request("http://api.radionomy.com/currentsong.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
+        if (error) return console.log(error);
+
+
+        if (body == "Advert:TargetSpot - Advert:Targetspot ") {
+            current_music = "Publicité"
+        } else {
+            current_music = body
+        }
+    })
+
+    msg.channel.bulkDelete(100);
+    var music_embed = new Discord.RichEmbed()
+        .setColor("#04B404")
+        .addField(current_music, separation)
+        .setFooter(footer)
+        .setTimestamp();
+    bot.channels.findAll("name", "musique-en-cours").map(channel => channel.send(music_embed));
+    setTimeout(music, 5000);
+}
 
 function state0() {
     bot.user.setActivity(prefix + "help | ...", {
