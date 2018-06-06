@@ -41,7 +41,7 @@ bot.on("ready", (ready) => {
     console.log(separation)
 
     setTimeout(state1, 5000);
-    setTimeout(music1, 1000)
+    setTimeout(music, 1000)
 })
 
 function music() {
