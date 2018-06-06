@@ -13,6 +13,7 @@ var website = "radiomodern.fr.mu"
 var facebook = "facebook.com/radiomodern1/"
 var twitter = "twitter.com/radiomodern_"
 var paypal = "paypal.me/RadioModern"
+var twitch = "http://twitch.tv/radiomodern"
 
 var footer = "Par Ilian ! ^^"
 
