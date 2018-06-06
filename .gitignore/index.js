@@ -48,9 +48,8 @@ function music() {
 
     var current_music
 
-    request("http://api.radionomy.com/currentsong.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
+    await request("http://api.radionomy.com/currentsong.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
         if (error) return console.log(error);
-
 
         if (body == "Advert:TargetSpot - Advert:Targetspot ") {
             current_music = "Publicité"
@@ -58,6 +57,7 @@ function music() {
             current_music = body
         }
     })
+
     bot.channels.findAll("name", "musique-en-cours").forEach(c => c.bulkDelete(100));
     var music_embed = new Discord.RichEmbed()
         .setColor("#04B404")
