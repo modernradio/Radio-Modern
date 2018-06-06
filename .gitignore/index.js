@@ -56,7 +56,10 @@ function state1() {
             } else {
                 msgActivity = "auditeurs"
             }
-        bot.user.setActivity(prefix + "help | " + body + "" + msgActivity, twitch);
+        bot.user.setActivity(prefix + "help | " + body + "" + msgActivity, {
+            'type': 'STREAMING',
+            'url': twitch
+        }),
         bot.channels.findAll("name", "logs-activity").map(channel => channel.send(body + "" + msgActivity));
         setTimeout(state2, 10000);
     })
@@ -67,10 +70,16 @@ function state2() {
         if (error) return console.log(error);
 
         if (body == "Advert:TargetSpot - Advert:Targetspot ") {
-            bot.user.setActivity(prefix + "help | Publicité...", twitch)
+            bot.user.setActivity(prefix + "help | Publicité...", {
+                'type': 'STREAMING',
+                'url': twitch
+            }),
             bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Publicité..."));
         } else {
-            bot.user.setActivity(prefix + 'help "' + body + '"', twitch);
+            bot.user.setActivity(prefix + 'help "' + body + '"', {
+                'type': 'STREAMING',
+                'url': twitch
+            }),
             bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
             setTimeout(state3, 6000);
         }
@@ -78,13 +87,19 @@ function state2() {
 }
 
 function state3() {
-    bot.user.setActivity(prefix + "help | " + website, twitch);
+    bot.user.setActivity(prefix + "help | " + website, {
+        'type': 'STREAMING',
+        'url': twitch
+    }),
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
     setTimeout(state4, 4000);
 }
 
 function state4() {
-    bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^", twitch);
+    bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^", {
+        'type': 'STREAMING',
+        'url': twitch
+    }),
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
     setTimeout(state1, 4000);
 }
