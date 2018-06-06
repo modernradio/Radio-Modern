@@ -58,7 +58,7 @@ function music() {
             current_music = body
         }
     })
-    bot.channels.findAll("name", "musique-en-cours").bulkDelete(100);
+    bot.channels.findAll("name", "musique-en-cours").forEach(c => c.bulkDelete(100));
     var music_embed = new Discord.RichEmbed()
         .setColor("#04B404")
         .addField(current_music, separation)
