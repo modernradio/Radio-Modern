@@ -56,7 +56,7 @@ function state1() {
                 msgActivity = "auditeurs"
             }
         //bot.user.setActivity(prefix + "help | " + body + "" + msgActivity);
-        bot.user.setGame(prefix + "help | " + body + "" + msgActivity, http + website);
+        bot.user.setGame(prefix + "help | " + body + "" + msgActivity, "http://radiomodern.fr.mu");
         bot.channels.findAll("name", "logs-activity").map(channel => channel.send(body + "" + msgActivity));
         setTimeout(state3, 10000);
     })
@@ -71,7 +71,7 @@ function state3() {
             bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Publicité..."));
         } else
             //bot.user.setActivity(prefix + 'help "' + body + '"');
-            bot.user.setGame(prefix + 'help "' + body + '"', http + website);
+            bot.user.setGame(prefix + 'help "' + body + '"', "http://radiomodern.fr.mu");
             bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
             setTimeout(state7, 6000);
     })
@@ -79,14 +79,14 @@ function state3() {
 
 function state7() {
     //bot.user.setActivity(prefix + "help | " + website);
-    bot.user.setGame(prefix + "help | " + website, http + website);
+    bot.user.setGame(prefix + "help | " + website, "http://radiomodern.fr.mu");
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
     setTimeout(state9, 4000);
 }
 
 function state9() {
     //bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
-    bot.user.setGame(prefix + "help | Par Ilian ! (& RisedSky) ^^", http + website);
+    bot.user.setGame(prefix + "help | Par Ilian ! (& RisedSky) ^^", "http://radiomodern.fr.mu");
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
     setTimeout(state1, 4000);
 }
