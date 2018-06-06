@@ -62,7 +62,7 @@ function state1() {
             }
         bot.user.setActivity(prefix + "help | " + body + "" + msgActivity);
         bot.channels.findAll("name", "logs-activity").map(channel => channel.send(body + "" + msgActivity));
-        setTimeout(state2, 15000);
+        setTimeout(state3, 15000);
     })
 }
 
@@ -77,10 +77,11 @@ function state3() {
 
         if (body == "Advert:TargetSpot - Advert:Targetspot ") {
             bot.user.setActivity(prefix + "help | Publicité...")
+            bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Publicité..."));
         } else
             bot.user.setActivity(prefix + 'help "' + body + '"');
             bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
-            setTimeout(state4, 6000);
+            setTimeout(state7, 6000);
     })
 }
 
@@ -103,7 +104,7 @@ function state6() {
 function state7() {
     bot.user.setActivity(prefix + "help | " + website);
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
-    setTimeout(state8, 4000);
+    setTimeout(state1, 4000);
 }
 
 function state8() {
