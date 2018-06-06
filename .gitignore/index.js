@@ -55,38 +55,35 @@ function state1() {
             } else {
                 msgActivity = "auditeurs"
             }
-        //bot.user.setActivity(prefix + "help | " + body + "" + msgActivity);
-        bot.user.setGame(prefix + "help | " + body + "" + msgActivity, "http://radiomodern.fr.mu");
+        bot.user.setActivity(prefix + "help | " + body + "" + msgActivity, twitch);
         bot.channels.findAll("name", "logs-activity").map(channel => channel.send(body + "" + msgActivity));
-        setTimeout(state3, 10000);
+        setTimeout(state2, 10000);
     })
 }
 
-function state3() {
+function state2() {
     request("http://api.radionomy.com/currentsong.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
         if (error) return console.log(error);
 
         if (body == "Advert:TargetSpot - Advert:Targetspot ") {
-            bot.user.setActivity(prefix + "help | Publicité...")
+            bot.user.setActivity(prefix + "help | Publicité...", twitch)
             bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Publicité..."));
-        } else
-            //bot.user.setActivity(prefix + 'help "' + body + '"');
-            bot.user.setGame(prefix + 'help "' + body + '"', "http://radiomodern.fr.mu");
+        } else {
+            bot.user.setActivity(prefix + 'help "' + body + '"', twitch);
             bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
-            setTimeout(state7, 6000);
+            setTimeout(state3, 6000);
+        }
     })
 }
 
-function state7() {
-    //bot.user.setActivity(prefix + "help | " + website);
-    bot.user.setGame(prefix + "help | " + website, "http://radiomodern.fr.mu");
+function state3() {
+    bot.user.setActivity(prefix + "help | " + website, twitch);
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
-    setTimeout(state9, 4000);
+    setTimeout(state4, 4000);
 }
 
-function state9() {
-    //bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
-    bot.user.setGame(prefix + "help | Par Ilian ! (& RisedSky) ^^", "http://radiomodern.fr.mu");
+function state4() {
+    bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^", twitch);
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
     setTimeout(state1, 4000);
 }
