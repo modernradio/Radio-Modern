@@ -127,7 +127,7 @@ function state6() {
     setTimeout(state7, 1);
 }
 
-function state8() {
+function state7() {
     bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^", {
         'type': 'STREAMING',
         'url': twitch
