@@ -60,15 +60,11 @@ function state1() {
             } else {
                 msgActivity = "auditeurs"
             }
-        bot.user.setActivity(prefix + "help | " + body + "" + msgActivity);
+        //bot.user.setActivity(prefix + "help | " + body + "" + msgActivity);
+        bot.user.setGame(prefix + "help | " + body + "" + msgActivity, "https://www.twitch.tv/supers_fanne");
         bot.channels.findAll("name", "logs-activity").map(channel => channel.send(body + "" + msgActivity));
-        setTimeout(state3, 15000);
+        setTimeout(state3, 10000);
     })
-}
-
-function state2() {
-    bot.user.setActivity(prefix + "help | Je bug...");
-    setTimeout(state3, 1);
 }
 
 function state3() {
@@ -79,43 +75,25 @@ function state3() {
             bot.user.setActivity(prefix + "help | Publicité...")
             bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Publicité..."));
         } else
-            bot.user.setActivity(prefix + 'help "' + body + '"');
+            //bot.user.setActivity(prefix + 'help "' + body + '"');
+            bot.user.setGame(prefix + 'help "' + body + '"', "https://www.twitch.tv/supers_fanne");
             bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
             setTimeout(state7, 6000);
     })
 }
 
-function state4() {
-    bot.user.setActivity(prefix + "help | Je bug...");
-    setTimeout(state5, 1);
-}
-
-function state5() {
-    bot.user.setActivity(prefix + "help | " + bot.guilds.size + " serveurs, " + bot.users.size + " membres");
-    bot.channels.findAll("name", "logs-activity").map(channel => channel.send(bot.guilds.size + " serveurs, " + bot.users.size + " membres"));
-    setTimeout(state6, 4000);
-}
-
-function state6() {
-    bot.user.setActivity(prefix + "help | Je bug...");
-    setTimeout(state7, 1);
-}
-
 function state7() {
-    bot.user.setActivity(prefix + "help | " + website);
+    //bot.user.setActivity(prefix + "help | " + website);
+    bot.user.setGame(prefix + "help | " + website, "https://www.twitch.tv/supers_fanne");
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
-    setTimeout(state1, 4000);
-}
-
-function state8() {
-    bot.user.setActivity(prefix + "help | Je bug...");
-    setTimeout(state9, 1);
+    setTimeout(state9, 4000);
 }
 
 function state9() {
-    bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
+    //bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
+    bot.user.setGame(prefix + "help | Par Ilian ! (& RisedSky) ^^", "https://www.twitch.tv/supers_fanne");
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
-    setTimeout(state0, 4000);
+    setTimeout(state1, 4000);
 }
 
 bot.on("message", function (msg) {
