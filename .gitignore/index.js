@@ -42,11 +42,6 @@ bot.on("ready", (ready) => {
     setTimeout(state1, 5000);
 })
 
-function state0() {
-    bot.user.setActivity(prefix + "help | Je bug...");
-    setTimeout(state1, 1);
-}
-
 function state1() {
     request("http://api.radionomy.com/currentaudience.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
         if (error) return console.log(error);
@@ -61,7 +56,7 @@ function state1() {
                 msgActivity = "auditeurs"
             }
         //bot.user.setActivity(prefix + "help | " + body + "" + msgActivity);
-        bot.user.setGame(prefix + "help | " + body + "" + msgActivity, "https://www.twitch.tv/supers_fanne");
+        bot.user.setGame(prefix + "help | " + body + "" + msgActivity, http + website);
         bot.channels.findAll("name", "logs-activity").map(channel => channel.send(body + "" + msgActivity));
         setTimeout(state3, 10000);
     })
@@ -76,7 +71,7 @@ function state3() {
             bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Publicité..."));
         } else
             //bot.user.setActivity(prefix + 'help "' + body + '"');
-            bot.user.setGame(prefix + 'help "' + body + '"', "https://www.twitch.tv/supers_fanne");
+            bot.user.setGame(prefix + 'help "' + body + '"', http + website);
             bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
             setTimeout(state7, 6000);
     })
@@ -84,14 +79,14 @@ function state3() {
 
 function state7() {
     //bot.user.setActivity(prefix + "help | " + website);
-    bot.user.setGame(prefix + "help | " + website, "https://www.twitch.tv/supers_fanne");
+    bot.user.setGame(prefix + "help | " + website, http + website);
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
     setTimeout(state9, 4000);
 }
 
 function state9() {
     //bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^");
-    bot.user.setGame(prefix + "help | Par Ilian ! (& RisedSky) ^^", "https://www.twitch.tv/supers_fanne");
+    bot.user.setGame(prefix + "help | Par Ilian ! (& RisedSky) ^^", http + website);
     bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
     setTimeout(state1, 4000);
 }
