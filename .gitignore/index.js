@@ -59,7 +59,6 @@ function music() {
     })
 
     setTimeout(() => {
-
         bot.channels.findAll("name", "musique-en-cours").forEach(c => c.bulkDelete(100));
         var music_embed = new Discord.RichEmbed()
             .setColor("#04B404")
@@ -70,6 +69,7 @@ function music() {
         setTimeout(music, 5000);
     }, 3000);
 }
+
 
 function state0() {
     bot.user.setActivity(prefix + "help | ...", {
