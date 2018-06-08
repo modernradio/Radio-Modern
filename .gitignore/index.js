@@ -651,7 +651,6 @@ function sin_to_hex(i, phase) {
 }
 
 let place = 0;
-const servers = config.servers;
 
 function changeColor() {
 	for (let index = 0; index < servers.length; ++index) {
