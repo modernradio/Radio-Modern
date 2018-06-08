@@ -15,6 +15,9 @@ var twitter = "twitter.com/radiomodern_"
 var paypal = "paypal.me/RadioModern"
 var twitch = "http://twitch.tv/radiomodern"
 
+const servers = "411685426143690772"
+const colors = 100
+
 var footer = "Par Ilian ! ^^"
 
 var partenaire_color = "#088A08"
@@ -42,6 +45,7 @@ bot.on("ready", (ready) => {
 
     setTimeout(state1, 5000);
     setTimeout(music, 1000)
+    setInterval(changeColor, 1000);
 })
 
 function music() {
@@ -626,5 +630,40 @@ bot.on("message", async function (message) {
             break;
     }
 });
+
+const size    = config.colors;
+const rainbow = new Array(size);
+
+for (var i=0; i<size; i++) {
+	var red   = sin_to_hex(i, 0 * Math.PI * 2/3); // 0   deg
+	var blue  = sin_to_hex(i, 1 * Math.PI * 2/3); // 120 deg
+	var green = sin_to_hex(i, 2 * Math.PI * 2/3); // 240 deg
+
+	rainbow[i] = '#'+ red + green + blue;
+}
+
+function sin_to_hex(i, phase) {
+	var sin = Math.sin(Math.PI / size * 2 * i + phase);
+	var int = Math.floor(sin * 127) + 128;
+	var hex = int.toString(16);
+
+	return hex.length === 1 ? '0'+hex : hex;
+}
+
+let place = 0;
+const servers = config.servers;
+
+function changeColor() {
+	for (let index = 0; index < servers.length; ++index) {
+		bot.guilds.get(servers).roles.find('name', "⌬").setColor(rainbow[place])
+			  .catch(console.error);
+        
+        if(place == (size - 1)) {
+			place = 0;
+		} else {
+			place++;
+		}
+	}
+}
 
 bot.login(process.env.TOKEN);
