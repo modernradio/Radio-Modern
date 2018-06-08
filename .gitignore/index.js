@@ -631,7 +631,7 @@ bot.on("message", async function (message) {
     }
 });
 
-const size    = config.colors;
+const size    = colors;
 const rainbow = new Array(size);
 
 for (var i=0; i<size; i++) {
