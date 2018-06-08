@@ -46,6 +46,7 @@ bot.on("ready", (ready) => {
     setTimeout(state1, 5000);
     setTimeout(music, 1000)
     setInterval(changeColor, 10000);
+    setInterval(state0, 60000);
 })
 
 function music() {
@@ -73,50 +74,6 @@ function music() {
         setTimeout(music, 5000);
     }, 3000);
 }
-
-/*function music_test() {
-
-    var current_music_test1
-
-    request("http://api.radionomy.com/currentsong.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
-        if (error) return console.log(error);
-
-        if (body == "Advert:TargetSpot - Advert:Targetspot ") {
-            current_music_test1 = "Publicité"
-        } else {
-            current_music_test1 = body
-        }
-        var music_embed2 = new Discord.RichEmbed()
-            .setColor("#04B404")
-            .addField(current_music_test1, separation)
-            .setFooter(footer)
-            .setTimestamp();
-        bot.channels.findAll("name", "musique-en-cours2").map(channel => channel.send(music_embed2));
-    })
-}
-
-function music_test2() {
-    
-    var current_music_test2
-
-    request("http://api.radionomy.com/currentsong.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
-        if (error) return console.log(error);
-
-        if (body == "Advert:TargetSpot - Advert:Targetspot ") {
-            current_music_test2 = "Publicité"
-        } else {
-            current_music_test2 = body
-        }
-        if (!current_music_test1 == current_music_test2) {
-            var music_embed2 = new Discord.RichEmbed()
-                .setColor("#04B404")
-                .addField(current_music_test1, separation)
-                .setFooter(footer)
-                .setTimestamp();
-            bot.channels.findAll("name", "musique-en-cours2").map(channel => channel.send(music_embed2));
-        }
-    }
-}*/
 
 function state0() {
     bot.user.setActivity(prefix + "help | ...", {
