@@ -631,13 +631,14 @@ bot.on("message", async function (message) {
     }
 });
 
-const size    = colors;
+
+const size = colors;
 const rainbow = new Array(size);
 
 for (var i=0; i<size; i++) {
-	var red   = sin_to_hex(i, 0 * Math.PI * 2/3); // 0   deg
-	var blue  = sin_to_hex(i, 1 * Math.PI * 2/3); // 120 deg
-	var green = sin_to_hex(i, 2 * Math.PI * 2/3); // 240 deg
+	var red   = sin_to_hex(i, 0 * Math.PI * 2/3);
+	var blue  = sin_to_hex(i, 1 * Math.PI * 2/3);
+	var green = sin_to_hex(i, 2 * Math.PI * 2/3);
 
 	rainbow[i] = '#'+ red + green + blue;
 }
@@ -654,7 +655,7 @@ let place = 0;
 
 function changeColor() {
 	for (let index = 0; index < servers.length; ++index) {
-		bot.guilds.get(servers).roles.find('name', "⌬").setColor(rainbow[place])
+		bot.guilds.get(servers).roles.find("name", "🎧 | Auditeurs").setColor(rainbow[place])
 			  .catch(console.error);
         
         if(place == (size - 1)) {
