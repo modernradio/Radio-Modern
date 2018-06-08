@@ -101,7 +101,7 @@ function state1() {
             'url': twitch
         }),
         bot.channels.findAll("name", "logs-activity").map(channel => channel.send(body + "" + msgActivity));
-        setTimeout(state2, 10000);
+        setTimeout(state2, 5000);
     })
 }
 
@@ -130,7 +130,7 @@ function state3() {
                 'url': twitch
             }),
             bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
-            setTimeout(state4, 6000);
+            setTimeout(state4, 3000);
         }
     })
 }
@@ -149,7 +149,7 @@ function state5() {
         'url': twitch
     }),
         bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
-    setTimeout(state6, 4000);
+    setTimeout(state6, 3000);
 }
 
 function state6() {
@@ -166,7 +166,7 @@ function state7() {
         'url': twitch
     }),
         bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
-    setTimeout(state0, 4000);
+    setTimeout(state0, 3000);
 }
 
 bot.on("message", function (msg) {
