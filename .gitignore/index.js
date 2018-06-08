@@ -27,7 +27,7 @@ var separation = "><><><><><><><><><><><"
 
 var bot = new Discord.Client();
 
-var servers = {};
+//var servers = {};
 
 bot.on("ready", (ready) => {
     var connection_embed = new Discord.RichEmbed()
