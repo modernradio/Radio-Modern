@@ -46,7 +46,7 @@ bot.on("ready", (ready) => {
     setTimeout(state1, 5000);
     setTimeout(music, 1000)
     setInterval(changeColor, 10000);
-    setInterval(state0, 60000);
+    //setInterval(state0, 60000);
 })
 
 function music() {
