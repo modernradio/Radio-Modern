@@ -242,7 +242,7 @@ var commands = {
         process: function (message, suffix) {
             var member = message.member;
             var notif_annonces_discord = member.guild.roles.find("name", "📢 | Notification : Annonces Discord")
-            if(!msg.member.roles.has("433614532691230721")) {            
+            if(!message.member.roles.has("433614532691230721")) {            
                 member.addRole(notif_annonces_discord)
                 const notif_annonces_discord_add_embed = new Discord.RichEmbed()
                     .setColor("#04B404")
