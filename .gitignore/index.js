@@ -43,7 +43,7 @@ bot.on("ready", (ready) => {
 
     setTimeout(state1, 5000);
     setTimeout(music, 1000)
-    setInterval(changeColor, 60000);
+    setInterval(changeColor, 600000);
 })
 
 function music() {
@@ -232,7 +232,6 @@ var commands = {
                         connection.playStream(res);
                     })
                 })
-                    .catch(console.error);
             } else {
                 msg.channel.send(":warning: | **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
             }
@@ -608,14 +607,12 @@ function sin_to_hex(i, phase) {
 function changeColor() {
 	for (let index = 0; index < servers.length; ++index) {
 		bot.guilds.get(servers).roles.find("name", "🎧 | Auditeurs").setColor(rainbow[place])
-			  .catch(console.error);
         
         if(place == (size - 1)) {
 			place = 0;
 		} else {
 			place++;
         }
-        console.log("Couleur changée")
     }
 }
 
