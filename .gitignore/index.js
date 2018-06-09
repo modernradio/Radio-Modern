@@ -24,7 +24,7 @@ var fondateur_color = "#FF0000"
 
 var separation = "><><><><><><><><><><><"
 
-var member = message.member
+var member = msg.member
 
 var notif_annonces_discord = member.guild.roles.find("name", "📢 | Notification : Annonces Discord")
 var notif_annonces_radio = member.guild.roles.find("name", "📢 | Notification : Annonces Radio")    
