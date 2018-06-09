@@ -27,8 +27,6 @@ var separation = "><><><><><><><><><><><"
 
 var bot = new Discord.Client();
 
-//var servers = {};
-
 bot.on("ready", (ready) => {
     var connection_embed = new Discord.RichEmbed()
         .setTitle("Je suis connecté")
@@ -45,7 +43,7 @@ bot.on("ready", (ready) => {
 
     setTimeout(state1, 5000);
     setTimeout(music, 1000)
-    setInterval(changeColor, 10000);
+    setInterval(changeColor, 60000);
 })
 
 function music() {
