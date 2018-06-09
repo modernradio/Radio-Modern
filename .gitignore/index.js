@@ -24,6 +24,12 @@ var fondateur_color = "#FF0000"
 
 var separation = "><><><><><><><><><><><"
 
+var notif_annonces_discord = member.guild.roles.find("name", "📢 | Notification : Annonces Discord")
+var notif_annonces_radio = member.guild.roles.find("name", "📢 | Notification : Annonces Radio")    
+var notif_event = member.guild.roles.find("name", "📢 |  Notification : Event")
+var notif_promotion = member.guild.roles.find("name", "📢 |  Notification : Promotion")
+var notif_sondages = member.guild.roles.find("name", "📢 |  Notification : Sondages")
+
 var bot = new Discord.Client();
 
 bot.on("ready", (ready) => {
