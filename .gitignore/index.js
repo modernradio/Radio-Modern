@@ -617,6 +617,7 @@ function changeColor() {
 		} else {
 			place++;
         }
+        console.log("Couleur changée")
     }
 }
 
