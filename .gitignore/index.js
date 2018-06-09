@@ -620,7 +620,7 @@ function changeColor() {
 			place++;
         }
     }
-    setTimeout(changeColor, 10000)
+    setTimeout(changeColor, 10000);
 }
 
 bot.login(process.env.TOKEN);
