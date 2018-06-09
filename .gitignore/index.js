@@ -509,7 +509,7 @@ var commands = {
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
-            if(msg.author.hasRole("👑 | Fondateur")){
+            if(msg.author.roles.has("👑 | Fondateur")) {
                 console.log(msg.author.username);
             }
         },
