@@ -45,7 +45,7 @@ bot.on("ready", (ready) => {
 
     setTimeout(state1, 5000);
     setTimeout(music, 1000)
-    //setInterval(changeColor, 10000);
+    setInterval(changeColor, 10000);
 })
 
 function music() {
@@ -590,13 +590,13 @@ bot.on("message", async function (message) {
 
 const size = colors;
 const rainbow = new Array(size);
+let place = 0;
 
 for (var i=0; i<size; i++) {
 	var red   = sin_to_hex(i, 0 * Math.PI * 2/3);
 	var blue  = sin_to_hex(i, 1 * Math.PI * 2/3);
 	var green = sin_to_hex(i, 2 * Math.PI * 2/3);
-
-	rainbow[i] = '#'+ red + green + blue;
+    rainbow[i] = '#'+ red + green + blue;
 }
 
 function sin_to_hex(i, phase) {
@@ -606,8 +606,6 @@ function sin_to_hex(i, phase) {
 
 	return hex.length === 1 ? '0'+hex : hex;
 }
-
-let place = 0;
 
 function changeColor() {
 	for (let index = 0; index < servers.length; ++index) {
@@ -620,7 +618,6 @@ function changeColor() {
 			place++;
         }
     }
-    setTimeout(changeColor, 10000);
 }
 
 bot.login(process.env.TOKEN);
