@@ -24,11 +24,6 @@ var fondateur_color = "#FF0000"
 
 var separation = "><><><><><><><><><><><"
 
-var notif_annonces_discord = member.guild.roles.find("name", "📢 | Notification : Annonces Discord")
-var notif_annonces_radio = member.guild.roles.find("name", "📢 | Notification : Annonces Radio")    
-var notif_event = member.guild.roles.find("name", "📢 |  Notification : Event")
-var notif_promotion = member.guild.roles.find("name", "📢 |  Notification : Promotion")
-var notif_sondages = member.guild.roles.find("name", "📢 |  Notification : Sondages")
 
 var bot = new Discord.Client();
 
@@ -246,6 +241,7 @@ var commands = {
     "notif-annonces-discord": {
         process: function (message, suffix) {
             var member = message.member;
+            var notif_annonces_discord = member.guild.roles.find("name", "📢 | Notification : Annonces Discord")
             if (suffix) {
                 if (suffix === "add") {
                     member.addRole(notif_annonces_discord)
@@ -289,6 +285,7 @@ var commands = {
     "notif-annonces-radio": {
         process: function (message, suffix) {
             var member = message.member;
+            var notif_annonces_radio = member.guild.roles.find("name", "📢 | Notification : Annonces Radio")    
             if (suffix) {
                 if (suffix === "add") {
                     member.addRole(notif_annonces_radio)
@@ -332,6 +329,7 @@ var commands = {
     "notif-event": {
         process: function (message, suffix) {
             var member = message.member;
+            var notif_event = member.guild.roles.find("name", "📢 |  Notification : Event")
             if (suffix) {
                 if (suffix === "add") {
                     member.addRole(notif_event)
@@ -375,6 +373,7 @@ var commands = {
     "notif-promotion": {
         process: function (message, suffix) {
             var member = message.member;
+            var notif_promotion = member.guild.roles.find("name", "📢 |  Notification : Promotion")
             if (suffix) {
                 if (suffix === "add") {
                     member.addRole(notif_promotion)
@@ -418,6 +417,7 @@ var commands = {
     "notif-sondages": {
         process: function (message, suffix) {
             var member = message.member;
+            var notif_sondages = member.guild.roles.find("name", "📢 |  Notification : Sondages")
             if (suffix) {
                 if (suffix === "add") {
                     member.addRole(notif_sondages)
