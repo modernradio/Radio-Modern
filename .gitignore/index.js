@@ -239,7 +239,7 @@ var commands = {
 
     "notif-annonces-discord": {
         process: function (message, suffix) {
-            var member = msg.member;
+            var member = message.member;
             if (suffix) {
                 if (suffix === "add") {
                     member.addRole(notif_annonces_discord)
@@ -282,7 +282,7 @@ var commands = {
 
     "notif-annonces-radio": {
         process: function (message, suffix) {
-            var member = msg.member;
+            var member = message.member;
             if (suffix) {
                 if (suffix === "add") {
                     member.addRole(notif_annonces_radio)
@@ -325,7 +325,7 @@ var commands = {
 
     "notif-event": {
         process: function (message, suffix) {
-            var member = msg.member;
+            var member = message.member;
             if (suffix) {
                 if (suffix === "add") {
                     member.addRole(notif_event)
@@ -368,7 +368,7 @@ var commands = {
 
     "notif-promotion": {
         process: function (message, suffix) {
-            var member = msg.member;
+            var member = message.member;
             if (suffix) {
                 if (suffix === "add") {
                     member.addRole(notif_promotion)
@@ -411,7 +411,7 @@ var commands = {
 
     "notif-sondages": {
         process: function (message, suffix) {
-            var member = msg.member;
+            var member = message.member;
             if (suffix) {
                 if (suffix === "add") {
                     member.addRole(notif_sondages)
