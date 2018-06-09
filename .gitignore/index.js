@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 const YTDL = require("ytdl-core");
 const fs = require("fs");
 const request = require("request");
-const mention = "@";
 let prefix = "."
 let prefixLog = "[!]"
 var client = new Discord.Client();
@@ -24,6 +23,12 @@ var partenaire_color = "#088A08"
 var fondateur_color = "#FF0000"
 
 var separation = "><><><><><><><><><><><"
+
+var notif_annonces_discord = member.guild.roles.find("name", "📢 | Notification : Annonces Discord")
+var notif_annonces_radio = member.guild.roles.find("name", "📢 | Notification : Annonces Radio")    
+var notif_event = member.guild.roles.find("name", "📢 |  Notification : Event")
+var notif_promotion = member.guild.roles.find("name", "📢 |  Notification : Promotion")
+var notif_sondages = member.guild.roles.find("name", "📢 |  Notification : Sondages")
 
 var bot = new Discord.Client();
 
@@ -544,7 +549,6 @@ bot.on("message", async function (message) {
                 bot.channels.findAll("name", "vcs-radiom").map(channel => channel.send(animateur_embed));
                 console.log("-> " + prefix + "vcs\nAuteur : Animateur Discord " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  '" + msgvcs + "'\n" + separation);
             } else {
-
                 const vcs_embed = new Discord.RichEmbed()
                     .setColor("#00FF00")
                     .addField("Auditeur " + message.author.username + " : VCS", separation)
@@ -581,6 +585,47 @@ bot.on("message", async function (message) {
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             console.log("-> " + prefix + "listserv\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
             break;
+
+        case "notif-annonces-discord":
+            member.addRole(notif_annonces_discord)
+            const notif_annonces_discord_embed = new Discord.RichEmbed()
+                .setColor("#04B404")
+                .addField(message.author.username + " : Notification", 'Rôle "📢 | Notification : Annonces Discord" ajouté !')
+                .setThumbnail(message.author.avatarURL)
+                .setFooter(footer)
+                .setTimestamp()
+            message.delete()
+            var log_embed = new Discord.RichEmbed()
+                .setThumbnail(message.author.displayAvatarURL)
+                .addField(message.author.username + " - Logs : ", "``" + prefix + "notif-annonces-discord``")
+                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+                .setFooter(footer)
+                .setColor("#04B404")
+                .setTimestamp();
+            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+            msg.channel.send(notif_annonces_discord_embed);
+            break;
+
+        case "notif-annonces-radio":
+            member.addRole(notif_annonces_radio)
+            const notif_annonces_radio_embed = new Discord.RichEmbed()
+                .setColor("#04B404")
+                .addField(message.author.username + " : Notification", 'Rôle "📢 | Notification : Annonces Radio" ajouté !')
+                .setThumbnail(message.author.avatarURL)
+                .setFooter(footer)
+                .setTimestamp()
+            message.delete()
+            var log_embed = new Discord.RichEmbed()
+                .setThumbnail(message.author.displayAvatarURL)
+                .addField(message.author.username + " - Logs : ", "``" + prefix + "notif-annonces-discord``")
+                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+                .setFooter(footer)
+                .setColor("#04B404")
+                .setTimestamp();
+            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+            msg.channel.send(notif_annonces_radio_embed);
+            break;		    
+    
     }
 });
 
