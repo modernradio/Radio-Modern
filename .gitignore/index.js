@@ -605,7 +605,7 @@ bot.on("message", async function (message) {
                 .setColor("#04B404")
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-            msg.channel.send(notif_annonces_discord_embed);
+            message.channel.send(notif_annonces_discord_embed);
             break;
 
         case "notif-annonces-radio":
