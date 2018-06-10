@@ -545,10 +545,9 @@ var commands = {
                     console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
                 }
             } else {
-                msg.channel.send(help_sommaire_embed).then(m => m.react("432515330682781696"))
+                msg.channel.send(help_sommaire_embed).then(m => m.react("455409892128325643")).then(m => m.react("455409891692249089")).then(m => m.react("455409891889381417"))
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                 console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
-				//msg.react("432515330682781696")
             }
         },
     },
