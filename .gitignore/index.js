@@ -480,25 +480,39 @@ var commands = {
 
     "help": {
         process: function (msg, suffix) {
-            var help_embed = new Discord.RichEmbed()
-                .setAuthor("Message d'aide")
-                .addBlankField()
-                .addField(prefix + "join", "Me faire venir dans ton salon vocal")
-                .addBlankField()
-                .addField(prefix + "play radio", "Me faire jouer la Radio Modern dans ton salon vocal")
-                .addBlankField()
-                .addField(prefix + "stop", "Me faire quitter ton salon vocal")
-                .addBlankField()
-                .addField(prefix + "botinfo", "T'afficher les informations en rapport avec le bot et la Radio")
-                .addBlankField()
-                .addField(prefix + "vcs {message}", "Envoyer un message VCS (__V__irtual __C__hat __S__erver) dans tout les serveurs où je suis. _(Seulement dans les salons #vcs-radiom)_")
-                .addBlankField()
-                .addField(prefix + "suggest {message}", "Envoyer une suggestion à moi ou à la radio.")
-                .addBlankField()
+            var help_musique_embed = new Discord.RichEmbed()
+                .addField(":musical_note: Message d'aide | Musique", separation)
+                .addField(prefix + "join", "Rejoindre ton salon vocal")
+                .addField(prefix + "play radio", "Jouer la Radio Modern dans ton salon vocal")
+                .addField(prefix + "stop", "Quitter ton salon vocal")    
                 .setColor("#04B404")
                 .setFooter(footer)
                 .setTimestamp()
-            msg.channel.send(help_embed)
+            var help_notif_embed = new Discord.RichEmbed()
+                .addField(":loudspeaker Message d'aide | Notifications", separation)
+                .addField(prefix + "notif", "`annonces-discord`, `annonces-radio`, `event`, `promotion`, `sondages`")
+                .setColor("#04B404")
+                .setFooter(footer)
+                .setTimestamp()  
+            var help_other_embed = new Discord.RichEmbed()
+                .addField(":gear: Message d'aide | Autre", separation)
+                .addField(prefix + "botinfo", "Afficher les informations en rapport avec le bot et la Radio")
+                .addField(prefix + "vcs {message}", "Envoyer un message VCS (__V__irtual __C__hat __S__erver) dans tout les serveurs où je suis. _(Seulement dans les salons #vcs-radiom)_")
+                .addField(prefix + "suggest {message}", "Envoyer une suggestion à faire part aux fondateurs/développeurs.")
+                .setColor("#04B404")
+                .setFooter(footer)
+                .setTimestamp()
+            var help_nom_incorrect_embed = new Discord.RichEmbed()
+                .addField(":grey_question: Message d'aide | Erreur", separation)
+                .addField("Liste des messages d'aide disponibles :", "`all`, `musique`, `notif`, `other`")
+            var help_sommaire_embed = new Discord.RichEmbed()
+                .addField(":grey_question: Message d'aide | Sommaire", separation)
+                .addField(":musical_note: `musique`", "-> Permet d'afficher toutes les commandes relatives à la radio.")
+                .addField(":loudspeaker: `notif`", "-> Permet d'afficher toutes les commandes relatives aux rôles notifications.")
+                .addField(":gear: `other`", "-> Permet d'afficher toutes les commandes diverses et variées.")
+                .setColor("#04B404")
+                .setFooter(footer)
+                .setTimestamp()
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(msg.author.displayAvatarURL)
                 .addField(msg.author.username + " - Logs : ", "``" + prefix + "help``")
@@ -506,8 +520,35 @@ var commands = {
                 .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
-            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-            console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+            if(suffix) {
+                if(suffix === "musique") {
+                    msg.channel.send(help_musique_embed)
+                    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+                    console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                } else if(suffix === "notif") {
+                    msg.channel.send(help_notif_embed)
+                    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+                    console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                } else if(suffix === "other") {
+                    msg.channel.send(help_other_embed)
+                    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+                    console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                } else if(suffix === "all") {
+                    msg.channel.send(help_musique_embed)
+                    msg.channel.send(help_notif_embed)
+                    msg.channel.send(help_other_embed)
+                    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+                    console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                } else {
+                    msg.channel.send(help_nom_incorrect_embed)
+                    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+                    console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                }
+            } else {
+                msg.channel.send(help_sommaire_embed)
+                bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+                console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+            }
         },
     },
 
