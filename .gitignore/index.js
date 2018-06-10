@@ -259,7 +259,7 @@ var commands = {
                     .setTimestamp();
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                 message.channel.send(notif_annonces_discord_remove_embed);
-            } else if(message.member.roles.has("433614532691230721")) {
+            } else  {//if(message.member.roles.has("433614532691230721")) {
                 member.addRole(notif_annonces_discord)
                 const notif_annonces_discord_add_embed = new Discord.RichEmbed()
                     .setColor("#04B404")
