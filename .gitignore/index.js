@@ -36,10 +36,7 @@ bot.on("ready", (ready) => {
 
 
     bot.user.setActivity(prefix + "help | Démarré et prêt !");
-    console.log(separation)
-    console.log(prefixLog + " Bot créé par Ilian ! <3")
-    console.log(prefixLog + " Bot prêt")
-    console.log(separation)
+    console.log(separation + "\n" + prefixLog + " Bot créé par Ilian ! <3\n" + prefixLog + " Bot prêt\n" + separation)
 
     setTimeout(state1, 5000);
     setTimeout(music, 1000)
@@ -258,13 +255,14 @@ var commands = {
                         message.delete()
                         var log_embed = new Discord.RichEmbed()
                             .setThumbnail(message.author.displayAvatarURL)
-                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif-annonces-discord remove``")
+                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif annonces-discord (remove)``")
                             .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                             .setFooter(footer)
                             .setColor("#04B404")
                             .setTimestamp();
                         bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                         message.channel.send(notif_annonces_discord_remove_embed);
+                        console.log("-> " + prefix + "notif annonces-discord (remove)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
                     } else {
                         member.addRole(notif_annonces_discord)
                         const notif_annonces_discord_add_embed = new Discord.RichEmbed()
@@ -275,13 +273,14 @@ var commands = {
                         message.delete()
                         var log_embed = new Discord.RichEmbed()
                             .setThumbnail(message.author.displayAvatarURL)
-                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif-annonces-discord add``")
+                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif annonces-discord (add)``")
                             .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                             .setFooter(footer)
                             .setColor("#04B404")
                             .setTimestamp();
                         bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                         message.channel.send(notif_annonces_discord_add_embed);
+                        console.log("-> " + prefix + "notif annonces-discord (add)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
                     } 
                 } else if(suffix === "annonces-radio") {
                     if(message.member.roles.has("433614611376242688")) {            
@@ -294,13 +293,14 @@ var commands = {
                         message.delete()
                         var log_embed = new Discord.RichEmbed()
                             .setThumbnail(message.author.displayAvatarURL)
-                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif-annonces-radio remove``")
+                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif annonces-radio (remove)``")
                             .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                             .setFooter(footer)
                             .setColor("#04B404")
                             .setTimestamp();
                         bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                         message.channel.send(notif_annonces_radio_remove_embed);
+                        console.log("-> " + prefix + "notif annonces-radio (remove)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
                     } else {
                         member.addRole(notif_annonces_radio)
                         const notif_annonces_radio_add_embed = new Discord.RichEmbed()
@@ -311,13 +311,14 @@ var commands = {
                         message.delete()
                         var log_embed = new Discord.RichEmbed()
                             .setThumbnail(message.author.displayAvatarURL)
-                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif-annonces-radio add``")
+                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif annonces-radio (add)``")
                             .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                             .setFooter(footer)
                             .setColor("#04B404")
                             .setTimestamp();
                         bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                         message.channel.send(notif_annonces_radio_add_embed);
+                        console.log("-> " + prefix + "notif annonces-radio (add)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
                     }
                 } else if(suffix === "event") {
                     if(message.member.roles.has("433614335512936448")) {            
@@ -330,13 +331,14 @@ var commands = {
                         message.delete()
                         var log_embed = new Discord.RichEmbed()
                             .setThumbnail(message.author.displayAvatarURL)
-                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif-event remove``")
+                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif event (remove)``")
                             .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                             .setFooter(footer)
                             .setColor("#04B404")
                             .setTimestamp();
                         bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                         message.channel.send(notif_event_remove_embed);
+                        console.log("-> " + prefix + "notif event (remove)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
                     } else {
                         member.addRole(notif_event)
                         const notif_event_add_embed = new Discord.RichEmbed()
@@ -347,13 +349,14 @@ var commands = {
                         message.delete()
                         var log_embed = new Discord.RichEmbed()
                             .setThumbnail(message.author.displayAvatarURL)
-                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif-event add``")
+                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif event (add)``")
                             .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                             .setFooter(footer)
                             .setColor("#04B404")
                             .setTimestamp();
                         bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                         message.channel.send(notif_event_add_embed);
+                        console.log("-> " + prefix + "notif event (add)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
                     }
                 } else if(suffix === "promotion") {
                     if(message.member.roles.has("433614466685599745")) {            
@@ -366,13 +369,14 @@ var commands = {
                         message.delete()
                         var log_embed = new Discord.RichEmbed()
                             .setThumbnail(message.author.displayAvatarURL)
-                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif-promotion remove``")
+                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif promotion (remove)``")
                             .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                             .setFooter(footer)
                             .setColor("#04B404")
                             .setTimestamp();
                         bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                         message.channel.send(notif_promotion_remove_embed);
+                        console.log("-> " + prefix + "notif promotion (remove)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
                     } else {
                         member.addRole(notif_promotion)
                         const notif_promotion_add_embed = new Discord.RichEmbed()
@@ -383,13 +387,14 @@ var commands = {
                         message.delete()
                         var log_embed = new Discord.RichEmbed()
                             .setThumbnail(message.author.displayAvatarURL)
-                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif-promotion add``")
+                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif promotion (add)``")
                             .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                             .setFooter(footer)
                             .setColor("#04B404")
                             .setTimestamp();
                         bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                         message.channel.send(notif_promotion_add_embed);
+                        console.log("-> " + prefix + "notif promtion (add)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
                     }
                 } else if(suffix === "sondages") {
                     if(message.member.roles.has("433614254537572353")) {            
@@ -402,13 +407,14 @@ var commands = {
                         message.delete()
                         var log_embed = new Discord.RichEmbed()
                             .setThumbnail(message.author.displayAvatarURL)
-                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif-sondages remove``")
+                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif sondages (remove)``")
                             .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                             .setFooter(footer)
                             .setColor("#04B404")
                             .setTimestamp();
                         bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                         message.channel.send(notif_sondages_remove_embed);
+                        console.log("-> " + prefix + "notif sondages (remove)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
                     } else {
                         member.addRole(notif_sondages)
                         const notif_sondages_add_embed = new Discord.RichEmbed()
@@ -419,13 +425,14 @@ var commands = {
                         message.delete()
                         var log_embed = new Discord.RichEmbed()
                             .setThumbnail(message.author.displayAvatarURL)
-                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif-sondages add``")
+                            .addField(message.author.username + " - Logs : ", "``" + prefix + "notif sondages (add)``")
                             .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                             .setFooter(footer)
                             .setColor("#04B404")
                             .setTimestamp();
                         bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                         message.channel.send(notif_sondages_add_embed);
+                        console.log("-> " + prefix + "notif sondages (add)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
                     }
                 } else {
                     const notif_role_incorrect_embed = new Discord.RichEmbed()
@@ -435,20 +442,20 @@ var commands = {
                         .setTimestamp()
                     message.delete()
                     message.channel.send(notif_role_incorrect_embed);
+                    console.log("-> " + prefix + "notif (error)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
                 }
             } else {
                 const notif_pas_de_role_embed = new Discord.RichEmbed()
-                        .setColor("#04B404")
-                        .addField(message.author.username + " : Notification", "Merci d'indiquer un rôle. Liste des rôles disponibles `annonces-discord`, `annonces-radio`, `event`, `promotion`, `sondages`")
-                        .setFooter(footer)
-                        .setTimestamp()
-                    message.delete()
-                    message.channel.send(notif_pas_de_role_embed);
+                    .setColor("#04B404")
+                    .addField(message.author.username + " : Notification", "Merci d'indiquer un rôle. Liste des rôles disponibles `annonces-discord`, `annonces-radio`, `event`, `promotion`, `sondages`")
+                    .setFooter(footer)
+                    .setTimestamp()
+                message.delete()
+                message.channel.send(notif_pas_de_role_embed);
+                console.log("-> " + prefix + "notif (error)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
             }
         }
     },
-    
-
 
     "stop": {
         process: function (msg, suffix) {
