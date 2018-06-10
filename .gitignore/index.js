@@ -749,7 +749,7 @@ bot.on("message", async function (message) {
                 console.log("-> " + prefix + "vcs\nAuteur : Partenaire " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  '" + msgvcs + "'\n" + separation);
             } else if (message.author.id === "306116635264024586") {
                 const animateur_embed = new Discord.RichEmbed()
-                    .setColor("#FF8000")
+                    .setColor("#0080FF")
                     .addField("Animateur Discord " + message.author.username + " : VCS", separation)
                     .addField(msgvcs, separation)
                     .setThumbnail(message.author.avatarURL)
