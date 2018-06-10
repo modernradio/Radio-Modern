@@ -507,9 +507,9 @@ var commands = {
                 .addField("Liste des messages d'aide disponibles :", "`all`, `musique`, `notif`, `other`")
             var help_sommaire_embed = new Discord.RichEmbed()
                 .addField(":grey_question: Message d'aide | Sommaire", separation)
-                .addField(":musical_note: `musique`", "-> Permet d'afficher toutes les commandes relatives à la radio.")
-                .addField(":loudspeaker: `notif`", "-> Permet d'afficher toutes les commandes relatives aux rôles notifications.")
-                .addField(":gear: `other`", "-> Permet d'afficher toutes les commandes diverses et variées.")
+                .addField(":musical_note:  `musique`", "-> Permet d'afficher toutes les commandes relatives à la radio.")
+                .addField(":loudspeaker:  `notif`", "-> Permet d'afficher toutes les commandes relatives aux rôles notifications.")
+                .addField(":gear:  `other`", "-> Permet d'afficher toutes les commandes diverses et variées.")
                 .setColor("#04B404")
                 .setFooter(footer)
                 .setTimestamp()
@@ -545,10 +545,10 @@ var commands = {
                     console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
                 }
             } else {
-                msg.channel.send(help_sommaire_embed);
+                msg.channel.send(help_sommaire_embed).then(m => m.react("432515330682781696"))
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                 console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
-				msg.react("432515330682781696")
+				//msg.react("432515330682781696")
             }
         },
     },
