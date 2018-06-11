@@ -77,14 +77,6 @@ function music() {
     }, 3000);
 }
 
-function state0() {
-    bot.user.setActivity(prefix + "help | ...", {
-        'type': 'STREAMING',
-        'url': twitch
-    })
-    setTimeout(state1, 1);
-}
-
 function state1() {
     request("http://api.radionomy.com/currentaudience.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
         if (error) return console.log(error);
@@ -108,14 +100,6 @@ function state1() {
 }
 
 function state2() {
-    bot.user.setActivity(prefix + "help | ...", {
-        'type': 'STREAMING',
-        'url': twitch
-    })
-    setTimeout(state3, 1);
-}
-
-function state3() {
     request("http://api.radionomy.com/currentsong.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
         if (error) return console.log(error);
 
@@ -132,43 +116,27 @@ function state3() {
                 'url': twitch
             }),
             bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
-            setTimeout(state4, 3000);
+            setTimeout(state3, 3000);
         }
     })
 }
 
-function state4() {
-    bot.user.setActivity(prefix + "help | ...", {
-        'type': 'STREAMING',
-        'url': twitch
-    })
-    setTimeout(state5, 1);
-}
-
-function state5() {
+function state3() {
     bot.user.setActivity(prefix + "help | " + website, {
         'type': 'STREAMING',
         'url': twitch
     }),
         bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
-    setTimeout(state6, 3000);
+    setTimeout(state4, 3000);
 }
 
-function state6() {
-    bot.user.setActivity(prefix + "help | ...", {
-        'type': 'STREAMING',
-        'url': twitch
-    })
-    setTimeout(state7, 1);
-}
-
-function state7() {
+function state4() {
     bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^", {
         'type': 'STREAMING',
         'url': twitch
     }),
         bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
-    setTimeout(state0, 3000);
+    setTimeout(state1, 3000);
 }
 
 bot.on("message", function (msg) {
