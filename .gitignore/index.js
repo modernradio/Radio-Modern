@@ -22,6 +22,14 @@ var footer = "Par Ilian ! ^^"
 var partenaire_color = "#088A08"
 var fondateur_color = "#FF0000"
 
+var emoji_gearID = "455409891889381417"
+var emoji_musicID = "455409892128325643"
+var emoji_loudpspeakerID = "455409891692249089"
+
+var emoji_gear = "<:emoji_gear:" + emoji_gearID + ">"
+var emoji_music = "<:emoji_music:" + emoji_musicID + ">"
+var emoji_loudpspeaker = "<:emoji_loudspeaker:" + emoji_loudspeakerID + ">"
+
 var separation = "><><><><><><><><><><><"
 
 
@@ -481,35 +489,38 @@ var commands = {
     "help": {
         process: function (msg, suffix) {
             var help_musique_embed = new Discord.RichEmbed()
-                .addField(":musical_note: Message d'aide | Musique", separation)
+                .addField(emoji_music + " Message d'aide | Musique", separation)
                 .addField(prefix + "join", "Rejoindre ton salon vocal")
                 .addField(prefix + "play radio", "Jouer la Radio Modern dans ton salon vocal")
                 .addField(prefix + "stop", "Quitter ton salon vocal")    
-                .setColor("#04B404")
+                .setColor("#00BFFF")
                 .setFooter(footer)
                 .setTimestamp()
             var help_notif_embed = new Discord.RichEmbed()
-                .addField(":loudspeaker Message d'aide | Notifications", separation)
+                .addField(emoji_loudpspeaker + " Message d'aide | Notifications", separation)
                 .addField(prefix + "notif", "`annonces-discord`, `annonces-radio`, `event`, `promotion`, `sondages`")
-                .setColor("#04B404")
+                .setColor("#DF0101")
                 .setFooter(footer)
                 .setTimestamp()  
             var help_other_embed = new Discord.RichEmbed()
-                .addField(":gear: Message d'aide | Autre", separation)
+                .addField(emoji_gear + " Message d'aide | Autre", separation)
                 .addField(prefix + "botinfo", "Afficher les informations en rapport avec le bot et la Radio")
                 .addField(prefix + "vcs {message}", "Envoyer un message VCS (__V__irtual __C__hat __S__erver) dans tout les serveurs où je suis. _(Seulement dans les salons #vcs-radiom)_")
                 .addField(prefix + "suggest {message}", "Envoyer une suggestion à faire part aux fondateurs/développeurs.")
-                .setColor("#04B404")
+                .setColor("#848484")
                 .setFooter(footer)
                 .setTimestamp()
             var help_nom_incorrect_embed = new Discord.RichEmbed()
                 .addField(":grey_question: Message d'aide | Erreur", separation)
                 .addField("Liste des messages d'aide disponibles :", "`all`, `musique`, `notif`, `other`")
+                .setColor("#04B404")
+                .setFooter(footer)
+                .setTimestamp()
             var help_sommaire_embed = new Discord.RichEmbed()
                 .addField(":grey_question: Message d'aide | Sommaire", separation)
-                .addField(":musical_note:  `musique`", "-> Permet d'afficher toutes les commandes relatives à la radio.")
-                .addField(":loudspeaker:  `notif`", "-> Permet d'afficher toutes les commandes relatives aux rôles notifications.")
-                .addField(":gear:  `other`", "-> Permet d'afficher toutes les commandes diverses et variées.")
+                .addField(emoji_music + " **__Musique :__**", "-> Permet d'afficher toutes les commandes relatives à la radio : `" + prefix + "help music`")
+                .addField(emoji_loudpspeaker + " **__Notifications :__**", "-> Permet d'afficher toutes les commandes relatives aux rôles notifications : `" + prefix + "help notif`")
+                .addField(emoji_gear + " **__Autres :__**", "-> Permet d'afficher toutes les commandes diverses et variées : `" + prefix + "help other`")
                 .setColor("#04B404")
                 .setFooter(footer)
                 .setTimestamp()
@@ -521,7 +532,7 @@ var commands = {
                 .setColor("#04B404")
                 .setTimestamp();
             if(suffix) {
-                if(suffix === "musique") {
+                if(suffix === "music") {
                     msg.channel.send(help_musique_embed)
                     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                     console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
@@ -545,11 +556,10 @@ var commands = {
                     console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
                 }
             } else {
-                //msg.channel.send(help_sommaire_embed).then(m1 => m1.react("455409892128325643")).then(m2 => m2.react("455409891692249089")).then(m3 => m3.react("455409891889381417"))
                 msg.channel.send(help_sommaire_embed).then(m => {
-                m.react("455409892128325643")
-                m.react("455409891692249089")
-                m.react("455409891889381417")
+                    m.react("455409892128325643")
+                    m.react("455409891692249089")
+                    m.react("455409891889381417")
                 })
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                 console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
