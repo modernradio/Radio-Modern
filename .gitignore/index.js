@@ -24,7 +24,7 @@ var fondateur_color = "#FF0000"
 
 var emoji_gearID = "455409891889381417"
 var emoji_musicID = "455409892128325643"
-var emoji_loudpspeakerID = "455409891692249089"
+var emoji_loudspeakerID = "455409891692249089"
 
 var emoji_gear = "<:emoji_gear:" + emoji_gearID + ">"
 var emoji_music = "<:emoji_music:" + emoji_musicID + ">"
