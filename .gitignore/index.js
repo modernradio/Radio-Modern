@@ -139,14 +139,14 @@ function state4() {
     setTimeout(state1, 3000);
 }
 
-bot.on("message", function (msg) {
-    if (msg.content.indexOf(prefix) === 0) {
-        var cmdTxt = msg.content.split(" ")[0].substring(prefix.length);
+bot.on("message", function (message) {
+    if (message.content.indexOf(prefix) === 0) {
+        var cmdTxt = message.content.split(" ")[0].substring(prefix.length);
         var cmd = commands[cmdTxt];
-        var member = msg.member;
-        var suffix = msg.content.substring(cmdTxt.length + prefix.length + 1);
+        var member = message.member;
+        var suffix = message.content.substring(cmdTxt.length + prefix.length + 1);
         if (cmd !== undefined) {
-            cmd.process(msg, suffix);
+            cmd.process(message, suffix);
         } else {
             cmdTxt = cmdTxt.replace("`", "");
             if (cmdTxt === "") {
@@ -158,55 +158,55 @@ bot.on("message", function (msg) {
 
 var commands = {
     "join": {
-        process: function (msg, suffix) {
-            const channel = msg.member.voiceChannel;
-            if (!channel) return msg.channel.send(":warning: | **Tu est pas dans un salon vocal.**");
-            if (!msg.member.voiceChannel.joinable) {
-                msg.channel.send(":warning: | **Je n'ai pas les permissions suffisantes pour diffuser la radio dans ce salon...**");
+        process: function (message, suffix) {
+            const channel = message.member.voiceChannel;
+            if (!channel) return message.channel.send(":warning: | **Tu est pas dans un salon vocal.**");
+            if (!message.member.voiceChannel.joinable) {
+                message.channel.send(":warning: | **Je n'ai pas les permissions suffisantes pour diffuser la radio dans ce salon...**");
                 return;
             }
-            msg.member.voiceChannel.join();
-            msg.channel.send(":loudspeaker: | **Je suis là !**");
+            message.member.voiceChannel.join();
+            message.channel.send(":loudspeaker: | **Je suis là !**");
             var log_embed = new Discord.RichEmbed()
-                .setThumbnail(msg.author.displayAvatarURL)
-                .addField(msg.author.username + " - Logs : ", "``" + prefix + "join``")
-                .addField(separation, "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                .setThumbnail(message.author.displayAvatarURL)
+                .addField(message.author.username + " - Logs : ", "``" + prefix + "join``")
+                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-            console.log("-> " + prefix + "join\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+            console.log("-> " + prefix + "join\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
         }
     },
 
     "play": {
-        process: function (msg, suffix) {
-            const channel = msg.member.voiceChannel;
-            if (!channel) return msg.channel.send(":warning: | **Tu n'est pas dans un salon vocal.**");
+        process: function (message, suffix) {
+            const channel = message.member.voiceChannel;
+            if (!channel) return message.channel.send(":warning: | **Tu n'est pas dans un salon vocal.**");
             if (suffix) {
                 if (suffix === "Radio" || suffix === "radio") {
-                    msg.channel.send(":musical_note: | **Radio Modern**");
+                    message.channel.send(":musical_note: | **Radio Modern**");
                     var radio = "RadioModern";
                     var log_embed = new Discord.RichEmbed()
-                        .setThumbnail(msg.author.displayAvatarURL)
-                        .addField(msg.author.username + " - Logs : ", "``" + prefix + "play radio``")
-                        .addField(separation, "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                        .setThumbnail(message.author.displayAvatarURL)
+                        .addField(message.author.username + " - Logs : ", "``" + prefix + "play radio``")
+                        .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                         .setFooter(footer)
                         .setColor("#04B404")
                         .setTimestamp();
                     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                    console.log("-> " + prefix + "play\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                    console.log("-> " + prefix + "play\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                 } else {
-                    msg.channel.send(":warning: | **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
+                    message.channel.send(":warning: | **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
                     return;
                 }
-                msg.member.voiceChannel.join().then(connection => {
+                message.member.voiceChannel.join().then(connection => {
                     require("http").get("http://streaming.radionomy.com/" + radio, (res) => {
                         connection.playStream(res);
                     })
                 })
             } else {
-                msg.channel.send(":warning: | **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
+                message.channel.send(":warning: | **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
             }
         },
     },
@@ -240,7 +240,7 @@ var commands = {
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_annonces_discord_remove_embed);
-                            console.log("-> " + prefix + "notif annonces-discord (remove)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                            console.log("-> " + prefix + "notif annonces-discord (remove)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                         } else {
                             member.addRole(notif_annonces_discord)
                             const notif_annonces_discord_add_embed = new Discord.RichEmbed()
@@ -258,7 +258,7 @@ var commands = {
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_annonces_discord_add_embed);
-                            console.log("-> " + prefix + "notif annonces-discord (add)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                            console.log("-> " + prefix + "notif annonces-discord (add)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                         } 
                     } else if(suffix === "annonces-radio") {
                         if(message.member.roles.has("433614611376242688")) {            
@@ -278,7 +278,7 @@ var commands = {
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_annonces_radio_remove_embed);
-                            console.log("-> " + prefix + "notif annonces-radio (remove)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                            console.log("-> " + prefix + "notif annonces-radio (remove)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                         } else {
                             member.addRole(notif_annonces_radio)
                             const notif_annonces_radio_add_embed = new Discord.RichEmbed()
@@ -296,7 +296,7 @@ var commands = {
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_annonces_radio_add_embed);
-                            console.log("-> " + prefix + "notif annonces-radio (add)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                            console.log("-> " + prefix + "notif annonces-radio (add)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                         }
                     } else if(suffix === "event") {
                         if(message.member.roles.has("433614335512936448")) {            
@@ -316,7 +316,7 @@ var commands = {
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_event_remove_embed);
-                            console.log("-> " + prefix + "notif event (remove)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                            console.log("-> " + prefix + "notif event (remove)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                         } else {
                             member.addRole(notif_event)
                             const notif_event_add_embed = new Discord.RichEmbed()
@@ -334,7 +334,7 @@ var commands = {
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_event_add_embed);
-                            console.log("-> " + prefix + "notif event (add)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                            console.log("-> " + prefix + "notif event (add)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                         }
                     } else if(suffix === "promotion") {
                         if(message.member.roles.has("433614466685599745")) {            
@@ -354,7 +354,7 @@ var commands = {
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_promotion_remove_embed);
-                            console.log("-> " + prefix + "notif promotion (remove)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                            console.log("-> " + prefix + "notif promotion (remove)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                         } else {
                             member.addRole(notif_promotion)
                             const notif_promotion_add_embed = new Discord.RichEmbed()
@@ -372,7 +372,7 @@ var commands = {
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_promotion_add_embed);
-                            console.log("-> " + prefix + "notif promtion (add)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                            console.log("-> " + prefix + "notif promtion (add)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                         }
                     } else if(suffix === "sondages") {
                         if(message.member.roles.has("433614254537572353")) {            
@@ -392,7 +392,7 @@ var commands = {
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_sondages_remove_embed);
-                            console.log("-> " + prefix + "notif sondages (remove)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                            console.log("-> " + prefix + "notif sondages (remove)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                         } else {
                             member.addRole(notif_sondages)
                             const notif_sondages_add_embed = new Discord.RichEmbed()
@@ -410,7 +410,7 @@ var commands = {
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_sondages_add_embed);
-                            console.log("-> " + prefix + "notif sondages (add)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                            console.log("-> " + prefix + "notif sondages (add)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                         }
                     } else {
                         const notif_role_incorrect_embed = new Discord.RichEmbed()
@@ -420,7 +420,7 @@ var commands = {
                             .setTimestamp()
                         message.delete()
                         message.channel.send(notif_role_incorrect_embed);
-                        console.log("-> " + prefix + "notif (error)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                        console.log("-> " + prefix + "notif (error)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                     }
                 } else {
                     const notif_pas_de_role_embed = new Discord.RichEmbed()
@@ -430,7 +430,7 @@ var commands = {
                         .setTimestamp()
                     message.delete()
                     message.channel.send(notif_pas_de_role_embed);
-                    console.log("-> " + prefix + "notif (error)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                    console.log("-> " + prefix + "notif (error)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                 }
             } else {
                 const notif_serveur_incorrect = new Discord.RichEmbed()
@@ -440,34 +440,34 @@ var commands = {
                     .setTimestamp()
                 message.delete()
                 message.channel.send(notif_serveur_incorrect);
-                console.log("-> " + prefix + "notif (error)\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                console.log("-> " + prefix + "notif (error)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             }
         }
     },
 
     "stop": {
-        process: function (msg) {
-            const voiceChannel = msg.member.voiceChannel;
+        process: function (message) {
+            const voiceChannel = message.member.voiceChannel;
             if (voiceChannel) {
-                msg.channel.send(":loudspeaker: | **Je suis plus là !**");
-                msg.member.voiceChannel.leave();
+                message.channel.send(":loudspeaker: | **Je suis plus là !**");
+                message.member.voiceChannel.leave();
             } else {
-                msg.channel.send(":warning: | **Je ne suis pas dans un salon vocal.**");
+                message.channel.send(":warning: | **Je ne suis pas dans un salon vocal.**");
                 var log_embed = new Discord.RichEmbed()
-                    .setThumbnail(msg.author.displayAvatarURL)
-                    .addField(msg.author.username + " - Logs : ", "``" + prefix + "stop``")
-                    .addField(separation, "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                    .setThumbnail(message.author.displayAvatarURL)
+                    .addField(message.author.username + " - Logs : ", "``" + prefix + "stop``")
+                    .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                     .setFooter(footer)
                     .setColor("#04B404")
                     .setTimestamp();
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                console.log("-> " + prefix + "stop\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                console.log("-> " + prefix + "stop\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             }
         }
     },
 
     "help": {
-        process: function (msg, suffix) {
+        process: function (message, suffix) {
             var help_musique_embed = new Discord.RichEmbed()
                 .addField(emoji_music + " Message d'aide | Musique", separation)
                 .addField(prefix + "join", "Rejoindre ton salon vocal")
@@ -505,50 +505,50 @@ var commands = {
                 .setFooter(footer)
                 .setTimestamp()
             var log_embed = new Discord.RichEmbed()
-                .setThumbnail(msg.author.displayAvatarURL)
-                .addField(msg.author.username + " - Logs : ", "``" + prefix + "help``")
-                .addField(separation, "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                .setThumbnail(message.author.displayAvatarURL)
+                .addField(message.author.username + " - Logs : ", "``" + prefix + "help``")
+                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
             if(suffix) {
                 if(suffix === "music") {
-                    msg.channel.send(help_musique_embed)
+                    message.channel.send(help_musique_embed)
                     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                    console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                    console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                 } else if(suffix === "notif") {
-                    msg.channel.send(help_notif_embed)
+                    message.channel.send(help_notif_embed)
                     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                    console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                    console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                 } else if(suffix === "other") {
-                    msg.channel.send(help_other_embed)
+                    message.channel.send(help_other_embed)
                     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                    console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                    console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                 } else if(suffix === "all") {
-                    msg.channel.send(help_musique_embed)
-                    msg.channel.send(help_notif_embed)
-                    msg.channel.send(help_other_embed)
+                    message.channel.send(help_musique_embed)
+                    message.channel.send(help_notif_embed)
+                    message.channel.send(help_other_embed)
                     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                    console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                    console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                 } else {
-                    msg.channel.send(help_nom_incorrect_embed)
+                    message.channel.send(help_nom_incorrect_embed)
                     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                    console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                    console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                 }
             } else {
-                msg.channel.send(help_sommaire_embed).then(m => {
+                message.channel.send(help_sommaire_embed).then(m => {
                     m.react("455409892128325643")
                     m.react("455409891692249089")
                     m.react("455409891889381417")
                 })
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                console.log("-> " + prefix + "help\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+                console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             }
         },
     },
 
     "botinfo": {
-        process: function (msg, suffix) {
+        process: function (message) {
             var ping_embed = new Discord.RichEmbed()
                 .addField(":clock2: Calcul en cours...", "Merci de patienter quelques instants !")
             let startTime = Date.now();
@@ -571,43 +571,43 @@ var commands = {
                 .setTimestamp()
                 .setFooter(footer)
             var log_embed = new Discord.RichEmbed()
-                .setThumbnail(msg.author.displayAvatarURL)
-                .addField(msg.author.username + " - Logs : ", "``" + prefix + "botinfo``")
-                .addField(separation, "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                .setThumbnail(message.author.displayAvatarURL)
+                .addField(message.author.username + " - Logs : ", "``" + prefix + "botinfo``")
+                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-            msg.channel.send(info_embed);
-            msg.channel.send(ping_embed).then(msg => msg.edit(pong_embed));
-            msg.channel.send(reseaux_embed);
-            console.log("-> " + prefix + "botinfo\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+            message.channel.send(info_embed);
+            message.channel.send(ping_embed).then(m => m.edit(pong_embed));
+            message.channel.send(reseaux_embed);
+            console.log("-> " + prefix + "botinfo\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
         }
     },
     "purge": {
-        process: function (msg, suffix) {
+        process: function (message) {
             var messages_to_delete = 100
-            if (msg.member.hasPermission("MANAGE_MESSAGES")) {
-                msg.channel.bulkDelete(messages_to_delete)
+            if (message.member.hasPermission("MANAGE_MESSAGES")) {
+                message.channel.bulkDelete(messages_to_delete)
                 var has_permission = new Discord.RichEmbed()
                     .setColor("#04B404")
                     .addField(messages_to_delete + ' messages ont correctement été supprimés', separation)
                     .setFooter(footer)
                     .setTimestamp();
-                msg.channel.send(has_permission);
+                message.channel.send(has_permission);
             } else {
                 var miss_permission = new Discord.RichEmbed()
                     .setColor("#04B404")
                     .addField('Il te manque la permission "MANAGE_MESSAGES" pour pouvoir effectuer cette action.', separation)
                     .setFooter(footer)
                     .setTimestamp();
-                msg.channel.send(miss_permission);
+                message.channel.send(miss_permission);
             }
 
             var log_embed = new Discord.RichEmbed()
-                .setThumbnail(msg.author.displayAvatarURL)
-                .addField(msg.author.username + " - Logs : ", "``" + prefix + "purge``")
-                .addField(separation, "Provenance du message : ``" + msg.guild.name + "``\nDans le salon ``#" + msg.channel.name + "``", true)
+                .setThumbnail(message.author.displayAvatarURL)
+                .addField(message.author.username + " - Logs : ", "``" + prefix + "purge``")
+                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
                 .setColor("#04B404")
                 .setTimestamp();
@@ -668,7 +668,7 @@ bot.on("message", async function (message) {
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             message.client.users.get("323039726040776705").send(send_embed)
-            console.log("-> " + prefix + "suggest\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+            console.log("-> " + prefix + "suggest\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             break;
 
         case "suggest":
@@ -697,7 +697,7 @@ bot.on("message", async function (message) {
                 .setColor("#04B404")
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-            console.log("-> " + prefix + "suggest\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+            console.log("-> " + prefix + "suggest\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             break;
 
         case "vcs":
@@ -837,7 +837,7 @@ bot.on("message", async function (message) {
                 .setColor("#04B404")
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-            console.log("-> " + prefix + "listserv\nAuteur : " + msg.author.username + "\nLocalisation : " + msg.guild.name + ", #" + msg.channel.name + "\n" + separation);
+            console.log("-> " + prefix + "listserv\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             break;
     }
 });
