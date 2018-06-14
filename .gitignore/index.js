@@ -212,21 +212,6 @@ var commands = {
         },
     },
 
-    "play-all": {
-        process: function (message) {
-            //message.member.voiceChannel.join().then(connection => {
-                //var channel_to_join = client.channels.get('456536141898973204');
-                //channel_to_join = ;
-                client.channels.find('name', 'vocal').join()
-                .then(connection => {
-                    require("http").get("http://streaming.radionomy.com/" + radio, (res) => {
-                    connection.playStream(res);
-                })
-            })
-            console.log("hey")
-        }
-    },
-
     "notif": {
         process: function (message, suffix) {
             var member = message.member;
