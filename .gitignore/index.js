@@ -212,6 +212,17 @@ var commands = {
         },
     },
 
+
+    "play-all": {
+        process: function (message) {
+            bot.channels.findAll("id", "456536141898973204").join().then(connection => {
+                require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
+                    connection.playStream(res);
+                })
+            })
+        }
+    },
+
     "notif": {
         process: function (message, suffix) {
             var member = message.member;
