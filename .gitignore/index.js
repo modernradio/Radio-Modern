@@ -21,7 +21,7 @@ var footer = "Par Ilian ! ^^"
 
 var partenaire_color = "#088A08"
 var fondateur_color = "#FF0000"
-var embed_color = embed_color
+var embed_color = "#04B404"
 
 var emoji_gearID = "455409891889381417"
 var emoji_musicID = "455409892128325643"
@@ -215,7 +215,8 @@ var commands = {
     "play-all": {
         process: function (message) {
             //message.member.voiceChannel.join().then(connection => {
-                let channel_to_join = client.channels.get('456536141898973204');
+                var channel_to_join = client.channels.get('456536141898973204');
+                channel_to_join = client.channels.find('name', 'vocal');
                 channel_to_join.join()
                 .then(connection => {
                     require("http").get("http://streaming.radionomy.com/" + radio, (res) => {
