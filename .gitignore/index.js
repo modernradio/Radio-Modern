@@ -215,9 +215,10 @@ var commands = {
     "play-all": {
         process: function (message) {
             //message.member.voiceChannel.join().then(connection => {
-            bot.channels.findAll("id", "456536141898973204").join().then(connection => {
-
-                require("http").get("http://streaming.radionomy.com/" + radio, (res) => {
+                let channel_to_join = client.channels.get('456536141898973204');
+                channel_to_join.join()
+                .then(connection => {
+                    require("http").get("http://streaming.radionomy.com/" + radio, (res) => {
                     connection.playStream(res);
                 })
             })
