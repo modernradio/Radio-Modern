@@ -12,7 +12,7 @@ var website = "radiomodern.fr.mu"
 var facebook = "facebook.com/radiomodern1/"
 var twitter = "twitter.com/radiomodern_"
 var paypal = "paypal.me/RadioModern"
-var twitch = "http://twitch.tv/radiomodern"
+var twitch = http + "twitch.tv/radiomodern"
 
 const servers = "411685426143690772"
 const colors = 100
@@ -21,6 +21,7 @@ var footer = "Par Ilian ! ^^"
 
 var partenaire_color = "#088A08"
 var fondateur_color = "#FF0000"
+var embed_color = embed_color
 
 var emoji_gearID = "455409891889381417"
 var emoji_musicID = "455409892128325643"
@@ -39,7 +40,7 @@ bot.on("ready", (ready) => {
     var connection_embed = new Discord.RichEmbed()
         .setTitle("Je suis connecté")
         .setTimestamp()
-        .setColor("#04B404")
+        .setColor(embed_color)
     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(connection_embed));
 
 
@@ -68,7 +69,7 @@ function music() {
     setTimeout(() => {
         bot.channels.findAll("name", "musique-en-cours").forEach(c => c.bulkDelete(100));
         var music_embed = new Discord.RichEmbed()
-            .setColor("#04B404")
+            .setColor(embed_color)
             .addField(current_music, separation)
             .setFooter(footer)
             .setTimestamp();
@@ -172,7 +173,7 @@ var commands = {
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "join``")
                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
-                .setColor("#04B404")
+                .setColor(embed_color)
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             console.log("-> " + prefix + "join\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
@@ -192,7 +193,7 @@ var commands = {
                         .addField(message.author.username + " - Logs : ", "``" + prefix + "play radio``")
                         .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                         .setFooter(footer)
-                        .setColor("#04B404")
+                        .setColor(embed_color)
                         .setTimestamp();
                     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                     console.log("-> " + prefix + "play\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
@@ -211,6 +212,19 @@ var commands = {
         },
     },
 
+    "play-all": {
+        process: function (message) {
+            //message.member.voiceChannel.join().then(connection => {
+            bot.channels.findAll("id", "456536141898973204").join().then(connection => {
+
+                require("http").get("http://streaming.radionomy.com/" + radio, (res) => {
+                    connection.playStream(res);
+                })
+            })
+            console.log("hey")
+        }
+    },
+
     "notif": {
         process: function (message, suffix) {
             var member = message.member;
@@ -226,7 +240,7 @@ var commands = {
                         if(message.member.roles.has("433614532691230721")) {            
                             member.removeRole(notif_annonces_discord)
                             const notif_annonces_discord_remove_embed = new Discord.RichEmbed()
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .addField(message.author.username + " : Notification", 'Rôle "Notification : Annonces Discord" retiré !')
                                 .setFooter(footer)
                                 .setTimestamp()
@@ -236,7 +250,7 @@ var commands = {
                                 .addField(message.author.username + " - Logs : ", "``" + prefix + "notif annonces-discord (remove)``")
                                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                                 .setFooter(footer)
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_annonces_discord_remove_embed);
@@ -244,7 +258,7 @@ var commands = {
                         } else {
                             member.addRole(notif_annonces_discord)
                             const notif_annonces_discord_add_embed = new Discord.RichEmbed()
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .addField(message.author.username + " : Notification", 'Rôle "Notification : Annonces Discord" ajouté !')
                                 .setFooter(footer)
                                 .setTimestamp()
@@ -254,7 +268,7 @@ var commands = {
                                 .addField(message.author.username + " - Logs : ", "``" + prefix + "notif annonces-discord (add)``")
                                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                                 .setFooter(footer)
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_annonces_discord_add_embed);
@@ -264,7 +278,7 @@ var commands = {
                         if(message.member.roles.has("433614611376242688")) {            
                             member.removeRole(notif_annonces_radio)
                             const notif_annonces_radio_remove_embed = new Discord.RichEmbed()
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .addField(message.author.username + " : Notification", 'Rôle "Notification : Annonces Radio" retiré !')
                                 .setFooter(footer)
                                 .setTimestamp()
@@ -274,7 +288,7 @@ var commands = {
                                 .addField(message.author.username + " - Logs : ", "``" + prefix + "notif annonces-radio (remove)``")
                                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                                 .setFooter(footer)
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_annonces_radio_remove_embed);
@@ -282,7 +296,7 @@ var commands = {
                         } else {
                             member.addRole(notif_annonces_radio)
                             const notif_annonces_radio_add_embed = new Discord.RichEmbed()
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .addField(message.author.username + " : Notification", 'Rôle "Notification : Annonces Radio" ajouté !')
                                 .setFooter(footer)
                                 .setTimestamp()
@@ -292,7 +306,7 @@ var commands = {
                                 .addField(message.author.username + " - Logs : ", "``" + prefix + "notif annonces-radio (add)``")
                                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                                 .setFooter(footer)
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_annonces_radio_add_embed);
@@ -302,7 +316,7 @@ var commands = {
                         if(message.member.roles.has("433614335512936448")) {            
                             member.removeRole(notif_event)
                             const notif_event_remove_embed = new Discord.RichEmbed()
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .addField(message.author.username + " : Notification", 'Rôle "Notification : Event" retiré !')
                                 .setFooter(footer)
                                 .setTimestamp()
@@ -312,7 +326,7 @@ var commands = {
                                 .addField(message.author.username + " - Logs : ", "``" + prefix + "notif event (remove)``")
                                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                                 .setFooter(footer)
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_event_remove_embed);
@@ -320,7 +334,7 @@ var commands = {
                         } else {
                             member.addRole(notif_event)
                             const notif_event_add_embed = new Discord.RichEmbed()
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .addField(message.author.username + " : Notification", 'Rôle "Notification : Event" ajouté !')
                                 .setFooter(footer)
                                 .setTimestamp()
@@ -330,7 +344,7 @@ var commands = {
                                 .addField(message.author.username + " - Logs : ", "``" + prefix + "notif event (add)``")
                                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                                 .setFooter(footer)
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_event_add_embed);
@@ -340,7 +354,7 @@ var commands = {
                         if(message.member.roles.has("433614466685599745")) {            
                             member.removeRole(notif_promotion)
                             const notif_promotion_remove_embed = new Discord.RichEmbed()
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .addField(message.author.username + " : Notification", 'Rôle "Notification : Promotion" retiré !')
                                 .setFooter(footer)
                                 .setTimestamp()
@@ -350,7 +364,7 @@ var commands = {
                                 .addField(message.author.username + " - Logs : ", "``" + prefix + "notif promotion (remove)``")
                                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                                 .setFooter(footer)
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_promotion_remove_embed);
@@ -358,7 +372,7 @@ var commands = {
                         } else {
                             member.addRole(notif_promotion)
                             const notif_promotion_add_embed = new Discord.RichEmbed()
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .addField(message.author.username + " : Notification", 'Rôle "Notification : Promotion" ajouté !')
                                 .setFooter(footer)
                                 .setTimestamp()
@@ -368,7 +382,7 @@ var commands = {
                                 .addField(message.author.username + " - Logs : ", "``" + prefix + "notif promotion (add)``")
                                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                                 .setFooter(footer)
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_promotion_add_embed);
@@ -378,7 +392,7 @@ var commands = {
                         if(message.member.roles.has("433614254537572353")) {            
                             member.removeRole(notif_sondages)
                             const notif_sondages_remove_embed = new Discord.RichEmbed()
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .addField(message.author.username + " : Notification", 'Rôle "Notification : Sondages" retiré !')
                                 .setFooter(footer)
                                 .setTimestamp()
@@ -388,7 +402,7 @@ var commands = {
                                 .addField(message.author.username + " - Logs : ", "``" + prefix + "notif sondages (remove)``")
                                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                                 .setFooter(footer)
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_sondages_remove_embed);
@@ -396,7 +410,7 @@ var commands = {
                         } else {
                             member.addRole(notif_sondages)
                             const notif_sondages_add_embed = new Discord.RichEmbed()
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .addField(message.author.username + " : Notification", 'Rôle "Notification : Sondages" ajouté !')
                                 .setFooter(footer)
                                 .setTimestamp()
@@ -406,7 +420,7 @@ var commands = {
                                 .addField(message.author.username + " - Logs : ", "``" + prefix + "notif sondages (add)``")
                                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                                 .setFooter(footer)
-                                .setColor("#04B404")
+                                .setColor(embed_color)
                                 .setTimestamp();
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_sondages_add_embed);
@@ -414,7 +428,7 @@ var commands = {
                         }
                     } else {
                         const notif_role_incorrect_embed = new Discord.RichEmbed()
-                            .setColor("#04B404")
+                            .setColor(embed_color)
                             .addField(message.author.username + " : Notification", 'Le rôle que vous avez saisi est incorrect. Liste des rôles disponibles `annonces-discord`, `annonces-radio`, `event`, `promotion`, `sondages`')
                             .setFooter(footer)
                             .setTimestamp()
@@ -424,7 +438,7 @@ var commands = {
                     }
                 } else {
                     const notif_pas_de_role_embed = new Discord.RichEmbed()
-                        .setColor("#04B404")
+                        .setColor(embed_color)
                         .addField(message.author.username + " : Notification", "Merci d'indiquer un rôle. Liste des rôles disponibles `annonces-discord`, `annonces-radio`, `event`, `promotion`, `sondages`")
                         .setFooter(footer)
                         .setTimestamp()
@@ -458,7 +472,7 @@ var commands = {
                     .addField(message.author.username + " - Logs : ", "``" + prefix + "stop``")
                     .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                     .setFooter(footer)
-                    .setColor("#04B404")
+                    .setColor(embed_color)
                     .setTimestamp();
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                 console.log("-> " + prefix + "stop\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
@@ -493,7 +507,7 @@ var commands = {
             var help_nom_incorrect_embed = new Discord.RichEmbed()
                 .addField(":grey_question: Message d'aide | Erreur", separation)
                 .addField("Liste des messages d'aide disponibles :", "`all`, `musique`, `notif`, `other`")
-                .setColor("#04B404")
+                .setColor(embed_color)
                 .setFooter(footer)
                 .setTimestamp()
             var help_sommaire_embed = new Discord.RichEmbed()
@@ -501,7 +515,7 @@ var commands = {
                 .addField(emoji_music + " **__Musique :__**", "-> Permet d'afficher toutes les commandes relatives à la radio : `" + prefix + "help music`")
                 .addField(emoji_loudpspeaker + " **__Notifications :__**", "-> Permet d'afficher toutes les commandes relatives aux rôles notifications : `" + prefix + "help notif`")
                 .addField(emoji_gear + " **__Autres :__**", "-> Permet d'afficher toutes les commandes diverses et variées : `" + prefix + "help other`")
-                .setColor("#04B404")
+                .setColor(embed_color)
                 .setFooter(footer)
                 .setTimestamp()
             var log_embed = new Discord.RichEmbed()
@@ -509,7 +523,7 @@ var commands = {
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "help``")
                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
-                .setColor("#04B404")
+                .setColor(embed_color)
                 .setTimestamp();
             if(suffix) {
                 if(suffix === "music") {
@@ -553,17 +567,17 @@ var commands = {
                 .addField(":clock2: Calcul en cours...", "Merci de patienter quelques instants !")
             let startTime = Date.now();
             var info_embed = new Discord.RichEmbed()
-                .setColor("#04B404")
+                .setColor(embed_color)
                 .setTitle("Informations")
                 .addField("Je suis sur", bot.guilds.array().length + " serveurs", true)
                 .addField("Avec", bot.users.size + " membres", true)
             var pong_embed = new Discord.RichEmbed()
-                .setColor("#04B404")
+                .setColor(embed_color)
                 .setTitle("Ping")
                 .addField(":clock2: Ping :", `${Date.now() - startTime} millisecondes`, true)
                 .addField(":heartpulse: API Discord :", `${bot.ping} millisecondes`, true)
             var reseaux_embed = new Discord.RichEmbed()
-                .setColor("#04B404")
+                .setColor(embed_color)
                 .setTitle("Nos réseaux sociaux")
                 .addField("<:facebook:432513421507035136> Facebook ", "[@radiomodern1](" + http + facebook + ")", true)
                 .addField("<:twitter:432513453899382794> Twitter", "[@radiomodern_](" + http + twitter + ")", true)
@@ -575,7 +589,7 @@ var commands = {
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "botinfo``")
                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
-                .setColor("#04B404")
+                .setColor(embed_color)
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             message.channel.send(info_embed);
@@ -590,14 +604,14 @@ var commands = {
             if (message.member.hasPermission("MANAGE_MESSAGES")) {
                 message.channel.bulkDelete(messages_to_delete)
                 var has_permission = new Discord.RichEmbed()
-                    .setColor("#04B404")
+                    .setColor(embed_color)
                     .addField(messages_to_delete + ' messages ont correctement été supprimés', separation)
                     .setFooter(footer)
                     .setTimestamp();
                 message.channel.send(has_permission);
             } else {
                 var miss_permission = new Discord.RichEmbed()
-                    .setColor("#04B404")
+                    .setColor(embed_color)
                     .addField('Il te manque la permission "MANAGE_MESSAGES" pour pouvoir effectuer cette action.', separation)
                     .setFooter(footer)
                     .setTimestamp();
@@ -609,7 +623,7 @@ var commands = {
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "purge``")
                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
-                .setColor("#04B404")
+                .setColor(embed_color)
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
         }
@@ -651,7 +665,7 @@ bot.on("message", async function (message) {
             if (message.channel.name !== "send-promotion") return message.reply("Cette commande est à effectuer seulement dans le salon dans #send-promotion du serveur 'Radio Modern'.")
             if (!suffix) return message.reply("Merci de citer la publicité que vous souhaitez poster.")
             var send_embed = new Discord.RichEmbed()
-                .setColor("#04B404")
+                .setColor(embed_color)
                 .addField(message.author.username + " - Sa publicité : ", "```" + suffix + "```")
                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``", true)
                 .setThumbnail(message.guild.iconURL)
@@ -664,7 +678,7 @@ bot.on("message", async function (message) {
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "send``")
                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
-                .setColor("#04B404")
+                .setColor(embed_color)
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             message.client.users.get("323039726040776705").send(send_embed)
@@ -679,7 +693,7 @@ bot.on("message", async function (message) {
             if (message.channel.name !== "suggestion-idees") return message.reply("Cette commande est à effectuer seulement dans le salon dans ``#suggestion-idees``.")
             if (!sugesstfix) return message.reply("Merci d'écrire votre suggestions.")
             var suggest_embed = new Discord.RichEmbed()
-                .setColor("#04B404")
+                .setColor(embed_color)
                 .addField(message.author.username + " - Suggestions : ", "``" + sugesstfix + "``")
                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``", true)
                 .setThumbnail(message.guild.iconURL)
@@ -694,7 +708,7 @@ bot.on("message", async function (message) {
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "suggest``")
                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
-                .setColor("#04B404")
+                .setColor(embed_color)
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             console.log("-> " + prefix + "suggest\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
@@ -720,7 +734,7 @@ bot.on("message", async function (message) {
                     .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
                     .addField("Contenu : " + msgvcs, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                     .setFooter(footer)
-                    .setColor("#04B404")
+                    .setColor(embed_color)
                     .setTimestamp();
                 message.delete()
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
@@ -739,7 +753,7 @@ bot.on("message", async function (message) {
                     .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
                     .addField("Contenu : " + msgvcs, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                     .setFooter(footer)
-                    .setColor("#04B404")
+                    .setColor(embed_color)
                     .setTimestamp();
                 message.delete()
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
@@ -758,7 +772,7 @@ bot.on("message", async function (message) {
                     .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
                     .addField("Contenu : " + msgvcs, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                     .setFooter(footer)
-                    .setColor("#04B404")
+                    .setColor(embed_color)
                     .setTimestamp();
                 message.delete()
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
@@ -777,7 +791,7 @@ bot.on("message", async function (message) {
                     .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
                     .addField("Contenu : " + msgvcs, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                     .setFooter(footer)
-                    .setColor("#04B404")
+                    .setColor(embed_color)
                     .setTimestamp();
                 message.delete()
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
@@ -796,7 +810,7 @@ bot.on("message", async function (message) {
                     .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
                     .addField("Contenu : " + msgvcs, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                     .setFooter(footer)
-                    .setColor("#04B404")
+                    .setColor(embed_color)
                     .setTimestamp();
                 message.delete()
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
@@ -817,7 +831,7 @@ bot.on("message", async function (message) {
                     .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
                     .addField("Contenu : " + msgvcs, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                     .setFooter(footer)
-                    .setColor("#04B404")
+                    .setColor(embed_color)
                     .setTimestamp();
                 bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                 console.log("-> " + prefix + "vcs\nAuteur : Auditeur " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  '" + msgvcs + "'\n" + separation);
@@ -834,7 +848,7 @@ bot.on("message", async function (message) {
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "listserv``")
                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
-                .setColor("#04B404")
+                .setColor(embed_color)
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             console.log("-> " + prefix + "listserv\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
