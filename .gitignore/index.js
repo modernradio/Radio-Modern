@@ -112,12 +112,10 @@ function auto_join () {
         channel_nota.leave();
         channel_draco.leave();
         channel_ilian.leave();
-        console.log('-> autojoin\n    + Salon [all]' + '\n' + separation)
+        console.log('-> autojoin\n    - Salon [all]' + '\n' + separation)
         setTimeout(auto_join, 1)
-    }, 1 * 60 * 1000);
+    }, 30 * 60 * 1000);
 }
-
-
 
 function music() {
 
