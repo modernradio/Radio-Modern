@@ -65,43 +65,43 @@ function auto_join () {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-        console.log("-> autojoin\n + Salon " + channel_test.name + "\n" + separation)
+        console.log('-> autojoin\n    + Salon "' + channel_test.name + '" (' + channel_test.guild.name + ')\n' + separation)
     })*/
     channel_radiom.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-        console.log("-> autojoin\n + Salon " + channel_radiom.name + "\n" + separation)
+        console.log('-> autojoin\n    + Salon "' + channel_radiom.name + '" (' + channel_radiom.guild.name + ')\n' + separation)
     })
     /*channel_allah.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-        console.log("-> autojoin\n + Salon " + channel_allah.name + "\n" + separation)
+        console.log('-> autojoin\n    + Salon "' + channel_allah.name + '" (' + channel_allah.guild.name + ')\n' + separation)
     })*/
     channel_slender.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-        console.log("-> autojoin\n + Salon " + channel_slender.name + "\n" + separation)
+        console.log('-> autojoin\n    + Salon "' + channel_slender.name + '" (' + channel_slender.guild.name + ')\n' + separation)
     })
     channel_nota.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-        console.log("-> autojoin\n + Salon " + channel_nota.name + "\n" + separation)
+        console.log('-> autojoin\n    + Salon "' + channel_nota.name + '" (' + channel_nota.guild.name + ')\n' + separation)
     })
     channel_draco.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-        console.log("-> autojoin\n + Salon " + channel_draco.name + "\n" + separation)
+        console.log('-> autojoin\n    + Salon "' + channel_draco.name + '" (' + channel_draco.guild.name + ')\n' + separation)
     })
     /*channel_ilian.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-        console.log("-> autojoin\n + Salon " + channel_ilian.name + "\n" + separation)
+        console.log('-> autojoin\n    + Salon "' + channel_ilian.name + '" (' + channel_ilian.guild.name + ')\n' + separation)
     })*/
 
     setTimeout(() => {
@@ -112,7 +112,7 @@ function auto_join () {
         channel_nota.leave();
         channel_draco.leave();
         channel_ilian.leave();
-        console.log("-> autojoin\n - Salon [all]\n" + separation);
+        console.log('-> autojoin\n    + Salon [all]' + '\n' + separation)
         setTimeout(auto_join, 1)
     }, 30 * 60 * 1000);
 }
