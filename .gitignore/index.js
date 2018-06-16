@@ -97,6 +97,8 @@ function join_channels () {
         })
     })*/
 
+    console.log("Salons rejoins")
+
     setTimeout(() => {
         channel_test.leave();
         channel_radiom.leave();
@@ -105,8 +107,9 @@ function join_channels () {
         channel_nota.leave();
         channel_draco.leave();
         channel_ilian.leave();
+        console.log("Salons quittés")
         setTimeout(join_channels, 1)
-    }, 60 * 1000);
+    }, 5 * 1000);
 }
 
 
