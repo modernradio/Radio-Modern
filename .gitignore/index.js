@@ -54,7 +54,7 @@ bot.on("ready", () => {
 function auto_join () {
 
     var channel_test = bot.channels.find("id", "456536141898973204");
-    var  channel_radiom = bot.channels.find("id", "432593928416657409");
+    var channel_radiom = bot.channels.find("id", "432593928416657409");
     var channel_allah = bot.channels.find("id", "447711275481563137");
     var channel_slender = bot.channels.find("id", "434430059621777438");
     var channel_nota = bot.channels.find("id", "433305195925995520");
@@ -65,36 +65,43 @@ function auto_join () {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
+        console.log("-> autojoin\n + Salon " + channel_test.name + "\n" + separation)
     })*/
     channel_radiom.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
+        console.log("-> autojoin\n + Salon " + channel_radiom.name + "\n" + separation)
     })
     /*channel_allah.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
+        console.log("-> autojoin\n + Salon " + channel_allah.name + "\n" + separation)
     })*/
     channel_slender.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
+        console.log("-> autojoin\n + Salon " + channel_slender.name + "\n" + separation)
     })
     channel_nota.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
+        console.log("-> autojoin\n + Salon " + channel_nota.name + "\n" + separation)
     })
     channel_draco.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
+        console.log("-> autojoin\n + Salon " + channel_draco.name + "\n" + separation)
     })
     /*channel_ilian.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
+        console.log("-> autojoin\n + Salon " + channel_ilian.name + "\n" + separation)
     })*/
 
     setTimeout(() => {
@@ -105,7 +112,7 @@ function auto_join () {
         channel_nota.leave();
         channel_draco.leave();
         channel_ilian.leave();
-        console.log("Salons quittés")
+        console.log("-> autojoin\n - Salon [all]\n" + separation);
         setTimeout(auto_join, 1)
     }, 30 * 60 * 1000);
 }
