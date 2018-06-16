@@ -61,7 +61,7 @@ function join_channels () {
     var channel_draco = bot.channels.find("id", "447857184571916322");
     var channel_ilian = bot.channels.find("id", "449866282691592202");
 
-    channel_test.join().then(connection => {
+    /*channel_test.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
@@ -69,7 +69,7 @@ function join_channels () {
             channel_test.leave()
             setTimeout(join_channels, 1)
         }, 10 * 60 * 1000);
-    })
+    })*/
     channel_radiom.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
@@ -79,7 +79,7 @@ function join_channels () {
             setTimeout(join_channels, 1)
         }, 10 * 60 * 1000);
     })
-    channel_allah.join().then(connection => {
+    /*channel_allah.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
@@ -87,7 +87,7 @@ function join_channels () {
             channel_allah.leave()
             setTimeout(join_channels, 1)
         }, 10 * 60 * 1000);
-    })
+    })*/
     channel_slender.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
@@ -115,7 +115,7 @@ function join_channels () {
             setTimeout(join_channels, 1)
         }, 10 * 60 * 1000);
     })
-    channel_ilian.join().then(connection => {
+    /*channel_ilian.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
@@ -123,7 +123,7 @@ function join_channels () {
             channel_ilian.leave()
             setTimeout(join_channels, 1)
         }, 10 * 60 * 1000);
-    })
+    })*/
 }
 
 function music() {
