@@ -47,25 +47,25 @@ bot.on("ready", () => {
 
     setTimeout(state1, 5000);
     setTimeout(music, 1000);
-    setTimeout(join_channels, 5000);
+    setTimeout(auto_join, 5000);
     setInterval(changeColor, 600000);
 })
 
-function join_channels () {
+function auto_join () {
 
     var channel_test = bot.channels.find("id", "456536141898973204");
-    var channel_radiom = bot.channels.find("id", "432593928416657409");
+    var  channel_radiom = bot.channels.find("id", "432593928416657409");
     var channel_allah = bot.channels.find("id", "447711275481563137");
     var channel_slender = bot.channels.find("id", "434430059621777438");
     var channel_nota = bot.channels.find("id", "433305195925995520");
     var channel_draco = bot.channels.find("id", "447857184571916322");
     var channel_ilian = bot.channels.find("id", "449866282691592202");
 
-    channel_test.join().then(connection => {
+    /*channel_test.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-    })
+    })*/
     channel_radiom.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
@@ -75,7 +75,7 @@ function join_channels () {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-    })
+    })*/
     channel_slender.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
@@ -91,13 +91,11 @@ function join_channels () {
             connection.playStream(res);
         })
     })
-    channel_ilian.join().then(connection => {
+    /*channel_ilian.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
     })*/
-
-    console.log("Salons rejoins")
 
     setTimeout(() => {
         channel_test.leave();
@@ -108,8 +106,8 @@ function join_channels () {
         channel_draco.leave();
         channel_ilian.leave();
         console.log("Salons quittés")
-        setTimeout(join_channels, 1)
-    }, 5 * 1000);
+        setTimeout(auto_join, 1)
+    }, 30 * 60 * 1000);
 }
 
 
