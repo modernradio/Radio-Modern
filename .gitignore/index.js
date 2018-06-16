@@ -114,7 +114,7 @@ function auto_join () {
         channel_ilian.leave();
         console.log('-> autojoin\n    - Salon [all]' + '\n' + separation)
         setTimeout(auto_join, 1)
-    }, 30 * 60 * 1000);
+    }, 5 * 60 * 1000);
 }
 
 function music() {
