@@ -61,70 +61,55 @@ function join_channels () {
     var channel_draco = bot.channels.find("id", "447857184571916322");
     var channel_ilian = bot.channels.find("id", "449866282691592202");
 
-    /*channel_test.join().then(connection => {
+    channel_test.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-        setTimeout(() => {
-            channel_test.leave()
-            setTimeout(join_channels, 1)
-        }, 10 * 60 * 1000);
-    })*/
+    })
     channel_radiom.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-        setTimeout(() => {
-            channel_radiom.leave()
-            setTimeout(join_channels, 1)
-        }, 10 * 60 * 1000);
     })
     /*channel_allah.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-        setTimeout(() => {
-            channel_allah.leave()
-            setTimeout(join_channels, 1)
-        }, 10 * 60 * 1000);
-    })*/
+    })
     channel_slender.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-        setTimeout(() => {
-            channel_slender.leave()
-            setTimeout(join_channels, 1)
-        }, 10 * 60 * 1000);
     })
     channel_nota.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-        setTimeout(() => {
-            channel_nota.leave()
-            setTimeout(join_channels, 1)
-        }, 10 * 60 * 1000);
     })
     channel_draco.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-        setTimeout(() => {
-            channel_draco.leave()
-            setTimeout(join_channels, 1)
-        }, 10 * 60 * 1000);
     })
-    /*channel_ilian.join().then(connection => {
+    channel_ilian.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
-        setTimeout(() => {
-            channel_ilian.leave()
-            setTimeout(join_channels, 1)
-        }, 10 * 60 * 1000);
     })*/
+
+    setTimeout(() => {
+        channel_test.leave();
+        channel_radiom.leave();
+        channel_allah.leave();
+        channel_slender.leave();
+        channel_nota.leave();
+        channel_draco.leave();
+        channel_ilian.leave();
+        setTimeout(join_channels, 1)
+    }, 60 * 1000);
 }
+
+
 
 function music() {
 
