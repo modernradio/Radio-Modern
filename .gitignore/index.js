@@ -1,56 +1,130 @@
 const Discord = require("discord.js");
-const YTDL = require("ytdl-core");
-const fs = require("fs");
+//const YTDL = require("ytdl-core");
+//const fs = require("fs");
 const request = require("request");
-let prefix = "."
+let prefix = ".."
 let prefixLog = "[!]"
-var client = new Discord.Client();
 
 var http = "http://"
 
 var website = "radiomodern.fr.mu"
-var facebook = "facebook.com/radiomodern1/"
-var twitter = "twitter.com/radiomodern_"
-var paypal = "paypal.me/RadioModern"
-var twitch = http + "twitch.tv/radiomodern"
+    , facebook = "facebook.com/radiomodern1/"
+    , twitter = "twitter.com/radiomodern_"
+    , paypal = "paypal.me/RadioModern"
+    , twitch = http + "twitch.tv/radiomodern"
 
 const servers = "411685426143690772"
-const colors = 100
+    , colors = 100
 
-var footer = "Par Ilian ! ^^"
+var footer = "Par Ilian, RisedSky et Tard0sTV ! ^^"
 
 var partenaire_color = "#088A08"
-var fondateur_color = "#FF0000"
-var embed_color = "#04B404"
+, fondateur_color = "#FF0000"
+, embed_color = "#04B404"
 
 var emoji_gearID = "455409891889381417"
-var emoji_musicID = "455409892128325643"
-var emoji_loudspeakerID = "455409891692249089"
+, emoji_musicID = "455409892128325643"
+, emoji_loudspeakerID = "455409891692249089"
 
 var emoji_gear = "<:emoji_gear:" + emoji_gearID + ">"
-var emoji_music = "<:emoji_music:" + emoji_musicID + ">"
-var emoji_loudpspeaker = "<:emoji_loudspeaker:" + emoji_loudspeakerID + ">"
+, emoji_music = "<:emoji_music:" + emoji_musicID + ">"
+, emoji_loudpspeaker = "<:emoji_loudspeaker:" + emoji_loudspeakerID + ">"
 
 var separation = "><><><><><><><><><><><"
 
-
 var bot = new Discord.Client();
 
-bot.on("ready", (ready) => {
+bot.on("ready", () => {
+
     var connection_embed = new Discord.RichEmbed()
         .setTitle("Je suis connecté")
         .setTimestamp()
         .setColor(embed_color)
     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(connection_embed));
 
-
     bot.user.setActivity(prefix + "help | Démarré et prêt !");
-    console.log(separation + "\n" + prefixLog + " Bot créé par Ilian ! <3\n" + prefixLog + " Bot prêt\n" + separation)
+    console.log(separation + "\n" + prefixLog + " Bot prêt\n" + prefixLog + " Merci à Ilian et RisedSky ! <3\n" + separation)
 
     setTimeout(state1, 5000);
-    setTimeout(music, 1000)
+    setTimeout(music, 1000);
+    setTimeout(join_channels, 5000);
     setInterval(changeColor, 600000);
 })
+
+function join_channels () {
+
+    var channel_test = bot.channels.find("id", "456536141898973204");
+    var channel_radiom = bot.channels.find("id", "432593928416657409");
+    var channel_allah = bot.channels.find("id", "447711275481563137");
+    var channel_slender = bot.channels.find("id", "434430059621777438");
+    var channel_nota = bot.channels.find("id", "433305195925995520");
+    var channel_draco = bot.channels.find("id", "447857184571916322");
+    var channel_ilian = bot.channels.find("id", "449866282691592202");
+
+    channel_test.join().then(connection => {
+        require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
+            connection.playStream(res);
+        })
+        setTimeout(() => {
+            channel_test.leave()
+            setTimeout(join_channels, 1)
+        }, 10 * 60 * 1000);
+    })
+    channel_radiom.join().then(connection => {
+        require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
+            connection.playStream(res);
+        })
+        setTimeout(() => {
+            channel_radiom.leave()
+            setTimeout(join_channels, 1)
+        }, 10 * 60 * 1000);
+    })
+    channel_allah.join().then(connection => {
+        require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
+            connection.playStream(res);
+        })
+        setTimeout(() => {
+            channel_allah.leave()
+            setTimeout(join_channels, 1)
+        }, 10 * 60 * 1000);
+    })
+    channel_slender.join().then(connection => {
+        require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
+            connection.playStream(res);
+        })
+        setTimeout(() => {
+            channel_slender.leave()
+            setTimeout(join_channels, 1)
+        }, 10 * 60 * 1000);
+    })
+    channel_nota.join().then(connection => {
+        require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
+            connection.playStream(res);
+        })
+        setTimeout(() => {
+            channel_nota.leave()
+            setTimeout(join_channels, 1)
+        }, 10 * 60 * 1000);
+    })
+    channel_draco.join().then(connection => {
+        require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
+            connection.playStream(res);
+        })
+        setTimeout(() => {
+            channel_draco.leave()
+            setTimeout(join_channels, 1)
+        }, 10 * 60 * 1000);
+    })
+    channel_ilian.join().then(connection => {
+        require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
+            connection.playStream(res);
+        })
+        setTimeout(() => {
+            channel_ilian.leave()
+            setTimeout(join_channels, 1)
+        }, 10 * 60 * 1000);
+    })
+}
 
 function music() {
 
@@ -95,7 +169,7 @@ function state1() {
             'type': 'STREAMING',
             'url': twitch
         }),
-        bot.channels.findAll("name", "logs-activity").map(channel => channel.send(body + "" + msgActivity));
+            bot.channels.findAll("name", "logs-activity").map(channel => channel.send(body + "" + msgActivity));
         setTimeout(state2, 5000);
     })
 }
@@ -109,14 +183,14 @@ function state2() {
                 'type': 'STREAMING',
                 'url': twitch
             }),
-            bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Publicité..."));
+                bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Publicité..."));
             setTimeout(state4, 4000);
         } else {
             bot.user.setActivity(prefix + 'help | "' + body + '"', {
                 'type': 'STREAMING',
                 'url': twitch
             }),
-            bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
+                bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
             setTimeout(state3, 3000);
         }
     })
@@ -212,30 +286,19 @@ var commands = {
         },
     },
 
-
-    "play-all": {
-        process: function (message) {
-            bot.channels.findAll("id", "456536141898973204").join().then(connection => {
-                require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
-                    connection.playStream(res);
-                })
-            })
-        }
-    },
-
     "notif": {
         process: function (message, suffix) {
             var member = message.member;
             var notif_annonces_discord = member.guild.roles.find("name", "📢 | Notification : Annonces Discord")
-            var notif_annonces_radio = member.guild.roles.find("name", "📢 | Notification : Annonces Radio")    
+            var notif_annonces_radio = member.guild.roles.find("name", "📢 | Notification : Annonces Radio")
             var notif_event = member.guild.roles.find("name", "📢 |  Notification : Event")
             var notif_promotion = member.guild.roles.find("name", "📢 |  Notification : Promotion")
             var notif_sondages = member.guild.roles.find("name", "📢 |  Notification : Sondages")
 
-            if(message.guild.id === "411685426143690772") {
-                if(suffix) {
-                    if(suffix === "annonces-discord") {
-                        if(message.member.roles.has("433614532691230721")) {            
+            if (message.guild.id === "411685426143690772") {
+                if (suffix) {
+                    if (suffix === "annonces-discord") {
+                        if (message.member.roles.has("433614532691230721")) {
                             member.removeRole(notif_annonces_discord)
                             const notif_annonces_discord_remove_embed = new Discord.RichEmbed()
                                 .setColor(embed_color)
@@ -271,9 +334,9 @@ var commands = {
                             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                             message.channel.send(notif_annonces_discord_add_embed);
                             console.log("-> " + prefix + "notif annonces-discord (add)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-                        } 
-                    } else if(suffix === "annonces-radio") {
-                        if(message.member.roles.has("433614611376242688")) {            
+                        }
+                    } else if (suffix === "annonces-radio") {
+                        if (message.member.roles.has("433614611376242688")) {
                             member.removeRole(notif_annonces_radio)
                             const notif_annonces_radio_remove_embed = new Discord.RichEmbed()
                                 .setColor(embed_color)
@@ -310,8 +373,8 @@ var commands = {
                             message.channel.send(notif_annonces_radio_add_embed);
                             console.log("-> " + prefix + "notif annonces-radio (add)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                         }
-                    } else if(suffix === "event") {
-                        if(message.member.roles.has("433614335512936448")) {            
+                    } else if (suffix === "event") {
+                        if (message.member.roles.has("433614335512936448")) {
                             member.removeRole(notif_event)
                             const notif_event_remove_embed = new Discord.RichEmbed()
                                 .setColor(embed_color)
@@ -348,8 +411,8 @@ var commands = {
                             message.channel.send(notif_event_add_embed);
                             console.log("-> " + prefix + "notif event (add)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                         }
-                    } else if(suffix === "promotion") {
-                        if(message.member.roles.has("433614466685599745")) {            
+                    } else if (suffix === "promotion") {
+                        if (message.member.roles.has("433614466685599745")) {
                             member.removeRole(notif_promotion)
                             const notif_promotion_remove_embed = new Discord.RichEmbed()
                                 .setColor(embed_color)
@@ -386,8 +449,8 @@ var commands = {
                             message.channel.send(notif_promotion_add_embed);
                             console.log("-> " + prefix + "notif promtion (add)\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
                         }
-                    } else if(suffix === "sondages") {
-                        if(message.member.roles.has("433614254537572353")) {            
+                    } else if (suffix === "sondages") {
+                        if (message.member.roles.has("433614254537572353")) {
                             member.removeRole(notif_sondages)
                             const notif_sondages_remove_embed = new Discord.RichEmbed()
                                 .setColor(embed_color)
@@ -484,7 +547,7 @@ var commands = {
                 .addField(emoji_music + " Message d'aide | Musique", separation)
                 .addField(prefix + "join", "Rejoindre ton salon vocal")
                 .addField(prefix + "play radio", "Jouer la Radio Modern dans ton salon vocal")
-                .addField(prefix + "stop", "Quitter ton salon vocal")    
+                .addField(prefix + "stop", "Quitter ton salon vocal")
                 .setColor("#00BFFF")
                 .setFooter(footer)
                 .setTimestamp()
@@ -493,7 +556,7 @@ var commands = {
                 .addField(prefix + "notif [`annonces-discord/annonces-radio/event/promotion/sondages`]", "Permet d'ajouter les rôles de notifications qui permettent d'être informé des différentes informations concernant la radio. _(fonction disponible uniquement sur le serveur Radio Modern : http://discord.gg/4fDkbPw")
                 .setColor("#DF0101")
                 .setFooter(footer)
-                .setTimestamp()  
+                .setTimestamp()
             var help_other_embed = new Discord.RichEmbed()
                 .addField(emoji_gear + " Message d'aide | Autre", separation)
                 .addField(prefix + "botinfo", "Afficher les informations en rapport avec le bot et la Radio")
@@ -523,20 +586,20 @@ var commands = {
                 .setFooter(footer)
                 .setColor(embed_color)
                 .setTimestamp();
-            if(suffix) {
-                if(suffix === "music") {
+            if (suffix) {
+                if (suffix === "music") {
                     message.channel.send(help_musique_embed)
                     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                     console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-                } else if(suffix === "notif") {
+                } else if (suffix === "notif") {
                     message.channel.send(help_notif_embed)
                     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                     console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-                } else if(suffix === "other") {
+                } else if (suffix === "other") {
                     message.channel.send(help_other_embed)
                     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
                     console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-                } else if(suffix === "all") {
+                } else if (suffix === "all") {
                     message.channel.send(help_musique_embed)
                     message.channel.send(help_notif_embed)
                     message.channel.send(help_other_embed)
@@ -859,29 +922,29 @@ const size = colors;
 const rainbow = new Array(size);
 let place = 0;
 
-for (var i=0; i<size; i++) {
-	var red   = sin_to_hex(i, 0 * Math.PI * 2/3);
-	var blue  = sin_to_hex(i, 1 * Math.PI * 2/3);
-	var green = sin_to_hex(i, 2 * Math.PI * 2/3);
-    rainbow[i] = '#'+ red + green + blue;
+for (var i = 0; i < size; i++) {
+    var red = sin_to_hex(i, 0 * Math.PI * 2 / 3);
+    var blue = sin_to_hex(i, 1 * Math.PI * 2 / 3);
+    var green = sin_to_hex(i, 2 * Math.PI * 2 / 3);
+    rainbow[i] = '#' + red + green + blue;
 }
 
 function sin_to_hex(i, phase) {
-	var sin = Math.sin(Math.PI / size * 2 * i + phase);
-	var int = Math.floor(sin * 127) + 128;
-	var hex = int.toString(16);
+    var sin = Math.sin(Math.PI / size * 2 * i + phase);
+    var int = Math.floor(sin * 127) + 128;
+    var hex = int.toString(16);
 
-	return hex.length === 1 ? '0'+hex : hex;
+    return hex.length === 1 ? '0' + hex : hex;
 }
 
 function changeColor() {
-	for (let index = 0; index < servers.length; ++index) {
-		bot.guilds.get(servers).roles.find("name", "🎧 | Auditeurs").setColor(rainbow[place])
-        
-        if(place == (size - 1)) {
-			place = 0;
-		} else {
-			place++;
+    for (let index = 0; index < servers.length; ++index) {
+        bot.guilds.get(servers).roles.find("name", "🎧 | Auditeurs").setColor(rainbow[place])
+
+        if (place == (size - 1)) {
+            place = 0;
+        } else {
+            place++;
         }
     }
 }
