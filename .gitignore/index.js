@@ -32,12 +32,6 @@ var emoji_gear = "<:emoji_gear:" + emoji_gearID + ">"
 
 var separation = "><><><><><><><><><><><"
 
-var notif_annonces_discord = member.guild.roles.find("name", "📢 | Notification : Annonces Discord")
-var notif_annonces_radio = member.guild.roles.find("name", "📢 | Notification : Annonces Radio")
-var notif_event = member.guild.roles.find("name", "📢 |  Notification : Event")
-var notif_promotion = member.guild.roles.find("name", "📢 |  Notification : Promotion")
-var notif_sondages = member.guild.roles.find("name", "📢 |  Notification : Sondages")
-
 var bot = new Discord.Client();
 
 bot.on("ready", () => {
@@ -58,6 +52,13 @@ bot.on("ready", () => {
 })
 
 bot.on("guildMemberAdd", member => {
+
+    var notif_annonces_discord = member.guild.roles.find("name", "📢 | Notification : Annonces Discord")
+    var notif_annonces_radio = member.guild.roles.find("name", "📢 | Notification : Annonces Radio")
+    var notif_event = member.guild.roles.find("name", "📢 |  Notification : Event")
+    var notif_promotion = member.guild.roles.find("name", "📢 |  Notification : Promotion")
+    var notif_sondages = member.guild.roles.find("name", "📢 |  Notification : Sondages")
+    
     member.addRole(notif_annonces_discord);
     member.addRole(notif_annonces_radio);
     member.addRole(notif_event);
@@ -294,6 +295,11 @@ var commands = {
     "notif": {
         process: function (message, suffix) {
             var member = message.member;
+            var notif_annonces_discord = member.guild.roles.find("name", "📢 | Notification : Annonces Discord")
+            var notif_annonces_radio = member.guild.roles.find("name", "📢 | Notification : Annonces Radio")
+            var notif_event = member.guild.roles.find("name", "📢 |  Notification : Event")
+            var notif_promotion = member.guild.roles.find("name", "📢 |  Notification : Promotion")
+            var notif_sondages = member.guild.roles.find("name", "📢 |  Notification : Sondages")            
             if (message.guild.id === "411685426143690772") {
                 if (suffix) {
                     if (suffix === "annonces-discord") {
