@@ -8,13 +8,13 @@ let prefixLog = "[!]"
 var http = "http://"
 
 var website = "radiomodern.fr.mu"
-    , facebook = "facebook.com/radiomodern1/"
-    , twitter = "twitter.com/radiomodern_"
-    , paypal = "paypal.me/RadioModern"
-    , twitch = http + "twitch.tv/radiomodern"
+, facebook = "facebook.com/radiomodern1/"
+, twitter = "twitter.com/radiomodern_"
+, paypal = "paypal.me/RadioModern"
+, twitch = http + "twitch.tv/radiomodern"
 
 const servers = "411685426143690772"
-    , colors = 100
+, colors = 100
 
 var footer = "Par Ilian, RisedSky et Tard0sTV ! ^^"
 
@@ -52,18 +52,18 @@ bot.on("ready", () => {
 })
 
 bot.on("guildMemberAdd", member => {
-
-    var notif_annonces_discord = member.guild.roles.find("name", "📢 | Notification : Annonces Discord")
-    var notif_annonces_radio = member.guild.roles.find("name", "📢 | Notification : Annonces Radio")
-    var notif_event = member.guild.roles.find("name", "📢 |  Notification : Event")
-    var notif_promotion = member.guild.roles.find("name", "📢 |  Notification : Promotion")
-    var notif_sondages = member.guild.roles.find("name", "📢 |  Notification : Sondages")
-    
-    member.addRole(notif_annonces_discord);
-    member.addRole(notif_annonces_radio);
-    member.addRole(notif_event);
-    member.addRole(notif_promotion);
-    member.addRole(notif_sondages);
+    if(member.guild.id === "411685426143690772") {
+        var notif_annonces_discord = member.guild.roles.find("name", "📢 | Notification : Annonces Discord")
+        var notif_annonces_radio = member.guild.roles.find("name", "📢 | Notification : Annonces Radio")
+        var notif_event = member.guild.roles.find("name", "📢 |  Notification : Event")
+        var notif_promotion = member.guild.roles.find("name", "📢 |  Notification : Promotion")
+        var notif_sondages = member.guild.roles.find("name", "📢 |  Notification : Sondages")
+        member.addRole(notif_annonces_discord);
+        member.addRole(notif_annonces_radio);
+        member.addRole(notif_event);
+        member.addRole(notif_promotion);
+        member.addRole(notif_sondages);
+    }
 })
 
 function auto_join () {
