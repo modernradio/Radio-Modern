@@ -147,13 +147,13 @@ function music() {
     })
 
     setTimeout(() => {
-        bot.channels.findAll("name", "musique-en-cours").forEach(c => c.bulkDelete(100));
+        bot.channels.findAll("id", "453935807666061334").forEach(c => c.bulkDelete(100));
         var music_embed = new Discord.RichEmbed()
             .setColor(embed_color)
             .addField(current_music, separation)
             .setFooter(footer)
             .setTimestamp();
-        bot.channels.findAll("name", "musique-en-cours").map(channel => channel.send(music_embed));
+        bot.channels.findAll("id", "453935807666061334").map(channel => channel.send(music_embed));
         setTimeout(music, 5000);
     }, 3000);
 }
