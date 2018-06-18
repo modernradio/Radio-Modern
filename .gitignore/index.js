@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const YTDL = require("ytdl-core");
 const fs = require("fs");
 const request = require("request");
-let prefix = "?"
+let prefix = "."
 let prefixLog = "[!]"
 
 var http = "http://"
