@@ -154,7 +154,7 @@ function music() {
             .setFooter(footer)
             .setTimestamp();
         bot.channels.findAll("id", "453935807666061334").map(channel => channel.send(music_embed));
-        setTimeout(music, 5000);
+        setTimeout(music, 15000);
     }, 3000);
 }
 
