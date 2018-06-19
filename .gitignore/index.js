@@ -105,7 +105,7 @@ function auto_join () {
             connection.playStream(res);
         })
         console.log('-> autojoin\n    + Salon "' + channel_nota.name + '" (' + channel_nota.guild.name + ')\n' + separation)
-    })
+    })*/
     channel_draco.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
