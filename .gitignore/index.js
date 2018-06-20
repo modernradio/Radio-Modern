@@ -467,7 +467,7 @@ bot.on("message", async function (message) {
                 .setTimestamp()
             var help_notif_embed = new Discord.RichEmbed()
                 .addField("📢 Message d'aide | Notifications", separation)
-                .addField(prefix + "notif [annonces-discord/annonces-radio/event/promotion/sondages]", "Permet d'ajouter les rôles de notifications qui permettent d'être informé des différentes informations concernant la radio. _(fonction disponible uniquement sur le serveur Radio Modern : " + serv_discord + ")_")
+                .addField(prefix + "notif", "Permet d'ajouter les rôles de notifications qui permettent d'être informé des différentes informations concernant la radio. _(fonction disponible uniquement sur le serveur Radio Modern : " + serv_discord + ")_")
                 .setColor("#DF0101")
                 .setFooter(footer)
                 .setTimestamp()
