@@ -1,7 +1,10 @@
 const Discord = require("discord.js");
-const YTDL = require("ytdl-core");
-const fs = require("fs");
+//const YTDL = require("ytdl-core");
+//const fs = require("fs");
 const request = require("request");
+
+var bot = new Discord.Client();
+
 let prefix = "."
 let prefixLog = "[!]"
 
@@ -11,7 +14,10 @@ var website = "radiomodern.fr.mu"
 , facebook = "facebook.com/radiomodern1/"
 , twitter = "twitter.com/radiomodern_"
 , paypal = "paypal.me/RadioModern"
+, playtheradio = http + "radiomodern.playtheradio.com/"
+, serv_discord = http + "discord.gg/4fDkbPw"
 , twitch = http + "twitch.tv/radiomodern"
+, add_bot = http + "discordapp.com/oauth2/authorize?&client_id=444951082750312468&scope=bot&permissions=37055552"
 
 const servers = "411685426143690772"
 , colors = 100
@@ -31,8 +37,6 @@ var emoji_gear = "<:emoji_gear:" + emoji_gearID + ">"
 , emoji_loudpspeaker = "<:emoji_loudspeaker:" + emoji_loudspeakerID + ">"
 
 var separation = "><><><><><><><><><><><"
-
-var bot = new Discord.Client();
 
 bot.on("ready", () => {
 
@@ -76,7 +80,7 @@ function auto_join () {
     var channel_draco = bot.channels.find("id", "447857184571916322");
     var channel_ilian = bot.channels.find("id", "449866282691592202");
 
-    /*channel_test.join().then(connection => {
+    /*/*channel_test.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
@@ -105,7 +109,7 @@ function auto_join () {
             connection.playStream(res);
         })
         console.log('-> autojoin\n    + Salon "' + channel_nota.name + '" (' + channel_nota.guild.name + ')\n' + separation)
-    })*/
+    })
     channel_draco.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
@@ -154,8 +158,8 @@ function music() {
             .setFooter(footer)
             .setTimestamp();
         bot.channels.findAll("id", "453935807666061334").map(channel => channel.send(music_embed));
-        setTimeout(music, 15000);
-    }, 3000);
+        setTimeout(music, 10000);
+    }, 10000);
 }
 
 function state1() {
@@ -220,27 +224,16 @@ function state4() {
     setTimeout(state1, 3000);
 }
 
-bot.on("message", function (message) {
-    if (message.content.indexOf(prefix) === 0) {
-        var cmdTxt = message.content.split(" ")[0].substring(prefix.length);
-        var cmd = commands[cmdTxt];
-        var member = message.member;
-        var suffix = message.content.substring(cmdTxt.length + prefix.length + 1);
-        if (cmd !== undefined) {
-            cmd.process(message, suffix);
-        } else {
-            cmdTxt = cmdTxt.replace("`", "");
-            if (cmdTxt === "") {
-                var cmdTxt = "none";
-            }
-        }
-    }
-});
+bot.on("message", async function (message) {
+    if (message.author.equals(bot.user)) return;
+    if (!message.content.startsWith(prefix)) return;
+    var args = message.content.substring(prefix.length).split(" ");
+    var args2 = message.content.split(" ").slice(1);
+    var suffix = args2.join(" ");
+    switch (args[0].toLowerCase()) {
 
-var commands = {
-    "join": {
-        process: function (message, suffix) {
-            const channel = message.member.voiceChannel;
+        case "join":
+            var channel = message.member.voiceChannel;
             if (!channel) return message.channel.send(":warning: | **Tu est pas dans un salon vocal.**");
             if (!message.member.voiceChannel.joinable) {
                 message.channel.send(":warning: | **Je n'ai pas les permissions suffisantes pour diffuser la radio dans ce salon...**");
@@ -257,43 +250,53 @@ var commands = {
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             console.log("-> " + prefix + "join\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-        }
-    },
+            break;
 
-    "play": {
-        process: function (message, suffix) {
-            const channel = message.member.voiceChannel;
+        case "radiomodern": 
+            var channel = message.member.voiceChannel;
             if (!channel) return message.channel.send(":warning: | **Tu n'est pas dans un salon vocal.**");
-            if (suffix) {
-                if (suffix === "Radio" || suffix === "radio") {
-                    message.channel.send(":musical_note: | **Radio Modern**");
-                    var radio = "RadioModern";
-                    var log_embed = new Discord.RichEmbed()
-                        .setThumbnail(message.author.displayAvatarURL)
-                        .addField(message.author.username + " - Logs : ", "``" + prefix + "play radio``")
-                        .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                        .setFooter(footer)
-                        .setColor(embed_color)
-                        .setTimestamp();
-                    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                    console.log("-> " + prefix + "play\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-                } else {
-                    message.channel.send(":warning: | **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
-                    return;
-                }
-                message.member.voiceChannel.join().then(connection => {
-                    require("http").get("http://streaming.radionomy.com/" + radio, (res) => {
-                        connection.playStream(res);
-                    })
+            message.member.voiceChannel.join().then(connection => {
+                require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
+                    connection.playStream(res);
                 })
+            })
+            var play_embed = new Discord.RichEmbed()
+                .setColor(embed_color)
+                .setAuthor(message.author.username + ' : Je joue actuellement la radio dans le salon "' + message.member.voiceChannel.name)
+                .setFooter(footer)
+                .setTimestamp()
+            var log_embed = new Discord.RichEmbed()
+                .setThumbnail(message.author.displayAvatarURL)
+                .addField(message.author.username + " - Logs : ", "``" + prefix + "play radio``")
+                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+                .setFooter(footer)
+                .setColor(embed_color)
+                .setTimestamp();
+            message.channel.send(play_embed);
+            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+            console.log("-> " + prefix + "play\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
+            break;
+    
+        case "stop":
+            var voiceChannel = message.member.voiceChannel;
+            if (voiceChannel) {
+                message.channel.send(":loudspeaker: | **Je suis plus là !**");
+                message.member.voiceChannel.leave();
             } else {
-                message.channel.send(":warning: | **Erreur**, la commande que vous souhaitez taper est ``.play radio``");
+                message.channel.send(":warning: | **Je ne suis pas dans un salon vocal.**");
+                var log_embed = new Discord.RichEmbed()
+                    .setThumbnail(message.author.displayAvatarURL)
+                    .addField(message.author.username + " - Logs : ", "``" + prefix + "stop``")
+                    .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+                    .setFooter(footer)
+                    .setColor(embed_color)
+                    .setTimestamp();
+                bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+                console.log("-> " + prefix + "stop\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             }
-        },
-    },
+            break;
 
-    "notif": {
-        process: function (message, suffix) {
+        case "notif":
             var member = message.member;
             var notif_annonces_discord = member.guild.roles.find("name", "📢 | Notification : Annonces Discord")
             var notif_annonces_radio = member.guild.roles.find("name", "📢 | Notification : Annonces Radio")
@@ -361,7 +364,7 @@ var commands = {
                     notif_message = "Merci d'indiquer un rôle. Liste des rôles disponibles `annonces-discord`, `annonces-radio`, `event`, `promotion`, `sondages`"
                 }
             } else {
-                notif_message = 'Cette commande est seulement disponible dans le serveur "Radio Modern : http://discord.gg/4fDkbPw"'
+                notif_message = 'Cette commande est seulement disponible dans le serveur "Radio Modern" : ' + serv_discord
             }
             const notif_embed = new Discord.RichEmbed()
                 .setColor(embed_color)
@@ -379,113 +382,9 @@ var commands = {
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             console.log("-> " + prefix + "notif " + role_name + " (" + role_status + ")\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-        }
-    },
-
-    "stop": {
-        process: function (message) {
-            const voiceChannel = message.member.voiceChannel;
-            if (voiceChannel) {
-                message.channel.send(":loudspeaker: | **Je suis plus là !**");
-                message.member.voiceChannel.leave();
-            } else {
-                message.channel.send(":warning: | **Je ne suis pas dans un salon vocal.**");
-                var log_embed = new Discord.RichEmbed()
-                    .setThumbnail(message.author.displayAvatarURL)
-                    .addField(message.author.username + " - Logs : ", "``" + prefix + "stop``")
-                    .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                    .setFooter(footer)
-                    .setColor(embed_color)
-                    .setTimestamp();
-                bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                console.log("-> " + prefix + "stop\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-            }
-        }
-    },
-
-    "help": {
-        process: function (message, suffix) {
-            var help_musique_embed = new Discord.RichEmbed()
-                .addField(emoji_music + " Message d'aide | Musique", separation)
-                .addField(prefix + "join", "Rejoindre ton salon vocal")
-                .addField(prefix + "play radio", "Jouer la Radio Modern dans ton salon vocal")
-                .addField(prefix + "stop", "Quitter ton salon vocal")
-                .setColor("#00BFFF")
-                .setFooter(footer)
-                .setTimestamp()
-            var help_notif_embed = new Discord.RichEmbed()
-                .addField(emoji_loudpspeaker + " Message d'aide | Notifications", separation)
-                .addField(prefix + "notif [`annonces-discord/annonces-radio/event/promotion/sondages`]", "Permet d'ajouter les rôles de notifications qui permettent d'être informé des différentes informations concernant la radio. _(fonction disponible uniquement sur le serveur Radio Modern : http://discord.gg/4fDkbPw")
-                .setColor("#DF0101")
-                .setFooter(footer)
-                .setTimestamp()
-            var help_other_embed = new Discord.RichEmbed()
-                .addField(emoji_gear + " Message d'aide | Autre", separation)
-                .addField(prefix + "botinfo", "Afficher les informations en rapport avec le bot et la Radio")
-                .addField(prefix + "vcs {message}", "Envoyer un message VCS (__V__irtual __C__hat __S__erver) dans tout les serveurs où je suis. _(Seulement dans les salons #vcs-radiom)_")
-                .addField(prefix + "suggest {message}", "Envoyer une suggestion à faire part aux fondateurs/développeurs.")
-                .setColor("#848484")
-                .setFooter(footer)
-                .setTimestamp()
-            var help_nom_incorrect_embed = new Discord.RichEmbed()
-                .addField(":grey_question: Message d'aide | Erreur", separation)
-                .addField("Liste des messages d'aide disponibles :", "`all`, `musique`, `notif`, `other`")
-                .setColor(embed_color)
-                .setFooter(footer)
-                .setTimestamp()
-            var help_sommaire_embed = new Discord.RichEmbed()
-                .addField(":grey_question: Message d'aide | Sommaire", separation)
-                .addField(emoji_music + " **__Musique :__**", "-> Permet d'afficher toutes les commandes relatives à la radio : `" + prefix + "help music`")
-                .addField(emoji_loudpspeaker + " **__Notifications :__**", "-> Permet d'afficher toutes les commandes relatives aux rôles notifications : `" + prefix + "help notif`")
-                .addField(emoji_gear + " **__Autres :__**", "-> Permet d'afficher toutes les commandes diverses et variées : `" + prefix + "help other`")
-                .setColor(embed_color)
-                .setFooter(footer)
-                .setTimestamp()
-            var log_embed = new Discord.RichEmbed()
-                .setThumbnail(message.author.displayAvatarURL)
-                .addField(message.author.username + " - Logs : ", "``" + prefix + "help``")
-                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                .setFooter(footer)
-                .setColor(embed_color)
-                .setTimestamp();
-            if (suffix) {
-                if (suffix === "music") {
-                    message.channel.send(help_musique_embed)
-                    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                    console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-                } else if (suffix === "notif") {
-                    message.channel.send(help_notif_embed)
-                    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                    console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-                } else if (suffix === "other") {
-                    message.channel.send(help_other_embed)
-                    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                    console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-                } else if (suffix === "all") {
-                    message.channel.send(help_musique_embed)
-                    message.channel.send(help_notif_embed)
-                    message.channel.send(help_other_embed)
-                    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                    console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-                } else {
-                    message.channel.send(help_nom_incorrect_embed)
-                    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                    console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-                }
-            } else {
-                message.channel.send(help_sommaire_embed).then(m => {
-                    m.react("455409892128325643")
-                    m.react("455409891692249089")
-                    m.react("455409891889381417")
-                })
-                bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-                console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-            }
-        },
-    },
-
-    "botinfo": {
-        process: function (message) {
+            break;
+        
+        case "botinfo": 
             var ping_embed = new Discord.RichEmbed()
                 .addField(":clock2: Calcul en cours...", "Merci de patienter quelques instants !")
             let startTime = Date.now();
@@ -499,14 +398,6 @@ var commands = {
                 .setTitle("Ping")
                 .addField(":clock2: Ping :", `${Date.now() - startTime} millisecondes`, true)
                 .addField(":heartpulse: API Discord :", `${bot.ping} millisecondes`, true)
-            var reseaux_embed = new Discord.RichEmbed()
-                .setColor(embed_color)
-                .setTitle("Nos réseaux sociaux")
-                .addField("<:facebook:432513421507035136> Facebook ", "[@radiomodern1](" + http + facebook + ")", true)
-                .addField("<:twitter:432513453899382794> Twitter", "[@radiomodern_](" + http + twitter + ")", true)
-                .addField(":money_with_wings: Page de don", "[Notre PayPal](" + http + paypal + ")", true)
-                .setTimestamp()
-                .setFooter(footer)
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "botinfo``")
@@ -517,12 +408,10 @@ var commands = {
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             message.channel.send(info_embed);
             message.channel.send(ping_embed).then(m => m.edit(pong_embed));
-            message.channel.send(reseaux_embed);
             console.log("-> " + prefix + "botinfo\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-        }
-    },
-    "purge": {
-        process: function (message) {
+            break;
+        
+        case "purge": 
             var messages_to_delete = 100
             if (message.member.hasPermission("MANAGE_MESSAGES")) {
                 message.channel.bulkDelete(messages_to_delete)
@@ -540,7 +429,6 @@ var commands = {
                     .setTimestamp();
                 message.channel.send(miss_permission);
             }
-
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "purge``")
@@ -549,38 +437,84 @@ var commands = {
                 .setColor(embed_color)
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-        }
-    }
-}
+            break;
 
-bot.on("message", async function (message) {
-    if (message.author.equals(bot.user)) return;
+        case "help":
+            var help_musique_embed = new Discord.RichEmbed()
+                .addField("🎵 Message d'aide | Musique", separation)
+                .addField(prefix + "join", "Rejoindre ton salon vocal")
+                .addField(prefix + "radiomodern", "Jouer la Radio Modern dans ton salon vocal")
+                .addField(prefix + "stop", "Quitter ton salon vocal")
+                .setColor("#00BFFF")
+                .setFooter(footer)
+                .setTimestamp()
+            var help_notif_embed = new Discord.RichEmbed()
+                .addField("📢 Message d'aide | Notifications", separation)
+                .addField(prefix + "notif [annonces-discord/annonces-radio/event/promotion/sondages]", "Permet d'ajouter les rôles de notifications qui permettent d'être informé des différentes informations concernant la radio. _(fonction disponible uniquement sur le serveur Radio Modern : " + serv_discord + ")_")
+                .setColor("#DF0101")
+                .setFooter(footer)
+                .setTimestamp()
+            var help_other_embed = new Discord.RichEmbed()
+                .addField("⚙ Message d'aide | Autre", separation)
+                .addField(prefix + "botinfo", "Afficher les informations en rapport avec le bot et la Radio")
+                .addField(prefix + "vcs {message}", "Envoyer un message VCS (__V__irtual __C__hat __S__erver) dans tout les serveurs où je suis. _(Seulement dans les salons #vcs-radiom)_")                
+                .addField(prefix + "suggest {message}", "Envoyer une suggestion à faire part aux fondateurs/développeurs.")
+                .setColor("#848484")
+                .setFooter(footer)
+                .setTimestamp()
+            var help_sommaire_embed = new Discord.RichEmbed()
+                .addField(":grey_question: Message d'aide | Sommaire", separation)
+                .addField("🎵 **__Musique :__**", "-> Permet d'afficher toutes les commandes relatives à la radio")
+                .addField("📢 **__Notifications :__**", "-> Permet d'afficher toutes les commandes relatives aux rôles notifications")
+                .addField("🔗 **__Liens utiles :__**", "-> Permet d'afficher tous les liens relatifs à la radio")
+                .addField("⚙ **__Autres :__**", "-> Permet d'afficher toutes les commandes diverses et variées")
+                .setColor(embed_color)
+                .setFooter(footer)
+                .setTimestamp()
+            var help_reseaux_embed = new Discord.RichEmbed()
+                .setColor(embed_color)
+                .addField("🔗 Message d'aide | Liens utiles", separation)
+                .addField("🎵 Radio", "[-> Écouter](" + playtheradio + ")", true)
+                .addField("<:discord:458984960095944704> Serveur Discord", "[-> Rejoindre](" + serv_discord + ")", true)
+                .addField("🤖 Bot", "[-> Ajouter](" + add_bot + ")", true)
+                .addField("<:facebook:432513421507035136> Facebook ", "[@radiomodern1](" + http + facebook + ")", true)
+                .addField("<:twitter:432513453899382794> Twitter", "[@radiomodern_](" + http + twitter + ")", true)
+                .addField(":money_with_wings: Paypal", "[-> Don](" + http + paypal + ")", true)
+                .setTimestamp()
+                .setFooter(footer)
+            var log_embed = new Discord.RichEmbed()
+                .setThumbnail(message.author.displayAvatarURL)
+                .addField(message.author.username + " - Logs : ", "``" + prefix + "help``")
+                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+                .setFooter(footer)
+                .setColor(embed_color)
+    
+            const help_sommaire = await message.channel.send(help_sommaire_embed);
+            await help_sommaire.react("🎵");
+            await help_sommaire.react("📢");
+            await help_sommaire.react("🔗");
+            await help_sommaire.react("⚙");
 
-    if (!message.content.startsWith(prefix)) return;
-
-    var args = message.content.substring(prefix.length).split(" ");
-
-    var args2 = message.content.split(" ").slice(1);
-
-    var suffix = args2.join(" ");
-
-    var reason = args2.slice(1).join(" ");
-
-    var reasontimed = args2.slice(2).join(" ")
-
-    var user = message.mentions.users.first();
-
-    var guild = message.guild;
-
-    var member = message.member;
-
-    var user = message.mentions.users.first();
-
-    var member = message.member
-
-
-
-    switch (args[0].toLowerCase()) {
+            let author_reaction = help_sommaire.createReactionCollector((reaction, user) => user.id === message.author.id);
+            author_reaction.on('collect', async(reaction) => {
+                if(reaction.emoji.name === "⚙") {
+                    help_sommaire.edit(help_other_embed);
+                }
+                if(reaction.emoji.name === "🎵") {
+                    help_sommaire.edit(help_musique_embed);
+                }
+                if(reaction.emoji.name === "📢") {
+                    help_sommaire.edit(help_notif_embed)
+                }
+                if(reaction.emoji.name === "🔗") {
+                    help_sommaire.edit(help_reseaux_embed)
+                }
+                await reaction.remove(message.author.id);
+            })
+            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+            console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
+        break;
+            
         case "send":
             let xoargs = message.content.split(" ").slice(1);
             let suffix = xoargs.join(" ")
