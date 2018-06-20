@@ -520,9 +520,9 @@ bot.on("message", async function (message) {
                 if(reaction.emoji.name === "🎵") {
                     help_sommaire.edit(help_musique_embed);
                 }
-                /*if(reaction.emoji.name === "📢") {
+                if(reaction.emoji.name === "📢") {
                     help_sommaire.edit(help_notif_embed)
-                }*/
+                }
                 if(reaction.emoji.name === "🔗") {
                     help_sommaire.edit(help_reseaux_embed)
                 }
