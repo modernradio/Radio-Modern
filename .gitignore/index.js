@@ -109,7 +109,7 @@ function auto_join () {
             connection.playStream(res);
         })
         console.log('-> autojoin\n    + Salon "' + channel_nota.name + '" (' + channel_nota.guild.name + ')\n' + separation)
-    })
+    })*/
     channel_draco.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
@@ -124,13 +124,13 @@ function auto_join () {
     })*/
 
     setTimeout(() => {
-        //channel_test.leave();
+        channel_test.leave();
         channel_radiom.leave();
-        //channel_allah.leave();
+        channel_allah.leave();
         channel_slender.leave();
-        //channel_nota.leave();
-        //channel_draco.leave();
-        //channel_ilian.leave();
+        channel_nota.leave();
+        channel_draco.leave();
+        channel_ilian.leave();
         console.log('-> autojoin\n    - Salon [all]' + '\n' + separation)
         setTimeout(auto_join, 1)
     }, 5 * 60 * 1000);
@@ -216,11 +216,11 @@ function state3() {
 }
 
 function state4() {
-    bot.user.setActivity(prefix + "help | Par Ilian ! (& RisedSky) ^^", {
+    bot.user.setActivity(prefix + "help | " + footer, {
         'type': 'STREAMING',
         'url': twitch
     }),
-        bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Par Ilian ! (& RisedSky) ^^"));
+        bot.channels.findAll("name", "logs-activity").map(channel => channel.send(footer));
     setTimeout(state1, 3000);
 }
 
