@@ -5,7 +5,7 @@ const request = require("request");
 
 var bot = new Discord.Client();
 
-let prefix = "."
+let prefix = "/"
 let prefixLog = "[!]"
 
 var http = "http://"
@@ -45,8 +45,7 @@ bot.on("ready", () => {
         .setTimestamp()
         .setColor(embed_color)
     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(connection_embed));
-    /*bot.user.setAvatar("./lol.jpg");
-    bot.user.setUsername("Radio Modern")*/
+
     bot.user.setActivity(prefix + "help | Démarré et prêt !");
     console.log(separation + "\n" + prefixLog + " Bot prêt\n" + prefixLog + " Merci à Ilian et RisedSky ! <3\n" + separation)
 
@@ -76,12 +75,12 @@ function auto_join () {
     var channel_test = bot.channels.find("id", "456536141898973204");
     var channel_radiom = bot.channels.find("id", "432593928416657409");
     var channel_allah = bot.channels.find("id", "447711275481563137");
-    var channel_slender = bot.channels.find("id", "434430059621777438");
+    //var channel_slender = bot.channels.find("id", "434430059621777438");
     var channel_nota = bot.channels.find("id", "433305195925995520");
     var channel_draco = bot.channels.find("id", "447857184571916322");
     var channel_ilian = bot.channels.find("id", "449866282691592202");
 
-    /*/*channel_test.join().then(connection => {
+    /*channel_test.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
@@ -98,19 +97,19 @@ function auto_join () {
             connection.playStream(res);
         })
         console.log('-> autojoin\n    + Salon "' + channel_allah.name + '" (' + channel_allah.guild.name + ')\n' + separation)
-    })*/
-    /*channel_slender.join().then(connection => {
+    })
+    channel_slender.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
         console.log('-> autojoin\n    + Salon "' + channel_slender.name + '" (' + channel_slender.guild.name + ')\n' + separation)
     })*/
-    /*channel_nota.join().then(connection => {
+    channel_nota.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
         console.log('-> autojoin\n    + Salon "' + channel_nota.name + '" (' + channel_nota.guild.name + ')\n' + separation)
-    })*/
+    })
     channel_draco.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
@@ -306,83 +305,100 @@ bot.on("message", async function (message) {
             var notif_sondages = member.guild.roles.find("name", "📢 |  Notification : Sondages")
             let role_name;
             let role_status;
-            let notif_message;   
+            message.delete()
+
             if (message.guild.id === "411685426143690772") {
-                if (suffix) {
-                    if (suffix === "annonces-discord" || suffix === "annonces-radio" || suffix === "event" || suffix === "promotion" || suffix === "sondages") {
-                        if (suffix === "annonces-discord") {
-                            if (message.member.roles.has("433614532691230721")) {
-                                role_status = "retiré";
-                                member.removeRole(notif_annonces_discord);
-                            } else {
-                                role_status = "ajouté";
-                                notif_message = 'Rôle "Notification : ' + role_name + '" ' +  role_status + ' !';
-                                member.addRole(notif_annonces_discord)
-                            }
-                            role_name = "Annonces Discord";
-                        } else if (suffix === "annonces-radio") {
-                            if (message.member.roles.has("433614611376242688")) {
-                                role_status = "retiré";
-                                member.removeRole(notif_annonces_radio)
-                            } else {
-                                role_status = "ajouté";
-                                member.addRole(notif_annonces_radio)
-                            }
-                            role_name = "Annonces Radio";
-                        } else if (suffix === "event") {
-                            if (message.member.roles.has("433614335512936448")) {
-                                role_status = "retiré";
-                                member.removeRole(notif_event)
-                            } else {
-                                role_status = "ajouté";
-                                member.addRole(notif_event)
-                            }
-                            role_name = "Event";
-                        } else if (suffix === "promotion") {
-                            if (message.member.roles.has("433614466685599745")) {
-                                role_status = "retiré";
-                                member.removeRole(notif_promotion)
-                            } else {
-                                role_status = "ajouté";
-                                member.addRole(notif_promotion)
-                            }
-                            role_name = "Promotion";
-                        } else if (suffix === "sondages") {
-                            if (message.member.roles.has("433614254537572353")) {
-                                role_status = "retiré";
-                                member.removeRole(notif_sondages)
-                            } else {
-                                role_status = "ajouté";
-                                member.addRole(notif_sondages)
-                            }
-                            role_name = "Sondages";
-                        }
-                        notif_message = 'Rôle "Notification : ' + role_name + '" ' +  role_status + ' !';
-                    } else {
-                        notif_message = 'Le rôle que vous avez saisi est incorrect. Liste des rôles disponibles `annonces-discord`, `annonces-radio`, `event`, `promotion`, `sondages`';
-                    }
-                } else {
-                    notif_message = "Merci d'indiquer un rôle. Liste des rôles disponibles `annonces-discord`, `annonces-radio`, `event`, `promotion`, `sondages`"
-                }
-            } else {
-                notif_message = 'Cette commande est seulement disponible dans le serveur "Radio Modern" : ' + serv_discord
-            }
-            const notif_embed = new Discord.RichEmbed()
+                var notif_choix_embed = new Discord.RichEmbed()
+                .setTitle("📢 " + message.author.username + " | Notifications")
+                .addField(separation, "Cliquez sur les réactions correspondantes pour vous ajouter les rôles de notifications. Ils permettent de rester informé de l'actualité concernant la radio.")
+                .addField(separation, "📢 : Annonces Discord\n🎵 : Annonces Radio\n🎉 : Event\n🔗 : Promotion\n❓ : Sondages")
                 .setColor(embed_color)
-                .addField(message.author.username + " : Notification", notif_message)
                 .setFooter(footer)
                 .setTimestamp()
-            message.channel.send(notif_embed);
-            message.delete();
-            var log_embed = new Discord.RichEmbed()
-                .setThumbnail(message.author.displayAvatarURL)
-                .addField(message.author.username + " - Logs : ", "``" + prefix + "notif annonces-discord (remove)``")
-                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                .setFooter(footer)
-                .setColor(embed_color)
-                .setTimestamp();
-            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-            console.log("-> " + prefix + "notif " + role_name + " (" + role_status + ")\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
+                const notif_choix = await message.channel.send(notif_choix_embed);
+                await notif_choix.react("📢");
+                await notif_choix.react("🎵");
+                await notif_choix.react("🎉");
+                await notif_choix.react("🔗");
+                await notif_choix.react("❓");   
+                let author_reaction = notif_choix.createReactionCollector((reaction, user) => user.id === message.author.id);
+                author_reaction.on('collect', async(reaction) => {
+                    if(reaction.emoji.name === "📢") {
+                        if (message.member.roles.has("433614532691230721")) {
+                            role_status = "retiré";
+                            member.removeRole(notif_annonces_discord);
+                        } else {
+                            role_status = "ajouté";
+                            member.addRole(notif_annonces_discord)
+                        }
+                        role_name = "Annonces Discord"
+                    }
+                    if(reaction.emoji.name === "🎵") {
+                        if (message.member.roles.has("433614611376242688")) {
+                            role_status = "retiré";
+                            member.removeRole(notif_annonces_radio)
+                        } else {
+                            role_status = "ajouté";
+                            member.addRole(notif_annonces_radio)
+                        }
+                        role_name = "Annonces Radio"
+                    }
+                    if(reaction.emoji.name === "🎉") {
+                        if (message.member.roles.has("433614335512936448")) {
+                            role_status = "retiré";
+                            member.removeRole(notif_event)
+                        } else {
+                            role_status = "ajouté";
+                            member.addRole(notif_event)
+                        }
+                        role_name = "Event"
+                    }
+                    if(reaction.emoji.name === "🔗") {
+                        if (message.member.roles.has("433614466685599745")) {
+                            role_status = "retiré";
+                            member.removeRole(notif_promotion)
+                        } else {
+                            role_status = "ajouté";
+                            member.addRole(notif_promotion)
+                        }
+                        role_name = "Promotion"
+                    }
+                    if(reaction.emoji.name === "❓") {
+                        if (message.member.roles.has("433614254537572353")) {
+                            role_status = "retiré";
+                            member.removeRole(notif_sondages)
+                        } else {
+                            role_status = "ajouté";
+                            member.addRole(notif_sondages)
+                        }
+                        role_name = "Sondages"
+                    }
+                    await reaction.remove(message.author.id);
+                    let notif_message = "Rôle " + role_name + " " + role_status + " !"
+                    const notif_embed = new Discord.RichEmbed()
+                        .setColor(embed_color)
+                        .addField(message.author.username + " : Notification", notif_message)
+                        .setFooter(footer)
+                        .setTimestamp()
+                    message.author.send(notif_embed);
+                    console.log("-> " + prefix + "notif " + role_name + " (" + role_status + ")\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
+                    var log_embed = new Discord.RichEmbed()
+                        .setThumbnail(message.author.displayAvatarURL)
+                        .addField(message.author.username + " - Logs : ", "``" + prefix + "notif " + role_name + " (" + role_status + ")``")
+                        .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+                        .setFooter(footer)
+                        .setColor(embed_color)
+                        .setTimestamp();
+                    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+                })
+            } else {
+                const notif_serveur_incorrect_embed = new Discord.RichEmbed()
+                    .setColor(embed_color)
+                    .addField(message.author.username + " : Notification", 'Cette commande est seulement disponible dans le serveur "Radio Modern" : ' + serv_discord)
+                    .setFooter(footer)
+                    .setTimestamp()
+                message.channel.send(notif_serveur_incorrect_embed);
+            }
             break;
         
         case "botinfo": 
@@ -455,6 +471,17 @@ bot.on("message", async function (message) {
                 .setColor("#DF0101")
                 .setFooter(footer)
                 .setTimestamp()
+            var help_reseaux_embed = new Discord.RichEmbed()
+                .setColor(embed_color)
+                .addField("🔗 Message d'aide | Liens utiles", separation)
+                .addField("🎵 Radio", "[-> Écouter](" + playtheradio + ")", true)
+                .addField("<:discord:458984960095944704> Serveur Discord", "[-> Rejoindre](" + serv_discord + ")", true)
+                .addField("🤖 Bot", "[-> Ajouter](" + add_bot + ")", true)
+                .addField("<:facebook:432513421507035136> Facebook ", "[@radiomodern1](" + http + facebook + ")", true)
+                .addField("<:twitter:432513453899382794> Twitter", "[@radiomodern_](" + http + twitter + ")", true)
+                .addField(":money_with_wings: Paypal", "[-> Don](" + http + paypal + ")", true)
+                .setTimestamp()
+                .setFooter(footer)
             var help_other_embed = new Discord.RichEmbed()
                 .addField("⚙ Message d'aide | Autre", separation)
                 .addField(prefix + "botinfo", "Afficher les informations en rapport avec le bot et la Radio")
@@ -472,17 +499,6 @@ bot.on("message", async function (message) {
                 .setColor(embed_color)
                 .setFooter(footer)
                 .setTimestamp()
-            var help_reseaux_embed = new Discord.RichEmbed()
-                .setColor(embed_color)
-                .addField("🔗 Message d'aide | Liens utiles", separation)
-                .addField("🎵 Radio", "[-> Écouter](" + playtheradio + ")", true)
-                .addField("<:discord:458984960095944704> Serveur Discord", "[-> Rejoindre](" + serv_discord + ")", true)
-                .addField("🤖 Bot", "[-> Ajouter](" + add_bot + ")", true)
-                .addField("<:facebook:432513421507035136> Facebook ", "[@radiomodern1](" + http + facebook + ")", true)
-                .addField("<:twitter:432513453899382794> Twitter", "[@radiomodern_](" + http + twitter + ")", true)
-                .addField(":money_with_wings: Paypal", "[-> Don](" + http + paypal + ")", true)
-                .setTimestamp()
-                .setFooter(footer)
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "help``")
@@ -504,9 +520,9 @@ bot.on("message", async function (message) {
                 if(reaction.emoji.name === "🎵") {
                     help_sommaire.edit(help_musique_embed);
                 }
-                if(reaction.emoji.name === "📢") {
+                /*if(reaction.emoji.name === "📢") {
                     help_sommaire.edit(help_notif_embed)
-                }
+                }*/
                 if(reaction.emoji.name === "🔗") {
                     help_sommaire.edit(help_reseaux_embed)
                 }
