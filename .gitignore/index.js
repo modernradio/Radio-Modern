@@ -45,7 +45,8 @@ bot.on("ready", () => {
         .setTimestamp()
         .setColor(embed_color)
     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(connection_embed));
-
+    /*bot.user.setAvatar("./lol.jpg");
+    bot.user.setUsername("Radio Modern")*/
     bot.user.setActivity(prefix + "help | Démarré et prêt !");
     console.log(separation + "\n" + prefixLog + " Bot prêt\n" + prefixLog + " Merci à Ilian et RisedSky ! <3\n" + separation)
 
@@ -98,12 +99,12 @@ function auto_join () {
         })
         console.log('-> autojoin\n    + Salon "' + channel_allah.name + '" (' + channel_allah.guild.name + ')\n' + separation)
     })*/
-    channel_slender.join().then(connection => {
+    /*channel_slender.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
         console.log('-> autojoin\n    + Salon "' + channel_slender.name + '" (' + channel_slender.guild.name + ')\n' + separation)
-    })
+    })*/
     /*channel_nota.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
