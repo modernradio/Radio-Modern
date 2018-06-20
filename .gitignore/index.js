@@ -22,7 +22,7 @@ var website = "radiomodern.fr.mu"
 const servers = "411685426143690772"
 , colors = 100
 
-var footer = "Par Ilian, RisedSky et Tard0sTV ! ^^"
+var footer = "Par Ilian, Zenfix, RisedSky et Tard0sTV ! ^^"
 
 var partenaire_color = "#088A08"
 , fondateur_color = "#FF0000"
