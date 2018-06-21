@@ -75,7 +75,7 @@ function auto_join () {
     var channel_test = bot.channels.find("id", "456536141898973204");
     var channel_radiom = bot.channels.find("id", "432593928416657409");
     var channel_allah = bot.channels.find("id", "447711275481563137");
-    //var channel_slender = bot.channels.find("id", "434430059621777438");
+    var channel_slender = bot.channels.find("id", "434430059621777438");
     var channel_nota = bot.channels.find("id", "433305195925995520");
     var channel_draco = bot.channels.find("id", "447857184571916322");
     var channel_ilian = bot.channels.find("id", "449866282691592202");
@@ -97,13 +97,13 @@ function auto_join () {
             connection.playStream(res);
         })
         console.log('-> autojoin\n    + Salon "' + channel_allah.name + '" (' + channel_allah.guild.name + ')\n' + separation)
-    })
+    })*/
     channel_slender.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
         })
         console.log('-> autojoin\n    + Salon "' + channel_slender.name + '" (' + channel_slender.guild.name + ')\n' + separation)
-    })*/
+    })
     channel_nota.join().then(connection => {
         require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
             connection.playStream(res);
@@ -127,7 +127,7 @@ function auto_join () {
         channel_test.leave();
         channel_radiom.leave();
         channel_allah.leave();
-        //channel_slender.leave();
+        channel_slender.leave();
         channel_nota.leave();
         channel_draco.leave();
         channel_ilian.leave();
