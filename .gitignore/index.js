@@ -173,13 +173,13 @@ function music() {
     })
 
     setTimeout(() => {
-        bot.channels.findAll("name", "musique-en-cours").forEach(c => c.bulkDelete(100));
+        bot.channels.findAll("name", "musique-radio-modern").forEach(c => c.bulkDelete(100));
         var music_embed = new Discord.RichEmbed()
             .setColor(embed_color)
             .addField('"' + current_music + '" écoutée par ' + audit, separation)
             .setFooter(footer)
             .setTimestamp();
-        bot.channels.findAll("name", "musique-en-cours").map(channel => channel.send(music_embed));
+        bot.channels.findAll("name", "musique-radio-modern").map(channel => channel.send(music_embed));
         setTimeout(music, 30 * 60 * 1000);
     }, 10000);
 }
