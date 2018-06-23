@@ -180,8 +180,8 @@ function music() {
             .setFooter(footer)
             .setTimestamp();
         bot.channels.findAll("name", "musique-radio-modern").map(channel => channel.send(music_embed));
-        setTimeout(music, 30 * 60 * 1000);
-    }, 10000);
+        setTimeout(music, 30 * 1000);
+    }, 30 * 1000);
 }
 
 function state1() {
@@ -461,12 +461,6 @@ bot.on("message", async function (message) {
             var messages_to_delete = 100
             if (message.member.hasPermission("MANAGE_MESSAGES")) {
                 message.channel.bulkDelete(messages_to_delete)
-                var has_permission = new Discord.RichEmbed()
-                    .setColor(embed_color)
-                    .addField(messages_to_delete + ' messages ont correctement été supprimés', separation)
-                    .setFooter(footer)
-                    .setTimestamp();
-                message.channel.send(has_permission);
             } else {
                 var miss_permission = new Discord.RichEmbed()
                     .setColor(embed_color)
