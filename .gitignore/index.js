@@ -127,7 +127,7 @@ function auto_radio () {
         channel_slender.leave();
         channel_nota.leave();
         channel_draco.leave();
-        channel_ilian.leave();
+        //channel_ilian.leave();
         console.log('-> autojoin\n    - Salon [all]' + '\n' + separation)
         setTimeout(auto_radio_join, 1)
     }
