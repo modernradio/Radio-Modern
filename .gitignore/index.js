@@ -5,7 +5,7 @@ const request = require("request");
 
 var bot = new Discord.Client();
 
-let prefix = "."
+let prefix = "/"
 let prefixLog = "[!]"
 
 var http = "http://"
@@ -28,14 +28,6 @@ var partenaire_color = "#088A08"
 , fondateur_color = "#FF0000"
 , embed_color = "#04B404"
 
-var emoji_gearID = "455409891889381417"
-, emoji_musicID = "455409892128325643"
-, emoji_loudspeakerID = "455409891692249089"
-
-var emoji_gear = "<:emoji_gear:" + emoji_gearID + ">"
-, emoji_music = "<:emoji_music:" + emoji_musicID + ">"
-, emoji_loudpspeaker = "<:emoji_loudspeaker:" + emoji_loudspeakerID + ">"
-
 var separation = "><><><><><><><><><><><"
 
 bot.on("ready", () => {
@@ -49,10 +41,10 @@ bot.on("ready", () => {
     bot.user.setActivity(prefix + "help | Démarré et prêt !");
     console.log(separation + "\n" + prefixLog + " Bot prêt\n" + prefixLog + " Merci à Ilian et RisedSky ! <3\n" + separation)
 
-    setTimeout(state1, 5000);
-    setTimeout(music, 1000);
-    setTimeout(auto_radio, 1000);
-    setInterval(changeColor, 600000);
+    //setTimeout(state1, 5000);
+    //setTimeout(music, 1000);
+    //setTimeout(auto_radio, 1000);
+    //setInterval(changeColor, 600000);
 })
 
 bot.on("guildMemberAdd", member => {
@@ -247,12 +239,14 @@ function state4() {
 }
 
 bot.on("message", async function (message) {
-    if (message.author.equals(bot.user)) return;
-    if (!message.content.startsWith(prefix)) return;
+    if(message.author.equals(bot.user)) return;
+    if(!message.content.startsWith(prefix)) return;
     var args = message.content.substring(prefix.length).split(" ");
     var args2 = message.content.split(" ").slice(1);
     var suffix = args2.join(" ");
-    switch (args[0].toLowerCase()) {
+    if(message.guild.id === "411685426143690772" || message.guild.id === "449608267048681502" || message.guild.id === "449480119732666370" || message.guild.id === "337863843281764372" || message.guild.id === "370613023120818197" || message.guild.id === "417286290220777503" || message.guild.id === "447503386313621504" || message.guild.id === "403526817107148801" || message.guild.id === "381410501290098688") {
+    //                      Radio Modern                                 Tard0sTV (test)                              Ilian's Community                           La Slendarmy                                 NotaServ                                     DracoBot                                     Allah Uakbar                                 ZIRIA                                        EdenCompany
+        switch (args[0].toLowerCase()) {
 
         case "auto-radio":
             if(!message.author.id === "323039726040776705") return;
@@ -481,13 +475,17 @@ bot.on("message", async function (message) {
 
         case "help":
             var help_musique_embed = new Discord.RichEmbed()
-                .addField("🎵 Message d'aide | Musique", separation)
+                .addField("🔊 Message d'aide | Musique", separation)
                 .addField(prefix + "join", "Rejoindre ton salon vocal")
                 .addField(prefix + "radiomodern", "Jouer la Radio Modern dans ton salon vocal")
                 .addField(prefix + "stop", "Quitter ton salon vocal")
                 .setColor("#00BFFF")
                 .setFooter(footer)
                 .setTimestamp()
+            var help_currentmusic_embed = new Discord.RichEmbed()
+                .addField("🎵", ".")
+            var help_vcs_embed = new Discord.RichEmbed()
+                .addField("🗒", ".")
             var help_notif_embed = new Discord.RichEmbed()
                 .addField("📢 Message d'aide | Notifications", separation)
                 .addField(prefix + "notif", "Permet d'ajouter les rôles de notifications qui permettent d'être informé des différentes informations concernant la radio. _(fonction disponible uniquement sur le serveur Radio Modern : " + serv_discord + ")_")
@@ -515,7 +513,9 @@ bot.on("message", async function (message) {
                 .setTimestamp()
             var help_sommaire_embed = new Discord.RichEmbed()
                 .addField(":grey_question: Message d'aide | Sommaire", separation)
-                .addField("🎵 **__Musique :__**", "-> Permet d'afficher toutes les commandes relatives à la radio")
+                .addField("🔊 **__Musique :__**", "-> Permet d'afficher toutes les commandes relatives à la radio")
+                .addField("🎵 **__Musique en cours :__**", "-> Permet d'afficher comment utiliser le salon #musique-radio-modern")
+                .addField("🗒 **__VCS :__**", "-> Permet d'afficher comment utiliser le VCS du bot")
                 .addField("📢 **__Notifications :__**", "-> Permet d'afficher toutes les commandes relatives aux rôles notifications")
                 .addField("🔗 **__Liens utiles :__**", "-> Permet d'afficher tous les liens relatifs à la radio")
                 .addField("⚙ **__Autres :__**", "-> Permet d'afficher toutes les commandes diverses et variées")
@@ -530,24 +530,32 @@ bot.on("message", async function (message) {
                 .setColor(embed_color)
     
             const help_sommaire = await message.channel.send(help_sommaire_embed);
+            await help_sommaire.react("🔊");
             await help_sommaire.react("🎵");
+            await help_sommaire.react("🗒");
             await help_sommaire.react("📢");
             await help_sommaire.react("🔗");
             await help_sommaire.react("⚙");
 
             let author_reaction = help_sommaire.createReactionCollector((reaction, user) => user.id === message.author.id);
             author_reaction.on('collect', async(reaction) => {
-                if(reaction.emoji.name === "⚙") {
-                    help_sommaire.edit(help_other_embed);
-                }
-                if(reaction.emoji.name === "🎵") {
+                if(reaction.emoji.name === "🔊") {
                     help_sommaire.edit(help_musique_embed);
                 }
+                if(reaction.emoji.name === "🎵") {
+                    help_sommaire.edit(help_currentmusic_embed);
+                }
+                if(reaction.emoji.name === "🗒") {
+                    help_sommaire.edit(help_vcs_embed);
+                }
                 if(reaction.emoji.name === "📢") {
-                    help_sommaire.edit(help_notif_embed)
+                    help_sommaire.edit(help_notif_embed);
                 }
                 if(reaction.emoji.name === "🔗") {
                     help_sommaire.edit(help_reseaux_embed)
+                }
+                if(reaction.emoji.name === "⚙") {
+                    help_sommaire.edit(help_other_embed)
                 }
                 await reaction.remove(message.author.id);
             })
@@ -561,6 +569,7 @@ bot.on("message", async function (message) {
             var xo02 = message.guild.channels.find("name", "send-promotion");
             if (message.channel.name !== "send-promotion") return message.reply("Cette commande est à effectuer seulement dans le salon dans #send-promotion du serveur 'Radio Modern'.")
             if (!suffix) return message.reply("Merci de citer la publicité que vous souhaitez poster.")
+            if (suffix.length > 255) return;
             var send_embed = new Discord.RichEmbed()
                 .setColor(embed_color)
                 .addField(message.author.username + " - Sa publicité : ", "```" + suffix + "```")
@@ -584,14 +593,16 @@ bot.on("message", async function (message) {
 
         case "suggest":
             let suggest = message.content.split(" ").slice(1);
-            let sugesstfix = suggest.join(" ")
+            let suggestfix = suggest.join(" ")
             var xo02 = message.guild.channels.find("name", "suggestion-idees");
             if (!xo02) return message.reply("Le channel ``#suggestion-idees`` est introuvable !")
             if (message.channel.name !== "suggestion-idees") return message.reply("Cette commande est à effectuer seulement dans le salon dans ``#suggestion-idees``.")
-            if (!sugesstfix) return message.reply("Merci d'écrire votre suggestions.")
+            if (!sugestfix) return message.reply("Merci d'écrire votre suggestions.")
+            if (suggestfix.length > 255) return;
+
             var suggest_embed = new Discord.RichEmbed()
                 .setColor(embed_color)
-                .addField(message.author.username + " - Suggestions : ", "``" + sugesstfix + "``")
+                .addField(message.author.username + " - Suggestions : ", "``" + sugestfix + "``")
                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``", true)
                 .setThumbnail(message.guild.iconURL)
                 .setFooter(footer)
@@ -618,6 +629,7 @@ bot.on("message", async function (message) {
             if (!xo02) return message.reply("Le channel #vcs-radiom est introuvable !")
             if (message.channel.name !== "vcs-radiom") return message.reply("Cette commande est à effectuer seulement dans le salon dans #vcs-radiom de n'importe quel serveur.")
             if (!msgvcs) return message.channel.send("Merci d'écrire un message à envoyer dans le VCS.")
+            if (msgvcs.length > 255) return;
             if (message.author.id === "323039726040776705" || message.author.id === "182977157314772993") {
                 const fondateur_embed = new Discord.RichEmbed()
                     .setColor(fondateur_color)
@@ -750,6 +762,10 @@ bot.on("message", async function (message) {
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
             console.log("-> " + prefix + "listserv\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             break;
+        }
+    } else {
+    message.delete()
+    message.channel.send(":arrow_right_hook: Ce serveur n'est pas autorisé à exécuter des commandes. Contactez Tard0sTV#8871 pour effectuer une demande d'ajout.")
     }
 });
 
@@ -785,4 +801,4 @@ function changeColor() {
     }
 }
 
-bot.login(process.env.TOKEN);
+bot.login(/*process.env.TOKEN*/"NDQ0OTUxMDgyNzUwMzEyNDY4.DgwZOQ.mNBgQVwTMYcBgf4HN7RC55QKt7A");
