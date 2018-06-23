@@ -41,10 +41,10 @@ bot.on("ready", () => {
     bot.user.setActivity(prefix + "help | Démarré et prêt !");
     console.log(separation + "\n" + prefixLog + " Bot prêt\n" + prefixLog + " Merci à Ilian et RisedSky ! <3\n" + separation)
 
-    //setTimeout(state1, 5000);
-    //setTimeout(music, 1000);
-    //setTimeout(auto_radio, 1000);
-    //setInterval(changeColor, 600000);
+    setTimeout(state1, 5000);
+    setTimeout(music, 1000);
+    setTimeout(auto_radio, 1000);
+    setInterval(changeColor, 600000);
 })
 
 bot.on("guildMemberAdd", member => {
@@ -801,4 +801,4 @@ function changeColor() {
     }
 }
 
-bot.login(/*process.env.TOKEN*/"NDQ0OTUxMDgyNzUwMzEyNDY4.DgwZOQ.mNBgQVwTMYcBgf4HN7RC55QKt7A");
+bot.login(process.env.TOKEN);
