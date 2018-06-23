@@ -5,7 +5,7 @@ const request = require("request");
 
 var bot = new Discord.Client();
 
-let prefix = "/"
+let prefix = "."
 let prefixLog = "[!]"
 
 var http = "http://"
