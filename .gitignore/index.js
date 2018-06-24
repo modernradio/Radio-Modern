@@ -70,7 +70,7 @@ function auto_radio () {
     var channel_slender = bot.channels.find("id", "434430059621777438");
     var channel_nota = bot.channels.find("id", "433305195925995520");
     var channel_draco = bot.channels.find("id", "447857184571916322");
-    var channel_ilian = bot.channels.find("id", "449866282691592202");
+    var channel_ilian = bot.channels.find("id", "456878665045639191");
 
     setTimeout(auto_radio_leave, 1);
 
@@ -127,7 +127,7 @@ function auto_radio () {
         channel_slender.leave();
         channel_nota.leave();
         channel_draco.leave();
-        //channel_ilian.leave();
+        channel_ilian.leave();
         console.log('-> autojoin\n    - Salon [all]' + '\n' + separation)
         setTimeout(auto_radio_join, 1)
     }
@@ -801,4 +801,4 @@ function changeColor() {
     }
 }
 
-bot.login(process.env.TOKEN);
+bot.login(/*process.env.TOKEN*/"NDQ0OTUxMDgyNzUwMzEyNDY4.DhEBeA.hnRKvU8YoEJt3bnvTWQqKrFgoqc");
