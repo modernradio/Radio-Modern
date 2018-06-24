@@ -1,11 +1,11 @@
 const Discord = require("discord.js");
-const YTDL = require("ytdl-core");
-const fs = require("fs");
+//const YTDL = require("ytdl-core");
+//const fs = require("fs");
 const request = require("request");
 
 var bot = new Discord.Client();
 
-let prefix = "/"
+let prefix = "."
 let prefixLog = "[!]"
 
 var http = "http://"
@@ -244,9 +244,21 @@ bot.on("message", async function (message) {
     var args = message.content.substring(prefix.length).split(" ");
     var args2 = message.content.split(" ").slice(1);
     var suffix = args2.join(" ");
-    if(message.guild.id === "411685426143690772" || message.guild.id === "449608267048681502" || message.guild.id === "449480119732666370" || message.guild.id === "337863843281764372" || message.guild.id === "370613023120818197" || message.guild.id === "417286290220777503" || message.guild.id === "447503386313621504" || message.guild.id === "403526817107148801" || message.guild.id === "381410501290098688") {
-    //                      Radio Modern                                 Tard0sTV (test)                              Ilian's Community                           La Slendarmy                                 NotaServ                                     DracoBot                                     Allah Uakbar                                 ZIRIA                                        EdenCompany
+    if(message.guild.id === "411685426143690772" || message.guild.id === "449608267048681502" || message.guild.id === "449480119732666370" || message.guild.id === "337863843281764372" || message.guild.id === "370613023120818197" || message.guild.id === "417286290220777503" || message.guild.id === "447503386313621504" || message.guild.id === "403526817107148801" || message.guild.id === "381410501290098688" || message.guild.id === "319471323845885952") {
+    //                      Radio Modern                                 Tard0sTV (test)                              Ilian's Community                           La Slendarmy                                 NotaServ                                     DracoBot                                     Allah Uakbar                                 ZIRIA                                        EdenCompany                                   PandaGamers
         switch (args[0].toLowerCase()) {
+
+        case "vcs-clear":
+            let clear = message.content.split(" ").slice(1);
+            let vcs_message_to_delete = clear.join(" ")
+            message.delete()
+            if(message.author.id === "323039726040776705") {
+                if(parseInt(vcs_message_to_delete)) {
+                    bot.channels.findAll("name", "vcs-radiom").forEach(c => c.bulkDelete(vcs_message_to_delete));
+                    console.log("-> " + prefix + "vcs-clear\n" + vcs_message_to_delete + " messages correctement supprimés dans le VCS\n" + separation)
+                }
+            }  
+            break;
 
         case "auto-radio":
             if(!message.author.id === "323039726040776705") return;
@@ -290,14 +302,14 @@ bot.on("message", async function (message) {
                 .setTimestamp()
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
-                .addField(message.author.username + " - Logs : ", "``" + prefix + "play radio``")
+                .addField(message.author.username + " - Logs : ", "``" + prefix + "radiomodern``")
                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
                 .setColor(embed_color)
                 .setTimestamp();
             message.channel.send(play_embed);
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-            console.log("-> " + prefix + "play\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
+            console.log("-> " + prefix + "radiomodern\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             break;
     
         case "stop":
@@ -452,25 +464,15 @@ bot.on("message", async function (message) {
             break;
         
         case "purge": 
-            var messages_to_delete = 100
-            if (message.member.hasPermission("MANAGE_MESSAGES")) {
-                message.channel.bulkDelete(messages_to_delete)
-            } else {
-                var miss_permission = new Discord.RichEmbed()
-                    .setColor(embed_color)
-                    .addField('Il te manque la permission "MANAGE_MESSAGES" pour pouvoir effectuer cette action.', separation)
-                    .setFooter(footer)
-                    .setTimestamp();
-                message.channel.send(miss_permission);
-            }
-            var log_embed = new Discord.RichEmbed()
-                .setThumbnail(message.author.displayAvatarURL)
-                .addField(message.author.username + " - Logs : ", "``" + prefix + "purge``")
-                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                .setFooter(footer)
-                .setColor(embed_color)
-                .setTimestamp();
-            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+            let purge = message.content.split(" ").slice(1);
+            let purge_message_to_delete = purge.join(" ")
+            message.delete()
+            if(message.author.id === "323039726040776705") {
+                if(parseInt(vcs_message_to_delete)) {
+                    message.channel.bulkDelete(purge_message_to_delete)
+                    console.log("-> " + prefix + "vcs-clear\n" + vcs_message_to_delete + " messages correctement supprimés dans le VCS\n" + separation)
+                }
+            }  
             break;
 
         case "help":
@@ -640,8 +642,8 @@ bot.on("message", async function (message) {
                 //                           Ilian
                 vcs_color = "#2E64FE"
                 vcs_role = "Développeur "
-            } else if (message.author.id === "370593040706043905" || message.author.id === "417795915810603019" || message.author.id === "269916752564060170" || message.author.id === "306768941210927104" || message.author.id === "140819107556753417") {
-                //                           Draco                                         EdenCompany                                   NewGlace                                      NotaGam                                       QuozPowa                                      
+            } else if (message.author.id === "370593040706043905" || message.author.id === "417795915810603019" || message.author.id === "269916752564060170" || message.author.id === "306768941210927104" || message.author.id === "140819107556753417" || message.author.id === "319470633593339914" || message.author.id === "277828049347674114") {
+                //                           Draco                                         EdenCompany                                   NewGlace                                      NotaGam                                       QuozPowa                                      LAMBR                                         DJ Thyo               
                 vcs_color = partenaire_color
                 vcs_role = "Partenaire "
             } else if (message.author.id === "337863324983230474") {
@@ -654,11 +656,12 @@ bot.on("message", async function (message) {
                 vcs_role = "Animateur Discord "
             }
             const vcs_embed = new Discord.RichEmbed()
-                .setColor(vcs_color)
-                .addField(vcs_role + message.author.username + " : VCS", separation)
-                .addField(msgvcs, separation)
+                .setAuthor(vcs_role + message.author.username + " : VCS", message.guild.iconURL)
+                .addField(separation, msgvcs)
+                .addField(separation, 'Provenance : `"' + message.guild.name + '"` (' + message.guild.id + ")")
                 .setThumbnail(message.author.avatarURL)
-                .setFooter('Provenance : "' + message.guild.name + '" | ' + footer)
+                .setFooter(footer)
+                .setColor(vcs_color)
                 .setTimestamp()
             message.delete()
             bot.channels.findAll("name", "vcs-radiom").map(channel => channel.send(vcs_embed));
