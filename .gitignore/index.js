@@ -117,7 +117,7 @@ function auto_radio () {
             })
             console.log('-> autojoin\n    + Salon "' + channel_ilian.name + '" (' + channel_ilian.guild.name + ')\n' + separation)
         })*/
-        setTimeout(auto_radio_leave, 30 * 60 * 1000)
+        setTimeout(auto_radio_leave, 15 * 60 * 1000)
     }
 
     function auto_radio_leave () {
