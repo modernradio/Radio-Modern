@@ -44,7 +44,7 @@ bot.on("ready", () => {
     setTimeout(state1, 5000);
     setTimeout(music, 1000);
     setTimeout(auto_radio, 1000);
-    setInterval(changeColor, 600000);
+    //setInterval(changeColor, 600000);
 })
 
 bot.on("guildMemberAdd", member => {
@@ -679,7 +679,7 @@ bot.on("message", async function (message) {
         case "listserv":
             message.channel.send("__**ATTENTION, SPAM POSSIBLE**__\n -> Nombre de serveurs : " + bot.guilds.size + "\n-> Nombre d'utilisateurs : " + bot.users.size + "\n\n__Liste complète des serveurs :__");
             var allservers = bot.guilds.array(); for (var i in allservers) {
-                message.channel.send("-> `" + allservers[i].name + "`")
+                message.channel.send('-> `"' + allservers[i].name + '"` (`' + allservers[i].id + "`) : `" + allservers[i].memberCount + "` membres")
             }
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
