@@ -5,7 +5,7 @@ const request = require("request");
 
 var bot = new Discord.Client();
 
-let prefix = "."
+let prefix = "/"
 let prefixLog = "[!]"
 
 var http = "http://"
@@ -193,7 +193,7 @@ function state1() {
             'type': 'STREAMING',
             'url': twitch
         }),
-            bot.channels.findAll("name", "logs-activity").map(channel => channel.send(body + "" + msgActivity));
+        //bot.channels.findAll("name", "logs-activity").map(channel => channel.send(body + "" + msgActivity));
         setTimeout(state2, 5000);
     })
 }
@@ -207,14 +207,14 @@ function state2() {
                 'type': 'STREAMING',
                 'url': twitch
             }),
-                bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Publicité..."));
+            //bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Publicité..."));
             setTimeout(state4, 4000);
         } else {
             bot.user.setActivity(prefix + 'help | "' + body + '"', {
                 'type': 'STREAMING',
                 'url': twitch
             }),
-                bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
+            //bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
             setTimeout(state3, 3000);
         }
     })
@@ -225,7 +225,7 @@ function state3() {
         'type': 'STREAMING',
         'url': twitch
     }),
-        bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
+    //bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
     setTimeout(state4, 3000);
 }
 
@@ -234,7 +234,7 @@ function state4() {
         'type': 'STREAMING',
         'url': twitch
     }),
-        bot.channels.findAll("name", "logs-activity").map(channel => channel.send(footer));
+    //bot.channels.findAll("name", "logs-activity").map(channel => channel.send(footer));
     setTimeout(state1, 3000);
 }
 
@@ -243,7 +243,8 @@ bot.on("message", async function (message) {
     if(!message.content.startsWith(prefix)) return;
     var args = message.content.substring(prefix.length).split(" ");
     var args2 = message.content.split(" ").slice(1);
-    var suffix = args2.join(" ");
+    let xoargs = message.content.split(" ").slice(1);
+    let suffix = xoargs.join(" ")
     if(message.guild.id === "411685426143690772" || message.guild.id === "449608267048681502" || message.guild.id === "449480119732666370" || message.guild.id === "337863843281764372" || message.guild.id === "370613023120818197" || message.guild.id === "417286290220777503" || message.guild.id === "447503386313621504" || message.guild.id === "403526817107148801" || message.guild.id === "381410501290098688" || message.guild.id === "319471323845885952") {
     //                      Radio Modern                                 Tard0sTV (test)                              Ilian's Community                           La Slendarmy                                 NotaServ                                     DracoBot                                     Allah Uakbar                                 ZIRIA                                        EdenCompany                                   PandaGamers
         switch (args[0].toLowerCase()) {
@@ -530,7 +531,13 @@ bot.on("message", async function (message) {
                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
                 .setColor(embed_color)
-    
+            if (suffix === "all") {
+                message.channel.send(help_musique_embed)
+                message.channel.send(help_reseaux_embed)
+                message.channel.send(help_notif_embed)
+                message.channel.send(help_other_embed)
+                return;
+            }
             const help_sommaire = await message.channel.send(help_sommaire_embed);
             await help_sommaire.react("🔊");
             await help_sommaire.react("🎵");
@@ -566,8 +573,6 @@ bot.on("message", async function (message) {
         break;
             
         case "send":
-            let xoargs = message.content.split(" ").slice(1);
-            let suffix = xoargs.join(" ")
             var xo02 = message.guild.channels.find("name", "send-promotion");
             if (message.channel.name !== "send-promotion") return message.reply("Cette commande est à effectuer seulement dans le salon dans #send-promotion du serveur 'Radio Modern'.")
             if (!suffix) return message.reply("Merci de citer la publicité que vous souhaitez poster.")
@@ -631,7 +636,10 @@ bot.on("message", async function (message) {
             if (!xo02) return message.reply("Le channel #vcs-radiom est introuvable !")
             if (message.channel.name !== "vcs-radiom") return message.reply("Cette commande est à effectuer seulement dans le salon dans #vcs-radiom de n'importe quel serveur.")
             if (!msgvcs) return message.channel.send("Merci d'écrire un message à envoyer dans le VCS.")
-            if (msgvcs.length > 255) return message.reply("Ton message est trop long")
+            if (msgvcs.length > 255) {
+                message.channel.send('Le message est trop long')
+                return;
+            }
             let vcs_color;
             let vcs_role;
             if (message.author.id === "323039726040776705" || message.author.id === "182977157314772993") {
