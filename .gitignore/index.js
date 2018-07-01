@@ -654,6 +654,9 @@ bot.on("message", async function (message) {
                 //                           Uro
                 vcs_color = "#0080FF"
                 vcs_role = "Animateur Discord "
+            } else {
+                vcs_color = embed_color
+                vcs_role = "Auditeur "
             }
             const vcs_embed = new Discord.RichEmbed()
                 .setAuthor(vcs_role + message.author.username + " : VCS", message.guild.iconURL)
