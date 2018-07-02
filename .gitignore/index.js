@@ -76,6 +76,7 @@ function auto_radio () {
     var channel_ilian = bot.channels.find("id", "456878665045639191");
     var channel_panda = bot.channels.find("id", "444908046590803968");
     var channel_zenfix = bot.channels.find("id", "442651081080569867");
+    var channel_boulangerie = bot.channels.find("id", "463443299093577738");
 
     setTimeout(auto_radio_leave, 1);
 
@@ -97,14 +98,14 @@ function auto_radio () {
                 connection.playStream(res);
             })
             console.log('-> autojoin\n    + Salon "' + channel_allah.name + '" (' + channel_allah.guild.name + ')\n' + separation)
-        })*/
+        })
         channel_slender.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
             console.log('-> autojoin\n    + Salon "' + channel_slender.name + '" (' + channel_slender.guild.name + ')\n' + separation)
         })
-        /*channel_nota.join().then(connection => {
+        channel_nota.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
@@ -121,19 +122,25 @@ function auto_radio () {
                 connection.playStream(res);
             })
             console.log('-> autojoin\n    + Salon "' + channel_ilian.name + '" (' + channel_ilian.guild.name + ')\n' + separation)
-        })*/
+        })
         channel_panda.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
             console.log('-> autojoin\n    + Salon "' + channel_panda.name + '" (' + channel_panda.guild.name + ')\n' + separation)
         })
-        /*channel_zenfix.join().then(connection => {
+        channel_zenfix.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
             console.log('-> autojoin\n    + Salon "' + channel_zenfix.name + '" (' + channel_zenfix.guild.name + ')\n' + separation)
         })*/
+        channel_boulangerie.join().then(connection => {
+            require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
+                connection.playStream(res);
+            })
+            console.log('-> autojoin\n    + Salon "' + channel_boulangerie.name + '" (' + channel_boulangerie.guild.name + ')\n' + separation)
+        })
         setTimeout(auto_radio_leave, 15 * 60 * 1000)
     }
 
@@ -147,6 +154,7 @@ function auto_radio () {
         channel_ilian.leave();
         channel_panda.leave();
         channel_zenfix.leave();
+        channel_boulangerie.leave();
         console.log('-> autojoin\n    - Salon [all]' + '\n' + separation)
         setTimeout(auto_radio_join, 1)
     }
@@ -254,8 +262,8 @@ bot.on("message", async function (message) {
     var args2 = message.content.split(" ").slice(1);
     let xoargs = message.content.split(" ").slice(1);
     let suffix = xoargs.join(" ")
-    if(message.guild.id === "411685426143690772" || message.guild.id === "449608267048681502" || message.guild.id === "449480119732666370" || message.guild.id === "337863843281764372" || message.guild.id === "370613023120818197" || message.guild.id === "417286290220777503" || message.guild.id === "447503386313621504" || message.guild.id === "403526817107148801" || message.guild.id === "381410501290098688" || message.guild.id === "319471323845885952") {
-    //                      Radio Modern                                 Tard0sTV (test)                              Ilian's Community                           La Slendarmy                                 NotaServ                                     DracoBot                                     Allah Uakbar                                 ZIRIA                                        EdenCompany                                   PandaGamers
+    if(message.guild.id === "411685426143690772" || message.guild.id === "449608267048681502" || message.guild.id === "449480119732666370" || message.guild.id === "337863843281764372" || message.guild.id === "370613023120818197" || message.guild.id === "417286290220777503" || message.guild.id === "447503386313621504" || message.guild.id === "403526817107148801" || message.guild.id === "381410501290098688" || message.guild.id === "319471323845885952" || message.guild.id === "374986045458087951") {
+    //                      Radio Modern                                 Tard0sTV (test)                              Ilian's Community                           La Slendarmy                                 NotaServ                                     DracoBot                                     Allah Uakbar                                 ZIRIA                                        EdenCompany                                   PandaGamers                                  La Boulangerie
         switch (args[0].toLowerCase()) {
 
         case "vcs-clear":
