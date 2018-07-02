@@ -37,7 +37,7 @@ bot.on("ready", () => {
         .setColor(embed_color)
     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(connection_embed));
 
-    bot.user.setActivity(prefix + "help | " + body + "" + msgActivity, {
+    bot.user.setActivity(prefix + "help | Radio Modern", {
         'type': 'LISTENING',
     }),
     
