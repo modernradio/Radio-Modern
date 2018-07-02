@@ -5,7 +5,7 @@ const request = require("request");
 
 var bot = new Discord.Client();
 
-let prefix = "/"
+let prefix = "."
 let prefixLog = "[!]"
 
 var http = "http://"
@@ -16,7 +16,6 @@ var website = "radiomodern.fr.mu"
 , paypal = "paypal.me/RadioModern"
 , playtheradio = http + "radiomodern.playtheradio.com/"
 , serv_discord = http + "discord.gg/4fDkbPw"
-, twitch = http + "twitch.tv/radiomodern"
 , add_bot = http + "discordapp.com/oauth2/authorize?&client_id=444951082750312468&scope=bot&permissions=37055552"
 
 const servers = "411685426143690772"
@@ -38,13 +37,16 @@ bot.on("ready", () => {
         .setColor(embed_color)
     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(connection_embed));
 
-    bot.user.setActivity(prefix + "help | Démarré et prêt !");
-    console.log(separation + "\n" + prefixLog + " Bot prêt\n" + prefixLog + " Merci à Ilian et RisedSky ! <3\n" + separation)
+    bot.user.setActivity(prefix + "help | " + body + "" + msgActivity, {
+        'type': 'LISTENING',
+    }),
+    
+    console.log(separation + "\n" + prefixLog + " Bot prêt\n" + prefixLog + " Merci à Ilian et RisedSky ! <3\n" + separation);
 
     setTimeout(state1, 5000);
     setTimeout(music, 1000);
     setTimeout(auto_radio, 1000);
-    //setInterval(changeColor, 600000);
+    setTimeout(changeColor, 60000);
 })
 
 bot.on("guildMemberAdd", member => {
@@ -206,10 +208,8 @@ function state1() {
             msgActivity = "auditeurs"
         }
         bot.user.setActivity(prefix + "help | " + body + "" + msgActivity, {
-            'type': 'STREAMING',
-            'url': twitch
+            'type': 'LISTENING',
         }),
-        //bot.channels.findAll("name", "logs-activity").map(channel => channel.send(body + "" + msgActivity));
         setTimeout(state2, 5000);
     })
 }
@@ -220,17 +220,13 @@ function state2() {
 
         if (body == "Advert:TargetSpot - Advert:Targetspot ") {
             bot.user.setActivity(prefix + "help | Publicité...", {
-                'type': 'STREAMING',
-                'url': twitch
+                'type': 'LISTENING',
             }),
-            //bot.channels.findAll("name", "logs-activity").map(channel => channel.send("Publicité..."));
             setTimeout(state4, 4000);
         } else {
             bot.user.setActivity(prefix + 'help | "' + body + '"', {
-                'type': 'STREAMING',
-                'url': twitch
+                'type': 'LISTENING',
             }),
-            //bot.channels.findAll("name", "logs-activity").map(channel => channel.send('"' + body + '"'));
             setTimeout(state3, 3000);
         }
     })
@@ -238,19 +234,15 @@ function state2() {
 
 function state3() {
     bot.user.setActivity(prefix + "help | " + website, {
-        'type': 'STREAMING',
-        'url': twitch
+        'type': 'LISTENING',
     }),
-    //bot.channels.findAll("name", "logs-activity").map(channel => channel.send(website));
     setTimeout(state4, 3000);
 }
 
 function state4() {
     bot.user.setActivity(prefix + "help | " + footer, {
-        'type': 'STREAMING',
-        'url': twitch
+        'type': 'LISTENING',
     }),
-    //bot.channels.findAll("name", "logs-activity").map(channel => channel.send(footer));
     setTimeout(state1, 3000);
 }
 
@@ -486,7 +478,7 @@ bot.on("message", async function (message) {
             message.delete()
             if(message.author.id === "323039726040776705") {
                 if(parseInt(vcs_message_to_delete)) {
-                    message.channel.bulkDelete(purge_message_to_delete)
+                    message.channel.bulkDelete(purge_message_to_delete + 1)
                     console.log("-> " + prefix + "vcs-clear\n" + vcs_message_to_delete + " messages correctement supprimés dans le VCS\n" + separation)
                 }
             }  
@@ -592,7 +584,7 @@ bot.on("message", async function (message) {
             var xo02 = message.guild.channels.find("name", "send-promotion");
             if (message.channel.name !== "send-promotion") return message.reply("Cette commande est à effectuer seulement dans le salon dans #send-promotion du serveur 'Radio Modern'.")
             if (!suffix) return message.reply("Merci de citer la publicité que vous souhaitez poster.")
-            if (suffix.length > 255) return message.reply("Ton message est trop long")
+            if (suffix.length > 255) return message.channel.send("Ton message est trop long")
             var send_embed = new Discord.RichEmbed()
                 .setColor(embed_color)
                 .addField(message.author.username + " - Sa publicité : ", "```" + suffix + "```")
@@ -649,8 +641,8 @@ bot.on("message", async function (message) {
             let vcsmog = message.content.split(" ").slice(1);
             let msgvcs = vcsmog.join(" ")
             var xo02 = message.guild.channels.find("name", "vcs-radiom");
-            if (!xo02) return message.reply("Le channel #vcs-radiom est introuvable !")
-            if (message.channel.name !== "vcs-radiom") return message.reply("Cette commande est à effectuer seulement dans le salon dans #vcs-radiom de n'importe quel serveur.")
+            if (!xo02) return message.channel.send("Le salon #vcs-radiom n'existe pas.")
+            if (!message.channel.name === "vcs-radiom") return message.channel.send("Cette commande est à effectuer seulement dans le salon dans #vcs-radiom de n'importe quel serveur.")
             if (!msgvcs) return message.channel.send("Merci d'écrire un message à envoyer dans le VCS.")
             if (msgvcs.length > 255) {
                 message.channel.send('Le message est trop long')
@@ -755,6 +747,7 @@ function changeColor() {
             place++;
         }
     }
+    setTimeout(changeColor, 5 * 60 * 1000)
 }
 
 bot.login(process.env.TOKEN);
