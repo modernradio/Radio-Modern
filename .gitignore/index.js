@@ -667,8 +667,8 @@ bot.on("message", async function (message) {
                 //                           Ilian
                 vcs_color = "#2E64FE"
                 vcs_role = "Développeur "
-            } else if (message.author.id === "370593040706043905" || message.author.id === "417795915810603019" || message.author.id === "269916752564060170" || message.author.id === "306768941210927104" || message.author.id === "140819107556753417" || message.author.id === "319470633593339914" || message.author.id === "277828049347674114") {
-                //                           Draco                                         EdenCompany                                   NewGlace                                      NotaGam                                       QuozPowa                                      LAMBR                                         DJ Thyo               
+            } else if (message.author.id === "370593040706043905" || message.author.id === "417795915810603019" || message.author.id === "269916752564060170" || message.author.id === "306768941210927104" || message.author.id === "140819107556753417" || message.author.id === "319470633593339914" || message.author.id === "277828049347674114" || message.author.id === "376812375795302402") {
+                //                           Draco                                         EdenCompany                                   NewGlace                                      NotaGam                                       QuozPowa                                      LAMBR                                         DJ Thyo                                       Paulé
                 vcs_color = partenaire_color
                 vcs_role = "Partenaire "
             } else if (message.author.id === "337863324983230474") {
