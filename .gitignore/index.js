@@ -21,7 +21,8 @@ var website = "radiomodern.fr.mu"
 const servers = "411685426143690772"
 , colors = 100
 
-var footer = "Par Ilian, Zenfix, RisedSky et Tard0sTV ! ^^"
+var contributors = "Ilian, Tard0sTV, Zenfix & RisedSky"
+var footer = "Par " + contributors + " ! ^^"
 
 var partenaire_color = "#088A08"
 , fondateur_color = "#FF0000"
@@ -240,7 +241,7 @@ function state3() {
 }
 
 function state4() {
-    bot.user.setActivity(prefix + "help | " + footer, {
+    bot.user.setActivity(prefix + "help | " + contributors, {
         'type': 'LISTENING',
     }),
     setTimeout(state1, 3000);
