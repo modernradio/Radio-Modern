@@ -670,8 +670,8 @@ bot.on("message", async function (message) {
     }
 });
 
-/*bot.on("message", async function (message) {
-    if(!message.channel.name == channel_vcs_name) return;
+bot.on("message", async function (message) {
+    if(message.channel.name !== channel_vcs_name) return;
     if(message.author.id === bot.user.id) return;
     if(message.author.bot) return;
     if(message.content.startsWith("//")) return;
@@ -721,7 +721,7 @@ bot.on("message", async function (message) {
         .setTimestamp();
     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
     console.log("-> " + prefix + "vcs\nAuteur : " + vcs_role + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + '\nContenu : \n  "' + message.content + '"\n' + separation);
-})*/
+})
 
 const size = colors;
 const rainbow = new Array(size);
