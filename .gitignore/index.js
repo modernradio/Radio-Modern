@@ -8,6 +8,8 @@ var bot = new Discord.Client();
 let prefix = "."
 let prefixLog = "[!]"
 
+var channel_vcs_name = "vcs-radiom"
+
 var http = "http://"
 
 var website = "radiomodern.fr.mu"
@@ -47,7 +49,7 @@ bot.on("ready", () => {
     setTimeout(state1, 5000);
     setTimeout(music, 1000);
     setTimeout(auto_radio, 1000);
-    setTimeout(changeColor, 60000);
+    //setTimeout(changeColor, 60000);
 })
 
 bot.on("guildMemberAdd", member => {
@@ -272,7 +274,7 @@ bot.on("message", async function (message) {
             message.delete()
             if(message.author.id === "323039726040776705") {
                 if(parseInt(vcs_message_to_delete)) {
-                    bot.channels.findAll("name", "vcs-radiom").forEach(c => c.bulkDelete(vcs_message_to_delete));
+                    bot.channels.findAll("name", channel_vcs_name).forEach(c => c.bulkDelete(vcs_message_to_delete));
                     console.log("-> " + prefix + "vcs-clear\n" + vcs_message_to_delete + " messages correctement supprimés dans le VCS\n" + separation)
                 }
             }  
@@ -526,7 +528,7 @@ bot.on("message", async function (message) {
             var help_other_embed = new Discord.RichEmbed()
                 .addField("⚙ Message d'aide | Autre", separation)
                 .addField(prefix + "botinfo", "Afficher les informations en rapport avec le bot et la Radio")
-                .addField(prefix + "vcs {message}", "Envoyer un message VCS (__V__irtual __C__hat __S__erver) dans tout les serveurs où je suis. _(Seulement dans les salons #vcs-radiom)_")                
+                .addField(prefix + "vcs {message}", "Envoyer un message VCS (__V__irtual __C__hat __S__erver) dans tout les serveurs où je suis. _(Seulement dans les salons #" + channel_vcs_name + ")_")                
                 .addField(prefix + "suggest {message}", "Envoyer une suggestion à faire part aux fondateurs/développeurs.")
                 .setColor("#848484")
                 .setFooter(footer)
@@ -590,7 +592,7 @@ bot.on("message", async function (message) {
         break;
             
         case "send":
-            var xo02 = message.guild.channels.find("name", "send-promotion");
+            var channel_vcs = message.guild.channels.find("name", "send-promotion");
             if (message.channel.name !== "send-promotion") return message.reply("Cette commande est à effectuer seulement dans le salon dans #send-promotion du serveur 'Radio Modern'.")
             if (!suffix) return message.reply("Merci de citer la publicité que vous souhaitez poster.")
             if (suffix.length > 255) return message.channel.send("Ton message est trop long")
@@ -618,8 +620,8 @@ bot.on("message", async function (message) {
         case "suggest":
             let suggest = message.content.split(" ").slice(1);
             let suggestfix = suggest.join(" ")
-            var xo02 = message.guild.channels.find("name", "suggestion-idees");
-            if (!xo02) return message.reply("Le channel ``#suggestion-idees`` est introuvable !")
+            var channel_vcs = message.guild.channels.find("name", "suggestion-idees");
+            if (!channel_vcs) return message.reply("Le channel ``#suggestion-idees`` est introuvable !")
             if (message.channel.name !== "suggestion-idees") return message.reply("Cette commande est à effectuer seulement dans le salon dans ``#suggestion-idees``.")
             if (!sugestfix) return message.reply("Merci d'écrire votre suggestions.")
             if (suggestfix.length > 255) return message.reply("Ton message est trop long")
@@ -646,64 +648,6 @@ bot.on("message", async function (message) {
             console.log("-> " + prefix + "suggest\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             break;
 
-        case "vcs":
-            let vcsmog = message.content.split(" ").slice(1);
-            let msgvcs = vcsmog.join(" ")
-            var xo02 = message.guild.channels.find("name", "vcs-radiom");
-            if (!xo02) return message.channel.send("Le salon #vcs-radiom n'existe pas.")
-            if (!message.channel.name === "vcs-radiom") return message.channel.send("Cette commande est à effectuer seulement dans le salon dans #vcs-radiom de n'importe quel serveur.")
-            if (!msgvcs) return message.channel.send("Merci d'écrire un message à envoyer dans le VCS.")
-            if (msgvcs.length > 255) {
-                message.channel.send('Le message est trop long')
-                return;
-            }
-            let vcs_color;
-            let vcs_role;
-            if (message.author.id === "323039726040776705" || message.author.id === "182977157314772993") {
-                //                    Tard0sTV                                      Volzonas
-                vcs_color = fondateur_color
-                vcs_role = "Fondateur "
-            } else if (message.author.id === "193092758267887616") {
-                //                           Ilian
-                vcs_color = "#2E64FE"
-                vcs_role = "Développeur "
-            } else if (message.author.id === "370593040706043905" || message.author.id === "417795915810603019" || message.author.id === "269916752564060170" || message.author.id === "306768941210927104" || message.author.id === "140819107556753417" || message.author.id === "319470633593339914" || message.author.id === "277828049347674114" || message.author.id === "376812375795302402") {
-                //                           Draco                                         EdenCompany                                   NewGlace                                      NotaGam                                       QuozPowa                                      LAMBR                                         DJ Thyo                                       Paulé
-                vcs_color = partenaire_color
-                vcs_role = "Partenaire "
-            } else if (message.author.id === "337863324983230474") {
-                //                           Slender
-                vcs_color = "#000000"
-                vcs_role = "Partenaire "
-            } else if (message.author.id === "306116635264024586") {
-                //                           Uro
-                vcs_color = "#0080FF"
-                vcs_role = "Animateur Discord "
-            } else {
-                vcs_color = embed_color
-                vcs_role = "Auditeur "
-            }
-            const vcs_embed = new Discord.RichEmbed()
-                .setAuthor(vcs_role + message.author.username + " : VCS", message.guild.iconURL)
-                .addField(separation, msgvcs)
-                .addField(separation, 'Provenance : `"' + message.guild.name + '"` (' + message.guild.id + ")")
-                .setThumbnail(message.author.avatarURL)
-                .setFooter(footer)
-                .setColor(vcs_color)
-                .setTimestamp()
-            message.delete()
-            bot.channels.findAll("name", "vcs-radiom").map(channel => channel.send(vcs_embed));
-            var log_embed = new Discord.RichEmbed()
-                .setThumbnail(message.author.displayAvatarURL)
-                .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
-                .addField("Contenu : " + msgvcs, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                .setFooter(footer)
-                .setColor(embed_color)
-                .setTimestamp();
-            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-            console.log("-> " + prefix + "vcs\nAuteur : " + vcs_role + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + '\nContenu : \n  "' + msgvcs + '"\n' + separation);
-            break;
-
         case "listserv":
             message.channel.send("__**ATTENTION, SPAM POSSIBLE**__\n -> Nombre de serveurs : " + bot.guilds.size + "\n-> Nombre d'utilisateurs : " + bot.users.size + "\n\n__Liste complète des serveurs :__");
             var allservers = bot.guilds.array(); for (var i in allservers) {
@@ -726,6 +670,58 @@ bot.on("message", async function (message) {
     }
 });
 
+bot.on("message", async function (message) {
+    if(!message.channel.name == channel_vcs_name) return;
+    if(message.author.id === bot.user.id) return;
+    if(message.author.bot) return;
+    if(message.content.startsWith("//")) return;
+    if (message.content.length > 255 || message.content.length < 1) return;
+    let vcs_color;
+    let vcs_role;
+    if (message.author.id === "323039726040776705" || message.author.id === "182977157314772993") {
+        //                    Tard0sTV                                      Volzonas
+        vcs_color = fondateur_color
+        vcs_role = "Fondateur "
+    } else if (message.author.id === "193092758267887616") {
+        //                           Ilian
+        vcs_color = "#2E64FE"
+        vcs_role = "Développeur "
+    } else if (message.author.id === "370593040706043905" || message.author.id === "417795915810603019" || message.author.id === "269916752564060170" || message.author.id === "306768941210927104" || message.author.id === "140819107556753417" || message.author.id === "319470633593339914" || message.author.id === "277828049347674114" || message.author.id === "376812375795302402") {
+        //                           Draco                                         EdenCompany                                   NewGlace                                      NotaGam                                       QuozPowa                                      LAMBR                                         DJ Thyo                                       Paulé
+        vcs_color = partenaire_color
+        vcs_role = "Partenaire "
+    } else if (message.author.id === "337863324983230474") {
+        //                           Slender
+        vcs_color = "#000000"
+        vcs_role = "Partenaire "
+    } else if (message.author.id === "306116635264024586") {
+        //                           Uro
+        vcs_color = "#0080FF"
+        vcs_role = "Animateur Discord "
+    } else {
+        vcs_color = embed_color
+        vcs_role = "Auditeur "
+    }
+    const vcs_embed = new Discord.RichEmbed()
+        .setAuthor(vcs_role + message.author.username + " : VCS", message.guild.iconURL)
+        .addField(separation, message.content)
+        .addField(separation, 'Provenance : `"' + message.guild.name + '"` (' + message.guild.id + ")")
+        .setThumbnail(message.author.avatarURL)
+        .setFooter(footer)
+        .setColor(vcs_color)
+        .setTimestamp()
+    message.delete()
+    bot.channels.findAll("name", channel_vcs_name).map(channel => channel.send(vcs_embed));
+    var log_embed = new Discord.RichEmbed()
+        .setThumbnail(message.author.displayAvatarURL)
+        .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
+        .addField("Contenu : " + message.content, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
+        .setFooter(footer)
+        .setColor(embed_color)
+        .setTimestamp();
+    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+    console.log("-> " + prefix + "vcs\nAuteur : " + vcs_role + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + '\nContenu : \n  "' + message.content + '"\n' + separation);
+})
 
 const size = colors;
 const rainbow = new Array(size);
@@ -756,7 +752,7 @@ function changeColor() {
             place++;
         }
     }
-    setTimeout(changeColor, 15 * 60 * 1000)
+    setTimeout(changeColor, 5 * 60 * 1000)
 }
 
 bot.login(process.env.TOKEN);
