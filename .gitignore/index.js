@@ -486,7 +486,7 @@ bot.on("message", async function (message) {
             let purge_message_to_delete = purge.join(" ")
             message.delete()
             if(message.author.id === "323039726040776705") {
-                if(parseInt(vcs_message_to_delete)) {
+                if(parseInt(purge_message_to_delete)) {
                     message.channel.bulkDelete(purge_message_to_delete + 1)
                     console.log("-> " + prefix + "vcs-clear\n" + vcs_message_to_delete + " messages correctement supprimés dans le VCS\n" + separation)
                 }
@@ -701,7 +701,7 @@ bot.on("message", async function (message) {
                 .setColor(embed_color)
                 .setTimestamp();
             bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-            console.log("-> " + prefix + "vcs\nAuteur : " + vcs_role + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  '" + msgvcs + "'\n" + separation);
+            console.log("-> " + prefix + "vcs\nAuteur : " + vcs_role + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + '\nContenu : \n  "' + msgvcs + '"\n' + separation);
             break;
 
         case "listserv":
@@ -756,7 +756,7 @@ function changeColor() {
             place++;
         }
     }
-    setTimeout(changeColor, 5 * 60 * 1000)
+    setTimeout(changeColor, 15 * 60 * 1000)
 }
 
 bot.login(process.env.TOKEN);
