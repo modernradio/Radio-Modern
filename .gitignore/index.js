@@ -623,7 +623,7 @@ bot.on("message", async function (message) {
             var channel_vcs = message.guild.channels.find("name", "suggestion-idees");
             if (!channel_vcs) return message.reply("Le channel ``#suggestion-idees`` est introuvable !")
             if (message.channel.name !== "suggestion-idees") return message.reply("Cette commande est à effectuer seulement dans le salon dans ``#suggestion-idees``.")
-            if (!sugestfix) return message.reply("Merci d'écrire votre suggestions.")
+            if (!sugestfix) return message.reply("Merci d'écrire votre suggestion.")
             if (suggestfix.length > 255) return message.reply("Ton message est trop long")
 
             var suggest_embed = new Discord.RichEmbed()
