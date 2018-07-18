@@ -100,7 +100,7 @@ function auto_radio () {
                 connection.playStream(res);
             })
             console.log('-> autojoin\n    + Salon "' + channel_allah.name + '" (' + channel_allah.guild.name + ')\n' + separation)
-        })
+        })*/
         channel_slender.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
@@ -131,7 +131,7 @@ function auto_radio () {
             })
             console.log('-> autojoin\n    + Salon "' + channel_panda.name + '" (' + channel_panda.guild.name + ')\n' + separation)
         })
-        channel_zenfix.join().then(connection => {
+        /*channel_zenfix.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
