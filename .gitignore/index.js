@@ -201,8 +201,8 @@ function music() {
             .setFooter(footer)
             .setTimestamp();
         bot.channels.findAll("name", "musique-radio-modern").map(channel => channel.send(music_embed));
-        setTimeout(music, 30 * 1000);
-    }, 30 * 1000);
+        setTimeout(music, 20 * 1000);
+    }, 20 * 1000);
 }
 
 function state1() {
