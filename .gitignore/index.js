@@ -78,6 +78,8 @@ function auto_radio () {
     var channel_zenfix = bot.channels.find("id", "442651081080569867");
     var channel_boulangerie = bot.channels.find("id", "463443299093577738");
     var channel_ziria = bot.channels.find("id", "403608851854786562");
+    var channel_universus = bot.channels.find("id", "467298506202152961");
+    
 
     setTimeout(auto_radio_leave, 1);
 
@@ -128,12 +130,18 @@ function auto_radio () {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
-        channel_ziria.join().then(connection => {
+        /*channel_ziria.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
             console.log('-> autojoin\n    + Salon "' + channel_ziria.name + '" (' + channel_ziria.guild.name + ')\n' + separation)
         })
+        channel_universus.join().then(connection => {
+            require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
+                connection.playStream(res);
+            })
+            console.log('-> autojoin\n    + Salon "' + channel_universus.name + '" (' + channel_universus.guild.name + ')\n' + separation)
+        })*/
         setTimeout(auto_radio_leave, 15 * 60 * 1000)
     }
 
