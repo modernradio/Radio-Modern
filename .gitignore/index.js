@@ -69,9 +69,7 @@ bot.on("guildMemberAdd", member => {
 
 function auto_radio () {
 
-    var channel_test = bot.channels.find("id", "456536141898973204");
     var channel_radiom = bot.channels.find("id", "432593928416657409");
-    var channel_allah = bot.channels.find("id", "447711275481563137");
     var channel_slender = bot.channels.find("id", "434430059621777438");
     var channel_nota = bot.channels.find("id", "433305195925995520");
     var channel_draco = bot.channels.find("id", "447857184571916322");
@@ -79,29 +77,18 @@ function auto_radio () {
     var channel_panda = bot.channels.find("id", "444908046590803968");
     var channel_zenfix = bot.channels.find("id", "442651081080569867");
     var channel_boulangerie = bot.channels.find("id", "463443299093577738");
+    var channel_ziria = bot.channels.find("id", "403608851854786562");
 
     setTimeout(auto_radio_leave, 1);
 
     function auto_radio_join () {
-        /*channel_test.join().then(connection => {
-            require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
-                connection.playStream(res);
-            })
-            console.log('-> autojoin\n    + Salon "' + channel_test.name + '" (' + channel_test.guild.name + ')\n' + separation)
-        })*/
         channel_radiom.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
             console.log('-> autojoin\n    + Salon "' + channel_radiom.name + '" (' + channel_radiom.guild.name + ')\n' + separation)
         })
-        /*channel_allah.join().then(connection => {
-            require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
-                connection.playStream(res);
-            })
-            console.log('-> autojoin\n    + Salon "' + channel_allah.name + '" (' + channel_allah.guild.name + ')\n' + separation)
-        })
-        channel_slender.join().then(connection => {
+        /*channel_slender.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
@@ -141,7 +128,11 @@ function auto_radio () {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
-            console.log('-> autojoin\n    + Salon "' + channel_boulangerie.name + '" (' + channel_boulangerie.guild.name + ')\n' + separation)
+        channel_ziria.join().then(connection => {
+            require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
+                connection.playStream(res);
+            })
+            console.log('-> autojoin\n    + Salon "' + channel_ziria.name + '" (' + channel_ziria.guild.name + ')\n' + separation)
         })
         setTimeout(auto_radio_leave, 15 * 60 * 1000)
     }
