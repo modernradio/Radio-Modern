@@ -130,6 +130,7 @@ function auto_radio () {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
+        })
         /*channel_ziria.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
