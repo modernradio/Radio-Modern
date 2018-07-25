@@ -147,9 +147,7 @@ function auto_radio () {
     }
 
     function auto_radio_leave () {
-        channel_test.leave();
         channel_radiom.leave();
-        channel_allah.leave();
         channel_slender.leave();
         channel_nota.leave();
         channel_draco.leave();
