@@ -676,6 +676,8 @@ bot.on("message", async function (message) {
     if (message.content.length > 255 || message.content.length < 1) return;
     let vcs_color;
     let vcs_role;
+    if (message.author.id === "315780474360561664") return;
+        //                    Catin
     if (message.author.id === "323039726040776705" || message.author.id === "182977157314772993") {
         //                    Tard0sTV                                      Volzonas
         vcs_color = fondateur_color
