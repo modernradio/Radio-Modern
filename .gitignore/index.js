@@ -71,7 +71,6 @@ function auto_radio () {
 
     var channel_radiom = bot.channels.find("id", "432593928416657409");
     var channel_slender = bot.channels.find("id", "434430059621777438");
-    var channel_nota = bot.channels.find("id", "433305195925995520");
     var channel_draco = bot.channels.find("id", "447857184571916322");
     var channel_ilian = bot.channels.find("id", "456878665045639191");
     var channel_panda = bot.channels.find("id", "444908046590803968");
@@ -95,12 +94,6 @@ function auto_radio () {
                 connection.playStream(res);
             })
             console.log('-> autojoin\n    + Salon "' + channel_slender.name + '" (' + channel_slender.guild.name + ')\n' + separation)
-        })
-        channel_nota.join().then(connection => {
-            require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
-                connection.playStream(res);
-            })
-            console.log('-> autojoin\n    + Salon "' + channel_nota.name + '" (' + channel_nota.guild.name + ')\n' + separation)
         })
         channel_draco.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
@@ -149,7 +142,6 @@ function auto_radio () {
     function auto_radio_leave () {
         channel_radiom.leave();
         channel_slender.leave();
-        channel_nota.leave();
         channel_draco.leave();
         channel_ilian.leave();
         channel_panda.leave();
