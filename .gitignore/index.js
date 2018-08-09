@@ -70,7 +70,7 @@ bot.on("guildMemberAdd", member => {
 function auto_radio () {
 
     var channel_radiom = bot.channels.find("id", "432593928416657409");
-    var channel_slender = bot.channels.find("id", "434430059621777438");
+    //var channel_slender = bot.channels.find("id", "434430059621777438");
     var channel_draco = bot.channels.find("id", "447857184571916322");
     var channel_ilian = bot.channels.find("id", "456878665045639191");
     var channel_supers = bot.channels.find("id", "444201909666971648");
@@ -108,12 +108,12 @@ function auto_radio () {
             })
             console.log('-> autojoin\n    + Salon "' + channel_ilian.name + '" (' + channel_ilian.guild.name + ')\n' + separation)
         })
-        channel_supers.join().then(connection => {
+        /*channel_supers.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
             console.log('-> autojoin\n    + Salon "' + channel_supers.name + '" (' + channel_ilian.guild.name + ')\n' + separation)
-        })
+        })*/
         channel_panda.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
