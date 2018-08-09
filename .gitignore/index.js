@@ -148,7 +148,7 @@ function auto_radio () {
 
     function auto_radio_leave () {
         channel_radiom.leave();
-        channel_slender.leave();
+        //channel_slender.leave();
         channel_draco.leave();
         channel_ilian.leave();
         channel_supers.leave();
