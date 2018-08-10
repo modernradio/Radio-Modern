@@ -102,18 +102,6 @@ function auto_radio () {
             })
             console.log('-> autojoin\n    + Salon "' + channel_draco.name + '" (' + channel_draco.guild.name + ')\n' + separation)
         })*/
-        channel_ilian.join().then(connection => {
-            require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
-                connection.playStream(res);
-            })
-            console.log('-> autojoin\n    + Salon "' + channel_ilian.name + '" (' + channel_ilian.guild.name + ')\n' + separation)
-        })
-        /*channel_supers.join().then(connection => {
-            require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
-                connection.playStream(res);
-            })
-            console.log('-> autojoin\n    + Salon "' + channel_supers.name + '" (' + channel_ilian.guild.name + ')\n' + separation)
-        })*/
         channel_panda.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
@@ -150,8 +138,6 @@ function auto_radio () {
         channel_radiom.leave();
         //channel_slender.leave();
         channel_draco.leave();
-        channel_ilian.leave();
-        channel_supers.leave();
         channel_panda.leave();
         channel_zenfix.leave();
         channel_boulangerie.leave();
