@@ -348,12 +348,12 @@ bot.on("message", async function (message) {
 
             if (message.guild.id === "411685426143690772") {
                 var notif_choix_embed = new Discord.RichEmbed()
-                .setTitle("📢 " + message.author.username + " | Notifications")
-                .addField(separation, "Cliquez sur les réactions correspondantes pour vous ajouter les rôles de notifications. Ils permettent de rester informé de l'actualité concernant la radio.")
-                .addField(separation, "📢 : Annonces Discord\n🎵 : Annonces Radio\n🎉 : Event\n🔗 : Promotion\n❓ : Sondages")
-                .setColor(embed_color)
-                .setFooter(footer)
-                .setTimestamp()
+                    .setTitle("📢 " + message.author.username + " | Notifications")
+                    .addField(separation, "Cliquez sur les réactions correspondantes pour vous ajouter les rôles de notifications. Ils permettent de rester informé de l'actualité concernant la radio.")
+                    .addField(separation, "📢 : Annonces Discord\n🎵 : Annonces Radio\n🎉 : Event\n🔗 : Promotion\n❓ : Sondages")
+                    .setColor(embed_color)
+                    .setFooter(footer)
+                    .setTimestamp()
                 const notif_choix = await message.channel.send(notif_choix_embed);
                 await notif_choix.react("📢");
                 await notif_choix.react("🎵");
@@ -470,11 +470,10 @@ bot.on("message", async function (message) {
         case "purge": 
             let purge = message.content.split(" ").slice(1);
             let purge_message_to_delete = purge.join(" ")
-            message.delete()
             if(message.author.id === "323039726040776705") {
                 if(parseInt(purge_message_to_delete)) {
                     message.channel.bulkDelete(purge_message_to_delete + 1)
-                    console.log("-> " + prefix + "vcs-clear\n" + vcs_message_to_delete + " messages correctement supprimés dans le VCS\n" + separation)
+                    console.log("-> " + prefix + "purge\n" + purge_message_to_delete + " messages correctement supprimés dans le salon message.channel.name\n" + separation)
                 }
             }  
             break;
@@ -489,9 +488,9 @@ bot.on("message", async function (message) {
                 .setFooter(footer)
                 .setTimestamp()
             var help_currentmusic_embed = new Discord.RichEmbed()
-                .addField("🎵", "En développement...")
+                .addField("🎵 Message d'aide | Musique en cours", "En développement...")
             var help_vcs_embed = new Discord.RichEmbed()
-                .addField("🗒", "En développement...")
+                .addField("🗒 Message d'aide | VCS", "En développement...")
             var help_notif_embed = new Discord.RichEmbed()
                 .addField("📢 Message d'aide | Notifications", separation)
                 .addField(prefix + "notif", "Permet d'ajouter les rôles de notifications qui permettent d'être informé des différentes informations concernant la radio. _(fonction disponible uniquement sur le serveur Radio Modern : " + serv_discord + ")_")
@@ -512,8 +511,7 @@ bot.on("message", async function (message) {
             var help_other_embed = new Discord.RichEmbed()
                 .addField("⚙ Message d'aide | Autre", separation)
                 .addField(prefix + "botinfo", "Afficher les informations en rapport avec le bot et la Radio")
-                .addField(prefix + "vcs {message}", "Envoyer un message VCS (__V__irtual __C__hat __S__erver) dans tout les serveurs où je suis. _(Seulement dans les salons #" + channel_vcs_name + ")_")                
-                .addField(prefix + "suggest {message}", "Envoyer une suggestion à faire part aux fondateurs/développeurs.")
+                .addField(prefix + "vcs {message}", "Envoyer un message VCS (__V__irtual __C__hat __S__erver) dans tout les serveurs où je suis. _(Seulement dans les salons #" + channel_vcs_name + ")_")
                 .setColor("#848484")
                 .setFooter(footer)
                 .setTimestamp()
@@ -601,37 +599,6 @@ bot.on("message", async function (message) {
             console.log("-> " + prefix + "suggest\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             break;
 
-        case "suggest":
-            let suggest = message.content.split(" ").slice(1);
-            let suggestfix = suggest.join(" ")
-            var channel_vcs = message.guild.channels.find("name", "suggestion-idees");
-            if (!channel_vcs) return message.reply("Le channel ``#suggestion-idees`` est introuvable !")
-            if (message.channel.name !== "suggestion-idees") return message.reply("Cette commande est à effectuer seulement dans le salon dans ``#suggestion-idees``.")
-            if (!sugestfix) return message.reply("Merci d'écrire votre suggestion.")
-            if (suggestfix.length > 255) return message.reply("Ton message est trop long")
-
-            var suggest_embed = new Discord.RichEmbed()
-                .setColor(embed_color)
-                .addField(message.author.username + " - Suggestions : ", "``" + sugestfix + "``")
-                .addField(separation, "Provenance du message : ``" + message.guild.name + "``", true)
-                .setThumbnail(message.guild.iconURL)
-                .setFooter(footer)
-                .setTimestamp();
-            message.delete()
-            message.reply("Suggestions envoyée avec succès :white_check_mark:")
-            message.client.users.get("193092758267887616").sendEmbed(suggest_embed)
-            message.client.users.get("323039726040776705").sendEmbed(suggest_embed)
-            var log_embed = new Discord.RichEmbed()
-                .setThumbnail(message.author.displayAvatarURL)
-                .addField(message.author.username + " - Logs : ", "``" + prefix + "suggest``")
-                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                .setFooter(footer)
-                .setColor(embed_color)
-                .setTimestamp();
-            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-            console.log("-> " + prefix + "suggest\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-            break;
-
         case "listserv":
             message.channel.send("__**ATTENTION, SPAM POSSIBLE**__\n -> Nombre de serveurs : " + bot.guilds.size + "\n-> Nombre d'utilisateurs : " + bot.users.size + "\n\n__Liste complète des serveurs :__");
             var allservers = bot.guilds.array(); for (var i in allservers) {
@@ -663,7 +630,7 @@ bot.on("message", async function (message) {
     let vcs_color;
     let vcs_role;
     if (message.author.id === "315780474360561664") return;
-        //                    Catin
+        //                    X
     if (message.author.id === "323039726040776705" || message.author.id === "182977157314772993") {
         //                    Tard0sTV                                      Volzonas
         vcs_color = fondateur_color
@@ -672,13 +639,9 @@ bot.on("message", async function (message) {
         //                           Ilian
         vcs_color = "#2E64FE"
         vcs_role = "Développeur "
-    } else if (message.author.id === "370593040706043905" || message.author.id === "417795915810603019" || message.author.id === "269916752564060170" || message.author.id === "306768941210927104" || message.author.id === "140819107556753417" || message.author.id === "319470633593339914" || message.author.id === "277828049347674114" || message.author.id === "376812375795302402") {
-        //                           Draco                                         EdenCompany                                   NewGlace                                      NotaGam                                       QuozPowa                                      LAMBR                                         DJ Thyo                                       Paulé
+    } else if (message.author.id === "370593040706043905" || message.author.id === "417795915810603019" || message.author.id === "306768941210927104" || message.author.id === "319470633593339914" || message.author.id === "337863324983230474") {
+        //                           Draco                                         EdenCompany                                   NotaGam                                       LAMBR                                         Slender
         vcs_color = partenaire_color
-        vcs_role = "Partenaire "
-    } else if (message.author.id === "337863324983230474") {
-        //                           Slender
-        vcs_color = "#000000"
         vcs_role = "Partenaire "
     } else if (message.author.id === "306116635264024586") {
         //                           Uro
