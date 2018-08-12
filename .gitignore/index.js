@@ -76,7 +76,7 @@ function auto_radio () {
     var channel_supers = bot.channels.find("id", "444201909666971648");
     var channel_panda = bot.channels.find("id", "444908046590803968");
     var channel_zenfix = bot.channels.find("id", "442651081080569867");
-    var channel_boulangerie = bot.channels.find("id", "463443299093577738");
+    //var channel_boulangerie = bot.channels.find("id", "463443299093577738");
     var channel_ziria = bot.channels.find("id", "403608851854786562");
     var channel_universus = bot.channels.find("id", "467298506202152961");
     
@@ -113,13 +113,13 @@ function auto_radio () {
                 connection.playStream(res);
             })
             console.log('-> autojoin\n    + Salon "' + channel_zenfix.name + '" (' + channel_zenfix.guild.name + ')\n' + separation)
-        })*/
+        })
         channel_boulangerie.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
         })
-        /*channel_ziria.join().then(connection => {
+        channel_ziria.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
@@ -140,7 +140,7 @@ function auto_radio () {
         channel_draco.leave();
         channel_panda.leave();
         channel_zenfix.leave();
-        channel_boulangerie.leave();
+        //channel_boulangerie.leave();
         console.log('-> autojoin\n    - Salon [all]' + '\n' + separation)
         setTimeout(auto_radio_join, 1)
     }
