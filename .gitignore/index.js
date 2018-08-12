@@ -40,15 +40,15 @@ bot.on("ready", () => {
         .setColor(embed_color)
     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(connection_embed));
 
-    bot.user.setActivity(prefix + "help | Radio Modern", {
-        'type': 'LISTENING',
+    bot.user.setActivity("Radio Modern", {
+        "type": "LISTENING",
     }),
     
-    console.log(separation + "\n" + prefixLog + " Bot prêt\n" + prefixLog + " Merci à Ilian et RisedSky ! <3\n" + separation);
+    console.log(separation + "\n" + prefixLog + " Bot prêt\n" + prefixLog + " Merci à " + contributors +  " ! <3\n" + separation);
 
-    setTimeout(state1, 5000);
-    setTimeout(music, 1000);
-    setTimeout(auto_radio, 1000);
+    setTimeout(state_audit, 5 * 1000);
+    setTimeout(music, 1 * 1000);
+    setTimeout(auto_radio, 1* 1000);
     //setTimeout(changeColor, 60000);
 })
 
@@ -70,17 +70,11 @@ bot.on("guildMemberAdd", member => {
 function auto_radio () {
 
     var channel_radiom = bot.channels.find("id", "432593928416657409");
-    //var channel_slender = bot.channels.find("id", "434430059621777438");
-    var channel_draco = bot.channels.find("id", "447857184571916322");
-    var channel_ilian = bot.channels.find("id", "456878665045639191");
-    var channel_supers = bot.channels.find("id", "444201909666971648");
+    var channel_slender = bot.channels.find("id", "434430059621777438");
+    var channel_draco = bot.channels.find("id", "472819973220204565");
     var channel_panda = bot.channels.find("id", "444908046590803968");
-    var channel_zenfix = bot.channels.find("id", "442651081080569867");
-    //var channel_boulangerie = bot.channels.find("id", "463443299093577738");
     var channel_ziria = bot.channels.find("id", "403608851854786562");
-    var channel_universus = bot.channels.find("id", "467298506202152961");
     
-
     setTimeout(auto_radio_leave, 1);
 
     function auto_radio_join () {
@@ -88,60 +82,42 @@ function auto_radio () {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
-            console.log('-> autojoin\n    + Salon "' + channel_radiom.name + '" (' + channel_radiom.guild.name + ')\n' + separation)
+            console.log("-> autojoin\n    + Salon \"" + channel_radiom.name + "\" (" + channel_radiom.guild.name + ")\n" + separation)
         })
-        /*channel_slender.join().then(connection => {
+        channel_slender.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
-            console.log('-> autojoin\n    + Salon "' + channel_slender.name + '" (' + channel_slender.guild.name + ')\n' + separation)
+            console.log("-> autojoin\n    + Salon \"" + channel_slender.name + "\" (" + channel_slender.guild.name + ")\n" + separation)
         })
-        channel_draco.join().then(connection => {
+        /*channel_draco.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
-            console.log('-> autojoin\n    + Salon "' + channel_draco.name + '" (' + channel_draco.guild.name + ')\n' + separation)
+            console.log("-> autojoin\n    + Salon \"" + channel_draco.name + "\" (" + channel_draco.guild.name + ")\n" + separation)
         })*/
         channel_panda.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
-            console.log('-> autojoin\n    + Salon "' + channel_panda.name + '" (' + channel_panda.guild.name + ')\n' + separation)
+            console.log("-> autojoin\n    + Salon \"" + channel_panda.name + "\" (" + channel_panda.guild.name + ")\n" + separation)
         })
-        /*channel_zenfix.join().then(connection => {
+        /*channel_ziria.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
-            console.log('-> autojoin\n    + Salon "' + channel_zenfix.name + '" (' + channel_zenfix.guild.name + ')\n' + separation)
-        })
-        channel_boulangerie.join().then(connection => {
-            require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
-                connection.playStream(res);
-            })
-        })
-        channel_ziria.join().then(connection => {
-            require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
-                connection.playStream(res);
-            })
-            console.log('-> autojoin\n    + Salon "' + channel_ziria.name + '" (' + channel_ziria.guild.name + ')\n' + separation)
-        })
-        channel_universus.join().then(connection => {
-            require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
-                connection.playStream(res);
-            })
-            console.log('-> autojoin\n    + Salon "' + channel_universus.name + '" (' + channel_universus.guild.name + ')\n' + separation)
+            console.log("-> autojoin\n    + Salon \"" + channel_ziria.name + "\" (" + channel_ziria.guild.name + ")\n" + separation)
         })*/
         setTimeout(auto_radio_leave, 15 * 60 * 1000)
     }
 
     function auto_radio_leave () {
         channel_radiom.leave();
-        //channel_slender.leave();
+        channel_slender.leave();
         channel_draco.leave();
         channel_panda.leave();
-        channel_zenfix.leave();
-        //channel_boulangerie.leave();
-        console.log('-> autojoin\n    - Salon [all]' + '\n' + separation)
+        channel_ziria.leave();
+        console.log("-> autojoin\n    - Salon [all]" + "\n" + separation)
         setTimeout(auto_radio_join, 1)
     }
 }
@@ -181,7 +157,7 @@ function music() {
         bot.channels.findAll("name", "musique-radio-modern").forEach(c => c.bulkDelete(100));
         var music_embed = new Discord.RichEmbed()
             .setColor(embed_color)
-            .addField('"' + current_music + '" écoutée par ' + audit, separation)
+            .addField("\"" + current_music + "\" écoutée par " + audit, separation)
             .setFooter(footer)
             .setTimestamp();
         bot.channels.findAll("name", "musique-radio-modern").map(channel => channel.send(music_embed));
@@ -189,7 +165,7 @@ function music() {
     }, 20 * 1000);
 }
 
-function state1() {
+function state_audit() {
     request("http://api.radionomy.com/currentaudience.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
         if (error) return console.log(error);
 
@@ -203,42 +179,35 @@ function state1() {
             msgActivity = "auditeurs"
         }
         bot.user.setActivity(prefix + "help | " + body + "" + msgActivity, {
-            'type': 'LISTENING',
+            "type": "LISTENING",
         }),
-        setTimeout(state2, 5000);
+        setTimeout(state_music, 10 * 1000);
     })
 }
 
-function state2() {
+function state_music() {
     request("http://api.radionomy.com/currentsong.cfm?radiouid=5d198d45-3ee5-4dee-8182-4ee0184d41f1&apikey=15355fc0-4344-4ff7-a795-8efa38742083", (error, response, body) => {
         if (error) return console.log(error);
 
         if (body == "Advert:TargetSpot - Advert:Targetspot ") {
             bot.user.setActivity(prefix + "help | Publicité...", {
-                'type': 'LISTENING',
+                "type": "LISTENING",
             }),
-            setTimeout(state4, 4000);
+            setTimeout(state_website, 5 * 1000);
         } else {
-            bot.user.setActivity(prefix + 'help | "' + body + '"', {
-                'type': 'LISTENING',
+            bot.user.setActivity(prefix + "help | \"" + body + "\"", {
+                "type": "LISTENING",
             }),
-            setTimeout(state3, 3000);
+            setTimeout(state_website, 10 * 1000);
         }
     })
 }
 
-function state3() {
+function state_website() {
     bot.user.setActivity(prefix + "help | " + website, {
-        'type': 'LISTENING',
+        "type": "LISTENING",
     }),
-    setTimeout(state4, 3000);
-}
-
-function state4() {
-    bot.user.setActivity(prefix + "help | " + contributors, {
-        'type': 'LISTENING',
-    }),
-    setTimeout(state1, 3000);
+    setTimeout(state_audit, 5 * 1000);
 }
 
 bot.on("message", async function (message) {
@@ -301,7 +270,7 @@ bot.on("message", async function (message) {
             })
             var play_embed = new Discord.RichEmbed()
                 .setColor(embed_color)
-                .setAuthor(message.author.username + ' : Je joue actuellement la radio dans le salon "' + message.member.voiceChannel.name)
+                .setAuthor(message.author.username + " : Je joue actuellement la radio dans le salon \"" + message.member.voiceChannel.name)
                 .setFooter(footer)
                 .setTimestamp()
             var log_embed = new Discord.RichEmbed()
@@ -361,7 +330,7 @@ bot.on("message", async function (message) {
                 await notif_choix.react("🔗");
                 await notif_choix.react("❓");   
                 let author_reaction = notif_choix.createReactionCollector((reaction, user) => user.id === message.author.id);
-                author_reaction.on('collect', async(reaction) => {
+                author_reaction.on("collect", async(reaction) => {
                     if(reaction.emoji.name === "📢") {
                         if (message.member.roles.has("433614532691230721")) {
                             role_status = "retiré";
@@ -433,7 +402,7 @@ bot.on("message", async function (message) {
             } else {
                 const notif_serveur_incorrect_embed = new Discord.RichEmbed()
                     .setColor(embed_color)
-                    .addField(message.author.username + " : Notification", 'Cette commande est seulement disponible dans le serveur "Radio Modern" : ' + serv_discord)
+                    .addField(message.author.username + " : Notification", "Cette commande est seulement disponible dans le serveur \"Radio Modern\" : " + serv_discord)
                     .setFooter(footer)
                     .setTimestamp()
                 message.channel.send(notif_serveur_incorrect_embed);
@@ -532,13 +501,6 @@ bot.on("message", async function (message) {
                 .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
                 .setFooter(footer)
                 .setColor(embed_color)
-            if (suffix === "all") {
-                message.channel.send(help_musique_embed)
-                message.channel.send(help_reseaux_embed)
-                message.channel.send(help_notif_embed)
-                message.channel.send(help_other_embed)
-                return;
-            }
             const help_sommaire = await message.channel.send(help_sommaire_embed);
             await help_sommaire.react("🔊");
             await help_sommaire.react("🎵");
@@ -548,7 +510,7 @@ bot.on("message", async function (message) {
             await help_sommaire.react("⚙");
 
             let author_reaction = help_sommaire.createReactionCollector((reaction, user) => user.id === message.author.id);
-            author_reaction.on('collect', async(reaction) => {
+            author_reaction.on("collect", async(reaction) => {
                 if(reaction.emoji.name === "🔊") {
                     help_sommaire.edit(help_musique_embed);
                 }
@@ -575,7 +537,7 @@ bot.on("message", async function (message) {
             
         case "send":
             var channel_vcs = message.guild.channels.find("name", "send-promotion");
-            if (message.channel.name !== "send-promotion") return message.reply("Cette commande est à effectuer seulement dans le salon dans #send-promotion du serveur 'Radio Modern'.")
+            if (message.channel.name !== "send-promotion") return message.reply("Cette commande est à effectuer seulement dans le salon dans #send-promotion du serveur \"Radio Modern\".")
             if (!suffix) return message.reply("Merci de citer la publicité que vous souhaitez poster.")
             if (suffix.length > 255) return message.channel.send("Ton message est trop long")
             var send_embed = new Discord.RichEmbed()
@@ -602,7 +564,7 @@ bot.on("message", async function (message) {
         case "listserv":
             message.channel.send("__**ATTENTION, SPAM POSSIBLE**__\n -> Nombre de serveurs : " + bot.guilds.size + "\n-> Nombre d'utilisateurs : " + bot.users.size + "\n\n__Liste complète des serveurs :__");
             var allservers = bot.guilds.array(); for (var i in allservers) {
-                message.channel.send('-> `"' + allservers[i].name + '"` (`' + allservers[i].id + "`) : `" + allservers[i].memberCount + "` membres")
+                message.channel.send("-> `\"" + allservers[i].name + "\"` (`" + allservers[i].id + "`) : `" + allservers[i].memberCount + "` membres")
             }
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
@@ -654,7 +616,7 @@ bot.on("message", async function (message) {
     const vcs_embed = new Discord.RichEmbed()
         .setAuthor(vcs_role + message.author.username + " : VCS", message.guild.iconURL)
         .addField(separation, message.content)
-        .addField(separation, 'Provenance : `"' + message.guild.name + '"` (' + message.guild.id + ")")
+        .addField(separation, "Provenance : `\"" + message.guild.name + "\"` (" + message.guild.id + ")")
         .setThumbnail(message.author.avatarURL)
         .setFooter(footer)
         .setColor(vcs_color)
@@ -669,10 +631,10 @@ bot.on("message", async function (message) {
         .setColor(embed_color)
         .setTimestamp();
     bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
-    console.log("-> " + prefix + "vcs\nAuteur : " + vcs_role + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + '\nContenu : \n  "' + message.content + '"\n' + separation);
+    console.log("-> " + prefix + "vcs\nAuteur : " + vcs_role + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  \"" + message.content + "\"\n" + separation);
 })
 
-const size = colors;
+/*const size = colors;
 const rainbow = new Array(size);
 let place = 0;
 
@@ -680,7 +642,7 @@ for (var i = 0; i < size; i++) {
     var red = sin_to_hex(i, 0 * Math.PI * 2 / 3);
     var blue = sin_to_hex(i, 1 * Math.PI * 2 / 3);
     var green = sin_to_hex(i, 2 * Math.PI * 2 / 3);
-    rainbow[i] = '#' + red + green + blue;
+    rainbow[i] = "#"" + red + green + blue;
 }
 
 function sin_to_hex(i, phase) {
@@ -688,7 +650,7 @@ function sin_to_hex(i, phase) {
     var int = Math.floor(sin * 127) + 128;
     var hex = int.toString(16);
 
-    return hex.length === 1 ? '0' + hex : hex;
+    return hex.length === 1 ? "0" + hex : hex;
 }
 
 function changeColor() {
@@ -702,6 +664,6 @@ function changeColor() {
         }
     }
     setTimeout(changeColor, 5 * 60 * 1000)
-}
+}*/
 
 bot.login(process.env.TOKEN);
