@@ -114,9 +114,9 @@ function auto_radio () {
     function auto_radio_leave () {
         channel_radiom.leave();
         channel_slender.leave();
-        channel_draco.leave();
+        //channel_draco.leave();
         channel_panda.leave();
-        channel_ziria.leave();
+        //channel_ziria.leave();
         console.log("-> autojoin\n    - Salon [all]" + "\n" + separation)
         setTimeout(auto_radio_join, 1)
     }
