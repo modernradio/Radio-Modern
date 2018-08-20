@@ -359,7 +359,7 @@ bot.on("message", async function (message) {
                                 case "Dev_Help_Center":
                                 //if(message.author.id !== "370593040706043905") return message.channel.send("Tu n'es pas autorisé à effectuer cela")
                                 if(message.author.id !== "323039726040776705") return message.channel.send("Tu n'es pas autorisé à effectuer cela")
-                                if (pubRecently.has(message.author.id)) {
+                                /*if (pubRecently.has(message.author.id)) {
                                     message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
                                 } else {
                                     //bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
@@ -368,7 +368,8 @@ bot.on("message", async function (message) {
                                     setTimeout(() => {
                                         pubRecently.delete(message.author.id);
                                     }, 7 * 24 * 60 * 60 * 1000);
-                                }
+                                }*/
+                                message.channel.send("Hey");
                                 break;
     
                                 case "DracoBot":
