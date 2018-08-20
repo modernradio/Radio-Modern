@@ -245,7 +245,7 @@ bot.on("message", async function (message) {
             if(message.author.id !== "323039726040776705") return message.channel.send("Tu n'es pas autorisé à effectuer cela")
             // à supprimer
             //if(message.channel.id !== "478263755772264459") return message.channel.send("Cette commande est à effectuer seulement dans le salon dans #send-promotion du serveur \"Radio Modern\".")
-            if(message.channel.id !== "463711371318525973") return message.channel.send("Cette commande est à effectuer seulement dans le salon dans #send-promotion du serveur \"Radio Modern\".")
+            if(message.channel.id !== "481120206853505054") return message.channel.send("Cette commande est à effectuer seulement dans le salon dans #send-promotion du serveur \"Radio Modern\".")
 
             if(!args1) {
 
@@ -361,7 +361,8 @@ bot.on("message", async function (message) {
                                 if (pubRecently.has(message.author.id)) {
                                     message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
                                 } else {
-                                    bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                    //bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                    bot.channels.find("id", "481120235307401227").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
                                     pubRecently.add(message.author.id);
                                     setTimeout(() => {
                                         pubRecently.delete(message.author.id);
