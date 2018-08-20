@@ -284,6 +284,10 @@ bot.on("message", async function (message) {
 
                     switch(args2) {
 
+                        case "TEST":
+                            message.channel.send("ça marche ;)");
+                        break;
+
                         case "Dev_Help_Center":
                             if(message.author.id !== "370593040706043905") return message.channel.send("Tu n'es pas autorisé à effectuer cela")
                             message.channel.send("Voici la publicité enregistrée pour le serveur `Dev_Help_Center` :\n\n" + pub_devhelpcenter)
