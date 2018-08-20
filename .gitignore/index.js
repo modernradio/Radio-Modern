@@ -278,7 +278,7 @@ bot.on("message", async function (message) {
                     break;
                 }
 
-            } else if(args1 === "show") {
+            } else if(args1.startsWith("show")) {
 
                 if(args2) {
 
@@ -350,11 +350,11 @@ bot.on("message", async function (message) {
                         break;
                     }
                 }
-            } else if(args1 === "send") {
+            } else if(args1.startsWith("send")) {
 
                 if(args2) {
 
-                        if(args3 === "confirm") {
+                        if(args3.startsWith("confirm")) {
                             switch(args2) {
                                 case "Dev_Help_Center":
                                 //if(message.author.id !== "370593040706043905") return message.channel.send("Tu n'es pas autorisé à effectuer cela")
