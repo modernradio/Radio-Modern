@@ -216,9 +216,10 @@ bot.on("message", async function (message) {
     if(message.author.equals(bot.user)) return;
     if(!message.content.startsWith(prefix)) return;
     var args = message.content.substring(prefix.length).split(" ");
-    var args2 = message.content.split(" ").slice(1);
-    let xoargs = message.content.split(" ").slice(1);
-    let suffix = xoargs.join(" ")
+    var xoargs = message.content.split(" ").slice(1);
+    var args1 = xoargs.join(" ");
+    var args2 = xoargs.slice(1).join(" ");
+    var args3 = xoargs.slice(2).join(" ");
     if(message.guild.id === "411685426143690772" || message.guild.id === "449608267048681502" || message.guild.id === "449480119732666370" || message.guild.id === "337863843281764372" || message.guild.id === "370613023120818197" || message.guild.id === "417286290220777503" || message.guild.id === "447503386313621504" || message.guild.id === "403526817107148801" || message.guild.id === "381410501290098688" || message.guild.id === "319471323845885952" || message.guild.id === "374986045458087951" || message.guild.id === "418420380722528256" || message.guild.id === "432532720158244866") {
     //                      Radio Modern                                 Tard0sTV (test)                              Ilian's Community                           La Slendarmy                                 NotaServ                                     DracoBot                                     Allah Uakbar                                 ZIRIA                                        EdenCompany                                   PandaGamers                                  La Boulangerie                               Universus League                           Supers Fanne | Officiel
         switch (args[0].toLowerCase()) {
