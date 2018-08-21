@@ -560,7 +560,7 @@ function cmusic() {
         bot.channels.findAll("name", channel_name_currentmusic).forEach(c => c.bulkDelete(100));
         var cmusic_embed = new Discord.RichEmbed()
             .setColor(embed_color)
-            .addField("\"" + cm_music + "\" écoutée par " + audit, separation)
+            .addField("\"" + cm_music + "\" écoutée par " + cm_auditeur, separation)
             .setFooter(footer)
             .setTimestamp();
         bot.channels.findAll("name", channel_name_currentmusic).map(channel => channel.send(cmusic_embed));
