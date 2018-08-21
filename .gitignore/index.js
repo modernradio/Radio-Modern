@@ -15,7 +15,7 @@ var website = "radiomodern.fr.mu"
 , paypal = "http://paypal.me/RadioModern"
 , playtheradio = "http://radiomodern.playtheradio.com/"
 , serv_discord = "http://discord.gg/4fDkbPw"
-, add_bot = http + "http://discordapp.com/oauth2/authorize?&client_id=" + bot.id + "&scope=bot&permissions=37055552"
+, add_bot = "http://discordapp.com/oauth2/authorize?&client_id=" + bot.id + "&scope=bot&permissions=37055552"
 
 const rainbow_servers = "411685426143690772"
 
