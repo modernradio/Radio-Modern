@@ -46,7 +46,7 @@ bot.on("ready", () => {
     stateactivity_auditeur();
     cmusic();
     autoplayradio();    
-    changeColor();
+    //changeColor();
 });
 
 bot.on("guildMemberAdd", member => {
