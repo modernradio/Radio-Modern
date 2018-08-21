@@ -564,7 +564,7 @@ function cmusic() {
             .setFooter(footer)
             .setTimestamp();
         bot.channels.findAll("name", channel_name_currentmusic).map(channel => channel.send(cmusic_embed));
-        setTimeout(current_music, 20 * 1000);
+        setTimeout(cmusic, 20 * 1000);
     }, 20 * 1000);
 }
 
