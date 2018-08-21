@@ -96,13 +96,13 @@ bot.on("message", async function (message) {
 
         case "join":
             var channel = message.member.voiceChannel;
-            if (!channel) return sendembed_simple("Join", ":warning: Il y a une erreur : Tu n'es pas dans un salon vocal", message.channel.id, message.author, embed_color, footer);
+            if (!channel) return sendembed_simple("Join", ":warning: Il y a une erreur : Tu n'es pas dans un salon vocal", message.channel.id, message.author.username, embed_color, footer);
             if (!message.member.voiceChannel.joinable) {
-                sendembed_simple("Join", ":warning: Il y a une erreur : Je n'ai pas les permissions requises pour rejoindre ce salon vocal", message.channel.id, message.author, embed_color, footer);
+                sendembed_simple("Join", ":warning: Il y a une erreur : Je n'ai pas les permissions requises pour rejoindre ce salon vocal", message.channel.id, message.author.username, embed_color, footer);
                 return;
             }
             message.member.voiceChannel.join();
-            sendembed_simple("Join", "J'ai rejoins ton salon vocal", message.channel.id, message.author, embed_color, footer);
+            sendembed_simple("Join", "J'ai rejoins ton salon vocal", message.channel.id, message.author.username, embed_color, footer);
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "join``")
@@ -116,13 +116,13 @@ bot.on("message", async function (message) {
 
         case "radiomodern": 
             var channel = message.member.voiceChannel;
-            if (!channel) return sendembed_simple("RadioModern", ":warning: Il y a une erreur : Tu n'es pas dans un salon vocal", message.channel.id, message.author, embed_color, footer);
+            if (!channel) return sendembed_simple("RadioModern", ":warning: Il y a une erreur : Tu n'es pas dans un salon vocal", message.channel.id, message.author.username, embed_color, footer);
             message.member.voiceChannel.join().then(connection => {
                 require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                     connection.playStream(res);
                 })
             })
-            sendembed_simple("RadioModern", "Je joue dorénavant la radio dans ton salon vocal", message.channel.id, message.author, embed_color, footer);
+            sendembed_simple("RadioModern", "Je joue dorénavant la radio dans ton salon vocal", message.channel.id, message.author.username, embed_color, footer);
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "radiomodern``")
@@ -136,8 +136,8 @@ bot.on("message", async function (message) {
     
         case "stop":
             var voiceChannel = message.member.voiceChannel;
-            if (!voiceChannel) return sendembed_simple("Stop", ":warning: Il y a une erreur : Tu n'es pas dans un salon vocal", message.channel.id, message.author, embed_color, footer);
-            sendembed_simple("Stop", "J'ai quitté le salon vocal", message.channel.id, message.author, embed_color, footer);
+            if (!voiceChannel) return sendembed_simple("Stop", ":warning: Il y a une erreur : Tu n'es pas dans un salon vocal", message.channel.id, message.author.username, embed_color, footer);
+            sendembed_simple("Stop", "J'ai quitté le salon vocal", message.channel.id, message.author.username, embed_color, footer);
             var log_embed = new Discord.RichEmbed()
                 .setThumbnail(message.author.displayAvatarURL)
                 .addField(message.author.username + " - Logs : ", "``" + prefix + "stop``")
@@ -398,10 +398,10 @@ bot.on("message", async function (message) {
             break;
 
             default:
-                sendembed_simple("?", ":warning: Il y a une erreur : Cette commande n'existe pas", message.channel.id, message.author, embed_color, footer);
+                sendembed_simple("?", ":warning: Il y a une erreur : Cette commande n'existe pas", message.channel.id, message.author.username, embed_color, footer);
         }
     } else {
-    sendembed_simple("?", ":warning: Il y a une erreur : Ce serveur n'est pas autorisé à exécuter des commandes. Contactez Tard0sTV#8871 pour effectuer une demande d'ajout.", message.channel.id, message.author, embed_color, footer);
+    sendembed_simple("?", ":warning: Il y a une erreur : Ce serveur n'est pas autorisé à exécuter des commandes. Contactez Tard0sTV#8871 pour effectuer une demande d'ajout.", message.channel.id, message.author.username, embed_color, footer);
     }
 });
 
@@ -560,7 +560,7 @@ function cmusic() {
         bot.channels.findAll("name", channel_name_currentmusic).forEach(c => c.bulkDelete(100));
         var cmusic_embed = new Discord.RichEmbed()
             .setColor(embed_color)
-            .addField("\"" + current_music + "\" écoutée par " + audit, separation)
+            .addField("\"" + cm_music + "\" écoutée par " + audit, separation)
             .setFooter(footer)
             .setTimestamp();
         bot.channels.findAll("name", channel_name_currentmusic).map(channel => channel.send(cmusic_embed));
