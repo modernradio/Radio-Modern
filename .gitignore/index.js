@@ -103,14 +103,7 @@ bot.on("message", async function (message) {
             }
             message.member.voiceChannel.join();
             sendembed_simple("Join", "J'ai rejoins ton salon vocal", message.channel.id, message.author.username, embed_color, footer);
-            var log_embed = new Discord.RichEmbed()
-                .setThumbnail(message.author.displayAvatarURL)
-                .addField(message.author.username + " - Logs : ", "``" + prefix + "join``")
-                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                .setFooter(footer)
-                .setColor(embed_color)
-                .setTimestamp();
-            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+            sendembed_log ("Join", message.author.username, message.channel.guild.name, message.channel.name, embed_color, footer, message.author.displayAvatarURL)
             console.log("-> " + prefix + "join\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             break;
 
@@ -123,14 +116,7 @@ bot.on("message", async function (message) {
                 })
             })
             sendembed_simple("RadioModern", "Je joue dorénavant la radio dans ton salon vocal", message.channel.id, message.author.username, embed_color, footer);
-            var log_embed = new Discord.RichEmbed()
-                .setThumbnail(message.author.displayAvatarURL)
-                .addField(message.author.username + " - Logs : ", "``" + prefix + "radiomodern``")
-                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                .setFooter(footer)
-                .setColor(embed_color)
-                .setTimestamp();
-            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+            sendembed_log ("RadioModern", message.author.username, message.channel.guild.name, message.channel.name, embed_color, footer, message.author.displayAvatarURL)
             console.log("-> " + prefix + "radiomodern\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             break;
     
@@ -138,14 +124,7 @@ bot.on("message", async function (message) {
             var voiceChannel = message.member.voiceChannel;
             if (!voiceChannel) return sendembed_simple("Stop", ":warning: Il y a une erreur : Tu n'es pas dans un salon vocal", message.channel.id, message.author.username, embed_color, footer);
             sendembed_simple("Stop", "J'ai quitté le salon vocal", message.channel.id, message.author.username, embed_color, footer);
-            var log_embed = new Discord.RichEmbed()
-                .setThumbnail(message.author.displayAvatarURL)
-                .addField(message.author.username + " - Logs : ", "``" + prefix + "stop``")
-                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                .setFooter(footer)
-                .setColor(embed_color)
-                .setTimestamp();
-            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+            sendembed_log ("Stop", message.author.username, message.channel.guild.name, message.channel.name, embed_color, footer, message.author.displayAvatarURL)
             console.log("-> " + prefix + "stop\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             break;
 
@@ -235,14 +214,7 @@ bot.on("message", async function (message) {
                         .setTimestamp()
                     message.author.send(notif_embed);
                     console.log("-> " + prefix + "notif " + role_name + " (" + role_status + ")\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
-                    var log_embed = new Discord.RichEmbed()
-                        .setThumbnail(message.author.displayAvatarURL)
-                        .addField(message.author.username + " - Logs : ", "``" + prefix + "notif " + role_name + " (" + role_status + ")``")
-                        .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                        .setFooter(footer)
-                        .setColor(embed_color)
-                        .setTimestamp();
-                    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+                    sendembed_log ("Notif", message.author.username, message.channel.guild.name, message.channel.name, embed_color, footer, message.author.displayAvatarURL)
                 })
             } else {
                 const notif_serveur_incorrect_embed = new Discord.RichEmbed()
@@ -268,14 +240,7 @@ bot.on("message", async function (message) {
                 .setTitle("Ping")
                 .addField(":clock2: Ping :", `${Date.now() - startTime} millisecondes`, true)
                 .addField(":heartpulse: API Discord :", `${bot.ping} millisecondes`, true)
-            var log_embed = new Discord.RichEmbed()
-                .setThumbnail(message.author.displayAvatarURL)
-                .addField(message.author.username + " - Logs : ", "``" + prefix + "botinfo``")
-                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                .setFooter(footer)
-                .setColor(embed_color)
-                .setTimestamp();
-            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+            sendembed_log ("Botinfo", message.author.username, message.channel.guild.name, message.channel.name, embed_color, footer, message.author.displayAvatarURL)
             message.channel.send(info_embed);
             message.channel.send(ping_embed).then(m => m.edit(pong_embed));
             console.log("-> " + prefix + "botinfo\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
@@ -340,12 +305,6 @@ bot.on("message", async function (message) {
                 .setColor(embed_color)
                 .setFooter(footer)
                 .setTimestamp()
-            var log_embed = new Discord.RichEmbed()
-                .setThumbnail(message.author.displayAvatarURL)
-                .addField(message.author.username + " - Logs : ", "``" + prefix + "help``")
-                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                .setFooter(footer)
-                .setColor(embed_color)
             const help_sommaire = await message.channel.send(help_sommaire_embed);
             await help_sommaire.react("🔊");
             await help_sommaire.react("🎵");
@@ -376,7 +335,7 @@ bot.on("message", async function (message) {
                 }
                 await reaction.remove(message.author.id);
             })
-            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+            sendembed_log ("Help", message.author.username, message.channel.guild.name, message.channel.name, embed_color, footer, message.author.displayAvatarURL)
             console.log("-> " + prefix + "help\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             break;            
 
@@ -386,14 +345,7 @@ bot.on("message", async function (message) {
             for (var i in allservers) {
                 message.channel.send("-> `\"" + allservers[i].name + "\"` (`" + allservers[i].id + "`) : `" + allservers[i].memberCount + "` membres")
             }
-            var log_embed = new Discord.RichEmbed()
-                .setThumbnail(message.author.displayAvatarURL)
-                .addField(message.author.username + " - Logs : ", "``" + prefix + "listserv``")
-                .addField(separation, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-                .setFooter(footer)
-                .setColor(embed_color)
-                .setTimestamp();
-            bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+            sendembed_log ("Listserv", message.author.username, message.channel.guild.name, message.channel.name, embed_color, footer, message.author.displayAvatarURL)
             console.log("-> " + prefix + "listserv\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             break;
 
@@ -445,14 +397,7 @@ bot.on("message", async function (message) {
         .setTimestamp()
     message.delete()
     bot.channels.findAll("name", channel_name_vcs).map(channel => channel.send(vcs_embed));
-    var log_embed = new Discord.RichEmbed()
-        .setThumbnail(message.author.displayAvatarURL)
-        .addField(message.author.username + " - Logs : ", "``" + prefix + "vcs``")
-        .addField("Contenu : " + message.content, "Provenance du message : ``" + message.guild.name + "``\nDans le salon ``#" + message.channel.name + "``", true)
-        .setFooter(footer)
-        .setColor(embed_color)
-        .setTimestamp();
-    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(log_embed));
+    sendembed_vcs (message.content, message.author.username, embed_color, footer, message.author.displayAvatarURL)
     console.log("-> " + prefix + "vcs\nAuteur : " + vcs_role + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  \"" + message.content + "\"\n" + separation);
 });
 
@@ -475,6 +420,30 @@ function sendembed_basic (title, message1, message2, salonid, auteur, couleur, f
     bot.channels.findAll("id", salonid).map(c => c.send(sendembed_basic_embed))
 }
 
+function sendembed_log (title, auteur, serveur, salonname, couleur, footer, auteur_pdp) {
+    var sendembed_log_embed = new Discord.RichEmbed()
+        .setTitle("Logs - " + title + " :")
+        .addField(separation, "Auteur : " + auteur + "\nServeur :" + serveur + "\nSalon : " + salonname)
+        .setColor(couleur)
+        .setFooter(footer)
+        .setColor(couleur)
+        .setTimestamp()
+        .setThumbnail(auteur_pdp)
+    bot.channels.findAll("name", "logs-radio").map(c => c.send(sendembed_log_embed))
+}
+
+function sendembed_vcs (message1, auteur, couleur, footer, auteur_pdp) {
+    var sendembed_vcs_embed = new Discord.RichEmbed()
+        .setTitle("Logs - VCS :")
+        .addField(separation, "Contenu : " + message1 + "\nAuteur : " + auteur)
+        .setColor(couleur)
+        .setFooter(footer)
+        .setColor(couleur)
+        .setTimestamp()
+        .setThumbnail(auteur_pdp)
+    bot.channels.findAll("name", "logs-radio").map(c => c.send(sendembed_vcs_embed))
+}
+
 function autoplayradio () {
 
     var channel_radiom = bot.channels.find("id", "432593928416657409");
@@ -492,13 +461,13 @@ function autoplayradio () {
             })
             console.log("-> autojoin\n    + Salon \"" + channel_radiom.name + "\" (" + channel_radiom.guild.name + ")\n" + separation)
         })
-        channel_slender.join().then(connection => {
+        /*channel_slender.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
             console.log("-> autojoin\n    + Salon \"" + channel_slender.name + "\" (" + channel_slender.guild.name + ")\n" + separation)
         })
-        /*channel_draco.join().then(connection => {
+        channel_draco.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
@@ -510,21 +479,21 @@ function autoplayradio () {
             })
             console.log("-> autojoin\n    + Salon \"" + channel_panda.name + "\" (" + channel_panda.guild.name + ")\n" + separation)
         })
-        /*channel_ziria.join().then(connection => {
+        channel_ziria.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
             console.log("-> autojoin\n    + Salon \"" + channel_ziria.name + "\" (" + channel_ziria.guild.name + ")\n" + separation)
-        })*/
+        })
         setTimeout(autoplayradio_leave, 15 * 60 * 1000)
     }
 
     function autoplayradio_leave () {
         channel_radiom.leave();
-        channel_slender.leave();
+        //channel_slender.leave();
         //channel_draco.leave();
         channel_panda.leave();
-        //channel_ziria.leave();
+        channel_ziria.leave();
         console.log("-> autojoin\n    - Salon [all]" + "\n" + separation);
         autoplayradio_join();
     }
