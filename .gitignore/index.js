@@ -3,6 +3,8 @@ const request = require("request");
 
 var bot = new Discord.Client();
 
+var pubRecently = new Set();
+
 let prefix = "."
 let prefixLog = "[!]"
 
@@ -67,14 +69,288 @@ bot.on("guildMemberAdd", member => {
 bot.on("message", async function (message) {
     if (message.author.equals(bot.user)) return;
     if (!message.content.startsWith(prefix)) return;
-    var args = message.content.substring(prefix.length).split(" ");
-    var xoargs = message.content.split(" ").slice(1);
-    var args1 = xoargs.join(" ");
-    var args2 = xoargs.slice(1).join(" ");
-    var args3 = xoargs.slice(2).join(" ");
+    var splited = message.content.substring(prefix.length).split(" ");
+    var args = splited.slice(1)
+    var command = splited[0]
+    var argsNotSplited = args.join(' ')
     if (message.guild.id === "411685426143690772" || message.guild.id === "449608267048681502" || message.guild.id === "449480119732666370" || message.guild.id === "337863843281764372" || message.guild.id === "370613023120818197" || message.guild.id === "417286290220777503" || message.guild.id === "447503386313621504" || message.guild.id === "403526817107148801" || message.guild.id === "381410501290098688" || message.guild.id === "319471323845885952" || message.guild.id === "374986045458087951" || message.guild.id === "418420380722528256" || message.guild.id === "432532720158244866") {
     //                      Radio Modern                                 Tard0sTV (test)                              Ilian's Community                           La Slendarmy                                 NotaServ                                     DracoBot                                     Allah Uakbar                                 ZIRIA                                        EdenCompany                                   PandaGamers                                  La Boulangerie                               Universus League                           Supers Fanne | Officiel
         switch (args[0].toLowerCase()) {
+
+        case "pub":
+            
+            var args1 = splited[1];
+            var args2 = splited[2];
+            var args3 = splited[3];
+
+            var s_no_name = "Vous n'avez pas écrit de nom de publicité. ";
+            var s_liste_pubs = "Voici la liste de vos publicités disponibles : ";
+            var s_no_pub = "Tu n'as pas de publicité de disponible"
+            var s_no_autoris = "Tu n'as pas la permission d'éffectuer cela"
+
+            var liste_pub_draco = "`Dev_Help_Center`, `DracoBot`"
+            var liste_pub_eden = "`EdeN_Company`, `Ziria`"
+            var liste_pub_lambr = "`PandaGamers`"
+            var liste_pub_nota = "`NotaServ`"
+            var liste_pub_slender = "`Slendarmy`"
+
+            var pub_devhelpcenter = "Bonjour aujourd'hui je vais te présenter un beau projet :grin:  Je suis Draco1544, le fondateur de **Dev Help Center** que je vais te présenter :\n\n```css\n🔸une communauté sympa de 50 membres qui s'agrandit avec votre venue 😃\n🔹un staff sérieux, compétent et respectueux de tous, mais aussi sympa 👍\n🔸des bot utiles et par comme mee6, koya, dyna, et bien d'autres 👽\n🔹des salons et des rôles bien organisés et diversifiés 🆒\n🔸des salons de développement organisés par langages 💻\n❔ Pour le reste nous comptons tout simplement sur ta curiosité pour venir ❔\n```\n\nAlors si cette courte description :point_up_2: t'as plu pourquoi pas nous rejoindre ? Ce serait bête de manquer ça... :pensive:\nPense à prendre ton ticket :tickets: https://discord.gg/ZA3Qjz7"
+            var pub_dracobot = " "
+            var pub_edencompany = " "
+            var pub_ziria = " "
+            var pub_panda = " "
+            var pub_nota = " "
+            var pub_slender = " "
+
+            var id_draco = "370593040706043905"
+            var id_eden = "417795915810603019"
+            var id_lambr = "319470633593339914"
+            var id_nota = "306768941210927104"
+            var id_slender = "337863324983230474"
+
+            if(message.channel.id !== "478263755772264459") return message.channel.send("Cette commande est à effectuer seulement dans le salon dans #send-promotion du serveur \"Radio Modern\".")
+
+            if(!args1) {
+                switch(message.author.id) {
+                    case id_draco:
+                        message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_draco);
+                    break;
+                    case id_eden:
+                        message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_eden);
+                    break;
+                    case id_lambr:
+                        message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_lambr);
+                    break;
+                    case id_nota:
+                        message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_nota);
+                    break;
+                    case id_slender:
+                        message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_slender);
+                    break;
+                    default:
+                        message.channel.send(s_no_pub)
+                        if (message.member.roles.has("428556268546818048") || message.member.roles.has("428556458985127941") || message.member.roles.has("428556304097869835")) return message.channel.send("Pour effectuer une demande d'ajout de votre publicité, tapez `" + prefix + "`pub submit <publicité>")
+                    break;
+                }
+            } else if(args1 === "show") {
+                if(args2) {
+                    switch(args2) {
+                        case "Dev_Help_Center":
+                            if(message.author.id !== id_draco) return message.channel.send(s_no_autoris)
+                            message.channel.send("Voici la publicité enregistrée pour le serveur `Dev_Help_Center` :\n\n" + pub_devhelpcenter)
+                        break;
+                        case "DracoBot":
+                            if(message.author.id !== id_draco) return message.channel.send(s_no_autoris)
+                            message.channel.send("Voici la publicité enregistrée pour le serveur `DracoBot` :\n\n" + pub_dracobot)
+                        break;
+                        case "EdeN_Company":
+                            if(message.author.id !== id_eden) return message.channel.send(s_no_autoris)
+                            message.channel.send("Voici la publicité enregistrée pour le serveur `EdeN_Company` :\n\n" + pub_edencompany)
+                        break;
+                        case "Ziria":
+                            if(message.author.id !== id_eden) return message.channel.send(s_no_autoris)
+                            message.channel.send("Voici la publicité enregistrée pour le serveur `Ziria` :\n\n" + pub_ziria)
+                        break;
+                        case "PandaGamers":
+                            if(message.author.id !== id_lambr) return message.channel.send(s_no_autoris)
+                            message.channel.send("Voici la publicité enregistrée pour le serveur `PandaGamers` :\n\n" + pub_panda)
+                        break;
+                        case "NotaServ":
+                            if(message.author.id !== id_nota) return message.channel.send(s_no_autoris)
+                            message.channel.send("Voici la publicité enregistrée pour le serveur `NotaServ` :\n\n" + pub_nota)
+                        break;
+                        case "Slendarmy":
+                            if(message.author.id !== id_slender) return message.channel.send(s_no_autoris)
+                            message.channel.send("Voici la publicité enregistrée pour le serveur `Slendarmy` :\n\n" + pub_slender)
+                        break;
+                    }
+                } else {
+                    switch(message.author.id) {
+                        case id_draco:
+                            message.channel.send(message.author.username + " - " + s_no_name + s_liste_pubs + liste_pub_draco);
+                        break;
+                        case id_eden:
+                            message.channel.send(message.author.username + " - " + s_no_name + s_liste_pubs + liste_pub_eden);
+                        break;
+                        case id_lambr:
+                            message.channel.send(message.author.username + " - " + s_no_name + s_liste_pubs + liste_pub_lambr);
+                        break;
+                        case id_nota:
+                            message.channel.send(message.author.username + " - " + s_no_name + s_liste_pubs + liste_pub_nota);
+                        break;
+                        case id_slender:
+                            message.channel.send(message.author.username + " - " + s_no_name + s_liste_pubs + liste_pub_slender);
+                        break;
+                        default:
+                            message.channel.send(s_no_pub)
+                            if (message.member.roles.has("428556268546818048") || message.member.roles.has("428556458985127941") || message.member.roles.has("428556304097869835")) return message.channel.send("Pour effectuer une demande d'ajout de votre publicité, tapez `" + prefix + "`pub submit <publicité>")
+                        break;
+                    }
+                }
+            } else if(args1 === "send") {
+                if(args2) {
+                        if(args3 === "confirm") {
+                            switch(args2) {
+                                case "Dev_Help_Center":
+                                    if(message.author.id !== id_draco) return message.channel.send(s_no_autoris)
+                                    if (pubRecently.has(message.author.id)) {
+                                        message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
+                                    } else {
+                                        bot.channels.findAll("id", "481120235307401227").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                        pubRecently.add(message.author.id);
+                                        setTimeout(() => {
+                                            pubRecently.delete(message.author.id);
+                                        }, 7 * 24 * 60 * 60 * 1000);
+                                    }
+                                    break;
+                                case "DracoBot":
+                                    if(message.author.id !== id_draco) return message.channel.send(s_no_autoris)
+                                    if (pubRecently.has(message.author.id)) {
+                                        message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
+                                    } else {
+                                        bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                        pubRecently.add(message.author.id);
+                                        setTimeout(() => {
+                                            pubRecently.delete(message.author.id);
+                                        }, 7 * 24 * 60 * 60 * 1000);
+                                    }
+                                    break;
+                                case "EdeN_Company":
+                                    if(message.author.id !== id_eden) return message.channel.send(s_no_autoris)
+                                    if (pubRecently.has(message.author.id)) {
+                                        message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
+                                    } else {
+                                        bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                        pubRecently.add(message.author.id);
+                                        setTimeout(() => {
+                                            pubRecently.delete(message.author.id);
+                                        }, 7 * 24 * 60 * 60 * 1000);
+                                    }
+                                    break;
+                                case "Ziria":
+                                    if(message.author.id !== id_eden) return message.channel.send(s_no_autoris)
+                                    if (pubRecently.has(message.author.id)) {
+                                        message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
+                                    } else {
+                                        bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                        pubRecently.add(message.author.id);
+                                        setTimeout(() => {
+                                            pubRecently.delete(message.author.id);
+                                        }, 7 * 24 * 60 * 60 * 1000);
+                                    }
+                                    break;
+                                case "PandaGamers":
+                                    if(message.author.id !== id_lambr) return message.channel.send(s_no_autoris)
+                                    if (pubRecently.has(message.author.id)) {
+                                        message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
+                                    } else {
+                                        bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                        pubRecently.add(message.author.id);
+                                        setTimeout(() => {
+                                            pubRecently.delete(message.author.id);
+                                        }, 7 * 24 * 60 * 60 * 1000);
+                                    }
+                                    break;    
+                                case "NotaServ":
+                                    if(message.author.id !== id_nota) return message.channel.send(s_no_autoris)
+                                    if (pubRecently.has(message.author.id)) {
+                                        message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
+                                    } else {
+                                        bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                        pubRecently.add(message.author.id);
+                                        setTimeout(() => {
+                                            pubRecently.delete(message.author.id);
+                                        }, 7 * 24 * 60 * 60 * 1000);
+                                    }
+                                    break;
+                                case "Slendarmy":
+                                    if(message.author.id !== id_slender) return message.channel.send(s_no_autoris)
+                                    if (pubRecently.has(message.author.id)) {
+                                        message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
+                                    } else {
+                                        bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                        pubRecently.add(message.author.id);
+                                        setTimeout(() => {
+                                            pubRecently.delete(message.author.id);
+                                        }, 7 * 24 * 60 * 60 * 1000);
+                                    }
+                                    break;
+                                }
+                        } else if(!args3 || args3 !== "confirm") {
+                            switch(args2) {
+                                case "Dev_Help_Center":
+                                    if(message.author.id !== id_draco) return message.channel.send(s_no_autoris)
+                                    message.channel.send("Voici votre publicité, vérifiez que c'est bien celle-la, si oui, retapez cette commande suivie de `confirm` pour confirmer votre envoi, si non, envoyez un message à Tard0sTV pour corriger les éventuelles erreurs :\n\n" + pub_devhelpcenter)
+                                    break;
+                                case "DracoBot":
+                                    if(message.author.id !== id_draco) return message.channel.send(s_no_autoris)
+                                    message.channel.send("Voici votre publicité, vérifiez que c'est bien celle-la, si oui, retapez cette commande suivie de `confirm` pour confirmer votre envoi, si non, envoyez un message à Tard0sTV pour corriger les éventuelles erreurs :\n\n" + pub_dracobot)
+                                    break;
+                                case "EdeN_Company":
+                                    if(message.author.id !== id_eden) return message.channel.send(s_no_autoris)
+                                    message.channel.send("Voici votre publicité, vérifiez que c'est bien celle-la, si oui, retapez cette commande suivie de `confirm` pour confirmer votre envoi, si non, envoyez un message à Tard0sTV pour corriger les éventuelles erreurs :\n\n" + pub_edencompany)
+                                    break;
+                                case "Ziria":
+                                    if(message.author.id !== id_eden) return message.channel.send(s_no_autoris)
+                                    message.channel.send("Voici votre publicité, vérifiez que c'est bien celle-la, si oui, retapez cette commande suivie de `confirm` pour confirmer votre envoi, si non, envoyez un message à Tard0sTV pour corriger les éventuelles erreurs :\n\n" + pub_ziria)
+                                    break;
+                                case "PandaGamers":
+                                    if(message.author.id !== id_lambr) return message.channel.send(s_no_autoris)
+                                    message.channel.send("Voici votre publicité, vérifiez que c'est bien celle-la, si oui, retapez cette commande suivie de `confirm` pour confirmer votre envoi, si non, envoyez un message à Tard0sTV pour corriger les éventuelles erreurs :\n\n" + pub_panda)
+                                    break;
+                                case "NotaServ":
+                                    if(message.author.id !== id_nota) return message.channel.send(s_no_autoris)
+                                    message.channel.send("Voici votre publicité, vérifiez que c'est bien celle-la, si oui, retapez cette commande suivie de `confirm` pour confirmer votre envoi, si non, envoyez un message à Tard0sTV pour corriger les éventuelles erreurs :\n\n" + pub_nota)
+                                    break;
+                                case "Slendarmy":
+                                    if(message.author.id !== id_slender) return message.channel.send(s_no_autoris)
+                                    message.channel.send("Voici votre publicité, vérifiez que c'est bien celle-la, si oui, retapez cette commande suivie de `confirm` pour confirmer votre envoi, si non, envoyez un message à Tard0sTV pour corriger les éventuelles erreurs :\n\n" + pub_slender)
+                                    break;
+                                default:
+                                    message.channel.send("Cette publicité n'existe pas.")
+                                    if (message.member.roles.has("428556268546818048") || message.member.roles.has("428556458985127941") || message.member.roles.has("428556304097869835")) return message.channel.send("Pour effectuer une demande d'ajout de votre publicité, tapez `" + prefix + "`pub submit <publicité>")
+                                    break;
+                            }
+                        }
+                    } else {
+                        switch(message.author.id) {
+                            case id_draco:
+                                message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_draco);
+                            break;
+                            case id_eden:
+                                message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_eden);
+                            break;
+                            case id_lambr:
+                                message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_lambr);
+                            break;
+                            case id_nota:
+                                message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_nota);
+                            break;
+                            case id_slender:
+                                message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_slender);
+                            break;
+                            default:
+                                message.channel.send(s_no_pub)
+                                if (message.member.roles.has("428556268546818048") || message.member.roles.has("428556458985127941") || message.member.roles.has("428556304097869835")) return message.channel.send("Pour effectuer une demande d'ajout de votre publicité, tapez `" + prefix + "`pub submit <publicité>")
+                            break;
+                        }        
+                    }
+                } else if (args1 === "submit") {
+                    var xoargs = message.content.split(" ").slice(1);
+                    var args2 = xoargs.slice(1).join(" ");
+                    if (message.member.roles.has("428556268546818048") || message.member.roles.has("428556458985127941") || message.member.roles.has("428556304097869835")) {
+                        if (args2) {
+                            message.client.users.get("323039726040776705").send(message.author.username + "#" + message.author.discriminator + " a effectué une demande d'ajout de sa publicité :\n\n\n" + args2 + "\n\n\n** **");
+                            message.client.users.get("323039726040776705").send("```" + args2 + "```");
+                            message.channel.send("Publicité envoyée avec succès !");
+                        } else {
+                            message.channel.send("Veuillez écrire votre publicité dans un pastebin pour faciliter le travail.");
+                        }
+                    } else {
+                        message.channel.send(s_no_autoris);
+                    }
+                }
+        break;
 
         case "vcs-clear":
             let clear = message.content.split(" ").slice(1);
@@ -423,7 +699,7 @@ function sendembed_basic (title, message1, message2, salonid, auteur, couleur, f
 function sendembed_log (title, auteur, serveur, salonname, couleur, footer, auteur_pdp) {
     var sendembed_log_embed = new Discord.RichEmbed()
         .setTitle("Logs - " + title + " :")
-        .addField(separation, "Auteur : " + auteur + "\nServeur :" + serveur + "\nSalon : " + salonname)
+        .addField(separation, "Auteur : " + auteur + "\nServeur : " + serveur + "\nSalon : #" + salonname)
         .setColor(couleur)
         .setFooter(footer)
         .setColor(couleur)
