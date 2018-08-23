@@ -19,19 +19,16 @@ function autoplayradio () {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
-            console.log("-> autojoin\n    + Salon \"" + channel_ilian.name + "\" (" + channel_ilian.guild.name + ")\n" + separation)
         })
         channel_supers.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
-            console.log("-> autojoin\n    + Salon \"" + channel_supers.name + "\" (" + channel_supers.guild.name + ")\n" + separation)
         })
         channel_qz.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
-            console.log("-> autojoin\n    + Salon \"" + channel_qz.name + "\" (" + channel_qz.guild.name + ")\n" + separation)
         })
         setTimeout(autoplayradio_leave, 15 * 60 * 1000)
     }
@@ -40,7 +37,6 @@ function autoplayradio () {
         channel_ilian.leave();
         channel_supers.leave();
         channel_qz.leave();
-        console.log("-> autojoin\n    - Salon [all]" + "\n" + separation);
         autoplayradio_join();
     }
 }
