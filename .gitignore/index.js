@@ -78,15 +78,16 @@ bot.on("message", async function (message) {
         switch (command.toLowerCase()) {
 
         case "pub":
-            
+
             var args1 = splited[1];
             var args2 = splited[2];
             var args3 = splited[3];
 
             var s_no_name = "Vous n'avez pas écrit de nom de publicité. ";
             var s_liste_pubs = "Voici la liste de vos publicités disponibles : ";
-            var s_no_pub = "Tu n'as pas de publicité de disponible"
-            var s_no_autoris = "Tu n'as pas la permission d'éffectuer cela"
+            var s_no_pub = "Tu n'as pas de publicité de disponible";
+            var s_no_autoris = "Tu n'as pas la permission d'effectuer cela";
+            var s_to_submit = "Pour effectuer une demande d'ajout de votre publicité, tapez `" + prefix + "pub submit <publicité>`"
 
             var liste_pub_draco = "`Dev_Help_Center`, `DracoBot`"
             var liste_pub_eden = "`EdeN_Company`, `Ziria`"
@@ -123,7 +124,7 @@ bot.on("message", async function (message) {
                     break;
                     default:
                         message.channel.send(s_no_pub)
-                        if (message.member.roles.has("428556268546818048") || message.member.roles.has("428556458985127941") || message.member.roles.has("428556304097869835")) return message.channel.send("Pour effectuer une demande d'ajout de votre publicité, tapez `" + prefix + "`pub submit <publicité>")
+                        if (message.member.roles.has("428556268546818048") || message.member.roles.has("428556458985127941") || message.member.roles.has("428556304097869835")) return message.channel.send(s_to_submit)
                     break;
                 }
             } else if(args1 === "show") {
@@ -170,7 +171,7 @@ bot.on("message", async function (message) {
                         break;
                         default:
                             message.channel.send(s_no_pub)
-                            if (message.member.roles.has("428556268546818048") || message.member.roles.has("428556458985127941") || message.member.roles.has("428556304097869835")) return message.channel.send("Pour effectuer une demande d'ajout de votre publicité, tapez `" + prefix + "`pub submit <publicité>")
+                            if (message.member.roles.has("428556268546818048") || message.member.roles.has("428556458985127941") || message.member.roles.has("428556304097869835")) return message.channel.send(s_to_submit)
                         break;
                     }
                 }
@@ -279,7 +280,7 @@ bot.on("message", async function (message) {
                                     break;
                                 default:
                                     message.channel.send("Cette publicité n'existe pas.")
-                                    if (message.member.roles.has("428556268546818048") || message.member.roles.has("428556458985127941") || message.member.roles.has("428556304097869835")) return message.channel.send("Pour effectuer une demande d'ajout de votre publicité, tapez `" + prefix + "`pub submit <publicité>")
+                                    if (message.member.roles.has("428556268546818048") || message.member.roles.has("428556458985127941") || message.member.roles.has("428556304097869835")) return message.channel.send(s_to_submit)
                                     break;
                             }
                         }
@@ -299,7 +300,7 @@ bot.on("message", async function (message) {
                             break;
                             default:
                                 message.channel.send(s_no_pub)
-                                if (message.member.roles.has("428556268546818048") || message.member.roles.has("428556458985127941") || message.member.roles.has("428556304097869835")) return message.channel.send("Pour effectuer une demande d'ajout de votre publicité, tapez `" + prefix + "`pub submit <publicité>")
+                                if (message.member.roles.has("428556268546818048") || message.member.roles.has("428556458985127941") || message.member.roles.has("428556304097869835")) return message.channel.send(s_to_submit)
                             break;
                         }        
                     }
