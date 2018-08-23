@@ -91,21 +91,18 @@ bot.on("message", async function (message) {
             var liste_pub_draco = "`Dev_Help_Center`, `DracoBot`"
             var liste_pub_eden = "`EdeN_Company`, `Ziria`"
             var liste_pub_lambr = "`PandaGamers`"
-            var liste_pub_nota = "`NotaServ`"
             var liste_pub_slender = "`Slendarmy`"
 
             var pub_devhelpcenter = "Bonjour aujourd'hui je vais te présenter un beau projet :grin:  Je suis Draco1544, le fondateur de **Dev Help Center** que je vais te présenter :\n\n```css\n🔸une communauté sympa de 50 membres qui s'agrandit avec votre venue 😃\n🔹un staff sérieux, compétent et respectueux de tous, mais aussi sympa 👍\n🔸des bot utiles et par comme mee6, koya, dyna, et bien d'autres 👽\n🔹des salons et des rôles bien organisés et diversifiés 🆒\n🔸des salons de développement organisés par langages 💻\n❔ Pour le reste nous comptons tout simplement sur ta curiosité pour venir ❔\n```\n\nAlors si cette courte description :point_up_2: t'as plu pourquoi pas nous rejoindre ? Ce serait bête de manquer ça... :pensive:\nPense à prendre ton ticket :tickets: https://discord.gg/ZA3Qjz7"
-            var pub_dracobot = " "
-            var pub_edencompany = " "
-            var pub_ziria = " "
-            var pub_panda = " "
-            var pub_nota = " "
-            var pub_slender = " "
-
+            var pub_dracobot = "**``` ```\n :star:▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬:warning: Serveur Dracobot :warning: ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ :star:\n``` ```\n\n:arrow_forward: Un BOT crée avec soin par @Draco1544  :diamond_shape_with_a_dot_inside: \n\n:arrow_forward: De nombreux BOT's à votre disposition pour vous divertir ! :diamond_shape_with_a_dot_inside: \n\n:arrow_forward: Events Réguliers :tada: \n\n:arrow_forward: Staff à l'écoute :rotating_light:\n\n:arrow_forward: Recrutements Staff Ouverts :mailbox_closed: \n\n:arrow_forward: Règlement et Staff Stricts !:pencil: \n\n:star:▬▬▬▬▬▬▬▬▬▬▬▬▬▬  :link: Rejoignez-nous vite ! ╲⎝ https://discord.gg/Kdzjcwe ⎠╱  :link:  lien du bot : https://discordapp.com/oauth2/authorize?client_id=403148244701675522&scope=bot&permissions=2146958591 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ :star: \n\n\n:arrow_forward: Message de bienvenue exclusif ! :star2: \n\n:arrow_forward: Système de rôles original ! :newspaper2: \n\n:arrow_forward: Possibilité de faire des Partenariats. :restroom: \n\n:arrow_forward: Et bien plus ! :mag_right: \n\n\n``` ```\n:star:▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬:warning: Serveur Dracobot :warning: ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ :star:**\n``` ```"
+            var pub_edencompany = "**[Publicité non disponible, merci de MP Tard0sTV**]**"
+            var pub_ziria = "Bonjour, nous sommes **NewGlace** et **EdeN**,\nEt nous allons vous présenter notre projet qui est __Ziria__.\n⚒️__Ziria est un serveur **RP, moddé**, sur **Minecraft**__, **\n\n\n🏆 **__Description de Ziria (Discord)__**\n**\n\n⬥`Des grades pour les fêtes`⬥\n⬥`Des évents réguliers`⬥\n⬥`Un staff mature`⬥\n⬥`Des grades pour les : Développeurs, GFX, Youtubers, Builder,... `⬥\n⬥`Un bot pour la radio`⬥\n⬥`Des bots pour la modération`⬥\n⬥`La présence d'un système de grades pour récompenser les plus actifs`⬥\n⬥`Un bot perso (ZiriaBot) | Disponible le 25/07`⬥\n⬥`Un staff à l'écoute`⬥\n**\n\n🏆 **__Description de Ziria (Minecraft)__**\n**\n⬥`Un gameplay inédit basé sur le RPG et le système de niveaux, ainsi que sur l'entraide entre joueurs (possibilité de ressusciter un joueur durant les 30 secondes après sa mort)`⬥\n⬥`Une aventure intergalactique (de Mercure jusqu'aux autres galaxies, il y a près de 25 planètes à découvrir !)`⬥\n⬥`Ip : ziria.mine.gg`⬥\n⬥`Pas de cracks`⬥\n⬥`Système de rankup pour monter de grade en grade`⬥\n⬥`De nombreuses nouvelles fonctionnalités, telles que le mariage, les quêtes, les récompenses quotidiennes...` ⬥\n\n🇫🇷 **Nous somme plus de 380 membres déjà, alors pourquoi pas vous ? 😉**\n\n📡** Pour pouvoir agrandir la communauté Zirianienne, rien de tel que votre soutien**\n🛰 https://discord.gg/p6VdrTE"
+            var pub_panda = "Heyy ! Je te présente le serveur **PandaGamers™** !\nSi tu __aime t'amuser__ c'est le bon serveur parce qu'il y a :\n\n** Des pandas**\n__ Des jeux__\n** Du fun**\n__ Du staff a l'écoute__\n** Des rôles spéciaux**\n__ Des salons spéciaux__\n** Des emojis spéciaux**\n__** Des giveaways presque toutes les semaines !**__\n\netc... Donc rejoins nous, on s'amuse bien !\n\nDonc n'hésite pas a __rejoindre le serveur__, sa nous fera plaisir et sa fera **un panda de plus** !\n__Objectif__ : 200 Membres !\nLiens : https://discord.gg/Sv2tWaX\n**J'espère te voir sur mon serveur !**"
+            var pub_slender = ":pushpin: Hey @everyone, c'est @SLeNDeR_KiLLeR#6987\n\n***Je suis le créateur du serveur __La Slendarmy__***\n\nJe voudrais vous partager mon discord par le biai de ce petit message ^^\nEn nous **Rejoignant:**\n\n__***Vous êtes avantagés:***__\n\n:ballot_box_with_check: Un serveur bien structuré, avec des categories de salons pour ne pas vous perdre, et un réglement très précis!\n:ballot_box_with_check: Nous aidons les petits youtubers et les autres serveur Discord avec une categorie partages ;)\n\n**NOUVEAUTE**: Un système d'annonce pour les vidéos **ET LES LIVES** des Youtubeurs du serveur ! Avec une mention **HERE** !\n\n:ballot_box_with_check: ***Un systeme de niveau avec Mee6, pour plus de permissions a chaque palier de niveau !*** (7 grades de Levels !)\n:ballot_box_with_check: ***Des concours pour gagner des grades/recompenses!***\n:ballot_box_with_check: De l'animation, du gaming, de la musique :wink: **Catégorie gaming, avec des salons, des bots de stats, et des roles en fonctions des jeux auquels vous jouez ! (C'est vous qui vous vous les donnez !)**\n:ballot_box_with_check: Des jeux sur **Discord**, **Roblox**, et plein d'autres!\n:ballot_box_with_check: Plus de ***30 bots avec chacun une fonction differente*** (Musique, akinator,***generateurs de memes***..)\n:ballot_box_with_check: ***Une catégorie Winners, à laquelle seuls les Winners peuvent acceder, qui vous donne acces à 3 bots exclusifs !*** (concours ou animations)\n:ballot_box_with_check: **UNE CATEGORIE VCS AVEC PLUS DE 6 BOTS VCS, POUR DISCUTER AVEC PLEIN D'AUTRES SERVEUR !**\n\n***N'attendez plus! Rejoignez mon discord*** ;)\nhttps://discord.gg/DPXGSps\n\n-__**Je suis à la recherche de staff ( Modérateurs, helpeurs et animateurs)! Si vous êtes intéressés venez postuler!\n- Nous recherchons actuellement des partenaires ! Manifestez vous !**__"
+            
             var id_draco = "370593040706043905"
             var id_eden = "417795915810603019"
             var id_lambr = "319470633593339914"
-            var id_nota = "306768941210927104"
             var id_slender = "337863324983230474"
 
             if(message.channel.id !== "478263755772264459") return message.channel.send("Cette commande est à effectuer seulement dans le salon dans #send-promotion du serveur \"Radio Modern\".")
@@ -120,9 +117,6 @@ bot.on("message", async function (message) {
                     break;
                     case id_lambr:
                         message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_lambr);
-                    break;
-                    case id_nota:
-                        message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_nota);
                     break;
                     case id_slender:
                         message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_slender);
@@ -155,10 +149,6 @@ bot.on("message", async function (message) {
                             if(message.author.id !== id_lambr) return message.channel.send(s_no_autoris)
                             message.channel.send("Voici la publicité enregistrée pour le serveur `PandaGamers` :\n\n" + pub_panda)
                         break;
-                        case "NotaServ":
-                            if(message.author.id !== id_nota) return message.channel.send(s_no_autoris)
-                            message.channel.send("Voici la publicité enregistrée pour le serveur `NotaServ` :\n\n" + pub_nota)
-                        break;
                         case "Slendarmy":
                             if(message.author.id !== id_slender) return message.channel.send(s_no_autoris)
                             message.channel.send("Voici la publicité enregistrée pour le serveur `Slendarmy` :\n\n" + pub_slender)
@@ -174,9 +164,6 @@ bot.on("message", async function (message) {
                         break;
                         case id_lambr:
                             message.channel.send(message.author.username + " - " + s_no_name + s_liste_pubs + liste_pub_lambr);
-                        break;
-                        case id_nota:
-                            message.channel.send(message.author.username + " - " + s_no_name + s_liste_pubs + liste_pub_nota);
                         break;
                         case id_slender:
                             message.channel.send(message.author.username + " - " + s_no_name + s_liste_pubs + liste_pub_slender);
@@ -196,7 +183,7 @@ bot.on("message", async function (message) {
                                     if (pubRecently.has(message.author.id)) {
                                         message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
                                     } else {
-                                        bot.channels.findAll("id", "481120235307401227").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                        bot.channels.findAll("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
                                         pubRecently.add(message.author.id);
                                         setTimeout(() => {
                                             pubRecently.delete(message.author.id);
@@ -251,18 +238,6 @@ bot.on("message", async function (message) {
                                         }, 7 * 24 * 60 * 60 * 1000);
                                     }
                                     break;    
-                                case "NotaServ":
-                                    if(message.author.id !== id_nota) return message.channel.send(s_no_autoris)
-                                    if (pubRecently.has(message.author.id)) {
-                                        message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
-                                    } else {
-                                        bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
-                                        pubRecently.add(message.author.id);
-                                        setTimeout(() => {
-                                            pubRecently.delete(message.author.id);
-                                        }, 7 * 24 * 60 * 60 * 1000);
-                                    }
-                                    break;
                                 case "Slendarmy":
                                     if(message.author.id !== id_slender) return message.channel.send(s_no_autoris)
                                     if (pubRecently.has(message.author.id)) {
@@ -298,10 +273,6 @@ bot.on("message", async function (message) {
                                     if(message.author.id !== id_lambr) return message.channel.send(s_no_autoris)
                                     message.channel.send("Voici votre publicité, vérifiez que c'est bien celle-la, si oui, retapez cette commande suivie de `confirm` pour confirmer votre envoi, si non, envoyez un message à Tard0sTV pour corriger les éventuelles erreurs :\n\n" + pub_panda)
                                     break;
-                                case "NotaServ":
-                                    if(message.author.id !== id_nota) return message.channel.send(s_no_autoris)
-                                    message.channel.send("Voici votre publicité, vérifiez que c'est bien celle-la, si oui, retapez cette commande suivie de `confirm` pour confirmer votre envoi, si non, envoyez un message à Tard0sTV pour corriger les éventuelles erreurs :\n\n" + pub_nota)
-                                    break;
                                 case "Slendarmy":
                                     if(message.author.id !== id_slender) return message.channel.send(s_no_autoris)
                                     message.channel.send("Voici votre publicité, vérifiez que c'est bien celle-la, si oui, retapez cette commande suivie de `confirm` pour confirmer votre envoi, si non, envoyez un message à Tard0sTV pour corriger les éventuelles erreurs :\n\n" + pub_slender)
@@ -322,9 +293,6 @@ bot.on("message", async function (message) {
                             break;
                             case id_lambr:
                                 message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_lambr);
-                            break;
-                            case id_nota:
-                                message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_nota);
                             break;
                             case id_slender:
                                 message.channel.send(message.author.username + " - " + s_liste_pubs + liste_pub_slender);
