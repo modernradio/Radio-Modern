@@ -3,7 +3,9 @@ const request = require("request");
 
 var bot = new Discord.Client();
 
-var pubRecently = new Set();
+var pubRecently_User = new Set();
+var pubRecently_Global = new Set();
+var cooldown_pub = 7 * 24 * 60 * 60 * 1000;
 
 let prefix = "."
 let prefixLog = "[!]"
@@ -99,7 +101,7 @@ bot.on("message", async function (message) {
             var pub_edencompany = "**[Publicité non disponible, merci de MP Tard0sTV**]**"
             var pub_ziria = "Bonjour, nous sommes **NewGlace** et **EdeN**,\nEt nous allons vous présenter notre projet qui est __Ziria__.\n⚒️__Ziria est un serveur **RP, moddé**, sur **Minecraft**__, **\n\n\n🏆 **__Description de Ziria (Discord)__**\n**\n\n⬥`Des grades pour les fêtes`⬥\n⬥`Des évents réguliers`⬥\n⬥`Un staff mature`⬥\n⬥`Des grades pour les : Développeurs, GFX, Youtubers, Builder,... `⬥\n⬥`Un bot pour la radio`⬥\n⬥`Des bots pour la modération`⬥\n⬥`La présence d'un système de grades pour récompenser les plus actifs`⬥\n⬥`Un bot perso (ZiriaBot) | Disponible le 25/07`⬥\n⬥`Un staff à l'écoute`⬥\n**\n\n🏆 **__Description de Ziria (Minecraft)__**\n**\n⬥`Un gameplay inédit basé sur le RPG et le système de niveaux, ainsi que sur l'entraide entre joueurs (possibilité de ressusciter un joueur durant les 30 secondes après sa mort)`⬥\n⬥`Une aventure intergalactique (de Mercure jusqu'aux autres galaxies, il y a près de 25 planètes à découvrir !)`⬥\n⬥`Ip : ziria.mine.gg`⬥\n⬥`Pas de cracks`⬥\n⬥`Système de rankup pour monter de grade en grade`⬥\n⬥`De nombreuses nouvelles fonctionnalités, telles que le mariage, les quêtes, les récompenses quotidiennes...` ⬥\n\n🇫🇷 **Nous somme plus de 380 membres déjà, alors pourquoi pas vous ? 😉**\n\n📡** Pour pouvoir agrandir la communauté Zirianienne, rien de tel que votre soutien**\n🛰 https://discord.gg/p6VdrTE"
             var pub_panda = "Heyy ! Je te présente le serveur **PandaGamers™** !\nSi tu __aime t'amuser__ c'est le bon serveur parce qu'il y a :\n\n** Des pandas**\n__ Des jeux__\n** Du fun**\n__ Du staff a l'écoute__\n** Des rôles spéciaux**\n__ Des salons spéciaux__\n** Des emojis spéciaux**\n__** Des giveaways presque toutes les semaines !**__\n\netc... Donc rejoins nous, on s'amuse bien !\n\nDonc n'hésite pas a __rejoindre le serveur__, sa nous fera plaisir et sa fera **un panda de plus** !\n__Objectif__ : 200 Membres !\nLiens : https://discord.gg/Sv2tWaX\n**J'espère te voir sur mon serveur !**"
-            var pub_slender = ":pushpin: Hey @everyone, c'est @SLeNDeR_KiLLeR#6987\n\n***Je suis le créateur du serveur __La Slendarmy__***\n\nJe voudrais vous partager mon discord par le biai de ce petit message ^^\nEn nous **Rejoignant:**\n\n__***Vous êtes avantagés:***__\n\n:ballot_box_with_check: Un serveur bien structuré, avec des categories de salons pour ne pas vous perdre, et un réglement très précis!\n:ballot_box_with_check: Nous aidons les petits youtubers et les autres serveur Discord avec une categorie partages ;)\n\n**NOUVEAUTE**: Un système d'annonce pour les vidéos **ET LES LIVES** des Youtubeurs du serveur ! Avec une mention **HERE** !\n\n:ballot_box_with_check: ***Un systeme de niveau avec Mee6, pour plus de permissions a chaque palier de niveau !*** (7 grades de Levels !)\n:ballot_box_with_check: ***Des concours pour gagner des grades/recompenses!***\n:ballot_box_with_check: De l'animation, du gaming, de la musique :wink: **Catégorie gaming, avec des salons, des bots de stats, et des roles en fonctions des jeux auquels vous jouez ! (C'est vous qui vous vous les donnez !)**\n:ballot_box_with_check: Des jeux sur **Discord**, **Roblox**, et plein d'autres!\n:ballot_box_with_check: Plus de ***30 bots avec chacun une fonction differente*** (Musique, akinator,***generateurs de memes***..)\n:ballot_box_with_check: ***Une catégorie Winners, à laquelle seuls les Winners peuvent acceder, qui vous donne acces à 3 bots exclusifs !*** (concours ou animations)\n:ballot_box_with_check: **UNE CATEGORIE VCS AVEC PLUS DE 6 BOTS VCS, POUR DISCUTER AVEC PLEIN D'AUTRES SERVEUR !**\n\n***N'attendez plus! Rejoignez mon discord*** ;)\nhttps://discord.gg/DPXGSps\n\n-__**Je suis à la recherche de staff ( Modérateurs, helpeurs et animateurs)! Si vous êtes intéressés venez postuler!\n- Nous recherchons actuellement des partenaires ! Manifestez vous !**__"
+            var pub_slender = ":pushpin: Hey @everyone, c'est @SLeNDeR_KiLLeR#6987\n\n***Je suis le créateur du serveur __La Slendarmy__***\n\nJe voudrais vous partager mon discord par le biai de ce petit message ^^\nEn nous **Rejoignant:**\n\n__***Vous êtes avantagés:***__\n\n:ballot_box_with_check: Un serveur bien structuré, avec des categories de salons pour ne pas vous perdre, et un réglement très précis!\n:ballot_box_with_check: Nous aidons les petits youtubers et les autres serveur Discord avec une categorie partages ;)\n\n**NOUVEAUTE**: Un système d'annonce pour les vidéos **ET LES LIVES** des Youtubeurs du serveur ! Avec une mention **HERE** !\n\n:ballot_box_with_check: ***Des concours pour gagner des grades/recompenses!***\n:ballot_box_with_check: De l'animation, du gaming, de la musique :wink: **Catégorie gaming, avec des salons, des bots de stats, et des roles en fonctions des jeux auquels vous jouez ! (C'est vous qui vous vous les donnez !)**\n:ballot_box_with_check: ***Une catégorie Winners, à laquelle seuls les Winners peuvent acceder, qui vous donne acces à 3 bots exclusifs !*** (concours ou animations)\n:ballot_box_with_check: **UNE CATEGORIE VCS AVEC PLUS DE 6 BOTS VCS, POUR DISCUTER AVEC PLEIN D'AUTRES SERVEUR !**\n\n***N'attendez plus! Rejoignez mon discord*** ;)\nhttps://discord.gg/DPXGSps\n\n"
             
             var id_draco = "370593040706043905"
             var id_eden = "417795915810603019"
@@ -181,75 +183,38 @@ bot.on("message", async function (message) {
                             switch(args2) {
                                 case "Dev_Help_Center":
                                     if(message.author.id !== id_draco) return message.channel.send(s_no_autoris)
-                                    if (pubRecently.has(message.author.id)) {
-                                        message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
-                                    } else {
-                                        bot.channels.findAll("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
-                                        pubRecently.add(message.author.id);
-                                        setTimeout(() => {
-                                            pubRecently.delete(message.author.id);
-                                        }, 7 * 24 * 60 * 60 * 1000);
-                                    }
-                                    break;
+                                    if (pubRecently_User.has(message.author.id)) return message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
+                                    bot.channels.findAll("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                    setPubRecently (message.author.id);    
                                 case "DracoBot":
                                     if(message.author.id !== id_draco) return message.channel.send(s_no_autoris)
-                                    if (pubRecently.has(message.author.id)) {
-                                        message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
-                                    } else {
-                                        bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
-                                        pubRecently.add(message.author.id);
-                                        setTimeout(() => {
-                                            pubRecently.delete(message.author.id);
-                                        }, 7 * 24 * 60 * 60 * 1000);
-                                    }
+                                    if (pubRecently_User.has(message.author.id)) return message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
+                                    bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                    setPubRecently (message.author.id);    
                                     break;
                                 case "EdeN_Company":
                                     if(message.author.id !== id_eden) return message.channel.send(s_no_autoris)
-                                    if (pubRecently.has(message.author.id)) {
-                                        message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
-                                    } else {
-                                        bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
-                                        pubRecently.add(message.author.id);
-                                        setTimeout(() => {
-                                            pubRecently.delete(message.author.id);
-                                        }, 7 * 24 * 60 * 60 * 1000);
-                                    }
+                                    if (pubRecently_User.has(message.author.id)) return message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
+                                    bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                    setPubRecently (message.author.id);    
                                     break;
                                 case "Ziria":
                                     if(message.author.id !== id_eden) return message.channel.send(s_no_autoris)
-                                    if (pubRecently.has(message.author.id)) {
-                                        message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
-                                    } else {
-                                        bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
-                                        pubRecently.add(message.author.id);
-                                        setTimeout(() => {
-                                            pubRecently.delete(message.author.id);
-                                        }, 7 * 24 * 60 * 60 * 1000);
-                                    }
+                                    if (pubRecently_User.has(message.author.id)) return message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
+                                    bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                    setPubRecently (message.author.id);    
                                     break;
                                 case "PandaGamers":
                                     if(message.author.id !== id_lambr) return message.channel.send(s_no_autoris)
-                                    if (pubRecently.has(message.author.id)) {
-                                        message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
-                                    } else {
-                                        bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
-                                        pubRecently.add(message.author.id);
-                                        setTimeout(() => {
-                                            pubRecently.delete(message.author.id);
-                                        }, 7 * 24 * 60 * 60 * 1000);
-                                    }
+                                    if (pubRecently_User.has(message.author.id)) return message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
+                                    bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                    setPubRecently (message.author.id);    
                                     break;    
                                 case "Slendarmy":
                                     if(message.author.id !== id_slender) return message.channel.send(s_no_autoris)
-                                    if (pubRecently.has(message.author.id)) {
-                                        message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
-                                    } else {
-                                        bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
-                                        pubRecently.add(message.author.id);
-                                        setTimeout(() => {
-                                            pubRecently.delete(message.author.id);
-                                        }, 7 * 24 * 60 * 60 * 1000);
-                                    }
+                                    if (pubRecently_User.has(message.author.id)) return message.channel.send("Il y a un cooldown de 7 jours entre chaque publicité");
+                                    bot.channels.find("id", "478263755772264459").map(c => c.send("__**PUBLICITÉ DE <@" + message.author.id + "> :**__ _(partenariat)_\n\n" + pub_devhelpcenter + "\n\n[<@&433614466685599745>]"));
+                                    setPubRecently (message.author.id);    
                                     break;
                                 }
                         } else if(!args3 || args3 !== "confirm") {
@@ -373,7 +338,7 @@ bot.on("message", async function (message) {
             console.log("-> " + prefix + "stop\nAuteur : " + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\n" + separation);
             break;
 
-        /*case "notif":
+        case "notif":
             var member = message.member;
             var notif_annonces_discord = member.guild.roles.find("name", "📢 | Notification : Annonces Discord")
             var notif_annonces_radio = member.guild.roles.find("name", "📢 | Notification : Annonces Radio")
@@ -382,8 +347,6 @@ bot.on("message", async function (message) {
             var notif_sondages = member.guild.roles.find("name", "📢 |  Notification : Sondages")
             let role_name;
             let role_status;
-            message.delete()
-
             if (message.guild.id === "411685426143690772") {
                 var notif_choix_embed = new Discord.RichEmbed()
                     .setTitle("📢 " + message.author.username + " | Notifications")
@@ -396,7 +359,7 @@ bot.on("message", async function (message) {
                 await notif_choix.react("📢");
                 await notif_choix.react("🎵");
                 await notif_choix.react("🎉");
-                await notif_choix.react("🔗");
+                //await notif_choix.react("🔗");
                 await notif_choix.react("❓");   
                 let author_reaction = notif_choix.createReactionCollector((reaction, user) => user.id === message.author.id);
                 author_reaction.on("collect", async(reaction) => {
@@ -430,7 +393,7 @@ bot.on("message", async function (message) {
                         }
                         role_name = "Event"
                     }
-                    if (reaction.emoji.name === "🔗") {
+                    /*if (reaction.emoji.name === "🔗") {
                         if (message.member.roles.has("433614466685599745")) {
                             role_status = "retiré";
                             member.removeRole(notif_promotion)
@@ -439,7 +402,7 @@ bot.on("message", async function (message) {
                             member.addRole(notif_promotion)
                         }
                         role_name = "Promotion"
-                    }
+                    }*/
                     if (reaction.emoji.name === "❓") {
                         if (message.member.roles.has("433614254537572353")) {
                             role_status = "retiré";
@@ -469,7 +432,7 @@ bot.on("message", async function (message) {
                     .setTimestamp()
                 message.channel.send(notif_serveur_incorrect_embed);
             }
-            break;*/
+            break;
 
         case "botinfo": 
             var ping_embed = new Discord.RichEmbed()
@@ -645,6 +608,18 @@ bot.on("message", async function (message) {
     sendembed_vcs (message.content, message.author.username, embed_color, footer, message.author.displayAvatarURL)
     console.log("-> " + prefix + "vcs\nAuteur : " + vcs_role + message.author.username + "\nLocalisation : " + message.guild.name + ", #" + message.channel.name + "\nContenu : \n  \"" + message.content + "\"\n" + separation);
 });
+
+function setPubRecently (author_id) {
+    pubRecently_User.add(author_id);
+    pubRecently_Global.add("true");
+    setTimeout(() => {
+        pubRecently_User.delete(author_id);
+    }, cooldown_pub);
+    setTimeout(() => {
+        pubRecently_Global.delete("true");
+    }, 12 * 60 * 60 * 1000);
+    break;
+}
 
 function sendembed_simple (title, message1, salonid, auteur, couleur, footer) {
     var sendembed_simple_embed = new Discord.RichEmbed()
