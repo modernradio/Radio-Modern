@@ -9,7 +9,7 @@ bot.on("ready", () => {
 function autoplayradio () {
 
     var channel_bar = bot.channels.find("id", "482530580123222044");
-    //var channel_libre = bot.channels.find("id", "");
+    var channel_imagi = bot.channels.find("id", "480886933115895809");
     //var channel_libre = bot.channels.find("id", "");
     
     autoplayradio_join();
@@ -20,12 +20,12 @@ function autoplayradio () {
                 connection.playStream(res);
             })
         })
-        /*channel_libre.join().then(connection => {
+        channel_imagi.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
         })
-        channel_libre.join().then(connection => {
+        /*channel_libre.join().then(connection => {
             require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
                 connection.playStream(res);
             })
@@ -35,7 +35,7 @@ function autoplayradio () {
 
     function autoplayradio_leave () {
         channel_ilian.leave();
-        //channel_libre.leave();
+        channel_imagi.leave();
         //channel_libre.leave();
         autoplayradio_join();
     }
