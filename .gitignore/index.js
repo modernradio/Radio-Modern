@@ -11,7 +11,7 @@ bot.on("ready", () => {
 function autoplayradio () {
 
     var channels_autoplayradio = ["482530580123222044", "480886933115895809"]
-    //                           BAR                     SupersFanne
+    //                           BAR                     Imaginarium
 
     autoplayradio_join();
 
