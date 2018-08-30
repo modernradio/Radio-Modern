@@ -2,41 +2,40 @@ const Discord = require("discord.js");
 
 var bot = new Discord.Client();
 
+var separation = "><><><><><><><><><><><";
+
 bot.on("ready", () => {
     autoplayradio();    
 });
 
 function autoplayradio () {
 
-    var channel_bar = bot.channels.find("id", "482530580123222044");
-    var channel_imagi = bot.channels.find("id", "480886933115895809");
-    //var channel_arcadia = bot.channels.find("id", "450189683398279168");
-    
+    var channels_autoplayradio = ["482530580123222044", "480886933115895809"]
+    //                           BAR                     SupersFanne
+
     autoplayradio_join();
 
     function autoplayradio_join () {
-        channel_bar.join().then(connection => {
-            require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
-                connection.playStream(res);
+        var i;
+        for (i = 0; i < channels_autoplayradio.length; i++) {
+            var channels_autoplayradio_find = bot.channels.find("id", channels_autoplayradio[i]);
+            channels_autoplayradio_find.join().then(connection => {
+                require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
+                    connection.playStream(res);
+                })
             })
-        })
-        channel_imagi.join().then(connection => {
-            require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
-                connection.playStream(res);
-            })
-        })
-        /*channel_arcadia.join().then(connection => {
-            require("http").get("http://streaming.radionomy.com/RadioModern", (res) => {
-                connection.playStream(res);
-            })
-        })*/
+            console.log("-> autojoin\n    - Salon \"" + channels_autoplayradio[i].name + "\" (" + channels_autoplayradio[i].guild.name + ")\n" + separation)    
+        }
         setTimeout(autoplayradio_leave, 15 * 60 * 1000)
     }
 
     function autoplayradio_leave () {
-        channel_bar.leave();
-        channel_imagi.leave();
-        //channel_arcadia.leave();
+        var i;
+        for (i = 0; i < channels_autoplayradio.length; i++) {
+            var channels_autoplayradio_find = bot.channels.findAll("id", channels_autoplayradio[i]);
+            channels_autoplayradio_find.leave();
+            console.log("-> autojoin\n    + Salon \"" + channels_autoplayradio[i].name + "\" (" + channels_autoplayradio[i].guild.name + ")\n" + separation)
+        }
         autoplayradio_join();
     }
 }
