@@ -5,14 +5,18 @@ var bot = new Discord.Client();
 var separation = "><><><><><><><><><><><";
 
 bot.on("ready", () => {
-    autoplayradio();    
+    var connection_embed = new Discord.RichEmbed()
+        .setTitle("Radio-Modern-2 - Je suis connecté")
+        .setTimestamp()
+        .setColor(embed_color)
+    bot.channels.findAll("name", "logs-radio").map(channel => channel.send(connection_embed));
+    autoplayradio();
 });
-
 
 function autoplayradio () {
 
-    var channels_autoplayradio = ["482530580123222044", "480886933115895809"/*, "467298506202152961"*/]
-    //                           BAR                     Imaginarium          Universus
+    var channels_autoplayradio = ["482530580123222044", "480886933115895809"]
+    //                           BAR                     Imaginarium
 
     autoplayradio_join();
 
