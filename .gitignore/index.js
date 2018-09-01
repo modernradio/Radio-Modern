@@ -11,7 +11,7 @@ bot.on("ready", () => {
 
 function autoplayradio () {
 
-    var channels_autoplayradio = ["482530580123222044", "480886933115895809", "467298506202152961"]
+    var channels_autoplayradio = ["482530580123222044", "480886933115895809"/*, "467298506202152961"*/]
     //                           BAR                     Imaginarium          Universus
 
     autoplayradio_join();
