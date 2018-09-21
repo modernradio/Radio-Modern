@@ -33,8 +33,8 @@ bot.on("message", async function (message) {
 
 function autoplayradio () {
 
-    var channels_autoplayradio = ["482530580123222044", "480886933115895809"]
-    //                           BAR                     Imaginarium
+    var channels_autoplayradio = ["442651081080569867", "481202105382862848"]
+    //                           Le QZ                  Ilian
 
     autoplayradio_join();
 
