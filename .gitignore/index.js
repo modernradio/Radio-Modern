@@ -33,8 +33,8 @@ bot.on("message", async function (message) {
 
 function autoplayradio () {
 
-    var channels_autoplayradio = ["442651081080569867", "481202105382862848"]
-    //                           Le QZ                  Ilian
+    var channels_autoplayradio = ["442651081080569867", "481202105382862848", "493068619786485760"]
+    //                           Le QZ                  Ilian                 Creepypasta
 
     autoplayradio_join();
 
